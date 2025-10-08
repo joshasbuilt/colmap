@@ -8,13 +8,14 @@ from pathlib import Path
 
 # Configuration
 CAMERA_DIR = Path(__file__).parent
-MASK_TEMPLATE = CAMERA_DIR / "mask_template.png"
+MASK_TEMPLATE = CAMERA_DIR / "mask_template3.png"
 
 # Find all frame folders
 frame_folders = [
     "VID_20250925_113140_00_051_frames",
     "VID_20250929_133439_00_053_frames", 
-    "VID_20250930_131540_00_054_frames"
+    "VID_20250930_131540_00_054_frames",
+    "VID_20251007_170505_00_012_frames"
 ]
 
 def apply_masks():

@@ -14,7 +14,6 @@ basis_z = (-0.989588776, -0.120385332, -0.078876015)
 # Parameters
 scale = 1.5
 marker_size = 0.02
-camera_index = 1  # Which camera (0-7) to use for direction/position visualization
 
 # Paths
 recon_path = Path('reconstruction_single/sparse/0')
@@ -27,10 +26,9 @@ out_dir = output_dir / f'affine_manual_{timestamp}'
 out_dir.mkdir(exist_ok=True)
 out_file = out_dir / f'pointcloud_affine_manual_{timestamp}.dxf'
 
-# Run affine export with camera poses: origin_feet will be converted to meters inside the function
+# Run affine export: origin_feet will be converted to meters inside the function
 export_to_dxf_transformed(
     recon, out_file, marker_size=marker_size, scale=scale,
-    origin_feet=origin_feet, basis_x=basis_x, basis_y=basis_y, basis_z=basis_z,
-    include_camera_poses=True, camera_index=camera_index
+    origin_feet=origin_feet, basis_x=basis_x, basis_y=basis_y, basis_z=basis_z
 )
 print(f'Wrote affine DXF with origin and scale to: {out_file}')

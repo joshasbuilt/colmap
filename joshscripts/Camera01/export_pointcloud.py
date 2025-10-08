@@ -77,9 +77,7 @@ def export_to_dxf_transformed(reconstruction, output_file, marker_size=0.02, sca
                                origin_feet=(18.511377949, 28.950097280, 6.108436373),
                                basis_x=(-0.115146894, 0.991024226, -0.067913000),
                                basis_y=(0.086343771, -0.058123614, -0.994568448),
-                               basis_z=(-0.989588776, -0.120385332, -0.078876015),
-                               include_camera_poses=True,
-                               camera_index=4):
+                               basis_z=(-0.989588776, -0.120385332, -0.078876015)):
     """Export to DXF format applying Revit affine transform:
     new = Origin_m + scale * R * orig
     origin_feet: Origin (X,Y,Z) from Revit in feet
@@ -90,66 +88,6 @@ def export_to_dxf_transformed(reconstruction, output_file, marker_size=0.02, sca
 
     # Build rotation matrix R from basis vectors (columns)
     R = np.column_stack([np.array(basis_x), np.array(basis_y), np.array(basis_z)])
-
-    # Extract camera poses if requested
-    camera_poses = []
-    if include_camera_poses:
-        print(f"Extracting camera poses using camera index {camera_index}...")
-        # Extract unique frame positions for visualization (45 positions from specified camera)
-        camera_positions = []
-        camera_directions = []  # Store forward direction vectors
-        
-        # Group images by frame_id and find the specific camera in each frame
-        frame_cameras = {}  # frame_id -> list of images
-        for image_id, image in reconstruction.images.items():
-            if hasattr(image, 'frame_id') and image.frame_id is not None:
-                if image.frame_id not in frame_cameras:
-                    frame_cameras[image.frame_id] = []
-                frame_cameras[image.frame_id].append(image)
-        
-        # For each frame, find the camera with matching index
-        for frame_id in sorted(frame_cameras.keys()):
-            images_in_frame = frame_cameras[frame_id]
-            camera_found = False
-            
-            for image in images_in_frame:
-                # Check if this is the camera we want (by checking image name)
-                # Assuming image names contain camera index like "pano_camera4"
-                if f"camera{camera_index}" in image.name.lower():
-                    # Get this camera's position in world coordinates
-                    # Camera center = -R^T * t where R and t are from cam_from_world
-                    cam_from_world = image.cam_from_world()
-                    rot_mat = cam_from_world.rotation.matrix()
-                    cam_pos = -rot_mat.T @ cam_from_world.translation
-                    
-                    # Get camera's forward direction (negative Z-axis in camera coordinates)
-                    # Transform to world coordinates: forward = R^T * [0, 0, -1]
-                    cam_forward = rot_mat.T @ np.array([0.0, 0.0, -1.0])
-                    
-                    # Apply the EXACT same transformation as 3D points
-                    transformed_pos = origin_m + scale * (R @ cam_pos)
-                    transformed_pos = tuple(float(x) for x in transformed_pos)
-                    
-                    # Transform the direction vector (rotation only, no translation)
-                    transformed_dir = R @ cam_forward
-                    transformed_dir = transformed_dir / np.linalg.norm(transformed_dir)  # Normalize
-                    
-                    camera_positions.append(transformed_pos)
-                    camera_directions.append(tuple(float(x) for x in transformed_dir))
-                    camera_found = True
-                    break
-            
-            if not camera_found and frame_id in reconstruction.frames:
-                # Fallback to rig position if specific camera not found
-                frame = reconstruction.frames[frame_id]
-                if frame.has_pose:
-                    frame_pos = frame.rig_from_world.translation
-                    transformed_pos = origin_m + scale * (R @ frame_pos)
-                    transformed_pos = tuple(float(x) for x in transformed_pos)
-                    camera_positions.append(transformed_pos)
-                    camera_directions.append((0.0, 0.0, 1.0))  # Default direction
-
-        print(f"Found {len(camera_positions)} camera positions (using camera{camera_index})")
 
     with open(output_file, 'w') as f:
         # Write DXF header
@@ -212,96 +150,11 @@ def export_to_dxf_transformed(reconstruction, output_file, marker_size=0.02, sca
                 f.write(f" 13\n{v3[0]:.6f}\n")
                 f.write(f" 23\n{v3[1]:.6f}\n")
                 f.write(f" 33\n{v3[2]:.6f}\n")
-
-        # Add camera position cones (big directional markers)
-        if include_camera_poses and camera_positions:
-            print("Adding camera position directional cones...")
-            camera_marker_size = marker_size * scale * 5.0  # 5x larger than point markers
-
-            for i, pos in enumerate(camera_positions):
-                x, y, z = pos
-                direction = np.array(camera_directions[i])
-                
-                # Create a cone pointing in the direction of travel/camera forward
-                # Cone: tip at camera position, base extending in forward direction (wide end leads)
-                cone_length = camera_marker_size * 2.0  # Length of cone
-                base_radius = camera_marker_size / 2  # Radius of cone base
-                
-                # Tip of cone at camera position
-                tip = np.array([x, y, z])
-                # Base center in direction of travel
-                base_center = np.array([x, y, z]) + direction * cone_length
-                
-                # Create a perpendicular basis for the base circle
-                # Find two perpendicular vectors to direction
-                if abs(direction[0]) < 0.9:
-                    perp1 = np.cross(direction, [1, 0, 0])
-                else:
-                    perp1 = np.cross(direction, [0, 1, 0])
-                perp1 = perp1 / np.linalg.norm(perp1) * base_radius
-                perp2 = np.cross(direction, perp1)
-                perp2 = perp2 / np.linalg.norm(perp2) * base_radius
-                
-                # Create 8 points around the base circle (at the wide end, in direction of travel)
-                n_sides = 8
-                base_vertices = []
-                for j in range(n_sides):
-                    angle = 2 * np.pi * j / n_sides
-                    base_pt = base_center + np.cos(angle) * perp1 + np.sin(angle) * perp2
-                    base_vertices.append(tuple(float(c) for c in base_pt))
-                
-                tip_tuple = tuple(float(c) for c in tip)
-                
-                # Create triangular faces from base to tip
-                for j in range(n_sides):
-                    v1 = base_vertices[j]
-                    v2 = base_vertices[(j + 1) % n_sides]
-                    v3 = tip_tuple
-                    
-                    f.write("  0\n3DFACE\n")
-                    f.write("  8\n1\n")  # Layer 1 for camera positions
-                    f.write(f" 10\n{v1[0]:.6f}\n")
-                    f.write(f" 20\n{v1[1]:.6f}\n")
-                    f.write(f" 30\n{v1[2]:.6f}\n")
-                    f.write(f" 11\n{v2[0]:.6f}\n")
-                    f.write(f" 21\n{v2[1]:.6f}\n")
-                    f.write(f" 31\n{v2[2]:.6f}\n")
-                    f.write(f" 12\n{v3[0]:.6f}\n")
-                    f.write(f" 22\n{v3[1]:.6f}\n")
-                    f.write(f" 32\n{v3[2]:.6f}\n")
-                    f.write(f" 13\n{v3[0]:.6f}\n")
-                    f.write(f" 23\n{v3[1]:.6f}\n")
-                    f.write(f" 33\n{v3[2]:.6f}\n")
-                
-                # Also create base cap at the wide end (for better visibility)
-                center = tuple(float(c) for c in base_center)
-                for j in range(n_sides):
-                    v1 = center
-                    v2 = base_vertices[j]
-                    v3 = base_vertices[(j + 1) % n_sides]
-                    
-                    f.write("  0\n3DFACE\n")
-                    f.write("  8\n1\n")
-                    f.write(f" 10\n{v1[0]:.6f}\n")
-                    f.write(f" 20\n{v1[1]:.6f}\n")
-                    f.write(f" 30\n{v1[2]:.6f}\n")
-                    f.write(f" 11\n{v2[0]:.6f}\n")
-                    f.write(f" 21\n{v2[1]:.6f}\n")
-                    f.write(f" 31\n{v2[2]:.6f}\n")
-                    f.write(f" 12\n{v3[0]:.6f}\n")
-                    f.write(f" 22\n{v3[1]:.6f}\n")
-                    f.write(f" 32\n{v3[2]:.6f}\n")
-                    f.write(f" 13\n{v3[0]:.6f}\n")
-                    f.write(f" 23\n{v3[1]:.6f}\n")
-                    f.write(f" 33\n{v3[2]:.6f}\n")
-
+        
         # End entities section
         f.write("  0\nENDSEC\n")
         f.write("  0\nEOF\n")
     
-    point_faces = reconstruction.num_points3D() * 8
-    camera_faces = len(camera_positions) * 16 if include_camera_poses and camera_positions else 0  # 16 faces per cone (8 sides + 8 base)
-
     print(f"Exported {reconstruction.num_points3D()} points as transformed octahedrons to {output_file}")
     print(f"  Scale: {scale}x")
     print(f"  Origin (feet): {origin_feet}")
@@ -310,15 +163,7 @@ def export_to_dxf_transformed(reconstruction, output_file, marker_size=0.02, sca
     print(f"  BasisY: {basis_y}")
     print(f"  BasisZ: {basis_z}")
     print(f"  Marker size: {marker_size * scale:.6f} units")
-    print(f"  Point cloud faces: {point_faces}")
-
-    if include_camera_poses and camera_positions:
-        camera_marker_size = marker_size * scale * 5.0
-        print(f"  Camera positions: {len(camera_positions)} directional cones (using camera{camera_index} from each frame)")
-        print(f"  Camera cone size: {camera_marker_size:.3f} units")
-        print(f"  Camera cone faces: {camera_faces}")
-
-    print(f"  Total faces: {point_faces + camera_faces}")
+    print(f"  Total faces: {reconstruction.num_points3D() * 8}")
 
 
 def export_to_dxf_rotation(reconstruction, output_file, R, marker_size=0.02):

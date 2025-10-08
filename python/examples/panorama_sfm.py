@@ -20,6 +20,7 @@ from tqdm import tqdm
 import pycolmap
 from pycolmap import logging
 
+import pdb
 
 @dataclass
 class PanoRenderOptions:
@@ -32,7 +33,8 @@ class PanoRenderOptions:
 PANO_RENDER_OPTIONS: dict[str, PanoRenderOptions] = {
     "overlapping": PanoRenderOptions(
         num_steps_yaw=4,
-        pitches_deg=(-35.0, 0.0, 35.0),
+        pitches_deg=(0.0, 35.0),
+        #pitches_deg=(-35.0, 0.0, 35.0),
         hfov_deg=90.0,
         vfov_deg=90.0,
     ),
@@ -142,10 +144,7 @@ class PanoProcessor:
         self.output_image_dir = output_image_dir
         self.mask_dir = mask_dir
 
-        self.cams_from_pano_rotation = get_virtual_rotations(
-            num_steps_yaw=render_options.num_steps_yaw,
-            pitches_deg=render_options.pitches_deg,
-        )
+        self.cams_from_pano_rotation = get_virtual_rotations(num_steps_yaw=render_options.num_steps_yaw,pitches_deg=render_options.pitches_deg,)
         self.rig_config = create_pano_rig_config(self.cams_from_pano_rotation)
 
         # We assign each pano pixel to the virtual camera
@@ -224,8 +223,20 @@ class PanoProcessor:
                 .transpose()
             )
 
+            # Flatten the folder structure - remove subfolder to ensure one camera per virtual direction
+            # pano_name might be "VID_xxx/frame_001.jpg", we want just "frame_001.jpg" with video prefix
+            pano_parts = pano_name.split('/')
+            if len(pano_parts) > 1:
+                # Extract video folder name and filename
+                video_folder = pano_parts[0]  # e.g., "VID_20250925_113140_00_051_frames"
+                filename = pano_parts[-1]  # e.g., "frame_001.jpg"
+                # Create flattened name: video_folder_filename
+                flattened_name = f"{video_folder}_{filename}"
+            else:
+                flattened_name = pano_name
+            
             image_name = (
-                self.rig_config.cameras[cam_idx].image_prefix + pano_name
+                self.rig_config.cameras[cam_idx].image_prefix + flattened_name
             )
             mask_name = f"{image_name}.png"
 
@@ -251,17 +262,25 @@ def render_perspective_images(
     )
 
     num_panos = len(pano_image_names)
-    max_workers = min(32, (os.cpu_count() or 2) - 1)
+    max_workers = 1  # Use single thread for debugging
 
-    with tqdm(total=num_panos) as pbar:
-        with ThreadPoolExecutor(max_workers=max_workers) as thread_pool:
-            futures = [
-                thread_pool.submit(processor.process, pano_name)
-                for pano_name in pano_image_names
-            ]
-            for future in as_completed(futures):
+    logging.info(f"Processing {num_panos} panoramas with {max_workers} workers")
+    
+    processed_count = 0
+    with ThreadPoolExecutor(max_workers=max_workers) as thread_pool:
+        futures = [
+            thread_pool.submit(processor.process, pano_name)
+            for pano_name in pano_image_names
+        ]
+        for i, future in enumerate(as_completed(futures)):
+            try:
                 future.result()
-                pbar.update(1)
+                processed_count += 1
+                if processed_count % 10 == 0 or processed_count == num_panos:
+                    logging.info(f"Progress: {processed_count}/{num_panos} ({100*processed_count/num_panos:.1f}%)")
+            except Exception as e:
+                logging.error(f"Failed to process panorama: {e}")
+                raise
 
     return processor.rig_config
 
@@ -276,8 +295,12 @@ def run(args):
     mask_dir.mkdir(exist_ok=True, parents=True)
 
     database_path = args.output_path / "database.db"
-    if database_path.exists():
-        database_path.unlink()
+    
+    # Check what steps are already complete
+    database_exists = database_path.exists()
+    
+    # Check if images are already rendered (look for at least some output images)
+    images_rendered = len(list(image_dir.glob("*/*.jpg"))) > 0 if image_dir.exists() else False
 
     rec_path = args.output_path / "sparse"
     rec_path.mkdir(exist_ok=True, parents=True)
@@ -287,41 +310,95 @@ def run(args):
     pano_image_names = sorted(
         p.relative_to(pano_image_dir).as_posix()
         for p in pano_image_dir.rglob("*")
-        if not p.is_dir()
+        if not p.is_dir() and p.suffix.lower() in ['.jpg', '.jpeg']
     )
+    
+    # TEST MODE: Select images from DIFFERENT folders to test cross-folder compatibility
+    if hasattr(args, 'test_mode') and args.test_mode:
+        test_count = getattr(args, 'test_image_count', 5)
+        # Group images by folder
+        from collections import defaultdict
+        folder_images = defaultdict(list)
+        for img_path in pano_image_names:
+            folder = img_path.split('/')[0]  # Get first folder name
+            folder_images[folder].append(img_path)
+        
+        # Select images evenly from all folders
+        selected_images = []
+        folders = sorted(folder_images.keys())
+        images_per_folder = max(1, test_count // len(folders))
+        
+        for folder in folders:
+            selected_images.extend(folder_images[folder][:images_per_folder])
+            if len(selected_images) >= test_count:
+                break
+        
+        pano_image_names = sorted(selected_images[:test_count])
+        logging.info(f"TEST MODE: Processing {len(pano_image_names)} images from {len(folders)} folders: {folders}")
+    
     logging.info(f"Found {len(pano_image_names)} images in {pano_image_dir}.")
 
-    rig_config = render_perspective_images(
-        pano_image_names,
-        pano_image_dir,
-        image_dir,
-        mask_dir,
-        PANO_RENDER_OPTIONS[args.pano_render_type],
-    )
+    # Step 1: Render perspective images
+    if images_rendered:
+        logging.info("Skipping render_perspective_images - already complete")
+        # Still need to load rig_config
+        processor = PanoProcessor(
+            pano_image_dir,
+            image_dir,
+            mask_dir,
+            PANO_RENDER_OPTIONS[args.pano_render_type],
+        )
+        rig_config = processor.rig_config
+    else:
+        logging.info("render_perspective_images")
+        rig_config = render_perspective_images(
+            pano_image_names,
+            pano_image_dir,
+            image_dir,
+            mask_dir,
+            PANO_RENDER_OPTIONS[args.pano_render_type],
+        )
 
-    pycolmap.extract_features(
-        database_path,
-        image_dir,
-        reader_options={"mask_path": mask_dir},
-        camera_mode=pycolmap.CameraMode.PER_FOLDER,
-    )
+    # Step 2: Extract features
+    if database_exists:
+        logging.info("Skipping extract_features - database already exists")
+    else:
+        logging.info("extract_features")
+        reader_opts = pycolmap.ImageReaderOptions()
+        reader_opts.mask_path = str(mask_dir)
+        reader_opts.camera_model = "SIMPLE_RADIAL"
+        
+        pycolmap.extract_features(
+            database_path,
+            image_dir,
+            reader_options=reader_opts,
+            camera_mode=pycolmap.CameraMode.PER_FOLDER,
+            camera_model="SIMPLE_RADIAL",
+        )
 
-    with pycolmap.Database.open(database_path) as db:
-        pycolmap.apply_rig_config([rig_config], db)
+        logging.info("apply_rig_config")
+        with pycolmap.Database(str(database_path)) as db:
+            pycolmap.apply_rig_config([rig_config], db)
 
-    matching_options = pycolmap.FeatureMatchingOptions()
+    # Step 3: Match features
+    logging.info("match_")
+
+    # matching_options = pycolmap.FeatureMatchingOptions()
     # We have perfect sensor_from_rig poses (except for potential stitching
     # artifacts by the spherical image provider), so we can perform geometric
     # verification using rig constraints.
-    matching_options.rig_verification = True
+    # matching_options.rig_verification = True
     # The images within a frame do not have overlap due to the provided masks.
-    matching_options.skip_image_pairs_in_same_frame = True
+    # matching_options.skip_image_pairs_in_same_frame = True
     if args.matcher == "sequential":
+        matching_options = pycolmap.SequentialMatchingOptions()
+        # Note: rig_verification and skip_image_pairs_in_same_frame not available in this pycolmap version
+        # matching_options.rig_verification = True
+        # matching_options.skip_image_pairs_in_same_frame = True
+        matching_options.loop_detection = True  # Enable loop detection for single video with looping path
+        matching_options.overlap = 10  # Match each image with its 10 nearest neighbors (default is typically 5-10)
         pycolmap.match_sequential(
             database_path,
-            pairing_options=pycolmap.SequentialPairingOptions(
-                loop_detection=True
-            ),
             matching_options=matching_options,
         )
     elif args.matcher == "exhaustive":
