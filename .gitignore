@@ -68,7 +68,7 @@ combined_frames/
 combined_frames_clean/
 joshscripts/**/reconstruction*/
 joshscripts/**/test_output/
-joshscripts/**/panoramas/
+joshscript_aframe/panoramas/
 
 # Python cache and virtual environments
 __pycache__/
