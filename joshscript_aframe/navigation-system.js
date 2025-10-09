@@ -15,7 +15,7 @@
 const state = {
     cones: [],
     currentCone: null,
-    sphereElevation: 0.0,
+    sphereElevation: -0.7,
     sphereSize: 0.0875,
     pathRibbons: [],
     commentMarkers: [],
@@ -36,7 +36,9 @@ const CONFIG = {
     SPHERE_SEGMENTS: 32,
     RIBBON_WIDTH: 0.03,
     COMMENT_SIZE: 0.15,
-    MOUSE_SENSITIVITY: 1.0
+    MOUSE_SENSITIVITY: 1.0,
+    PITCH_OFFSET: 0,  // Global pitch correction (degrees, positive = look up, negative = look down)
+    ROLL_OFFSET: 0    // Global roll correction (degrees)
 };
 
 /**
@@ -271,19 +273,14 @@ function generatePathRibbons() {
 function createPathRibbon(startCone, endCone) {
     const entity = document.createElement('a-entity');
     
-    // Calculate positions
-    // Convert DXF (Z-up) to A-Frame (Y-up): swap Y and Z, negate Z to fix mirroring
-    const start = new THREE.Vector3(
-        startCone.dxf_position.x,
-        startCone.dxf_position.z + state.sphereElevation,  // DXF Z -> A-Frame Y
-        -startCone.dxf_position.y  // DXF Y -> A-Frame -Z (negated)
-    );
+    // Get positions from the actual sphere elements (which include perspective correction)
+    const startPos = startCone.sphereElement ? startCone.sphereElement.getAttribute('position') : null;
+    const endPos = endCone.sphereElement ? endCone.sphereElement.getAttribute('position') : null;
     
-    const end = new THREE.Vector3(
-        endCone.dxf_position.x,
-        endCone.dxf_position.z + state.sphereElevation,  // DXF Z -> A-Frame Y
-        -endCone.dxf_position.y  // DXF Y -> A-Frame -Z (negated)
-    );
+    if (!startPos || !endPos) return entity;
+    
+    const start = new THREE.Vector3(startPos.x, startPos.y, startPos.z);
+    const end = new THREE.Vector3(endPos.x, endPos.y, endPos.z);
     
     // Calculate midpoint and direction
     const midpoint = new THREE.Vector3().lerpVectors(start, end, 0.5);
@@ -332,6 +329,9 @@ async function navigateToCone(cone) {
             z: -cone.dxf_position.y  // DXF Y -> A-Frame -Z (negated)
         };
         cameraRig.setAttribute('position', position);
+        
+        // Update sphere positions based on new camera location (perspective correction)
+        updateSphereElevation();
         
         // Load and apply panorama
         await loadPanorama(cone.image_path);
@@ -409,6 +409,7 @@ function applySkyRotation(direction) {
     if (hasFullOrientation) {
         // Convert DXF forward and up vectors to A-Frame coordinates
         // DXF(x,y,z) -> A-Frame(x, z, -y)
+        // For skybox: invert the up vector to fix upside-down issue
         const forward = new THREE.Vector3(
             direction.forward.x,
             direction.forward.z,
@@ -417,9 +418,9 @@ function applySkyRotation(direction) {
         forward.normalize();
         
         const up = new THREE.Vector3(
-            direction.up.x,
-            direction.up.z,
-            -direction.up.y
+            -direction.up.x,    // Invert X
+            -direction.up.z,    // Invert Y (was Z in DXF)
+            direction.up.y      // Invert Z (was -Y in DXF)
         );
         up.normalize();
         
@@ -445,11 +446,11 @@ function applySkyRotation(direction) {
         const euler = new THREE.Euler().setFromRotationMatrix(rotMatrix, 'YXZ');
         
         // Convert to degrees
-        pitch = euler.x * (180 / Math.PI);     // No negation
-        yaw = euler.y * (180 / Math.PI);
-        roll = -(euler.z * (180 / Math.PI));   // Negate roll
+        pitch = euler.x * (180 / Math.PI) + CONFIG.PITCH_OFFSET;     // Add global pitch offset
+        yaw = euler.y * (180 / Math.PI) + 90;  // Add 90° to fix left rotation
+        roll = -(euler.z * (180 / Math.PI)) + CONFIG.ROLL_OFFSET;   // Negate roll and add offset
         
-        console.log(`Calculated orientation - yaw=${yaw.toFixed(2)}°, pitch=${pitch.toFixed(2)}°, roll=${roll.toFixed(2)}°`);
+        console.log(`%c[SKYBOX ROTATION] yaw=${yaw.toFixed(2)}°, pitch=${pitch.toFixed(2)}° (raw: ${(euler.x * (180 / Math.PI)).toFixed(2)}°), roll=${roll.toFixed(2)}°`, 'background: #222; color: #bada55; font-weight: bold; padding: 2px 5px;');
         
     } else {
         // Old format: single direction vector
@@ -520,6 +521,10 @@ function initializeUI() {
     const togglePanelBtn = document.getElementById('toggle-panel');
     const panel = document.getElementById('ui-panel');
     
+    // Collapse panel by default on launch
+    panel.classList.add('minimized');
+    togglePanelBtn.textContent = '+';
+    
     togglePanelBtn.addEventListener('click', () => {
         panel.classList.toggle('minimized');
         togglePanelBtn.textContent = panel.classList.contains('minimized') ? '+' : '−';
@@ -545,6 +550,10 @@ function initializeUI() {
     // Elevation control
     const elevation = document.getElementById('sphere-elevation');
     const elevationValue = document.getElementById('elevation-value');
+    
+    // Set initial elevation value
+    elevation.value = state.sphereElevation;
+    elevationValue.textContent = state.sphereElevation.toFixed(1);
     
     elevation.addEventListener('input', (e) => {
         state.sphereElevation = parseFloat(e.target.value);
@@ -619,13 +628,29 @@ function updateSphereSize() {
  * Update sphere elevation for all navigation spheres and ribbons
  */
 function updateSphereElevation() {
+    const cameraRig = document.getElementById('camera-rig');
+    const camPos = cameraRig ? cameraRig.getAttribute('position') : { x: 0, y: 1.6, z: 0 };
+    
     state.cones.forEach(cone => {
         if (cone.sphereElement) {
             // Convert DXF (Z-up) to A-Frame (Y-up): swap Y and Z, negate Z to fix mirroring
+            const baseX = cone.dxf_position.x;
+            const baseY = cone.dxf_position.z + state.sphereElevation;  // DXF Z -> A-Frame Y
+            const baseZ = -cone.dxf_position.y;  // DXF Y -> A-Frame -Z (negated)
+            
+            // Calculate horizontal distance from camera
+            const dx = baseX - camPos.x;
+            const dz = baseZ - camPos.z;
+            const distance = Math.sqrt(dx * dx + dz * dz);
+            
+            // Apply perspective correction: lower distant spheres
+            // The factor 0.002016 can be adjusted - higher = more correction
+            const perspectiveCorrection = (distance * distance) * 0.002016;
+            
             cone.sphereElement.setAttribute('position', {
-                x: cone.dxf_position.x,
-                y: cone.dxf_position.z + state.sphereElevation,  // DXF Z -> A-Frame Y
-                z: -cone.dxf_position.y  // DXF Y -> A-Frame -Z (negated)
+                x: baseX,
+                y: baseY - perspectiveCorrection,
+                z: baseZ
             });
         }
     });

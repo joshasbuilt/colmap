@@ -13,6 +13,7 @@ import pycolmap
 # Parameters (use the same values we tested)
 origin_feet = (18.511377949, 28.950097280, 6.108436373)
 scale = 1.5
+downsample_scale = 0.1  # Keep 1 in 10 points (0.1 = 10% of points)
 basis_x = (-0.115146894, 0.991024226, -0.067913000)
 basis_y = (0.086343771, -0.058123614, -0.994568448)
 basis_z = (-0.989588776, -0.120385332, -0.078876015)
@@ -33,14 +34,25 @@ print('Loading reconstruction...')
 recon = pycolmap.Reconstruction(str(Path('reconstruction_single/sparse/0')))
 N = recon.num_points3D()
 print(f'Points found: {N}')
+print(f'Downsampling scale: {downsample_scale} (keeping 1 in {int(1/downsample_scale)} points)')
 
-# Collect and transform points
+# Collect and transform points with downsampling
 points = []
+point_count = 0
+downsample_factor = int(1 / downsample_scale)  # Convert 0.1 to 10
 for pid, p in recon.points3D.items():
+    # Apply downsampling
+    if point_count % downsample_factor != 0:
+        point_count += 1
+        continue
+    point_count += 1
+    
     orig = np.array(p.xyz, dtype=float)
     transformed = origin_m + scale * (R @ orig)
-    color = p.color
+    color = [255, 0, 0]  # Force all points to red
     points.append((transformed, color))
+
+print(f'Points after downsampling: {len(points)}')
 
 # Write XYZ (X Y Z R G B)
 with open(xyz_file, 'w') as f:
