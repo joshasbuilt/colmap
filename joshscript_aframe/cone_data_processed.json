@@ -1,0 +1,138 @@
+{
+  "export_info": {
+    "timestamp": "2025-10-08T17:12:39.551064",
+    "total_cones": 45,
+    "camera_index_used": 1,
+    "dxf_file": "pointcloud_affine_manual_20251008_171238.dxf",
+    "processing_timestamp": "2025-10-09T10:35:05.542240",
+    "rotation_baked": true,
+    "original_file": "cone_data.json"
+  },
+  "cones": [
+    {
+      "cone_id": 1,
+      "dxf_position": {
+        "x": 3.2754052089267622,
+        "y": 0.8090448352328039,
+        "z": 1.9011808407451307
+      },
+      "direction": {
+        "forward": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        },
+        "up": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 1.0
+        }
+      },
+      "camera_index": 1,
+      "frame_number": 23,
+      "image_path": "panoramas/processed/frame_0023.jpg",
+      "original_image_path": "panoramas/frame_0023.jpg",
+      "rotation_baked": true
+    },
+    {
+      "cone_id": 2,
+      "dxf_position": {
+        "x": 3.2721979758549407,
+        "y": 2.0688038375731814,
+        "z": 1.9001065629203047
+      },
+      "direction": {
+        "forward": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        },
+        "up": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 1.0
+        }
+      },
+      "camera_index": 1,
+      "frame_number": 24,
+      "image_path": "panoramas/processed/frame_0024.jpg",
+      "original_image_path": "panoramas/frame_0024.jpg",
+      "rotation_baked": true
+    },
+    {
+      "cone_id": 3,
+      "dxf_position": {
+        "x": 3.174286987686492,
+        "y": 4.604052358605871,
+        "z": 1.8707730903892839
+      },
+      "direction": {
+        "forward": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        },
+        "up": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 1.0
+        }
+      },
+      "camera_index": 1,
+      "frame_number": 25,
+      "image_path": "panoramas/processed/frame_0025.jpg",
+      "original_image_path": "panoramas/frame_0025.jpg",
+      "rotation_baked": true
+    },
+    {
+      "cone_id": 4,
+      "dxf_position": {
+        "x": 3.1553672332762828,
+        "y": 5.165335628174673,
+        "z": 1.875804580531901
+      },
+      "direction": {
+        "forward": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        },
+        "up": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 1.0
+        }
+      },
+      "camera_index": 1,
+      "frame_number": 26,
+      "image_path": "panoramas/processed/frame_0026.jpg",
+      "original_image_path": "panoramas/frame_0026.jpg",
+      "rotation_baked": true
+    },
+    {
+      "cone_id": 5,
+      "dxf_position": {
+        "x": 3.5604416255968054,
+        "y": 7.255046253042973,
+        "z": 1.8484916372381461
+      },
+      "direction": {
+        "forward": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        },
+        "up": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 1.0
+        }
+      },
+      "camera_index": 1,
+      "frame_number": 27,
+      "image_path": "panoramas/processed/frame_0027.jpg",
+      "original_image_path": "panoramas/frame_0027.jpg",
+      "rotation_baked": true
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>360° Cone-Based Navigation System</title>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- UI Controls Panel -->
+    <div id="ui-panel">
+        <div class="panel-header">
+            <h2>Navigation Controls</h2>
+            <button id="toggle-panel" class="btn-minimize">−</button>
+        </div>
+        <div class="panel-content">
+            <div class="control-group">
+                <label for="sphere-toggle">
+                    <input type="checkbox" id="sphere-toggle" checked>
+                    Show Navigation Spheres
+                </label>
+            </div>
+            
+            <div class="control-group">
+                <label for="sphere-size">Sphere Size: <span id="sphere-size-value">0.0875</span></label>
+                <input type="range" id="sphere-size" min="0.01" max="0.3" step="0.005" value="0.0875">
+            </div>
+            
+            <div class="control-group">
+                <label for="sphere-elevation">Elevation: <span id="elevation-value">0.0</span></label>
+                <input type="range" id="sphere-elevation" min="-2" max="2" step="0.1" value="0">
+            </div>
+            
+            <div class="control-group">
+                <button id="toggle-comments" class="btn-primary">Toggle Comments</button>
+                <button id="add-comment" class="btn-secondary">Add Comment</button>
+            </div>
+            
+            <div class="info-group">
+                <div class="info-item">
+                    <span class="label">Current Cone:</span>
+                    <span id="current-cone-id">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Total Cones:</span>
+                    <span id="total-cones">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Camera Index:</span>
+                    <span id="camera-index">-</span>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <button id="export-data" class="btn-secondary">Export Data</button>
+                <button id="reset-view" class="btn-secondary">Reset View</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loading-indicator" class="hidden">
+        <div class="spinner"></div>
+        <p>Loading panorama...</p>
+    </div>
+
+    <!-- A-Frame Scene -->
+    <a-scene
+        loading-screen="enabled: false"
+        cursor="rayOrigin: mouse"
+        raycaster="objects: .clickable; far: 50">
+        
+        <!-- Camera Configuration -->
+        <a-entity 
+            id="camera-rig" 
+            position="0 1.6 0">
+            <a-camera 
+                id="main-camera"
+                look-controls="reverseMouseDrag: true"
+                wasd-controls="enabled: false"
+                fov="70">
+            </a-camera>
+        </a-entity>
+
+        <!-- Advanced Lighting System -->
+        <a-entity id="lighting-system">
+            <!-- Ambient Light -->
+            <a-light 
+                type="ambient" 
+                color="#FFFFFF" 
+                intensity="0.2">
+            </a-light>
+            
+            <!-- Primary Directional Light -->
+            <a-light 
+                type="directional" 
+                position="0 10 0" 
+                intensity="0.8" 
+                color="#FFFFFF"
+                castShadow="true">
+            </a-light>
+            
+            <!-- Secondary Directional Light -->
+            <a-light 
+                type="directional" 
+                position="5 5 5" 
+                intensity="0.4" 
+                color="#FFFFFF">
+            </a-light>
+            
+            <!-- Tertiary Directional Light -->
+            <a-light 
+                type="directional" 
+                position="-5 3 -5" 
+                intensity="0.3" 
+                color="#FFFFFF">
+            </a-light>
+            
+            <!-- Point Light -->
+            <a-light 
+                type="point" 
+                position="0 2 0" 
+                intensity="0.5" 
+                color="#FFFFFF">
+            </a-light>
+        </a-entity>
+
+        <!-- 360° Sky Container -->
+        <a-sky 
+            id="panorama-sky" 
+            src="" 
+            rotation="0 0 0">
+        </a-sky>
+
+        <!-- Navigation Spheres Container -->
+        <a-entity id="spheres-container"></a-entity>
+
+        <!-- Path Ribbons Container -->
+        <a-entity id="ribbons-container"></a-entity>
+
+        <!-- Comment Markers Container -->
+        <a-entity id="comments-container"></a-entity>
+
+    </a-scene>
+
+    <!-- Scripts -->
+    <script src="navigation-system.js"></script>
+</body>
+</html>
+
+
+
