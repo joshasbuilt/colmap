@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Floorplan Alignment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            cursor: default;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        #canvas-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #floorplan {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+        
+        #svg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: visible;
+        }
+        
+        #grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        #transform-box {
+            position: absolute;
+            border: 4px solid rgba(0, 150, 255, 0.9);
+            pointer-events: none;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+        }
+        
+        .grip {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border: 3px solid #0096ff;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+            z-index: 1001;
+            will-change: transform;
+        }
+        
+        .grip:hover {
+            background: #0096ff;
+            box-shadow: 0 4px 15px rgba(0,150,255,0.8);
+        }
+        
+        .grip.active {
+            background: #ff6600;
+            border-color: #ff6600;
+        }
+        
+        /* Corner grips - scale */
+        .grip-corner {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        .grip-nw { cursor: nw-resize; }
+        .grip-ne { cursor: ne-resize; }
+        .grip-sw { cursor: sw-resize; }
+        .grip-se { cursor: se-resize; }
+        
+        /* Edge grips - rotate */
+        .grip-edge {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(150, 255, 0, 0.9);
+            border-color: #6bc72e;
+        }
+        
+        .grip-edge:hover {
+            background: #6bc72e;
+        }
+        
+        .grip-n, .grip-s { cursor: ns-resize; }
+        .grip-e, .grip-w { cursor: ew-resize; }
+        
+        /* Center grip - move */
+        .grip-center {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: move;
+            background: rgba(0, 200, 255, 0.9);
+            border-color: #00b8e6;
+        }
+        
+        .grip-center:hover {
+            background: #00b8e6;
+        }
+        
+        /* UI Controls */
+        #controls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            z-index: 2000;
+        }
+        
+        .control-group {
+            margin-bottom: 10px;
+        }
+        
+        #position-display {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 8px 12px;
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+            min-width: 200px;
+        }
+        
+        #position-text {
+            color: #00ff00;
+            font-family: monospace;
+        }
+        
+        .control-group label {
+            display: inline-block;
+            width: 60px;
+            font-weight: bold;
+        }
+        
+        .control-group input {
+            width: 80px;
+            margin-right: 10px;
+        }
+        
+        button {
+            background: #0096ff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        
+        button:hover {
+            background: #007acc;
+        }
+        
+        .value {
+            color: #00ff00;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container">
+        <img id="floorplan" src="floorplanpicture" alt="Floorplan">
+        <canvas id="grid-overlay"></canvas>
+        <div id="svg-overlay"></div>
+        
+        <!-- Transform box -->
+        <div id="transform-box"></div>
+        
+        <!-- Corner grips (scale) -->
+        <div class="grip grip-corner grip-nw" id="grip-nw"></div>
+        <div class="grip grip-corner grip-ne" id="grip-ne"></div>
+        <div class="grip grip-corner grip-sw" id="grip-sw"></div>
+        <div class="grip grip-corner grip-se" id="grip-se"></div>
+        
+        <!-- Edge grips (rotate) -->
+        <div class="grip grip-edge grip-n" id="grip-n"></div>
+        <div class="grip grip-edge grip-e" id="grip-e"></div>
+        <div class="grip grip-edge grip-s" id="grip-s"></div>
+        <div class="grip grip-edge grip-w" id="grip-w"></div>
+        
+        <!-- Center grip (move) -->
+        <div class="grip grip-center" id="grip-center"></div>
+    </div>
+    
+    <!-- UI Controls -->
+    <div id="controls">
+        <div class="control-group">
+            <label>X:</label>
+            <span class="value" id="x-value">--</span>
+            <label>Y:</label>
+            <span class="value" id="y-value">--</span>
+        </div>
+        <div class="control-group">
+            <label>Scale:</label>
+            <span class="value" id="scale-value">1.00</span>
+            <label>Rotate:</label>
+            <span class="value" id="rotation-value">0</span>
+        </div>
+        <div class="control-group">
+            <div id="position-display">
+                <strong>Blue Dot Position:</strong> <span id="position-text">Calculating...</span>
+            </div>
+        </div>
+        <div class="control-group">
+            <button id="reset-btn">Reset</button>
+            <button id="download-btn">Download</button>
+        </div>
+        <div class="control-group">
+            <label><input type="checkbox" id="grid-toggle" checked> Grid</label>
+            <label><input type="checkbox" id="box-toggle" checked> Box</label>
+        </div>
+    </div>
+
+    <script>
+        // State
+        const state = {
+            x: 0,
+            y: 0,
+            scale: 1,
+            rotation: 0,
+            gridSize: 50,
+            gridVisible: true,
+            boxVisible: true
+        };
+        
+        let svgBounds = { 
+            width: 400, 
+            height: 400
+        }; // Will be read from SVG viewBox (in meters)
+        
+        // Convert meters to a ratio of the image width (so it scales with zoom)
+        let metersToPixelRatio = 0.05; // Will be calculated based on image size
+        
+        // Elements
+        const svgOverlay = document.getElementById('svg-overlay');
+        const gridCanvas = document.getElementById('grid-overlay');
+        const ctx = gridCanvas.getContext('2d');
+        const transformBox = document.getElementById('transform-box');
+        
+        // Grips
+        const gripCenter = document.getElementById('grip-center');
+        const gripNW = document.getElementById('grip-nw');
+        const gripNE = document.getElementById('grip-ne');
+        const gripSW = document.getElementById('grip-sw');
+        const gripSE = document.getElementById('grip-se');
+        const gripN = document.getElementById('grip-n');
+        const gripE = document.getElementById('grip-e');
+        const gripS = document.getElementById('grip-s');
+        const gripW = document.getElementById('grip-w');
+        
+        // Mouse state
+        let isDragging = false;
+        let activeGrip = null;
+        let dragStart = { x: 0, y: 0 };
+        let initialState = {};
+        let centerPoint = { x: 0, y: 0 };
+        
+        // Setup canvas
+        function resizeCanvas() {
+            const floorplanImg = document.getElementById('floorplan');
+            const rect = floorplanImg.getBoundingClientRect();
+            gridCanvas.width = rect.width;
+            gridCanvas.height = rect.height;
+            drawGrid();
+            updateTransform();
+        }
+        
+        // Draw grid
+        function drawGrid() {
+            ctx.clearRect(0, 0, gridCanvas.width, gridCanvas.height);
+            if (!state.gridVisible) return;
+            
+            const gridSize = state.gridSize;
+            const width = gridCanvas.width;
+            const height = gridCanvas.height;
+            
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.lineWidth = 1;
+            
+            // Vertical lines
+            for (let x = 0; x <= width; x += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, height);
+                ctx.stroke();
+            }
+            
+            // Horizontal lines
+            for (let y = 0; y <= height; y += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(width, y);
+                ctx.stroke();
+            }
+        }
+        
+        // Draw crosshair
+        function drawCrosshair(cx, cy) {
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(cx - 20, cy);
+            ctx.lineTo(cx + 20, cy);
+            ctx.moveTo(cx, cy - 20);
+            ctx.lineTo(cx, cy + 20);
+            ctx.stroke();
+        }
+        
+        // Update transform
+        function calculateCameraMedianPosition(svgElement, imgCx, imgCy, state, metersToPixels, isY = false) {
+            const circles = svgElement.querySelectorAll('circle');
+            if (circles.length === 0) {
+                return isY ? imgCy + state.y : imgCx + state.x;
+            }
+            
+            // Calculate camera median
+            let total = 0;
+            circles.forEach(circle => {
+                const coord = parseFloat(circle.getAttribute(isY ? 'cy' : 'cx'));
+                total += coord;
+            });
+            const cameraMedian = total / circles.length;
+            
+            // Get viewBox center
+            const viewBox = svgElement.getAttribute('viewBox');
+            const parts = viewBox.split(' ');
+            const viewBoxStart = parseFloat(parts[isY ? 1 : 0]);
+            const viewBoxSize = parseFloat(parts[isY ? 3 : 2]);
+            const viewBoxCenter = viewBoxStart + viewBoxSize / 2;
+            
+            // Calculate offset and convert to pixels
+            const offset = cameraMedian - viewBoxCenter;
+            const offsetPixels = offset * metersToPixels;
+            
+            // Get SVG center on screen
+            const svgRect = svgElement.getBoundingClientRect();
+            const svgCenter = isY ? 
+                svgRect.top + svgRect.height / 2 : 
+                svgRect.left + svgRect.width / 2;
+            
+            return svgCenter + offsetPixels;
+        }
+
+        function updateTransform() {
+            const floorplanImg = document.getElementById('floorplan');
+            const imgRect = floorplanImg.getBoundingClientRect();
+            const imgCx = imgRect.width / 2;
+            const imgCy = imgRect.height / 2;
+            
+            
+            const svgElement = svgOverlay.querySelector('svg');
+            if (!svgElement) return;
+            
+            // Calculate meters to pixels based on current image width (scales with browser zoom)
+            const metersToPixels = imgRect.width * metersToPixelRatio;
+            
+            
+            // SVG native size in pixels (viewBox meters -> pixels, scaled to image)
+            const svgNativeWidth = svgBounds.width * metersToPixels;
+            const svgNativeHeight = svgBounds.height * metersToPixels;
+            
+            // Set SVG element size explicitly (scales with image)
+            svgElement.style.width = svgNativeWidth + 'px';
+            svgElement.style.height = svgNativeHeight + 'px';
+            svgElement.style.position = 'absolute';
+            svgElement.style.left = '50%';
+            svgElement.style.top = '50%';
+            svgElement.style.transformOrigin = 'center center';
+            
+            // Transform the SVG element - center it on the image center initially
+            const transform = `translate(-50%, -50%) translate(${state.x}px, ${state.y}px) scale(${state.scale}) rotate(${state.rotation}deg)`;
+            svgElement.style.transform = transform;
+            
+            
+            // Calculate camera median and position blue box accordingly
+            const svgCx = calculateCameraMedianPosition(svgElement, imgCx, imgCy, state, metersToPixels);
+            const svgCy = calculateCameraMedianPosition(svgElement, imgCx, imgCy, state, metersToPixels, true);
+            
+            
+            // Update transform box - apply user scale to native size
+            const boxWidth = svgNativeWidth * state.scale;
+            const boxHeight = svgNativeHeight * state.scale;
+            
+            // Transform box position (absolute within container)
+            const boxLeft = svgCx - boxWidth / 2;
+            const boxTop = svgCy - boxHeight / 2;
+            
+            transformBox.style.width = boxWidth + 'px';
+            transformBox.style.height = boxHeight + 'px';
+            transformBox.style.left = boxLeft + 'px';
+            transformBox.style.top = boxTop + 'px';
+            transformBox.style.transform = `rotate(${state.rotation}deg)`;
+            transformBox.style.display = state.boxVisible ? 'block' : 'none';
+            
+            // Position grips around transform box (container-relative coordinates)
+            positionGrips(svgCx, svgCy, boxWidth, boxHeight, state.rotation);
+            
+            // Update display - show true SVG origin position on floorplan
+            if (svgBounds && svgBounds.width > 0) {
+                const svgOriginPos = getSVGOriginFloorplanPosition();
+                if (svgOriginPos) {
+                    document.getElementById('x-value').textContent = svgOriginPos.x;
+                    document.getElementById('y-value').textContent = svgOriginPos.y;
+                } else {
+                    document.getElementById('x-value').textContent = '--';
+                    document.getElementById('y-value').textContent = '--';
+                }
+            } else {
+                document.getElementById('x-value').textContent = '--';
+                document.getElementById('y-value').textContent = '--';
+            }
+            document.getElementById('scale-value').textContent = state.scale.toFixed(2);
+            document.getElementById('rotation-value').textContent = Math.round(state.rotation);
+        }
+        
+        // Position grips around box (optimized)
+        let gripUpdateScheduled = false;
+        function positionGrips(cx, cy, boxWidth, boxHeight, rotation) {
+            if (gripUpdateScheduled) return;
+            gripUpdateScheduled = true;
+            
+            requestAnimationFrame(() => {
+                const halfW = boxWidth / 2;
+                const halfH = boxHeight / 2;
+                const rad = rotation * Math.PI / 180;
+                const cos = Math.cos(rad);
+                const sin = Math.sin(rad);
+                
+                // Position relative to container, not viewport
+                function rotatePoint(x, y) {
+                    return {
+                        x: cx + (x * cos - y * sin),
+                        y: cy + (x * sin + y * cos)
+                    };
+                }
+                
+                function setGripPos(grip, pos) {
+                    grip.style.left = (pos.x - 10) + 'px';
+                    grip.style.top = (pos.y - 10) + 'px';
+                }
+                
+                // Center (larger grip)
+                gripCenter.style.left = (cx - 16) + 'px';
+                gripCenter.style.top = (cy - 16) + 'px';
+                
+                // Corners
+                setGripPos(gripNW, rotatePoint(-halfW, -halfH));
+                setGripPos(gripNE, rotatePoint(halfW, -halfH));
+                setGripPos(gripSW, rotatePoint(-halfW, halfH));
+                setGripPos(gripSE, rotatePoint(halfW, halfH));
+                
+                // Edges
+                setGripPos(gripN, rotatePoint(0, -halfH));
+                setGripPos(gripE, rotatePoint(halfW, 0));
+                setGripPos(gripS, rotatePoint(0, halfH));
+                setGripPos(gripW, rotatePoint(-halfW, 0));
+                
+                gripUpdateScheduled = false;
+            });
+        }
+        
+        // Mouse handlers
+        function startDrag(grip, e) {
+            e.preventDefault();
+            activeGrip = grip;
+            isDragging = true;
+            
+            const floorplanImg = document.getElementById('floorplan');
+            const imgRect = floorplanImg.getBoundingClientRect();
+            const imgCx = imgRect.width / 2;
+            const imgCy = imgRect.height / 2;
+            
+            dragStart = {
+                x: e.clientX - imgRect.left,
+                y: e.clientY - imgRect.top
+            };
+            
+            initialState = { ...state };
+            centerPoint = { x: imgCx + state.x, y: imgCy + state.y };
+            
+            grip.classList.add('active');
+        }
+        
+        function drag(e) {
+            if (!isDragging || !activeGrip) return;
+            
+            const floorplanImg = document.getElementById('floorplan');
+            const imgRect = floorplanImg.getBoundingClientRect();
+            const imgCx = imgRect.width / 2;
+            const imgCy = imgRect.height / 2;
+            
+            const current = {
+                x: e.clientX - imgRect.left,
+                y: e.clientY - imgRect.top
+            };
+            
+            const deltaX = current.x - dragStart.x;
+            const deltaY = current.y - dragStart.y;
+            
+            if (activeGrip === gripCenter) {
+                // Move
+                state.x = initialState.x + deltaX;
+                state.y = initialState.y + deltaY;
+            } else if (activeGrip.classList.contains('grip-corner')) {
+                // Scale
+                const centerX = imgCx + state.x;
+                const centerY = imgCy + state.y;
+                
+                const startDistance = Math.sqrt(Math.pow(dragStart.x - centerX, 2) + Math.pow(dragStart.y - centerY, 2));
+                const currentDistance = Math.sqrt(Math.pow(current.x - centerX, 2) + Math.pow(current.y - centerY, 2));
+                
+                if (startDistance > 0) {
+                    state.scale = Math.max(0.1, initialState.scale * (currentDistance / startDistance));
+                }
+            } else if (activeGrip.classList.contains('grip-edge')) {
+                // Rotate
+                const centerX = imgCx + state.x;
+                const centerY = imgCy + state.y;
+                
+                const startAngle = Math.atan2(dragStart.y - centerY, dragStart.x - centerX);
+                const currentAngle = Math.atan2(current.y - centerY, current.x - centerX);
+                
+                state.rotation = initialState.rotation + ((currentAngle - startAngle) * 180 / Math.PI);
+            }
+            
+            updateTransform();
+        }
+        
+        function endDrag() {
+            if (isDragging && activeGrip) {
+                activeGrip.classList.remove('active');
+                activeGrip = null;
+            }
+            isDragging = false;
+        }
+        
+        // Event listeners
+        [gripCenter, gripNW, gripNE, gripSW, gripSE, gripN, gripE, gripS, gripW].forEach(grip => {
+            grip.addEventListener('mousedown', (e) => startDrag(grip, e));
+        });
+        
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('mouseup', endDrag);
+        
+        // UI controls
+        document.getElementById('reset-btn').addEventListener('click', () => {
+            state.x = 0;
+            state.y = 0;
+            state.scale = 1;
+            state.rotation = 0;
+            updateTransform();
+        });
+        
+        document.getElementById('download-btn').addEventListener('click', () => {
+            const data = {
+                x: state.x,
+                y: state.y,
+                scale: state.scale,
+                rotation: state.rotation,
+                timestamp: new Date().toISOString()
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'floorplan_alignment.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+        
+        document.getElementById('grid-toggle').addEventListener('change', (e) => {
+            state.gridVisible = e.target.checked;
+            drawGrid();
+        });
+        
+        document.getElementById('box-toggle').addEventListener('change', (e) => {
+            state.boxVisible = e.target.checked;
+            updateTransform();
+        });
+        
+        // Load and inject SVG directly (no <object> clipping issues)
+        fetch('camera_positions.svg')
+            .then(response => response.text())
+            .then(svgText => {
+                // Inject SVG content directly into the div
+                svgOverlay.innerHTML = svgText;
+                
+                const svgElement = svgOverlay.querySelector('svg');
+                if (!svgElement) {
+                    console.error('No SVG element found in loaded content');
+                    return;
+                }
+                
+                // Read viewBox (already centered on median camera position by Python script)
+                const viewBox = svgElement.getAttribute('viewBox');
+                
+                if (viewBox) {
+                    const parts = viewBox.split(' ');
+                    svgBounds.width = parseFloat(parts[2]);
+                    svgBounds.height = parseFloat(parts[3]);
+                    
+                    // Calculate meters to pixels ratio based on RENDERED floorplan size (accounts for zoom)
+                    const floorplanImg = document.getElementById('floorplan');
+                    const floorplanRect = floorplanImg.getBoundingClientRect();
+                    const floorplanWidth = floorplanRect.width;  // RENDERED size, not natural
+                    const floorplanHeight = floorplanRect.height;
+                    
+                    // Set ratio so SVG fills about 50% of shortest dimension
+                    const targetSize = Math.min(floorplanWidth, floorplanHeight) * 0.5;
+                    const svgSizeInMeters = Math.max(svgBounds.width, svgBounds.height);
+                    metersToPixelRatio = targetSize / svgSizeInMeters / floorplanWidth;
+                    
+                    // Set SVG to not clip content
+                    svgElement.style.overflow = 'visible';
+                } else {
+                    // Fallback to width/height attributes
+                    svgBounds.width = parseFloat(svgElement.getAttribute('width')) || 1000;
+                    svgBounds.height = parseFloat(svgElement.getAttribute('height')) || 1000;
+                }
+                
+                updateTransform();
+            })
+            .catch(error => {
+                console.error('Failed to load SVG:', error);
+            });
+        
+        // Get the exact pixel position on the floorplan image file where the blue dot is
+        function getBlueDotFloorplanPosition() {
+            const svgElement = svgOverlay.querySelector('svg');
+            const transformBox = document.getElementById('transform-box');
+            const floorplanImg = document.getElementById('floorplan');
+            
+            // Check if all required elements exist and are loaded
+            if (!svgElement || !transformBox || !floorplanImg || !floorplanImg.naturalWidth) {
+                return null;
+            }
+            
+            // Get the actual floorplan image file dimensions
+            const naturalWidth = floorplanImg.naturalWidth;
+            const naturalHeight = floorplanImg.naturalHeight;
+            
+            // Get current floorplan image position and size on screen
+            const floorplanRect = floorplanImg.getBoundingClientRect();
+            
+            // Get the raw blue dot position without any centering adjustments
+            // This is the actual center of the transform box on screen
+            const boxRect = transformBox.getBoundingClientRect();
+            const boxCenterX = boxRect.left + boxRect.width / 2;
+            const boxCenterY = boxRect.top + boxRect.height / 2;
+            
+            // Convert screen position to floorplan image coordinates
+            const relativeX = boxCenterX - floorplanRect.left;
+            const relativeY = boxCenterY - floorplanRect.top;
+            
+            // Scale to natural image dimensions
+            const scaleX = naturalWidth / floorplanRect.width;
+            const scaleY = naturalHeight / floorplanRect.height;
+            
+            const floorplanX = relativeX * scaleX;
+            const floorplanY = relativeY * scaleY;
+            
+            // Debug logging
+            console.log('Position calculation:', {
+                boxRect: { left: boxRect.left, top: boxRect.top, width: boxRect.width, height: boxRect.height },
+                boxCenter: { x: boxCenterX, y: boxCenterY },
+                floorplanRect: { left: floorplanRect.left, top: floorplanRect.top, width: floorplanRect.width, height: floorplanRect.height },
+                relative: { x: relativeX, y: relativeY },
+                scale: { x: scaleX, y: scaleY },
+                result: { x: floorplanX, y: floorplanY }
+            });
+            
+            // Return raw floorplan coordinates
+            return { x: Math.round(floorplanX), y: Math.round(floorplanY) };
+        }
+        
+        function getSVGOriginFloorplanPosition() {
+            const svgElement = svgOverlay.querySelector('svg');
+            const floorplanImg = document.getElementById('floorplan');
+            
+            // Check if all required elements exist and are loaded
+            if (!svgElement || !floorplanImg || !floorplanImg.naturalWidth) {
+                return null;
+            }
+            
+            // Get the actual floorplan image file dimensions
+            const naturalWidth = floorplanImg.naturalWidth;
+            const naturalHeight = floorplanImg.naturalHeight;
+            
+            // Get current floorplan image position and size on screen
+            const floorplanRect = floorplanImg.getBoundingClientRect();
+            
+            // Get the true SVG origin (top-left corner) position on screen
+            const svgRect = svgElement.getBoundingClientRect();
+            const svgOriginX = svgRect.left;
+            const svgOriginY = svgRect.top;
+            
+            // Convert screen position to floorplan image coordinates
+            const relativeX = svgOriginX - floorplanRect.left;
+            const relativeY = svgOriginY - floorplanRect.top;
+            
+            // Scale to natural image dimensions
+            const scaleX = naturalWidth / floorplanRect.width;
+            const scaleY = naturalHeight / floorplanRect.height;
+            
+            const floorplanX = relativeX * scaleX;
+            const floorplanY = relativeY * scaleY;
+            
+            // Return raw floorplan coordinates of SVG origin
+            return { x: Math.round(floorplanX), y: Math.round(floorplanY) };
+        }
+        
+        // Log blue dot position to console every time it moves
+        let lastLoggedPos = { x: 0, y: 0 };
+        setInterval(() => {
+            const pos = getBlueDotFloorplanPosition();
+            if (pos && (pos.x !== lastLoggedPos.x || pos.y !== lastLoggedPos.y)) {
+                console.log(`Blue dot floorplan position: (${pos.x}, ${pos.y})`);
+                lastLoggedPos = pos;
+                
+                // Update the position display
+                const positionText = document.getElementById('position-text');
+                if (positionText) {
+                    positionText.textContent = `(${pos.x}, ${pos.y})`;
+                }
+            } else if (!pos) {
+                // Show loading state when position can't be calculated
+                const positionText = document.getElementById('position-text');
+                if (positionText) {
+                    positionText.textContent = 'Loading...';
+                }
+            }
+        }, 500);
+
+        // Fix drift by storing and restoring floorplan position
+        let preZoomFloorplanPos = { x: 0, y: 0 };
+        let isZooming = false;
+        
+        window.addEventListener('wheel', (e) => {
+            if (e.ctrlKey || e.metaKey) {
+                if (!isZooming) {
+                    isZooming = true;
+                    preZoomFloorplanPos = getBlueDotFloorplanPosition();
+                    console.log('=== ZOOM START ===');
+                    console.log('Stored floorplan position:', preZoomFloorplanPos);
+                }
+                
+                setTimeout(() => {
+                    if (isZooming) {
+                        isZooming = false;
+                        const afterPos = getBlueDotFloorplanPosition();
+                        console.log('=== ZOOM END ===');
+                        console.log('After zoom position:', afterPos);
+                        
+                        if (preZoomFloorplanPos && afterPos) {
+                            const drift = { 
+                                x: afterPos.x - preZoomFloorplanPos.x, 
+                                y: afterPos.y - preZoomFloorplanPos.y 
+                            };
+                            console.log('Drift detected:', drift);
+                            
+                            // Correct the drift by adjusting state
+                            if (Math.abs(drift.x) > 1 || Math.abs(drift.y) > 1) {
+                                // Convert drift back to state adjustment
+                                const floorplanImg = document.getElementById('floorplan');
+                                const floorplanRect = floorplanImg.getBoundingClientRect();
+                                const scaleX = floorplanImg.naturalWidth / floorplanRect.width;
+                                const scaleY = floorplanImg.naturalHeight / floorplanRect.height;
+                                
+                                const stateAdjustX = -drift.x / scaleX;
+                                const stateAdjustY = -drift.y / scaleY;
+                                
+                                state.x += stateAdjustX;
+                                state.y += stateAdjustY;
+                                
+                                console.log('Applied correction:', { x: stateAdjustX, y: stateAdjustY });
+                                updateTransform();
+                            }
+                        }
+                    }
+                }, 100);
+            }
+        });
+
+        // Initialize
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+    </script>
+</body>
+</html>

@@ -146,6 +146,106 @@
 
     <!-- Scripts -->
     <script src="navigation-system.js"></script>
+    
+    <!-- Supporting Files Logger -->
+    <script>
+        // Track files actually loaded by the browser
+        const loadedFiles = new Set();
+        const imageDirectories = new Set();
+        
+        // Override fetch to track JSON files
+        const originalFetch = window.fetch;
+        window.fetch = function(...args) {
+            const url = args[0];
+            if (typeof url === 'string') {
+                loadedFiles.add(url);
+                // Track image directories from panorama paths
+                if (url.includes('/') && (url.endsWith('.jpg') || url.endsWith('.jpeg') || url.endsWith('.png'))) {
+                    const dir = url.substring(0, url.lastIndexOf('/'));
+                    imageDirectories.add(dir);
+                }
+            }
+            return originalFetch.apply(this, args);
+        };
+        
+        // Override Image constructor to track loaded images
+        const originalImage = window.Image;
+        window.Image = function() {
+            const img = new originalImage();
+            const originalSrc = Object.getOwnPropertyDescriptor(originalImage.prototype, 'src');
+            Object.defineProperty(img, 'src', {
+                get: originalSrc.get,
+                set: function(value) {
+                    loadedFiles.add(value);
+                    // Track image directories
+                    if (value.includes('/') && (value.endsWith('.jpg') || value.endsWith('.jpeg') || value.endsWith('.png'))) {
+                        const dir = value.substring(0, value.lastIndexOf('/'));
+                        imageDirectories.add(dir);
+                    }
+                    return originalSrc.set.call(this, value);
+                }
+            });
+            return img;
+        };
+        
+        // Log supporting files after A-Frame loads
+        function logLoadedFiles() {
+            console.log('='.repeat(60));
+            console.log('360° Navigation System - Runtime Files Loaded');
+            console.log('='.repeat(60));
+            
+            // Core web files
+            console.log('📄 Core Web Files:');
+            console.log('  • index.html (main page)');
+            console.log('  • navigation-system.js (navigation logic)');
+            console.log('  • styles.css (UI styling)');
+            
+            // External libraries
+            console.log('🌐 External Libraries:');
+            console.log('  • A-Frame 1.4.2 (3D web framework)');
+            console.log('  • THREE.js (embedded in A-Frame)');
+            
+            // Data files actually loaded
+            const dataFiles = Array.from(loadedFiles).filter(f => f.endsWith('.json'));
+            if (dataFiles.length > 0) {
+                console.log('📊 Data Files Loaded:');
+                dataFiles.forEach(file => {
+                    console.log(`  • ${file}`);
+                });
+            }
+            
+            // Image directories used
+            if (imageDirectories.size > 0) {
+                console.log('🖼️ Image Directories Used:');
+                Array.from(imageDirectories).sort().forEach(dir => {
+                    console.log(`  • ${dir}/`);
+                });
+            }
+            
+            // Panorama images loaded (first few)
+            const panoramaFiles = Array.from(loadedFiles).filter(f => 
+                f.includes('panorama') || f.includes('frame_') || f.endsWith('.jpg') || f.endsWith('.jpeg')
+            );
+            if (panoramaFiles.length > 0) {
+                console.log('🖼️ Panorama Images Loaded:');
+                panoramaFiles.slice(0, 5).forEach(file => {
+                    console.log(`  • ${file}`);
+                });
+                if (panoramaFiles.length > 5) {
+                    console.log(`  • ... and ${panoramaFiles.length - 5} more images`);
+                }
+            }
+            
+            console.log('='.repeat(60));
+            console.log(`Total files loaded: ${loadedFiles.size}`);
+            console.log('='.repeat(60));
+        }
+        
+        // Log files after a delay to catch dynamically loaded content
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(logLoadedFiles, 2000); // Wait 2 seconds for A-Frame to load data
+        });
+    </script>
 </body>
 </html>
 
