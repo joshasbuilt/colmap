@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floorplan Alignment - Model Space</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.0/proj4.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        #canvas-container {
+            width: 100vw;
+            height: 100vh;
+            background: #1a1a1a;
+        }
+        
+        #canvas {
+            display: block;
+        }
+        
+        /* Context Menu */
+        #context-menu {
+            position: fixed;
+            background: rgba(30, 30, 30, 0.95);
+            border: 1px solid #444;
+            border-radius: 6px;
+            padding: 8px 0;
+            display: none;
+            z-index: 10000;
+            min-width: 180px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .context-menu-item {
+            padding: 10px 20px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        
+        .context-menu-item:hover {
+            background: rgba(0, 150, 255, 0.3);
+        }
+        
+        .context-menu-item.disabled {
+            color: #666;
+            cursor: not-allowed;
+        }
+        
+        .context-menu-item.disabled:hover {
+            background: transparent;
+        }
+        
+        .context-menu-separator {
+            height: 1px;
+            background: #444;
+            margin: 4px 0;
+        }
+        
+        /* Info Panel */
+        #info-panel {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            z-index: 5000;
+            min-width: 250px;
+        }
+        
+        .info-row {
+            margin: 5px 0;
+        }
+        
+        .info-label {
+            display: inline-block;
+            width: 80px;
+            color: #999;
+        }
+        
+        .info-value {
+            color: #0f0;
+            font-family: monospace;
+        }
+        
+        .info-separator {
+            height: 1px;
+            background: #333;
+            margin: 10px 0;
+        }
+        
+        /* Help Text */
+        #help-text {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.75);
+            color: #aaa;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 12px;
+            z-index: 5000;
+        }
+        
+        #help-text div {
+            margin: 3px 0;
+        }
+        
+        /* Button */
+        .action-btn {
+            background: #0096ff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        
+        .action-btn:hover {
+            background: #007acc;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container">
+        <canvas id="canvas"></canvas>
+    </div>
+    
+    <!-- Context Menu -->
+    <div id="context-menu">
+        <div class="context-menu-item" data-action="lock">Lock</div>
+        <div class="context-menu-item" data-action="unlock">Unlock</div>
+        <div class="context-menu-separator"></div>
+        <div class="context-menu-item" data-action="bring-forward">Bring Forward</div>
+        <div class="context-menu-item" data-action="send-backward">Send Backward</div>
+        <div class="context-menu-item" data-action="bring-to-front">Bring to Front</div>
+        <div class="context-menu-item" data-action="send-to-back">Send to Back</div>
+        <div class="context-menu-separator"></div>
+        <div class="context-menu-item" data-action="position-mteden">Position at Mt Eden Circuit</div>
+        <div class="context-menu-item" data-action="get-mteden">Get Mt Eden Circuit Position</div>
+        <div class="context-menu-separator"></div>
+        <div class="context-menu-item" data-action="position-wgs84">Position at WGS84</div>
+        <div class="context-menu-item" data-action="get-wgs84">Get WGS84 Position</div>
+        <div class="context-menu-separator"></div>
+        <div class="context-menu-item" data-action="delete">Delete</div>
+    </div>
+    
+    <!-- Info Panel -->
+    <div id="info-panel">
+        <div class="info-row">
+            <span class="info-label">Zoom:</span>
+            <span class="info-value" id="zoom-value">100%</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Pan:</span>
+            <span class="info-value" id="pan-value">(0, 0)</span>
+        </div>
+        <div class="info-separator"></div>
+        <div class="info-row">
+            <span class="info-label">Selected:</span>
+            <span class="info-value" id="selected-value">None</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Position:</span>
+            <span class="info-value" id="position-value">-</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Scale:</span>
+            <span class="info-value" id="scale-value">-</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Rotation:</span>
+            <span class="info-value" id="rotation-value">-</span>
+        </div>
+        <div class="info-separator"></div>
+        <div class="info-row">
+            <span class="info-label">Model Space:</span>
+            <span class="info-value" id="model-space-value">-</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Reference Points:</span>
+            <span class="info-value" id="reference-points-value">-</span>
+        </div>
+        <div class="info-separator"></div>
+        <button class="action-btn" id="export-btn">Export Data</button>
+        <button class="action-btn" onclick="toggleReferencePoints()">Toggle Reference Points</button>
+        <div style="margin-top: 10px;">
+            <button onclick="applyPermutation((currentPermutation - 1 + 24) % 24)">← Prev Perm</button>
+            <span id="perm-display">Perm: 1</span>
+            <button onclick="applyPermutation((currentPermutation + 1) % 24)">Next Perm →</button>
+        </div>
+    </div>
+    
+    <!-- Help Text -->
+    <div id="help-text">
+        <div><strong>Controls:</strong></div>
+        <div>• Middle mouse drag to pan</div>
+        <div>• Mouse wheel to zoom (at cursor)</div>
+        <div>• Click object to select and transform</div>
+        <div>• Right click object for options</div>
+        <div>• Click empty space to see coordinates</div>
+        <div>• Toggle Reference Points to show/hide markers</div>
+    </div>
+
+    <!-- Cursor Coordinates Display -->
+    <div id="cursor-coords" style="position: fixed; bottom: 10px; right: 10px; background: rgba(0,0,0,0.8); color: white; padding: 10px; font-family: monospace; font-size: 14px; border-radius: 5px; pointer-events: none; display: none;">
+        <div>E: <span id="cursor-easting">-</span></div>
+        <div>N: <span id="cursor-northing">-</span></div>
+    </div>
+
+    <script>
+        // State for panning
+        let isPanning = false;
+        let lastPosX = 0;
+        let lastPosY = 0;
+        let contextMenuTarget = null;
+        
+        // Catch middle mouse at document level (before Fabric can interfere)
+        document.addEventListener('mousedown', function(evt) {
+            console.log('DOCUMENT mousedown:', { 
+                button: evt.button, 
+                which: evt.which,
+                buttons: evt.buttons,
+                target: evt.target.tagName
+            });
+            
+            if (evt.button === 1) { // Middle mouse
+                console.log('Middle mouse START PAN');
+                isPanning = true;
+                lastPosX = evt.clientX;
+                lastPosY = evt.clientY;
+                evt.preventDefault();
+                evt.stopPropagation();
+            } else if (evt.button === 2) { // Right mouse
+                console.log('Right mouse - handling context menu');
+                evt.preventDefault();
+                evt.stopPropagation();
+                
+                // Check if we're over an object
+                const target = window.canvas.findTarget(evt, false);
+                console.log('Right click target:', target ? target.customName : 'none');
+                
+                if (target) {
+                    contextMenuTarget = target;
+                    window.canvas.setActiveObject(target);
+                    showContextMenu(evt.clientX, evt.clientY, target);
+                } else {
+                    hideContextMenu();
+                }
+            }
+        }, true); // Use capture phase
+        
+        document.addEventListener('mousemove', function(evt) {
+            if (isPanning && window.canvas) {
+                const deltaX = evt.clientX - lastPosX;
+                const deltaY = evt.clientY - lastPosY;
+                console.log('DOCUMENT panning:', { deltaX, deltaY });
+                
+                // Update viewport transform
+                const vpt = window.canvas.viewportTransform;
+                vpt[4] += deltaX;
+                vpt[5] += deltaY;
+                window.canvas.requestRenderAll();
+                
+                lastPosX = evt.clientX;
+                lastPosY = evt.clientY;
+                updateInfoPanel();
+                evt.preventDefault();
+            }
+        }, true);
+        
+        document.addEventListener('mouseup', function(evt) {
+            if (evt.button === 1 && isPanning) {
+                console.log('Middle mouse STOP PAN');
+                isPanning = false;
+                evt.preventDefault();
+            }
+        }, true);
+        
+        document.addEventListener('auxclick', function(evt) {
+            console.log('DOCUMENT auxclick:', { button: evt.button });
+            evt.preventDefault();
+        }, true);
+        
+        // Prevent browser's default context menu everywhere
+        document.addEventListener('contextmenu', function(evt) {
+            console.log('DOCUMENT contextmenu prevented');
+            evt.preventDefault();
+            evt.stopPropagation();
+        }, true);
+        
+        // Initialize Fabric canvas (make it global for pan handlers)
+        window.canvas = new fabric.Canvas('canvas', {
+            width: window.innerWidth,
+            height: window.innerHeight,
+            backgroundColor: '#2a2a2a',
+            selection: false, // Disable default selection box
+            preserveObjectStacking: true
+        });
+        
+        // Local reference for convenience
+        const canvas = window.canvas;
+        
+        // Custom properties for tracking
+        let objectCounter = 0;
+        
+        // Configure Fabric corner controls (grips)
+        fabric.Object.prototype.set({
+            borderColor: '#0096ff',
+            cornerColor: 'white',
+            cornerStrokeColor: '#0096ff',
+            cornerSize: 12,
+            cornerStyle: 'circle',
+            transparentCorners: false,
+            borderScaleFactor: 2,
+            padding: 10
+        });
+        
+        // Customize rotation control (make it more visible)
+        fabric.Object.prototype.controls.mtr.offsetY = -40;
+        
+        // Zoom functionality (zoom at cursor position)
+        canvas.on('mouse:wheel', function(opt) {
+            const evt = opt.e;
+            const delta = evt.deltaY;
+            let zoom = canvas.getZoom();
+            zoom *= 0.999 ** delta;
+            
+            // Limit zoom range
+            if (zoom > 20) zoom = 20;
+            if (zoom < 0.01) zoom = 0.01;
+            
+            // Zoom to mouse point
+            canvas.zoomToPoint({ x: evt.offsetX, y: evt.offsetY }, zoom);
+            opt.e.preventDefault();
+            opt.e.stopPropagation();
+            updateInfoPanel();
+        });
+        
+        // Selection handling
+        canvas.on('selection:created', function(e) {
+            updateInfoPanel();
+        });
+        
+        canvas.on('selection:updated', function(e) {
+            updateInfoPanel();
+        });
+        
+        canvas.on('selection:cleared', function(e) {
+            updateInfoPanel();
+        });
+        
+        canvas.on('object:modified', function(e) {
+            updateInfoPanel();
+        });
+        
+        canvas.on('object:moving', function(e) {
+            updateInfoPanel();
+        });
+        
+        canvas.on('object:scaling', function(e) {
+            updateInfoPanel();
+        });
+        
+        canvas.on('object:rotating', function(e) {
+            updateInfoPanel();
+        });
+
+        // Real-time cursor coordinate display
+        canvas.on('mouse:move', function(e) {
+            if (modelSpace.scaleX && modelSpace.scaleY) {
+                const pointer = canvas.getPointer(e.e);
+                const mtEdenCoords = modelSpace.pixelToMtEden(pointer.x, pointer.y);
+                
+                document.getElementById('cursor-easting').textContent = mtEdenCoords.x.toFixed(2) + 'm';
+                document.getElementById('cursor-northing').textContent = mtEdenCoords.y.toFixed(2) + 'm';
+                document.getElementById('cursor-coords').style.display = 'block';
+            }
+        });
+
+        // Hide cursor coordinates when mouse leaves canvas
+        canvas.on('mouse:out', function(e) {
+            document.getElementById('cursor-coords').style.display = 'none';
+        });
+
+        // Canvas click handler for coordinate display
+        canvas.on('mouse:down', function(e) {
+            // Always show coordinates, whether clicking on object or empty space
+            // Get click position relative to canvas
+            const pointer = canvas.getPointer(e.e);
+            
+            // Convert to Mt Eden Circuit coordinates using model space
+            if (modelSpace.scaleX && modelSpace.scaleY) {
+                const mtEdenCoords = modelSpace.pixelToMtEden(pointer.x, pointer.y);
+                const wgs84Coords = modelSpace.pixelToWGS84(pointer.x, pointer.y);
+                console.log('Click coordinates:', {
+                    pixel: { x: pointer.x, y: pointer.y },
+                    mtEden: { x: mtEdenCoords.x, y: mtEdenCoords.y },
+                    wgs84: { lng: wgs84Coords[0], lat: wgs84Coords[1] }
+                });
+                
+                // Show coordinates in a temporary text object
+                const coordText = new fabric.Text(
+                    `E: ${mtEdenCoords.x.toFixed(2)}m\nN: ${mtEdenCoords.y.toFixed(2)}m`,
+                    {
+                        left: pointer.x + 10,
+                        top: pointer.y - 10,
+                        fontSize: 12,
+                        fill: '#000000',
+                        backgroundColor: '#ffffff',
+                        padding: 5,
+                        selectable: false,
+                        customName: 'Coordinate Display'
+                    }
+                );
+                
+                canvas.add(coordText);
+                
+                // Remove the text after 3 seconds
+                setTimeout(() => {
+                    canvas.remove(coordText);
+                    canvas.requestRenderAll();
+                }, 3000);
+            }
+        });
+        
+        // Context menu handling
+        const contextMenu = document.getElementById('context-menu');
+        const canvasElement = document.getElementById('canvas');
+        
+        // Prevent browser context menu on canvas
+        canvasElement.addEventListener('contextmenu', (e) => {
+            console.log('Context menu triggered on canvas');
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Check if we're over an object
+            const pointer = canvas.getPointer(e);
+            const target = canvas.findTarget(e, false);
+            
+            console.log('Context menu target:', target ? target.customName : 'none');
+            
+            if (target) {
+                contextMenuTarget = target;
+                canvas.setActiveObject(target);
+                showContextMenu(e.clientX, e.clientY, target);
+            } else {
+                hideContextMenu();
+            }
+        });
+        
+        document.addEventListener('click', () => {
+            hideContextMenu();
+        });
+        
+        function showContextMenu(x, y, target) {
+            const menu = document.getElementById('context-menu');
+            
+            // Update lock/unlock state
+            const lockItem = menu.querySelector('[data-action="lock"]');
+            const unlockItem = menu.querySelector('[data-action="unlock"]');
+            
+            if (target.lockMovementX && target.lockMovementY) {
+                lockItem.style.display = 'none';
+                unlockItem.style.display = 'block';
+            } else {
+                lockItem.style.display = 'block';
+                unlockItem.style.display = 'none';
+            }
+            
+            menu.style.left = x + 'px';
+            menu.style.top = y + 'px';
+            menu.style.display = 'block';
+        }
+        
+        function hideContextMenu() {
+            document.getElementById('context-menu').style.display = 'none';
+        }
+
+        // Position object at specific Mt Eden Circuit coordinates
+        function positionAtMtEden() {
+            const activeObject = canvas.getActiveObject();
+            if (activeObject && modelSpace.scaleX && modelSpace.scaleY) {
+                const x = prompt('Enter Easting (e.g., 1234.56):');
+                const y = prompt('Enter Northing (e.g., 5678.90):');
+                
+                if (x && y && !isNaN(parseFloat(x)) && !isNaN(parseFloat(y))) {
+                    positionObjectAtMtEden(activeObject, parseFloat(x), parseFloat(y));
+                    hideContextMenu();
+                }
+            }
+        }
+
+        // Get current Mt Eden Circuit position
+        function getCurrentMtEdenPosition() {
+            const activeObject = canvas.getActiveObject();
+            if (activeObject && modelSpace.scaleX && modelSpace.scaleY) {
+                const coords = getObjectMtEdenPosition(activeObject);
+                if (coords) {
+                    alert(`Current Position:\nEasting: ${coords.x.toFixed(2)}m\nNorthing: ${coords.y.toFixed(2)}m`);
+                }
+            }
+        }
+
+        // Position object at specific WGS84 coordinates (converts to Mt Eden Circuit)
+        function positionAtWGS84() {
+            const activeObject = canvas.getActiveObject();
+            if (activeObject && modelSpace.scaleX && modelSpace.scaleY) {
+                const lng = prompt('Enter Longitude (e.g., 174.769256):');
+                const lat = prompt('Enter Latitude (e.g., -36.845544):');
+                
+                if (lng && lat && !isNaN(parseFloat(lng)) && !isNaN(parseFloat(lat))) {
+                    positionObjectAtWGS84(activeObject, parseFloat(lng), parseFloat(lat));
+                    hideContextMenu();
+                }
+            }
+        }
+
+        // Get current WGS84 position (converts from Mt Eden Circuit)
+        function getCurrentWGS84Position() {
+            const activeObject = canvas.getActiveObject();
+            if (activeObject && modelSpace.scaleX && modelSpace.scaleY) {
+                const coords = getObjectWGS84Position(activeObject);
+                if (coords) {
+                    alert(`Current Position:\nLongitude: ${coords[0].toFixed(8)}\nLatitude: ${coords[1].toFixed(8)}`);
+                }
+            }
+        }
+        
+        // Context menu actions
+        document.querySelectorAll('.context-menu-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                const action = e.target.getAttribute('data-action');
+                
+                if (contextMenuTarget) {
+                    switch(action) {
+                        case 'lock':
+                            lockObject(contextMenuTarget);
+                            break;
+                        case 'unlock':
+                            unlockObject(contextMenuTarget);
+                            break;
+                        case 'bring-forward':
+                            canvas.bringForward(contextMenuTarget);
+                            break;
+                        case 'send-backward':
+                            canvas.sendBackwards(contextMenuTarget);
+                            break;
+                        case 'bring-to-front':
+                            canvas.bringToFront(contextMenuTarget);
+                            break;
+                        case 'send-to-back':
+                            canvas.sendToBack(contextMenuTarget);
+                            break;
+                        case 'position-mteden':
+                            positionAtMtEden();
+                            break;
+                        case 'get-mteden':
+                            getCurrentMtEdenPosition();
+                            break;
+                        case 'position-wgs84':
+                            positionAtWGS84();
+                            break;
+                        case 'get-wgs84':
+                            getCurrentWGS84Position();
+                            break;
+                        case 'delete':
+                            canvas.remove(contextMenuTarget);
+                            canvas.discardActiveObject();
+                            updateInfoPanel();
+                            break;
+                    }
+                    canvas.requestRenderAll();
+                }
+                
+                hideContextMenu();
+            });
+        });
+        
+        function lockObject(obj) {
+            obj.lockMovementX = true;
+            obj.lockMovementY = true;
+            obj.lockRotation = true;
+            obj.lockScalingX = true;
+            obj.lockScalingY = true;
+            obj.selectable = true; // Keep selectable for context menu
+            obj.hasControls = false;
+            obj.hasBorders = false;
+            obj.set('borderColor', '#666');
+            canvas.requestRenderAll();
+            updateInfoPanel();
+        }
+        
+        function unlockObject(obj) {
+            obj.lockMovementX = false;
+            obj.lockMovementY = false;
+            obj.lockRotation = false;
+            obj.lockScalingX = false;
+            obj.lockScalingY = false;
+            obj.hasControls = true;
+            obj.hasBorders = true;
+            obj.set('borderColor', '#0096ff');
+            canvas.requestRenderAll();
+            updateInfoPanel();
+        }
+        
+        // Update info panel
+        function updateInfoPanel() {
+            const zoom = canvas.getZoom();
+            const vpt = canvas.viewportTransform;
+            
+            document.getElementById('zoom-value').textContent = Math.round(zoom * 100) + '%';
+            document.getElementById('pan-value').textContent = `(${Math.round(vpt[4])}, ${Math.round(vpt[5])})`;
+            
+            const activeObject = canvas.getActiveObject();
+            if (activeObject) {
+                const name = activeObject.customName || 'Object';
+                const locked = activeObject.lockMovementX ? ' [LOCKED]' : '';
+                document.getElementById('selected-value').textContent = name + locked;
+                
+                // Show position in Mt Eden Circuit coordinates if model space is active
+                if (modelSpace.scaleX && modelSpace.scaleY) {
+                    const mtEdenCoords = modelSpace.pixelToMtEden(activeObject.left, activeObject.top);
+                    document.getElementById('position-value').textContent = 
+                        `E: ${mtEdenCoords.x.toFixed(2)}m, N: ${mtEdenCoords.y.toFixed(2)}m`;
+                } else {
+                    document.getElementById('position-value').textContent = 
+                        `(${Math.round(activeObject.left)}, ${Math.round(activeObject.top)})`;
+                }
+                
+                document.getElementById('scale-value').textContent = 
+                    `(${activeObject.scaleX.toFixed(2)}, ${activeObject.scaleY.toFixed(2)})`;
+                document.getElementById('rotation-value').textContent = 
+                    Math.round(activeObject.angle) + '°';
+            } else {
+                document.getElementById('selected-value').textContent = 'None';
+                document.getElementById('position-value').textContent = '-';
+                document.getElementById('scale-value').textContent = '-';
+                document.getElementById('rotation-value').textContent = '-';
+            }
+            
+            // Update model space info
+            if (modelSpace.scaleX && modelSpace.scaleY) {
+                document.getElementById('model-space-value').textContent = 'Active';
+                document.getElementById('reference-points-value').textContent = modelSpace.referencePoints.length;
+            } else {
+                document.getElementById('model-space-value').textContent = 'Not Loaded';
+                document.getElementById('reference-points-value').textContent = '-';
+            }
+        }
+        
+        // Geolocation data from asBuilt Vault extraction
+        const geolocationData = {
+            floorplanBounds: [
+                [174.76904030579692, -36.845437470625626],  // Top-Left
+                [174.76953833830476, -36.84556978976499],   // Top-Right
+                [174.76945222065177, -36.84577937864095],   // Bottom-Right
+                [174.76895418814394, -36.84564705950159]    // Bottom-Left
+            ],
+            referencePoints: [
+                {
+                    name: "L10_3_60",
+                    coordinates: [174.76925647074228, -36.84554398060178],
+                    imagePosition: null // Will be calculated
+                },
+                {
+                    name: "L10_3_49", 
+                    coordinates: [174.76921081300972, -36.845569620599406],
+                    imagePosition: null // Will be calculated
+                },
+                {
+                    name: "L10_3_134",
+                    coordinates: [174.76928719941384, -36.84561806489802],
+                    imagePosition: null // Will be calculated
+                }
+            ]
+        };
+
+        // Define projections using Proj4js
+        // WGS84 (EPSG:4326)
+        proj4.defs("EPSG:4326", "+proj=longlat +datum=WGS84 +no_defs");
+        
+        // Mount Eden 2000 (NZGD2000) - EPSG:2105 - Official parameters
+        proj4.defs("EPSG:2105", "+proj=tmerc +lat_0=-36.8797222222222 +lon_0=174.764166666667 +k=0.9999 +x_0=400000 +y_0=800000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
+
+        // Model space coordinate system
+        class ModelSpace {
+            constructor(floorplanBounds, referencePoints) {
+                this.floorplanBounds = floorplanBounds;
+                this.referencePoints = referencePoints;
+                this.imageWidth = null;
+                this.imageHeight = null;
+                this.scaleX = null;
+                this.scaleY = null;
+                this.offsetX = null;
+                this.offsetY = null;
+                this.rotation = null; // Rotation angle to align North up
+                this.displayScale = 1; // Scale factor for display on canvas
+            }
+
+            // Convert WGS84 to Mount Eden 2000 coordinates using Proj4js
+            wgs84ToMtEden(lng, lat) {
+                const result = proj4("EPSG:4326", "EPSG:2105", [lng, lat]);
+                return { x: result[0], y: result[1] };
+            }
+
+            // Convert Mount Eden 2000 to WGS84 coordinates using Proj4js
+            mtEdenToWGS84(x, y) {
+                const result = proj4("EPSG:2105", "EPSG:4326", [x, y]);
+                return { lng: result[0], lat: result[1] };
+            }
+
+            // Calculate model space parameters when image is loaded
+            calculateModelSpace(imageWidth, imageHeight) {
+                this.imageWidth = imageWidth;
+                this.imageHeight = imageHeight;
+                
+                // Convert floorplan bounds to Mt Eden Circuit
+                const mtEdenBounds = this.floorplanBounds.map(coord => 
+                    this.wgs84ToMtEden(coord[0], coord[1])
+                );
+                
+                // Use 4 corners for georeferencing
+                // mtEdenBounds[0] = top-left, mtEdenBounds[1] = top-right
+                // mtEdenBounds[2] = bottom-right, mtEdenBounds[3] = bottom-left
+                
+                // Calculate the actual width and height in meters using the 4 corners
+                const topWidth = Math.sqrt(
+                    Math.pow(mtEdenBounds[1].x - mtEdenBounds[0].x, 2) + 
+                    Math.pow(mtEdenBounds[1].y - mtEdenBounds[0].y, 2)
+                );
+                const bottomWidth = Math.sqrt(
+                    Math.pow(mtEdenBounds[2].x - mtEdenBounds[3].x, 2) + 
+                    Math.pow(mtEdenBounds[2].y - mtEdenBounds[3].y, 2)
+                );
+                const leftHeight = Math.sqrt(
+                    Math.pow(mtEdenBounds[3].x - mtEdenBounds[0].x, 2) + 
+                    Math.pow(mtEdenBounds[3].y - mtEdenBounds[0].y, 2)
+                );
+                const rightHeight = Math.sqrt(
+                    Math.pow(mtEdenBounds[2].x - mtEdenBounds[1].x, 2) + 
+                    Math.pow(mtEdenBounds[2].y - mtEdenBounds[1].y, 2)
+                );
+                
+                // Use average dimensions
+                const avgWidth = (topWidth + bottomWidth) / 2;
+                const avgHeight = (leftHeight + rightHeight) / 2;
+                
+                // Calculate scale factors (Mt Eden Circuit meters per pixel)
+                this.scaleX = avgWidth / imageWidth;
+                this.scaleY = avgHeight / imageHeight;
+                
+                // Calculate rotation angle from the top edge
+                const dx = mtEdenBounds[1].x - mtEdenBounds[0].x; // East difference (X axis)
+                const dy = mtEdenBounds[1].y - mtEdenBounds[0].y; // North difference (Y axis)
+                this.rotation = Math.atan2(dy, dx) * 180 / Math.PI; // Calculate angle from horizontal
+                
+                // Calculate offset (top-left corner in Mt Eden Circuit)
+                this.offsetX = mtEdenBounds[0].x; // Top-left X
+                this.offsetY = mtEdenBounds[0].y; // Top-left Y
+                
+                // Calculate image positions for reference points (for display)
+                this.referencePoints.forEach(point => {
+                    const mtEden = this.wgs84ToMtEden(point.coordinates[0], point.coordinates[1]);
+                    const imageX = (mtEden.x - this.offsetX) / this.scaleX;
+                    const imageY = (this.offsetY - mtEden.y) / this.scaleY; // Flip Y axis
+                    point.imagePosition = { x: imageX, y: imageY };
+                    point.mtEdenCoords = mtEden; // Store Mt Eden coordinates
+                });
+                
+                console.log('Model space calculated using 4 corners (Mt Eden Circuit):', {
+                    imageSize: { width: imageWidth, height: imageHeight },
+                    scale: { x: this.scaleX, y: this.scaleY },
+                    offset: { x: this.offsetX, y: this.offsetY },
+                    rotation: this.rotation,
+                    dimensions: { width: avgWidth, height: avgHeight },
+                    mtEdenBounds: mtEdenBounds
+                });
+                
+                // Display the 4 corner coordinates in Northing/Easting format
+                console.log('=== FLOORPLAN CORNER COORDINATES (Mt Eden Circuit) ===');
+                console.log('Top-Left:    E:', mtEdenBounds[0].x.toFixed(3), 'N:', mtEdenBounds[0].y.toFixed(3));
+                console.log('Top-Right:   E:', mtEdenBounds[1].x.toFixed(3), 'N:', mtEdenBounds[1].y.toFixed(3));
+                console.log('Bottom-Right: E:', mtEdenBounds[2].x.toFixed(3), 'N:', mtEdenBounds[2].y.toFixed(3));
+                console.log('Bottom-Left:  E:', mtEdenBounds[3].x.toFixed(3), 'N:', mtEdenBounds[3].y.toFixed(3));
+                
+                console.log('=== EXPECTED vs ACTUAL ===');
+                console.log('Expected Top-Left: E: 400430.99, N: 803807.31');
+                console.log('Actual Top-Left:   E:', mtEdenBounds[0].x.toFixed(2), ', N:', mtEdenBounds[0].y.toFixed(2));
+                console.log('Difference:        E:', (400430.99 - mtEdenBounds[0].x).toFixed(2), ', N:', (803807.31 - mtEdenBounds[0].y).toFixed(2));
+                
+                // Debug: Show the original WGS84 coordinates
+                console.log('=== ORIGINAL WGS84 COORDINATES ===');
+                console.log('Top-Left:    Lng:', this.floorplanBounds[0][0], 'Lat:', this.floorplanBounds[0][1]);
+                console.log('Top-Right:   Lng:', this.floorplanBounds[1][0], 'Lat:', this.floorplanBounds[1][1]);
+                console.log('Bottom-Right: Lng:', this.floorplanBounds[2][0], 'Lat:', this.floorplanBounds[2][1]);
+                console.log('Bottom-Left:  Lng:', this.floorplanBounds[3][0], 'Lat:', this.floorplanBounds[3][1]);
+                
+                // Test all permutations of corner mapping
+                this.testCornerPermutations();
+            }
+
+            // Convert image pixel coordinates to Mt Eden Circuit
+            pixelToMtEden(pixelX, pixelY) {
+                // Convert from canvas coordinates to original image coordinates
+                const originalX = pixelX / this.displayScale;
+                const originalY = pixelY / this.displayScale;
+                
+                const x = this.offsetX + (originalX * this.scaleX);
+                const y = this.offsetY - (originalY * this.scaleY); // Flip Y axis
+                return { x: x, y: y };
+            }
+
+            // Convert Mt Eden Circuit coordinates to image pixel coordinates
+            mtEdenToPixel(x, y) {
+                const originalX = (x - this.offsetX) / this.scaleX;
+                const originalY = (this.offsetY - y) / this.scaleY; // Flip Y axis
+                
+                // Convert from original image coordinates to canvas coordinates
+                const pixelX = originalX * this.displayScale;
+                const pixelY = originalY * this.displayScale;
+                return { x: pixelX, y: pixelY };
+            }
+
+            // Convert image pixel coordinates to WGS84 (for display)
+            pixelToWGS84(pixelX, pixelY) {
+                const mtEden = this.pixelToMtEden(pixelX, pixelY);
+                const wgs84 = this.mtEdenToWGS84(mtEden.x, mtEden.y);
+                return [wgs84.lng, wgs84.lat];
+            }
+
+            // Convert WGS84 coordinates to image pixel coordinates
+            wgs84ToPixel(lng, lat) {
+                const mtEden = this.wgs84ToMtEden(lng, lat);
+                return this.mtEdenToPixel(mtEden.x, mtEden.y);
+            }
+
+            // Get reference point by name
+            getReferencePoint(name) {
+                return this.referencePoints.find(point => point.name === name);
+            }
+            
+            // Test all permutations of corner mapping
+            testCornerPermutations() {
+                const originalCoords = this.floorplanBounds.slice(); // Copy the original array
+                const permutations = [
+                    [0, 1, 2, 3], // Current mapping
+                    [0, 1, 3, 2], // Swap bottom corners
+                    [0, 2, 1, 3], // Swap top-right and bottom-right
+                    [0, 2, 3, 1], // Different arrangement
+                    [0, 3, 1, 2], // Different arrangement
+                    [0, 3, 2, 1], // Different arrangement
+                    [1, 0, 2, 3], // Swap top corners
+                    [1, 0, 3, 2], // Different arrangement
+                    [1, 2, 0, 3], // Different arrangement
+                    [1, 2, 3, 0], // Different arrangement
+                    [1, 3, 0, 2], // Different arrangement
+                    [1, 3, 2, 0], // Different arrangement
+                    [2, 0, 1, 3], // Different arrangement
+                    [2, 0, 3, 1], // Different arrangement
+                    [2, 1, 0, 3], // Different arrangement
+                    [2, 1, 3, 0], // Different arrangement
+                    [2, 3, 0, 1], // Different arrangement
+                    [2, 3, 1, 0], // Different arrangement
+                    [3, 0, 1, 2], // Different arrangement
+                    [3, 0, 2, 1], // Different arrangement
+                    [3, 1, 0, 2], // Different arrangement
+                    [3, 1, 2, 0], // Different arrangement
+                    [3, 2, 0, 1], // Different arrangement
+                    [3, 2, 1, 0]  // Different arrangement
+                ];
+                
+                console.log('=== TESTING ALL CORNER PERMUTATIONS ===');
+                console.log('Current mapping: [Top-Left, Top-Right, Bottom-Right, Bottom-Left]');
+                
+                permutations.forEach((perm, index) => {
+                    const testBounds = perm.map(i => originalCoords[i]);
+                    const testMtEden = testBounds.map(coord => this.wgs84ToMtEden(coord[0], coord[1]));
+                    
+                    // Calculate rotation for this permutation
+                    const dx = testMtEden[1].x - testMtEden[0].x; // Top-right - Top-left
+                    const dy = testMtEden[1].y - testMtEden[0].y; // Top-right - Top-left
+                    const rotation = Math.atan2(dy, dx) * 180 / Math.PI;
+                    
+                    console.log(`Permutation ${index + 1}: [${perm.join(',')}] - Rotation: ${rotation.toFixed(2)}°`);
+                    console.log(`  TL: E:${testMtEden[0].x.toFixed(1)} N:${testMtEden[0].y.toFixed(1)}`);
+                    console.log(`  TR: E:${testMtEden[1].x.toFixed(1)} N:${testMtEden[1].y.toFixed(1)}`);
+                    console.log(`  BR: E:${testMtEden[2].x.toFixed(1)} N:${testMtEden[2].y.toFixed(1)}`);
+                    console.log(`  BL: E:${testMtEden[3].x.toFixed(1)} N:${testMtEden[3].y.toFixed(1)}`);
+                    console.log('---');
+                });
+            }
+        }
+
+        // Initialize model space
+        const modelSpace = new ModelSpace(geolocationData.floorplanBounds, geolocationData.referencePoints);
+        
+        // Global variable to track current permutation
+        let currentPermutation = 0;
+        const originalCoords = geolocationData.floorplanBounds.slice();
+        
+        // Function to apply a specific permutation
+        function applyPermutation(permIndex) {
+            const permutations = [
+                [0, 1, 2, 3], // Current mapping
+                [0, 1, 3, 2], [0, 2, 1, 3], [0, 2, 3, 1], [0, 3, 1, 2], [0, 3, 2, 1],
+                [1, 0, 2, 3], [1, 0, 3, 2], [1, 2, 0, 3], [1, 2, 3, 0], [1, 3, 0, 2], [1, 3, 2, 0],
+                [2, 0, 1, 3], [2, 0, 3, 1], [2, 1, 0, 3], [2, 1, 3, 0], [2, 3, 0, 1], [2, 3, 1, 0],
+                [3, 0, 1, 2], [3, 0, 2, 1], [3, 1, 0, 2], [3, 1, 2, 0], [3, 2, 0, 1], [3, 2, 1, 0]
+            ];
+            
+            if (permIndex >= 0 && permIndex < permutations.length) {
+                const perm = permutations[permIndex];
+                const newBounds = perm.map(i => originalCoords[i]);
+                
+                // Update the model space with new bounds
+                modelSpace.floorplanBounds = newBounds;
+                
+                // Recalculate model space if image is loaded
+                if (modelSpace.imageWidth && modelSpace.imageHeight) {
+                    modelSpace.calculateModelSpace(modelSpace.imageWidth, modelSpace.imageHeight);
+                    
+                    // Reload the floorplan with new coordinates
+                    const floorplan = canvas.getObjects().find(obj => obj.customName === 'Floorplan');
+                    if (floorplan) {
+                        canvas.remove(floorplan);
+                        loadFloorplan('floorplanpicture');
+                    }
+                }
+                
+                console.log(`Applied permutation ${permIndex + 1}: [${perm.join(',')}]`);
+                currentPermutation = permIndex;
+                
+                // Update the display
+                document.getElementById('perm-display').textContent = `Perm: ${permIndex + 1}`;
+            }
+        }
+        
+        // Add keyboard controls for testing
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') {
+                const nextPerm = (currentPermutation + 1) % 24;
+                applyPermutation(nextPerm);
+            } else if (e.key === 'ArrowLeft') {
+                const prevPerm = (currentPermutation - 1 + 24) % 24;
+                applyPermutation(prevPerm);
+            } else if (e.key >= '1' && e.key <= '9') {
+                const permIndex = parseInt(e.key) - 1;
+                applyPermutation(permIndex);
+            }
+        });
+        
+        // Make permutation functions globally available
+        window.applyPermutation = applyPermutation;
+        window.currentPermutation = currentPermutation;
+        
+        console.log('=== CORNER PERMUTATION TESTING ===');
+        console.log('Use arrow keys to cycle through permutations:');
+        console.log('→ Next permutation, ← Previous permutation');
+        console.log('1-9 for specific permutations');
+        console.log('Or call: applyPermutation(0-23) in console');
+        console.log('Current permutation:', currentPermutation + 1);
+        
+        // Set initial display
+        document.getElementById('perm-display').textContent = `Perm: ${currentPermutation + 1}`;
+
+        // Add reference point markers to the canvas
+        function addReferencePointMarkers() {
+            modelSpace.referencePoints.forEach((point, index) => {
+                if (point.imagePosition) {
+                    // Create a circle marker for the reference point
+                    const marker = new fabric.Circle({
+                        left: point.imagePosition.x - 5, // Center the marker
+                        top: point.imagePosition.y - 5,
+                        radius: 5,
+                        fill: '#ff0000',
+                        stroke: '#ffffff',
+                        strokeWidth: 2,
+                        selectable: false,
+                        customName: `Reference Point ${index + 1}`,
+                        referenceData: point
+                    });
+
+                    // Add label
+                    const label = new fabric.Text(point.name, {
+                        left: point.imagePosition.x + 10,
+                        top: point.imagePosition.y - 10,
+                        fontSize: 12,
+                        fill: '#000000',
+                        backgroundColor: '#ffffff',
+                        padding: 2,
+                        selectable: false,
+                        customName: `Label ${point.name}`
+                    });
+
+                    canvas.add(marker);
+                    canvas.add(label);
+                }
+            });
+        }
+
+        // Toggle reference point markers
+        function toggleReferencePoints() {
+            const markers = canvas.getObjects().filter(obj => 
+                obj.customName && obj.customName.includes('Reference Point')
+            );
+            const labels = canvas.getObjects().filter(obj => 
+                obj.customName && obj.customName.includes('Label')
+            );
+            
+            if (markers.length > 0) {
+                // Remove markers
+                markers.forEach(marker => canvas.remove(marker));
+                labels.forEach(label => canvas.remove(label));
+            } else {
+                // Add markers
+                addReferencePointMarkers();
+            }
+            
+            canvas.requestRenderAll();
+        }
+
+        // Position object at Mt Eden Circuit coordinates
+        function positionObjectAtMtEden(object, x, y) {
+            if (modelSpace.scaleX && modelSpace.scaleY) {
+                const pixelPos = modelSpace.mtEdenToPixel(x, y);
+                object.set({
+                    left: pixelPos.x,
+                    top: pixelPos.y
+                });
+                canvas.requestRenderAll();
+                updateInfoPanel();
+            }
+        }
+
+        // Get object position in Mt Eden Circuit coordinates
+        function getObjectMtEdenPosition(object) {
+            if (modelSpace.scaleX && modelSpace.scaleY) {
+                return modelSpace.pixelToMtEden(object.left, object.top);
+            }
+            return null;
+        }
+
+        // Move object to Mt Eden Circuit coordinates
+        function moveObjectToMtEden(object, x, y) {
+            if (modelSpace.scaleX && modelSpace.scaleY) {
+                const pixelPos = modelSpace.mtEdenToPixel(x, y);
+                object.set({
+                    left: pixelPos.x,
+                    top: pixelPos.y
+                });
+                canvas.requestRenderAll();
+                updateInfoPanel();
+            }
+        }
+
+        // Position object at WGS84 coordinates (converts to Mt Eden Circuit)
+        function positionObjectAtWGS84(object, lng, lat) {
+            if (modelSpace.scaleX && modelSpace.scaleY) {
+                const mtEden = modelSpace.wgs84ToMtEden(lng, lat);
+                positionObjectAtMtEden(object, mtEden.x, mtEden.y);
+            }
+        }
+
+        // Get object position in WGS84 coordinates (converts from Mt Eden Circuit)
+        function getObjectWGS84Position(object) {
+            if (modelSpace.scaleX && modelSpace.scaleY) {
+                const mtEden = modelSpace.pixelToMtEden(object.left, object.top);
+                const wgs84 = modelSpace.mtEdenToWGS84(mtEden.x, mtEden.y);
+                return [wgs84.lng, wgs84.lat];
+            }
+            return null;
+        }
+
+        // Load floorplan image
+        function loadFloorplan(url) {
+            fabric.Image.fromURL(url, function(img) {
+                // First calculate the model space to understand the coordinate system
+                const originalWidth = img.width;
+                const originalHeight = img.height;
+                modelSpace.calculateModelSpace(originalWidth, originalHeight);
+                
+                    // Get the calculated rotation from model space
+                    const rotationAngle = modelSpace.rotation;
+                    
+                    console.log('Floorplan loaded with 4-corner alignment:', {
+                        rotationAngle: rotationAngle,
+                        scale: { x: modelSpace.scaleX, y: modelSpace.scaleY },
+                        offset: { x: modelSpace.offsetX, y: modelSpace.offsetY }
+                    });
+                
+                // Calculate scale to fit screen (with 90% viewport)
+                const maxWidth = window.innerWidth * 0.9;
+                const maxHeight = window.innerHeight * 0.9;
+                
+                const scaleX = maxWidth / img.width;
+                const scaleY = maxHeight / img.height;
+                const scale = Math.min(scaleX, scaleY);
+                
+                // Set the display scale in model space for coordinate conversions
+                modelSpace.displayScale = scale;
+                
+                // Position the image at the top-left corner (in pixels, since this is the reference)
+                img.set({
+                    left: 0,
+                    top: 0,
+                    scaleX: scale,
+                    scaleY: scale,
+                    angle: rotationAngle, // Rotate to match Mt Eden Circuit orientation
+                    originX: 'left',
+                    originY: 'top',
+                    customName: 'Floorplan',
+                    selectable: true
+                });
+                
+                canvas.add(img);
+                canvas.centerObject(img);
+                
+                // Add reference point markers
+                addReferencePointMarkers();
+                
+                // Auto-lock the floorplan
+                lockObject(img);
+                
+                canvas.requestRenderAll();
+                updateInfoPanel();
+            });
+        }
+        
+        // Load SVG
+        function loadSVG(url) {
+            // First fetch the raw SVG to modify it
+            fetch(url)
+                .then(response => response.text())
+                .then(svgText => {
+                    // Parse the SVG and remove viewBox restrictions
+                    const parser = new DOMParser();
+                    const svgDoc = parser.parseFromString(svgText, 'image/svg+xml');
+                    const svgElement = svgDoc.querySelector('svg');
+                    
+                    if (svgElement) {
+                        // Remove viewBox to prevent clipping
+                        svgElement.removeAttribute('viewBox');
+                        svgElement.removeAttribute('width');
+                        svgElement.removeAttribute('height');
+                        
+                        // Set overflow visible to show all content
+                        svgElement.setAttribute('overflow', 'visible');
+                        
+                        // Get the modified SVG text
+                        const modifiedSvgText = new XMLSerializer().serializeToString(svgElement);
+                        
+                        // Now load it with Fabric
+                        fabric.loadSVGFromString(modifiedSvgText, function(objects, options) {
+                            const svg = fabric.util.groupSVGElements(objects, options);
+                            
+                            // Ensure no clipping
+                            svg.set({
+                                clipPath: null,
+                                clipTo: null
+                            });
+                            
+                            // Get floorplan size for reference
+                            const floorplan = canvas.getObjects().find(obj => obj.customName === 'Floorplan');
+                            let targetScale = 1;
+                            
+                            if (floorplan) {
+                                // Calculate scale to make SVG 70% of floorplan size (50% + 40% bigger)
+                                const floorplanWidth = floorplan.width * floorplan.scaleX;
+                                const floorplanHeight = floorplan.height * floorplan.scaleY;
+                                const minDimension = Math.min(floorplanWidth, floorplanHeight) * 0.7;
+                                
+                                const svgMaxDimension = Math.max(svg.width, svg.height);
+                                targetScale = minDimension / svgMaxDimension;
+                            }
+                            
+                            svg.set({
+                                left: 0,
+                                top: 0,
+                                scaleX: targetScale,
+                                scaleY: targetScale,
+                                originX: 'center',
+                                originY: 'center',
+                                customName: `SVG ${++objectCounter}`,
+                                selectable: true
+                            });
+                            
+                            // Debug - log SVG bounds
+                            console.log('SVG loaded (viewBox removed):', {
+                                width: svg.width,
+                                height: svg.height,
+                                scale: targetScale,
+                                objects: objects.length
+                            });
+                            
+                            canvas.add(svg);
+                            canvas.centerObject(svg);
+                            canvas.setActiveObject(svg);
+                            canvas.requestRenderAll();
+                            updateInfoPanel();
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Failed to load SVG:', error);
+                });
+        }
+        
+        // Export data
+        document.getElementById('export-btn').addEventListener('click', () => {
+            const objects = canvas.getObjects();
+            const data = {
+                viewport: {
+                    zoom: canvas.getZoom(),
+                    pan: {
+                        x: canvas.viewportTransform[4],
+                        y: canvas.viewportTransform[5]
+                    }
+                },
+                objects: objects.map(obj => ({
+                    name: obj.customName || 'Unnamed',
+                    type: obj.type,
+                    position: { x: obj.left, y: obj.top },
+                    scale: { x: obj.scaleX, y: obj.scaleY },
+                    rotation: obj.angle,
+                    locked: obj.lockMovementX || false,
+                    zIndex: canvas.getObjects().indexOf(obj)
+                })),
+                timestamp: new Date().toISOString()
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'floorplan_alignment_v2.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+        
+        // Window resize
+        window.addEventListener('resize', () => {
+            canvas.setWidth(window.innerWidth);
+            canvas.setHeight(window.innerHeight);
+            canvas.requestRenderAll();
+        });
+        
+        // Initialize - load floorplan and SVG
+        loadFloorplan('floorplanpicture');
+        
+        // Load SVG after a short delay (let floorplan load first)
+        setTimeout(() => {
+            loadSVG('camera_positions.svg');
+        }, 500);
+        
+        // Initial info panel update
+        updateInfoPanel();
+    </script>
+</body>
+</html>
+

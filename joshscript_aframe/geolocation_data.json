@@ -1,0 +1,88 @@
+{
+  "projectInfo": {
+    "name": "Seascape Auckland - L10 (360)",
+    "url": "https://projects.asbuiltvault.com/asset/80cfe870-052d-4950-acae-686987bbf64c/plan-viewer/0ccb51e7-753c-4dd1-9518-11353c54e0d5/",
+    "location": "Auckland, New Zealand",
+    "coordinateSystem": "WGS84 (EPSG:4326)",
+    "extractionDate": "2025-01-08"
+  },
+  "floorplanBounds": {
+    "description": "Four corner coordinates of the floorplan image in WGS84",
+    "coordinates": [
+      [174.76904030579692, -36.845437470625626],
+      [174.76953833830476, -36.84556978976499],
+      [174.76945222065177, -36.84577937864095],
+      [174.76895418814394, -36.84564705950159]
+    ],
+    "corners": {
+      "topLeft": [174.76904030579692, -36.845437470625626],
+      "topRight": [174.76953833830476, -36.84556978976499],
+      "bottomRight": [174.76945222065177, -36.84577937864095],
+      "bottomLeft": [174.76895418814394, -36.84564705950159]
+    }
+  },
+  "referencePoints": [
+    {
+      "id": 1,
+      "name": "L10_3_60",
+      "coordinates": [174.76925647074228, -36.84554398060178],
+      "properties": {
+        "id": "a33d49c4-fe00-41ee-a10b-38172ec7b549",
+        "name": "L10_3_60",
+        "colour": "#009247",
+        "active": false,
+        "showError": false,
+        "hoverText": "L10_3_60",
+        "innerIconOffset": [0, -96]
+      }
+    },
+    {
+      "id": 2,
+      "name": "L10_3_49",
+      "coordinates": [174.76921081300972, -36.845569620599406],
+      "properties": {
+        "id": "17e28b48-9c2d-48fd-9a57-189a5d83f2b0",
+        "name": "L10_3_49",
+        "colour": "#009247",
+        "active": false,
+        "showError": false,
+        "hoverText": "L10_3_49",
+        "innerIconOffset": [0, -96]
+      }
+    },
+    {
+      "id": 3,
+      "name": "L10_3_134",
+      "coordinates": [174.76928719941384, -36.84561806489802],
+      "properties": {
+        "id": "ef6fe1d1-e283-4b3d-b8db-addcca29167e",
+        "name": "L10_3_134",
+        "colour": "#009247",
+        "active": false,
+        "showError": false,
+        "hoverText": "L10_3_134",
+        "innerIconOffset": [0, -96]
+      }
+    }
+  ],
+  "coordinateTransformation": {
+    "description": "For converting between image pixel coordinates and WGS84 coordinates",
+    "imageBounds": {
+      "minLng": 174.76895418814394,
+      "maxLng": 174.76953833830476,
+      "minLat": -36.84577937864095,
+      "maxLat": -36.845437470625626
+    },
+    "lngRange": 0.00058415016082,
+    "latRange": 0.000341908015324
+  },
+  "usage": {
+    "description": "This data can be used to geolocate the floorplan image and convert between pixel coordinates and real-world coordinates",
+    "applications": [
+      "Click-to-get-coordinates feature",
+      "Reference point overlay",
+      "Coordinate transformation system",
+      "Integration with mapping applications"
+    ]
+  }
+}

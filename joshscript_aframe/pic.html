@@ -144,7 +144,7 @@
             margin-bottom: 10px;
         }
         
-        #position-display {
+        #position-display, #svg-position-display {
             background: rgba(0, 0, 0, 0.8);
             padding: 8px 12px;
             border-radius: 4px;
@@ -153,7 +153,7 @@
             min-width: 200px;
         }
         
-        #position-text {
+        #position-text, #svg-position-text {
             color: #00ff00;
             font-family: monospace;
         }
@@ -231,6 +231,11 @@
         <div class="control-group">
             <div id="position-display">
                 <strong>Blue Dot Position:</strong> <span id="position-text">Calculating...</span>
+            </div>
+        </div>
+        <div class="control-group">
+            <div id="svg-position-display">
+                <strong>Blue Dot SVG Position:</strong> <span id="svg-position-text">(0, 0)</span>
             </div>
         </div>
         <div class="control-group">
@@ -742,6 +747,42 @@
             return { x: Math.round(floorplanX), y: Math.round(floorplanY) };
         }
         
+        function getBlueDotSVGPosition() {
+            const svgElement = svgOverlay.querySelector('svg');
+            
+            // Check if SVG element exists and has viewBox
+            if (!svgElement) {
+                return null;
+            }
+            
+            // Get SVG viewBox
+            const viewBox = svgElement.getAttribute('viewBox');
+            if (!viewBox) {
+                return null;
+            }
+            
+            // Parse viewBox: "x y width height"
+            const parts = viewBox.split(' ');
+            const viewBoxX = parseFloat(parts[0]);
+            const viewBoxY = parseFloat(parts[1]);
+            const viewBoxWidth = parseFloat(parts[2]);
+            const viewBoxHeight = parseFloat(parts[3]);
+            
+            // The blue dot is positioned at the center of the SVG element on screen
+            // We need to convert this to SVG coordinates
+            const svgRect = svgElement.getBoundingClientRect();
+            const svgCenterX = svgRect.width / 2;  // Center of SVG element
+            const svgCenterY = svgRect.height / 2;
+            
+            // Convert SVG element center to SVG coordinate system
+            // SVG coordinate = (element_center / element_size) * viewBox_size + viewBox_offset
+            const svgCoordX = (svgCenterX / svgRect.width) * viewBoxWidth + viewBoxX;
+            const svgCoordY = (svgCenterY / svgRect.height) * viewBoxHeight + viewBoxY;
+            
+            
+            return { x: Math.round(svgCoordX * 100) / 100, y: Math.round(svgCoordY * 100) / 100 };
+        }
+        
         // Log blue dot position to console every time it moves
         let lastLoggedPos = { x: 0, y: 0 };
         setInterval(() => {
@@ -760,6 +801,17 @@
                 const positionText = document.getElementById('position-text');
                 if (positionText) {
                     positionText.textContent = 'Loading...';
+                }
+            }
+            
+            // Update SVG position display (static value)
+            const svgPos = getBlueDotSVGPosition();
+            const svgPositionText = document.getElementById('svg-position-text');
+            if (svgPositionText) {
+                if (svgPos) {
+                    svgPositionText.textContent = `(${svgPos.x}, ${svgPos.y})`;
+                } else {
+                    svgPositionText.textContent = 'Loading...';
                 }
             }
         }, 500);
