@@ -194,3 +194,4 @@ if __name__ == "__main__":
     print("Extracting coordinates from Auckland Council GeoMaps...")
     extract_coordinates_from_auckland_maps()
     alternative_api_approach()
+

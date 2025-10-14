@@ -215,3 +215,4 @@ if __name__ == "__main__":
         print(f"Final Mount Eden 2000 coordinates: E: {coords[0]:.3f}, N: {coords[1]:.3f}")
     else:
         print("Failed to get coordinates")
+

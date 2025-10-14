@@ -116,3 +116,4 @@ if __name__ == "__main__":
     
     if corrected_coords:
         generate_javascript_coords(corrected_coords)
+
