@@ -592,10 +592,12 @@
             
             // Create thumbnails for each image
             sortedFilenames.forEach(filename => {
+                const frameMatch = filename.match(/frame_(\d+)/);
                 const previewFilename = mapCameraToPreviewFilename(filename);
                 if (previewFilename) {
                     const thumbnail = document.createElement('div');
                     thumbnail.className = 'image-thumbnail';
+                    thumbnail.dataset.frameNumber = frameMatch ? frameMatch[1] : 'unknown';
                     
                     const img = document.createElement('img');
                     img.src = previewFilename;
@@ -603,7 +605,6 @@
                     
                      const frameNumber = document.createElement('div');
                      frameNumber.className = 'frame-number';
-                     const frameMatch = filename.match(/frame_(\d+)/);
                      const frameNum = frameMatch ? frameMatch[1] : '?';
                      frameNumber.textContent = frameNum;
                      
@@ -666,6 +667,16 @@
             document.getElementById('image-strip-panel').style.display = 'none';
         }
         
+        // Function to remove a single thumbnail from the image strip (efficient)
+        function removeThumbnailFromStrip(frameNumber) {
+            const content = document.getElementById('image-strip-content');
+            const thumbnail = content.querySelector(`[data-frame-number="${frameNumber}"]`);
+            if (thumbnail) {
+                thumbnail.remove();
+                console.log(`Removed thumbnail for frame ${frameNumber} from image strip`);
+            }
+        }
+        
          // Function to show image preview
          function showImagePreview(imageSrc) {
              const overlay = document.getElementById('image-preview-overlay');
@@ -679,25 +690,28 @@
              document.getElementById('image-preview-overlay').style.display = 'none';
          }
          
-         // Function to highlight a specific dot when thumbnail is clicked
-         function highlightThumbnailDot(frameNumber) {
-             console.log('=== highlightThumbnailDot called ===');
-             console.log('Looking for frame:', frameNumber);
-             
-             const activeObject = canvas.getActiveObject();
-             if (!activeObject || !activeObject.customName || !activeObject.customName.includes('Camera Positions')) {
-                 console.log('No camera positions SVG selected');
-                 return;
-             }
-             
-             const group = activeObject;
-             const objects = group._objects || group.objects;
-             console.log('Found group with', objects.length, 'objects');
-             console.log('Group position on canvas:', { left: group.left, top: group.top });
-             console.log('Group scale:', { scaleX: group.scaleX, scaleY: group.scaleY });
-             
-             // Find and highlight ONLY the specific circle - change appearance only
-             let found = false;
+        // Function to highlight a specific dot when thumbnail is clicked
+        function highlightThumbnailDot(frameNumber) {
+            console.log('=== highlightThumbnailDot called ===');
+            console.log('Looking for frame:', frameNumber);
+
+            const activeObject = canvas.getActiveObject();
+            if (!activeObject || !activeObject.customName || !activeObject.customName.includes('Camera Positions')) {
+                console.log('No camera positions SVG selected');
+                return;
+            }
+
+            const group = activeObject;
+            const objects = group._objects || group.objects;
+            console.log('Found group with', objects.length, 'objects');
+            console.log('Group position on canvas:', { left: group.left, top: group.top });
+            console.log('Group scale:', { scaleX: group.scaleX, scaleY: group.scaleY });
+
+            // First, clear any existing highlights to ensure only one dot is highlighted
+            clearThumbnailHighlights();
+
+            // Find and highlight ONLY the specific circle - change appearance only
+            let found = false;
              console.log('Checking all objects in group:');
              objects.forEach((obj, index) => {
                  console.log(`Object ${index}: type=${obj.type}, title="${obj.title || 'no title'}", fill="${obj.fill}", stroke="${obj.stroke}", position=(${obj.left}, ${obj.top}), size=(${obj.width}, ${obj.height})`);
@@ -885,15 +899,14 @@
              canvas.requestRenderAll();
              updateInfoPanel();
              
-             // Remove from current image filenames and refresh display
-             currentImageFilenames = currentImageFilenames.filter(filename => {
-                 const frameMatch = filename.match(/frame_(\d+)/);
-                 return !frameMatch || frameMatch[1] !== frameNumber;
-             });
-             
-             // Refresh the image strip display
-             const sortOrder = document.getElementById('sort-order').value;
-             displayImagesWithSort(sortOrder);
+            // Remove from current image filenames
+            currentImageFilenames = currentImageFilenames.filter(filename => {
+                const frameMatch = filename.match(/frame_(\d+)/);
+                return !frameMatch || frameMatch[1] !== frameNumber;
+            });
+            
+            // Efficiently remove just the thumbnail from the image strip
+            removeThumbnailFromStrip(frameNumber);
              
              console.log(`Successfully removed frame ${frameNumber}. ${currentImageFilenames.length} images remaining.`);
          }
