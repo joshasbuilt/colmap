@@ -37,3 +37,4 @@ floorplanBounds: [
 - **Orthogonal display**: Wrong coordinates (using extents instead of corners)
 - **Upside down**: Incorrect coordinate order
 - **Wrong location**: Wrong project coordinates
+

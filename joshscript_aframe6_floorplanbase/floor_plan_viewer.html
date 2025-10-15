@@ -352,14 +352,16 @@
             }
             
             // Log all image filenames
-            console.log('Image filenames in this SVG:');
+            console.log('=== IMAGE FILENAMES IN ' + svgObject.customName + ' ===');
             imageFilenames.forEach((filename, index) => {
                 console.log(`${index + 1}. ${filename}`);
             });
             console.log(`Total images: ${imageFilenames.length}`);
+            console.log('==========================================');
             
             return imageFilenames;
         }
+
 
         // Initialize Fabric canvas (make it global for pan handlers)
         window.canvas = new fabric.Canvas('canvas', {
@@ -387,6 +389,14 @@
             } else {
                 lockItem.style.display = 'block';
                 unlockItem.style.display = 'none';
+            }
+            
+            // Show/hide "Extract Image Filenames" option based on object type
+            const extractImagesItem = menu.querySelector('[data-action="extract-images"]');
+            if (target.customName && target.customName.includes('Camera Positions')) {
+                extractImagesItem.style.display = 'block';
+            } else {
+                extractImagesItem.style.display = 'none';
             }
             
             menu.style.left = x + 'px';
@@ -684,7 +694,7 @@
         }
 
         // Load SVG function
-        function loadSVG(url) {
+        function loadSVG(url, svgName) {
             // Use configuration system for resource loading
             const resourceUrl = config.getResourceUrl(url);
             
@@ -713,6 +723,24 @@
                         fabric.loadSVGFromString(modifiedSvgText, function(objects, options) {
                             const svg = fabric.util.groupSVGElements(objects, options);
                             
+                            // Extract title data from raw SVG and attach to circles
+                            const parser = new DOMParser();
+                            const svgDoc = parser.parseFromString(svgText, 'image/svg+xml');
+                            const circles = svgDoc.querySelectorAll('circle');
+                            
+                            // Match circles in Fabric objects with circles in SVG DOM
+                            if (svg._objects) {
+                                const fabricCircles = svg._objects.filter(obj => obj.type === 'circle');
+                                fabricCircles.forEach((fabricCircle, index) => {
+                                    if (circles[index]) {
+                                        const titleElement = circles[index].querySelector('title');
+                                        if (titleElement) {
+                                            fabricCircle.title = titleElement.textContent;
+                                        }
+                                    }
+                                });
+                            }
+                            
                             // Ensure no clipping
                             svg.set({
                                 clipPath: null,
@@ -740,7 +768,7 @@
                                 scaleY: targetScale,
                                 originX: 'center',
                                 originY: 'center',
-                                customName: 'SVG',
+                                customName: svgName || 'SVG',
                                 selectable: true,
                                 hasControls: true,
                                 hasBorders: true,
@@ -993,24 +1021,6 @@
                 wgs84: { lng: wgs84Coords.lng, lat: wgs84Coords.lat }
             });
             
-            // Check if an SVG was clicked and extract image filenames
-            const clickedObject = canvas.findTarget(e.e, false);
-            if (clickedObject && clickedObject.customName && clickedObject.customName.includes('Camera Positions')) {
-                console.log('=== SVG CLICKED: ' + clickedObject.customName + ' ===');
-                extractImageFilenamesFromSVG(clickedObject);
-                
-                // Enable selection temporarily and select the SVG
-                canvas.selection = true;
-                canvas.setActiveObject(clickedObject);
-                canvas.requestRenderAll();
-                
-                // Disable selection again after a short delay
-                setTimeout(() => {
-                    canvas.selection = false;
-                    canvas.discardActiveObject();
-                    canvas.requestRenderAll();
-                }, 100);
-            }
         });
 
         // Right-click handler for context menu
@@ -1019,11 +1029,11 @@
                 const clickedObject = canvas.findTarget(e.e, false);
                 console.log('Right-click detected on:', clickedObject);
                 console.log('Object custom name:', clickedObject ? clickedObject.customName : 'undefined');
-                if (clickedObject && clickedObject.customName && clickedObject.customName.includes('Camera Positions')) {
+                if (clickedObject) {
                     e.e.preventDefault();
-                    showContextMenu(e.e, clickedObject);
+                    showContextMenu(e.e.clientX, e.e.clientY, clickedObject);
                 } else {
-                    console.log('Right-clicked object is not a camera positions SVG');
+                    console.log('Right-clicked on empty space');
                 }
             }
         });

@@ -8,3 +8,4 @@ argparse>=1.4.0
 # Optional: for advanced HAR analysis
 beautifulsoup4>=4.9.0
 requests>=2.25.0
+

@@ -140,3 +140,4 @@ To use these SVG files in the A-Frame floorplan viewer:
 - Add color coding for different camera rigs or time periods
 - Create merged view showing all reconstructions simultaneously
 
+

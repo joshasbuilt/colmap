@@ -137,3 +137,4 @@ The extracted coordinates are in WGS84 format (longitude, latitude):
 
 ## Time Saved
 This process reduces coordinate extraction from **hours of trial and error** to **5-10 minutes** for future projects.
+

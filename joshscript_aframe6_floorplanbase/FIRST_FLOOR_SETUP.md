@@ -52,3 +52,4 @@ groundFloor: {
 - `first_floor_extraction_helper.html` - Browser helper
 - `first_floor_extraction_script.js` - Console script
 - `floor_plan_viewer.html` - Updated to handle both floors
+

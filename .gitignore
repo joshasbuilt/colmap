@@ -71,6 +71,7 @@ joshscripts/**/test_output/
 joshscript_aframe/panoramas/
 joshscript_aframe/panoramas2/
 joshscript_aframe/Camera02/
+joshscript_aframe6_floorplanbase/hp_preview image/
 
 # Python cache and virtual environments
 __pycache__/
