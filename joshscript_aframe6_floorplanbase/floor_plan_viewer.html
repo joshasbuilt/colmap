@@ -495,10 +495,14 @@
             }
         });
         
-        // Global mouse up handler to hide preview when mouse is released anywhere
-        document.addEventListener('mouseup', () => {
-            hideImagePreview();
-        });
+         // Global mouse up handler to hide preview when mouse is released anywhere
+         document.addEventListener('mouseup', (e) => {
+             // Only hide preview if it's currently showing
+             const overlay = document.getElementById('image-preview-overlay');
+             if (overlay.style.display === 'flex') {
+                 hideImagePreview();
+             }
+         });
 
         // Function to list all objects on canvas (for debugging)
         function listAllObjects() {
@@ -618,20 +622,31 @@
                          }
                      });
                      
-                     // Add mouse event listeners for preview
-                     thumbnail.addEventListener('mousedown', (e) => {
-                         e.preventDefault();
-                         showImagePreview(previewFilename);
-                     });
-                     
-                     thumbnail.addEventListener('mouseup', (e) => {
-                         e.preventDefault();
-                         hideImagePreview();
-                     });
-                     
-                     thumbnail.addEventListener('mouseleave', (e) => {
-                         hideImagePreview();
-                     });
+                      // Add mouse event listeners for preview
+                      thumbnail.addEventListener('mousedown', (e) => {
+                          console.log('=== THUMBNAIL CLICKED ===');
+                          console.log('previewFilename:', previewFilename);
+                          console.log('frameMatch:', frameMatch);
+                          console.log('frameNumber:', frameMatch ? frameMatch[1] : 'none');
+                          console.log('original filename:', filename);
+                          
+                          e.preventDefault();
+                          showImagePreview(previewFilename);
+                          
+                          // Highlight the specific dot - ONLY when thumbnail is clicked
+                          if (frameMatch) {
+                              highlightThumbnailDot(frameMatch[1]);
+                          }
+                      });
+                      
+                      thumbnail.addEventListener('mouseup', (e) => {
+                          e.preventDefault();
+                          hideImagePreview();
+                      });
+                      
+                      thumbnail.addEventListener('mouseleave', (e) => {
+                          hideImagePreview();
+                      });
                      
                      // Prevent context menu on thumbnails
                      thumbnail.addEventListener('contextmenu', (e) => {
@@ -651,17 +666,132 @@
             document.getElementById('image-strip-panel').style.display = 'none';
         }
         
-        // Function to show image preview
-        function showImagePreview(imageSrc) {
-            const overlay = document.getElementById('image-preview-overlay');
-            const previewImg = document.getElementById('preview-image');
-            previewImg.src = imageSrc;
-            overlay.style.display = 'flex';
-        }
-        
+         // Function to show image preview
+         function showImagePreview(imageSrc) {
+             const overlay = document.getElementById('image-preview-overlay');
+             const previewImg = document.getElementById('preview-image');
+             previewImg.src = imageSrc;
+             overlay.style.display = 'flex';
+         }
+         
          // Function to hide image preview
          function hideImagePreview() {
              document.getElementById('image-preview-overlay').style.display = 'none';
+         }
+         
+         // Function to highlight a specific dot when thumbnail is clicked
+         function highlightThumbnailDot(frameNumber) {
+             console.log('=== highlightThumbnailDot called ===');
+             console.log('Looking for frame:', frameNumber);
+             
+             const activeObject = canvas.getActiveObject();
+             if (!activeObject || !activeObject.customName || !activeObject.customName.includes('Camera Positions')) {
+                 console.log('No camera positions SVG selected');
+                 return;
+             }
+             
+             const group = activeObject;
+             const objects = group._objects || group.objects;
+             console.log('Found group with', objects.length, 'objects');
+             console.log('Group position on canvas:', { left: group.left, top: group.top });
+             console.log('Group scale:', { scaleX: group.scaleX, scaleY: group.scaleY });
+             
+             // Find and highlight ONLY the specific circle - change appearance only
+             let found = false;
+             console.log('Checking all objects in group:');
+             objects.forEach((obj, index) => {
+                 console.log(`Object ${index}: type=${obj.type}, title="${obj.title || 'no title'}", fill="${obj.fill}", stroke="${obj.stroke}", position=(${obj.left}, ${obj.top}), size=(${obj.width}, ${obj.height})`);
+                 
+                 // Check if this is the white rectangle
+                 if (obj.type === 'rect' && obj.fill === 'white') {
+                     console.log(`WHITE RECTANGLE FOUND: position=(${obj.left}, ${obj.top}), size=(${obj.width}, ${obj.height})`);
+                 }
+                 
+                 if (obj.type === 'circle' && obj.title) {
+                     const frameMatch = obj.title.match(/frame_(\d+)/);
+                     console.log(`Circle ${index}: type=${obj.type}, title="${obj.title}", frameMatch="${frameMatch ? frameMatch[1] : 'none'}", position=(${obj.left}, ${obj.top})`);
+                     
+                     if (frameMatch && frameMatch[1] === frameNumber) {
+                         console.log('FOUND MATCH - Highlighting circle for frame:', frameNumber);
+                         console.log('Circle properties before change:', {
+                             left: obj.left,
+                             top: obj.top,
+                             fill: obj.fill,
+                             stroke: obj.stroke,
+                             strokeWidth: obj.strokeWidth,
+                             radius: obj.radius,
+                             width: obj.width,
+                             height: obj.height
+                         });
+                         
+                        // Only change appearance properties, don't touch position or size
+                        obj.set('fill', 'green');
+                        obj.set('stroke', 'darkgreen');
+                        obj.set('strokeWidth', 0.1); // Small stroke width to make it visible but not huge
+                         
+                         console.log('Circle properties after change:', {
+                             left: obj.left,
+                             top: obj.top,
+                             fill: obj.fill,
+                             stroke: obj.stroke,
+                             strokeWidth: obj.strokeWidth,
+                             radius: obj.radius
+                         });
+                         found = true;
+                     }
+                 }
+             });
+             
+             if (!found) {
+                 console.log('No matching circle found for frame:', frameNumber);
+             }
+             
+             // Check if white rectangle was affected
+             const whiteRect = objects.find(obj => obj.type === 'rect' && obj.fill === 'white');
+             if (whiteRect) {
+                 console.log('WHITE RECTANGLE AFTER HIGHLIGHTING: fill=', whiteRect.fill, 'stroke=', whiteRect.stroke);
+             }
+             
+             canvas.requestRenderAll();
+             
+             // Check if there are any other objects on the canvas that might be getting highlighted
+             console.log('=== CHECKING ALL CANVAS OBJECTS ===');
+             canvas.getObjects().forEach((obj, index) => {
+                 if (obj.fill === 'green' || obj.stroke === 'green' || obj.stroke === 'darkgreen') {
+                     console.log(`GREEN OBJECT FOUND: ${index} - type=${obj.type}, fill=${obj.fill}, stroke=${obj.stroke}, position=(${obj.left}, ${obj.top})`);
+                 }
+             });
+         }
+         
+         
+         // Function to clear highlights - ONLY called from thumbnail interactions
+         function clearThumbnailHighlights() {
+             console.log('=== clearThumbnailHighlights called ===');
+             
+             const activeObject = canvas.getActiveObject();
+             console.log('activeObject:', activeObject);
+             console.log('activeObject.customName:', activeObject ? activeObject.customName : 'none');
+             
+             if (!activeObject || !activeObject.customName || !activeObject.customName.includes('Camera Positions')) {
+                 console.log('No camera positions SVG selected, returning');
+                 return;
+             }
+             
+             const group = activeObject;
+             const objects = group._objects || group.objects;
+             console.log('Found group with', objects.length, 'objects');
+             
+    // Reset all circles to red
+    objects.forEach((obj) => {
+        if (obj.type === 'circle') {
+            console.log('Resetting circle to red');
+            obj.set('fill', 'red');
+            obj.set('stroke', 'darkred');
+            obj.set('strokeWidth', 0.0246); // Reset to original small stroke width
+        }
+    });
+             
+             canvas.requestRenderAll();
          }
          
          // Function to remove a single camera position from the current SVG group
