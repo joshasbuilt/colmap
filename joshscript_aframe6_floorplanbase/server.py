@@ -11,7 +11,7 @@ import os
 from pathlib import Path
 
 # Configuration
-PORT = 8080
+PORT = 8000
 HOST = 'localhost'
 
 class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):

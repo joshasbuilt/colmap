@@ -136,6 +136,8 @@
         <div class="context-menu-item" data-action="bring-to-front">Bring to Front</div>
         <div class="context-menu-item" data-action="send-to-back">Send to Back</div>
         <div class="context-menu-separator"></div>
+        <div class="context-menu-item" data-action="extract-images">Extract Image Filenames</div>
+        <div class="context-menu-separator"></div>
         <div class="context-menu-item" data-action="delete">Delete</div>
     </div>
     
@@ -296,6 +298,68 @@
         document.addEventListener('click', () => {
             hideContextMenu();
         });
+
+        // Function to list all objects on canvas (for debugging)
+        function listAllObjects() {
+            console.log('=== ALL OBJECTS ON CANVAS ===');
+            canvas.getObjects().forEach((obj, index) => {
+                console.log(`${index}: ${obj.customName || 'unnamed'} (${obj.type})`);
+            });
+        }
+        
+        // Make it available globally for console debugging
+        window.listAllObjects = listAllObjects;
+        
+        // Function to extract images from any SVG by name (for testing)
+        function extractImagesFromSVGByName(svgName) {
+            const svgObject = canvas.getObjects().find(obj => obj.customName === svgName);
+            if (svgObject) {
+                console.log('Found SVG:', svgName);
+                extractImageFilenamesFromSVG(svgObject);
+            } else {
+                console.log('SVG not found:', svgName);
+                console.log('Available SVGs:');
+                canvas.getObjects().forEach(obj => {
+                    if (obj.customName && obj.customName.includes('Camera Positions')) {
+                        console.log('- ' + obj.customName);
+                    }
+                });
+            }
+        }
+        
+        // Make it available globally for console debugging
+        window.extractImagesFromSVGByName = extractImagesFromSVGByName;
+
+        // Function to extract image filenames from SVG circles
+        function extractImageFilenamesFromSVG(svgObject) {
+            const imageFilenames = [];
+            
+            // Get the SVG element from the Fabric object
+            const svgElement = svgObject._objects || svgObject.objects;
+            
+            if (svgElement) {
+                // Look for circles in the SVG
+                svgElement.forEach(obj => {
+                    if (obj.type === 'circle' && obj.title) {
+                        // Extract image filename from the title attribute
+                        const titleMatch = obj.title.match(/Image: ([^|]+)/);
+                        if (titleMatch) {
+                            const imageName = titleMatch[1].trim();
+                            imageFilenames.push(imageName);
+                        }
+                    }
+                });
+            }
+            
+            // Log all image filenames
+            console.log('Image filenames in this SVG:');
+            imageFilenames.forEach((filename, index) => {
+                console.log(`${index + 1}. ${filename}`);
+            });
+            console.log(`Total images: ${imageFilenames.length}`);
+            
+            return imageFilenames;
+        }
 
         // Initialize Fabric canvas (make it global for pan handlers)
         window.canvas = new fabric.Canvas('canvas', {
@@ -516,78 +580,6 @@
             return { x: x, y: y };
         }
 
-        // Load SVG function
-        function loadSVG(url, svgName) {
-            fetch(url)
-                .then(response => response.text())
-                .then(svgText => {
-                    // Parse the SVG and remove viewBox restrictions
-                    const parser = new DOMParser();
-                    const svgDoc = parser.parseFromString(svgText, 'image/svg+xml');
-                    const svgElement = svgDoc.querySelector('svg');
-                    
-                    if (svgElement) {
-                        // Remove viewBox to prevent clipping
-                        svgElement.removeAttribute('viewBox');
-                        svgElement.removeAttribute('width');
-                        svgElement.removeAttribute('height');
-                        
-                        // Set overflow visible to show all content
-                        svgElement.setAttribute('overflow', 'visible');
-                        
-                        // Get the modified SVG text
-                        const modifiedSvgText = new XMLSerializer().serializeToString(svgElement);
-                        
-                        // Now load it with Fabric
-                        fabric.loadSVGFromString(modifiedSvgText, function(objects, options) {
-                            const svg = fabric.util.groupSVGElements(objects, options);
-                            
-                            // Ensure no clipping
-                            svg.set({
-                                clipPath: null,
-                                clipTo: null
-                            });
-                            
-                            // Calculate scale to make SVG visible but not too large
-                            let targetScale = 0.1; // Start with small scale
-                            
-                            svg.set({
-                                left: 0,
-                                top: 0,
-                                scaleX: targetScale,
-                                scaleY: targetScale,
-                                originX: 'center',
-                                originY: 'center',
-                                customName: svgName || 'SVG',
-                                selectable: true,
-                                hasControls: true,
-                                hasBorders: true,
-                                borderColor: '#0096ff',
-                                cornerColor: '#0096ff',
-                                cornerSize: 8,
-                                transparentCorners: false,
-                                borderScaleFactor: 2
-                            });
-                            
-                            console.log('SVG loaded:', {
-                                name: svgName,
-                                width: svg.width,
-                                height: svg.height,
-                                scale: targetScale,
-                                objects: objects.length
-                            });
-                            
-                            canvas.add(svg);
-                            canvas.centerObject(svg);
-                            canvas.requestRenderAll();
-                            updateInfoPanel();
-                        });
-                    }
-                })
-                .catch(error => {
-                    console.error('Failed to load SVG:', error);
-                });
-        }
 
         // Load floorplan image with its specific bounds
         function loadFloorplanImage(imageUrl, bounds, floorName) {
@@ -825,11 +817,47 @@
                 const locked = activeObject.lockMovementX ? ' [LOCKED]' : '';
                 document.getElementById('selected-value').textContent = name + locked;
                 
+                // Console logging for current selection intelligence
+                console.log('=== CURRENT SELECTION ===');
+                console.log('Object Type:', activeObject.type);
+                console.log('Custom Name:', activeObject.customName);
+                console.log('Position:', { x: activeObject.left, y: activeObject.top });
+                console.log('Scale:', { x: activeObject.scaleX, y: activeObject.scaleY });
+                console.log('Rotation:', activeObject.angle);
+                console.log('Locked:', {
+                    movementX: activeObject.lockMovementX,
+                    movementY: activeObject.lockMovementY,
+                    rotation: activeObject.lockRotation,
+                    scalingX: activeObject.lockScalingX,
+                    scalingY: activeObject.lockScalingY
+                });
+                console.log('Selectable:', activeObject.selectable);
+                console.log('Has Controls:', activeObject.hasControls);
+                console.log('Has Borders:', activeObject.hasBorders);
+                
+                // If it's an SVG, show more details
+                if (activeObject.type === 'group' && activeObject.customName && activeObject.customName.includes('SVG')) {
+                    console.log('SVG Details:');
+                    console.log('- Objects count:', activeObject._objects ? activeObject._objects.length : 'Unknown');
+                    console.log('- Width:', activeObject.width);
+                    console.log('- Height:', activeObject.height);
+                    
+                    // Check if it has circles (camera positions)
+                    if (activeObject._objects) {
+                        const circles = activeObject._objects.filter(obj => obj.type === 'circle');
+                        console.log('- Camera position circles:', circles.length);
+                        if (circles.length > 0) {
+                            console.log('- First circle title:', circles[0].title || 'No title');
+                        }
+                    }
+                }
+                
                 // Show position in Mt Eden Circuit coordinates if model space is active
                 if (mtEdenBounds && mtEdenBounds.length > 0) {
                     const mtEdenCoords = canvasToMtEden(activeObject.left, activeObject.top, mtEdenBounds, canvas.width, canvas.height);
                     document.getElementById('position-value').textContent = 
                         `E: ${mtEdenCoords.x.toFixed(2)}m, N: ${mtEdenCoords.y.toFixed(2)}m`;
+                    console.log('Mt Eden Coordinates:', mtEdenCoords);
                 } else {
                     document.getElementById('position-value').textContent = 
                         `(${Math.round(activeObject.left)}, ${Math.round(activeObject.top)})`;
@@ -847,6 +875,7 @@
                 document.getElementById('scale-value').textContent = '-';
                 document.getElementById('rotation-value').textContent = '-';
                 document.getElementById('locked-value').textContent = '-';
+                console.log('=== NO SELECTION ===');
             }
             
             // Update configuration display
@@ -925,6 +954,20 @@
                         case 'send-to-back':
                             canvas.sendToBack(contextMenuTarget);
                             break;
+                        case 'extract-images':
+                            console.log('Context menu target:', contextMenuTarget);
+                            console.log('Custom name:', contextMenuTarget ? contextMenuTarget.customName : 'undefined');
+                            if (contextMenuTarget && contextMenuTarget.customName && contextMenuTarget.customName.includes('Camera Positions')) {
+                                console.log('=== EXTRACTING IMAGES FROM: ' + contextMenuTarget.customName + ' ===');
+                                extractImageFilenamesFromSVG(contextMenuTarget);
+                            } else {
+                                console.log('This object is not a camera positions SVG');
+                                console.log('Available objects on canvas:');
+                                canvas.getObjects().forEach((obj, index) => {
+                                    console.log(`${index}: ${obj.customName || 'unnamed'} (${obj.type})`);
+                                });
+                            }
+                            break;
                         case 'delete':
                             canvas.remove(contextMenuTarget);
                             canvas.discardActiveObject();
@@ -949,6 +992,40 @@
                 mtEden: { x: mtEdenCoords.x, y: mtEdenCoords.y },
                 wgs84: { lng: wgs84Coords.lng, lat: wgs84Coords.lat }
             });
+            
+            // Check if an SVG was clicked and extract image filenames
+            const clickedObject = canvas.findTarget(e.e, false);
+            if (clickedObject && clickedObject.customName && clickedObject.customName.includes('Camera Positions')) {
+                console.log('=== SVG CLICKED: ' + clickedObject.customName + ' ===');
+                extractImageFilenamesFromSVG(clickedObject);
+                
+                // Enable selection temporarily and select the SVG
+                canvas.selection = true;
+                canvas.setActiveObject(clickedObject);
+                canvas.requestRenderAll();
+                
+                // Disable selection again after a short delay
+                setTimeout(() => {
+                    canvas.selection = false;
+                    canvas.discardActiveObject();
+                    canvas.requestRenderAll();
+                }, 100);
+            }
+        });
+
+        // Right-click handler for context menu
+        canvas.on('mouse:down', function(e) {
+            if (e.e.button === 2) { // Right click
+                const clickedObject = canvas.findTarget(e.e, false);
+                console.log('Right-click detected on:', clickedObject);
+                console.log('Object custom name:', clickedObject ? clickedObject.customName : 'undefined');
+                if (clickedObject && clickedObject.customName && clickedObject.customName.includes('Camera Positions')) {
+                    e.e.preventDefault();
+                    showContextMenu(e.e, clickedObject);
+                } else {
+                    console.log('Right-clicked object is not a camera positions SVG');
+                }
+            }
         });
 
         // Zoom functionality
