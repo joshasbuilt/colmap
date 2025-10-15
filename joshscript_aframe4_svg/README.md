@@ -13,6 +13,7 @@ This project is based on the proven `auto_gravity_align.py` script from `paul/jo
 - **🎨 Correct SVG Format** - Generates SVGs matching the reference format exactly
 - **⚙️ Proven Algorithm** - Based on the working `auto_gravity_align.py` script
 - **🔧 Proper Transformations** - Uses origin, scale, and robust bounds calculation
+- **📊 Enhanced Metadata** - Rich tooltips with 2D/3D coordinates, image names, frame IDs, heights, and timestamps
 
 ## Installation
 
@@ -59,6 +60,7 @@ python process_multiple_reconstructions.py \
   - Red trajectory lines
   - Proper scaling and viewBox
   - Gravity-corrected coordinates
+  - Rich metadata tooltips on hover
 
 ## How It Works
 

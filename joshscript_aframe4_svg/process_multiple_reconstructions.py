@@ -108,16 +108,16 @@ def compute_gravity_alignment_rotation(gravity_direction, target_up=np.array([0,
 
 def extract_camera_positions(reconstruction, camera_index=1):
     """
-    Extract camera positions from COLMAP reconstruction.
+    Extract camera positions and metadata from COLMAP reconstruction.
     
     Args:
         reconstruction: pycolmap.Reconstruction object
         camera_index: Which camera to extract (default: 1)
         
     Returns:
-        camera_positions: Nx3 array of camera positions
+        camera_data: List of camera data dictionaries with positions and metadata
     """
-    camera_positions = []
+    camera_data = []
     
     # Group images by frame_id
     frame_cameras = {}
@@ -139,24 +139,46 @@ def extract_camera_positions(reconstruction, camera_index=1):
                 rot_mat = cam_from_world.rotation.matrix()
                 cam_pos = -rot_mat.T @ cam_from_world.translation
                 
-                camera_positions.append(cam_pos)
+                # Extract additional metadata
+                camera_info = {
+                    'position_3d': cam_pos,
+                    'image_name': image.name,
+                    'frame_id': frame_id,
+                    'image_id': image_id,
+                    'camera_id': image.camera_id,
+                    'rotation_matrix': rot_mat,
+                    'translation': cam_from_world.translation,
+                    'quaternion': cam_from_world.rotation.quat,
+                    'height': cam_pos[2]
+                }
+                
+                # Try to extract timestamp from image name
+                import re
+                timestamp_match = re.search(r'(\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2})', image.name)
+                if timestamp_match:
+                    camera_info['timestamp'] = timestamp_match.group(1)
+                
+                camera_data.append(camera_info)
                 break
     
-    return np.array(camera_positions)
+    return camera_data
 
-def create_top_down_svg(camera_positions, R, origin_m, scale, output_file):
+def create_top_down_svg(camera_data, R, origin_m, scale, output_file):
     """
     Create an SVG file showing top-down view of camera positions.
     ViewBox is centered on the median camera position for easy alignment.
     
     Args:
-        camera_positions: Nx3 array of camera positions (original COLMAP coords)
+        camera_data: List of camera data dictionaries with positions and metadata
         R: 3x3 rotation matrix
         origin_m: origin in meters (for transformation)
         scale: scale factor
         output_file: path to save SVG file
     """
     print("\nGenerating top-down SVG view of camera positions...")
+    
+    # Extract positions from camera data
+    camera_positions = np.array([cam['position_3d'] for cam in camera_data])
     
     # Transform camera positions same way as DXF export
     transformed_positions = []
@@ -211,12 +233,33 @@ def create_top_down_svg(camera_positions, R, origin_m, scale, output_file):
     circle_radius = width * 0.008  # ~0.8% of width
     stroke_width = circle_radius * 0.2
     
-    # Draw camera positions as circles (shifted so median is at origin)
+    # Draw camera positions as circles with enhanced metadata
     for i, (x, y) in enumerate(zip(x_coords_shifted, y_coords_shifted)):
+        cam_data = camera_data[i]
+        
+        # Create rich tooltip with metadata
+        tooltip_parts = [
+            f"Camera {i+1}",
+            f"2D: ({x:.2f}, {y:.2f})",
+            f"3D: ({cam_data['position_3d'][0]:.2f}, {cam_data['position_3d'][1]:.2f}, {cam_data['position_3d'][2]:.2f})",
+            f"Image: {cam_data['image_name']}",
+            f"Frame: {cam_data['frame_id']}",
+            f"Height: {cam_data['height']:.2f}m"
+        ]
+        
+        # Add timestamp if available
+        if 'timestamp' in cam_data:
+            tooltip_parts.append(f"Time: {cam_data['timestamp']}")
+        
+        # Add camera ID
+        tooltip_parts.append(f"Cam ID: {cam_data['camera_id']}")
+        
+        tooltip_text = " | ".join(tooltip_parts)
+        
         svg_lines.append(f'  <circle cx="{x:.3f}" cy="{y:.3f}" r="{circle_radius:.4f}" ')
         svg_lines.append(f'          fill="red" stroke="darkred" stroke-width="{stroke_width:.4f}" ')
         svg_lines.append(f'          opacity="0.8">')
-        svg_lines.append(f'    <title>Camera {i+1}: ({x:.2f}, {y:.2f})</title>')
+        svg_lines.append(f'    <title>{tooltip_text}</title>')
         svg_lines.append(f'  </circle>')
     
     # Draw path connecting cameras
@@ -261,14 +304,17 @@ def process_single_reconstruction(sparse_folder, output_dir, camera_index=1,
     print(f"  Total images: {recon.num_images()}")
     print(f"  Total 3D points: {recon.num_points3D()}")
     
-    # Extract camera positions
+    # Extract camera positions and metadata
     print(f"Extracting camera{camera_index} positions from each frame...")
-    camera_positions = extract_camera_positions(recon, camera_index=camera_index)
-    print(f"  Extracted {len(camera_positions)} camera positions")
+    camera_data = extract_camera_positions(recon, camera_index=camera_index)
+    print(f"  Extracted {len(camera_data)} camera positions with metadata")
     
-    if len(camera_positions) < 3:
+    if len(camera_data) < 3:
         print("  Warning: Not enough camera positions for gravity estimation. Skipping...")
         return False
+    
+    # Extract positions for gravity estimation
+    camera_positions = np.array([cam['position_3d'] for cam in camera_data])
     
     # Estimate gravity direction using PCA
     print("\nEstimating gravity direction from camera plane...")
@@ -281,9 +327,9 @@ def process_single_reconstruction(sparse_folder, output_dir, camera_index=1,
     # Convert origin to meters for transformations
     origin_m = np.array(origin_feet) * 0.3048
     
-    # Generate SVG
+    # Generate SVG with enhanced metadata
     svg_file = output_dir / f'camera_positions_{folder_name}.svg'
-    create_top_down_svg(camera_positions, R, origin_m, scale, svg_file)
+    create_top_down_svg(camera_data, R, origin_m, scale, svg_file)
     
     print(f"\nSuccessfully processed folder {folder_name}")
     return True

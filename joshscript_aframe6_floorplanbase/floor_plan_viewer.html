@@ -516,6 +516,79 @@
             return { x: x, y: y };
         }
 
+        // Load SVG function
+        function loadSVG(url, svgName) {
+            fetch(url)
+                .then(response => response.text())
+                .then(svgText => {
+                    // Parse the SVG and remove viewBox restrictions
+                    const parser = new DOMParser();
+                    const svgDoc = parser.parseFromString(svgText, 'image/svg+xml');
+                    const svgElement = svgDoc.querySelector('svg');
+                    
+                    if (svgElement) {
+                        // Remove viewBox to prevent clipping
+                        svgElement.removeAttribute('viewBox');
+                        svgElement.removeAttribute('width');
+                        svgElement.removeAttribute('height');
+                        
+                        // Set overflow visible to show all content
+                        svgElement.setAttribute('overflow', 'visible');
+                        
+                        // Get the modified SVG text
+                        const modifiedSvgText = new XMLSerializer().serializeToString(svgElement);
+                        
+                        // Now load it with Fabric
+                        fabric.loadSVGFromString(modifiedSvgText, function(objects, options) {
+                            const svg = fabric.util.groupSVGElements(objects, options);
+                            
+                            // Ensure no clipping
+                            svg.set({
+                                clipPath: null,
+                                clipTo: null
+                            });
+                            
+                            // Calculate scale to make SVG visible but not too large
+                            let targetScale = 0.1; // Start with small scale
+                            
+                            svg.set({
+                                left: 0,
+                                top: 0,
+                                scaleX: targetScale,
+                                scaleY: targetScale,
+                                originX: 'center',
+                                originY: 'center',
+                                customName: svgName || 'SVG',
+                                selectable: true,
+                                hasControls: true,
+                                hasBorders: true,
+                                borderColor: '#0096ff',
+                                cornerColor: '#0096ff',
+                                cornerSize: 8,
+                                transparentCorners: false,
+                                borderScaleFactor: 2
+                            });
+                            
+                            console.log('SVG loaded:', {
+                                name: svgName,
+                                width: svg.width,
+                                height: svg.height,
+                                scale: targetScale,
+                                objects: objects.length
+                            });
+                            
+                            canvas.add(svg);
+                            canvas.centerObject(svg);
+                            canvas.requestRenderAll();
+                            updateInfoPanel();
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Failed to load SVG:', error);
+                });
+        }
+
         // Load floorplan image with its specific bounds
         function loadFloorplanImage(imageUrl, bounds, floorName) {
             // Convert WGS84 bounds to Mt Eden coordinates (floor-specific)
@@ -927,6 +1000,27 @@
         
         console.log('=== BOTH FLOORS LOADED ===');
         console.log('Ground Floor and First Floor loaded with their respective coordinates');
+        
+        // Load all SVG files after a short delay (let floorplans load first)
+        setTimeout(() => {
+            const svgFiles = [
+                'svg_files/camera_positions_0.svg',
+                'svg_files/camera_positions_1.svg',
+                'svg_files/camera_positions_2.svg',
+                'svg_files/camera_positions_3.svg',
+                'svg_files/camera_positions_4.svg',
+                'svg_files/camera_positions_5.svg',
+                'svg_files/camera_positions_6.svg'
+            ];
+            
+            svgFiles.forEach((svgFile, index) => {
+                loadSVG(svgFile, `Camera Positions ${index} (Enhanced)`);
+            });
+            
+            console.log('=== ALL ENHANCED SVGs LOADED ===');
+            console.log('Loaded', svgFiles.length, 'enhanced SVG files with rich metadata');
+            console.log('Hover over red dots to see detailed camera information!');
+        }, 1000);
 
     </script>
 </body>

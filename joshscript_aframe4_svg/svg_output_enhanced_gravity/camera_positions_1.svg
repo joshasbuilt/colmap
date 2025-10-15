@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="-6.076 -8.453 12.152 16.906" 
+     xmlns="http://www.w3.org/2000/svg">
+  <!-- Top-down view of camera positions -->
+  <!-- ViewBox is centered on median camera position -->
+  <rect x="-6.076048201695257" y="-8.453128414415218" width="12.152096403390514" height="16.906256828830436" fill="white" opacity="0"/>
+  <circle cx="0.919" cy="4.716" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 1 | 2D: (0.92, 4.72) | 3D: (0.77, 1.70, 2.13) | Image: pano_camera1/frame_0000_hp_preview.jpg | Frame: 3337 | Height: 2.13m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-1.220" cy="5.427" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 2 | 2D: (-1.22, 5.43) | 3D: (-0.48, 1.84, 2.67) | Image: pano_camera1/frame_0002_hp_preview.jpg | Frame: 3339 | Height: 2.67m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-2.319" cy="5.770" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 3 | 2D: (-2.32, 5.77) | 3D: (-1.11, 1.86, 2.96) | Image: pano_camera1/frame_0003_hp_preview.jpg | Frame: 3340 | Height: 2.96m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-2.917" cy="5.973" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 4 | 2D: (-2.92, 5.97) | 3D: (-1.46, 1.87, 3.13) | Image: pano_camera1/frame_0004_hp_preview.jpg | Frame: 3341 | Height: 3.13m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-3.018" cy="6.237" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 5 | 2D: (-3.02, 6.24) | 3D: (-1.47, 1.74, 3.40) | Image: pano_camera1/frame_0005_hp_preview.jpg | Frame: 3342 | Height: 3.40m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-2.710" cy="5.937" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 6 | 2D: (-2.71, 5.94) | 3D: (-1.31, 1.71, 3.19) | Image: pano_camera1/frame_0006_hp_preview.jpg | Frame: 3343 | Height: 3.19m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-2.619" cy="5.722" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 7 | 2D: (-2.62, 5.72) | 3D: (-1.28, 1.73, 3.02) | Image: pano_camera1/frame_0007_hp_preview.jpg | Frame: 3344 | Height: 3.02m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-2.613" cy="5.737" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 8 | 2D: (-2.61, 5.74) | 3D: (-1.27, 1.73, 3.03) | Image: pano_camera1/frame_0008_hp_preview.jpg | Frame: 3345 | Height: 3.03m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-2.622" cy="5.827" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 9 | 2D: (-2.62, 5.83) | 3D: (-1.27, 1.75, 3.08) | Image: pano_camera1/frame_0009_hp_preview.jpg | Frame: 3346 | Height: 3.08m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-2.629" cy="5.832" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 10 | 2D: (-2.63, 5.83) | 3D: (-1.28, 1.75, 3.09) | Image: pano_camera1/frame_0010_hp_preview.jpg | Frame: 3347 | Height: 3.09m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-2.660" cy="5.819" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 11 | 2D: (-2.66, 5.82) | 3D: (-1.29, 1.73, 3.09) | Image: pano_camera1/frame_0011_hp_preview.jpg | Frame: 3348 | Height: 3.09m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-2.574" cy="5.821" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 12 | 2D: (-2.57, 5.82) | 3D: (-1.25, 1.76, 3.07) | Image: pano_camera1/frame_0012_hp_preview.jpg | Frame: 3349 | Height: 3.07m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-2.631" cy="5.693" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 13 | 2D: (-2.63, 5.69) | 3D: (-1.29, 1.71, 3.01) | Image: pano_camera1/frame_0013_hp_preview.jpg | Frame: 3350 | Height: 3.01m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-2.732" cy="5.849" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 14 | 2D: (-2.73, 5.85) | 3D: (-1.31, 1.57, 3.21) | Image: pano_camera1/frame_0014_hp_preview.jpg | Frame: 3351 | Height: 3.21m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-2.846" cy="5.828" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 15 | 2D: (-2.85, 5.83) | 3D: (-1.38, 1.56, 3.21) | Image: pano_camera1/frame_0015_hp_preview.jpg | Frame: 3352 | Height: 3.21m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-2.836" cy="5.714" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 16 | 2D: (-2.84, 5.71) | 3D: (-1.38, 1.51, 3.16) | Image: pano_camera1/frame_0016_hp_preview.jpg | Frame: 3353 | Height: 3.16m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-2.194" cy="5.513" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 17 | 2D: (-2.19, 5.51) | 3D: (-1.00, 1.49, 2.99) | Image: pano_camera1/frame_0017_hp_preview.jpg | Frame: 3354 | Height: 2.99m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-1.470" cy="5.202" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 18 | 2D: (-1.47, 5.20) | 3D: (-0.58, 1.43, 2.77) | Image: pano_camera1/frame_0018_hp_preview.jpg | Frame: 3355 | Height: 2.77m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-1.060" cy="4.868" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 19 | 2D: (-1.06, 4.87) | 3D: (-0.35, 1.34, 2.56) | Image: pano_camera1/frame_0019_hp_preview.jpg | Frame: 3356 | Height: 2.56m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-0.755" cy="4.361" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 20 | 2D: (-0.75, 4.36) | 3D: (-0.20, 1.20, 2.28) | Image: pano_camera1/frame_0020_hp_preview.jpg | Frame: 3357 | Height: 2.28m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-0.586" cy="3.393" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 21 | 2D: (-0.59, 3.39) | 3D: (-0.14, 0.92, 1.75) | Image: pano_camera1/frame_0021_hp_preview.jpg | Frame: 3358 | Height: 1.75m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-0.420" cy="1.773" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 22 | 2D: (-0.42, 1.77) | 3D: (-0.12, 0.43, 0.89) | Image: pano_camera1/frame_0022_hp_preview.jpg | Frame: 3359 | Height: 0.89m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-0.286" cy="1.083" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 23 | 2D: (-0.29, 1.08) | 3D: (-0.08, 0.24, 0.52) | Image: pano_camera1/frame_0023_hp_preview.jpg | Frame: 3360 | Height: 0.52m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-0.300" cy="0.577" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 24 | 2D: (-0.30, 0.58) | 3D: (-0.11, 0.08, 0.25) | Image: pano_camera1/frame_0024_hp_preview.jpg | Frame: 3361 | Height: 0.25m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-0.694" cy="-0.264" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 25 | 2D: (-0.69, -0.26) | 3D: (-0.39, -0.20, -0.14) | Image: pano_camera1/frame_0025_hp_preview.jpg | Frame: 3362 | Height: -0.14m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-1.187" cy="-0.662" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 26 | 2D: (-1.19, -0.66) | 3D: (-0.70, -0.37, -0.30) | Image: pano_camera1/frame_0026_hp_preview.jpg | Frame: 3363 | Height: -0.30m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-1.657" cy="-0.824" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 27 | 2D: (-1.66, -0.82) | 3D: (-0.99, -0.45, -0.34) | Image: pano_camera1/frame_0027_hp_preview.jpg | Frame: 3364 | Height: -0.34m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-0.668" cy="-1.278" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 28 | 2D: (-0.67, -1.28) | 3D: (-0.42, -0.52, -0.67) | Image: pano_camera1/frame_0028_hp_preview.jpg | Frame: 3365 | Height: -0.67m | Cam ID: 2</title>
+  </circle>
+  <circle cx="0.606" cy="-1.522" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 29 | 2D: (0.61, -1.52) | 3D: (0.33, -0.54, -0.90) | Image: pano_camera1/frame_0029_hp_preview.jpg | Frame: 3366 | Height: -0.90m | Cam ID: 2</title>
+  </circle>
+  <circle cx="1.758" cy="-1.826" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 30 | 2D: (1.76, -1.83) | 3D: (1.01, -0.58, -1.16) | Image: pano_camera1/frame_0030_hp_preview.jpg | Frame: 3367 | Height: -1.16m | Cam ID: 2</title>
+  </circle>
+  <circle cx="2.485" cy="-2.256" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 31 | 2D: (2.48, -2.26) | 3D: (1.42, -0.68, -1.44) | Image: pano_camera1/frame_0031_hp_preview.jpg | Frame: 3368 | Height: -1.44m | Cam ID: 2</title>
+  </circle>
+  <circle cx="2.608" cy="-3.038" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 32 | 2D: (2.61, -3.04) | 3D: (1.46, -0.91, -1.86) | Image: pano_camera1/frame_0032_hp_preview.jpg | Frame: 3369 | Height: -1.86m | Cam ID: 2</title>
+  </circle>
+  <circle cx="2.406" cy="-3.470" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 33 | 2D: (2.41, -3.47) | 3D: (1.31, -1.04, -2.07) | Image: pano_camera1/frame_0033_hp_preview.jpg | Frame: 3370 | Height: -2.07m | Cam ID: 2</title>
+  </circle>
+  <circle cx="1.120" cy="-4.059" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 34 | 2D: (1.12, -4.06) | 3D: (0.52, -1.31, -2.25) | Image: pano_camera1/frame_0034_hp_preview.jpg | Frame: 3371 | Height: -2.25m | Cam ID: 2</title>
+  </circle>
+  <circle cx="0.724" cy="-3.953" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 35 | 2D: (0.72, -3.95) | 3D: (0.29, -1.30, -2.16) | Image: pano_camera1/frame_0035_hp_preview.jpg | Frame: 3372 | Height: -2.16m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-0.250" cy="-3.619" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 36 | 2D: (-0.25, -3.62) | 3D: (-0.28, -1.23, -1.92) | Image: pano_camera1/frame_0036_hp_preview.jpg | Frame: 3373 | Height: -1.92m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-1.010" cy="-3.473" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 37 | 2D: (-1.01, -3.47) | 3D: (-0.73, -1.24, -1.77) | Image: pano_camera1/frame_0037_hp_preview.jpg | Frame: 3374 | Height: -1.77m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-1.720" cy="-3.350" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 38 | 2D: (-1.72, -3.35) | 3D: (-1.14, -1.23, -1.65) | Image: pano_camera1/frame_0038_hp_preview.jpg | Frame: 3375 | Height: -1.65m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-2.937" cy="-3.770" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 39 | 2D: (-2.94, -3.77) | 3D: (-1.90, -1.39, -1.78) | Image: pano_camera1/frame_0039_hp_preview.jpg | Frame: 3376 | Height: -1.78m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-3.496" cy="-4.359" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 40 | 2D: (-3.50, -4.36) | 3D: (-2.26, -1.62, -2.02) | Image: pano_camera1/frame_0040_hp_preview.jpg | Frame: 3377 | Height: -2.02m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-3.570" cy="-4.487" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 41 | 2D: (-3.57, -4.49) | 3D: (-2.31, -1.67, -2.08) | Image: pano_camera1/frame_0041_hp_preview.jpg | Frame: 3378 | Height: -2.08m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-4.169" cy="-5.543" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 42 | 2D: (-4.17, -5.54) | 3D: (-2.72, -2.02, -2.58) | Image: pano_camera1/frame_0042_hp_preview.jpg | Frame: 3379 | Height: -2.58m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-4.777" cy="-6.099" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 43 | 2D: (-4.78, -6.10) | 3D: (-3.09, -2.32, -2.76) | Image: pano_camera1/frame_0043_hp_preview.jpg | Frame: 3380 | Height: -2.76m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-5.518" cy="-5.924" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 44 | 2D: (-5.52, -5.92) | 3D: (-3.53, -2.30, -2.61) | Image: pano_camera1/frame_0044_hp_preview.jpg | Frame: 3381 | Height: -2.61m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-6.601" cy="-5.888" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 45 | 2D: (-6.60, -5.89) | 3D: (-4.17, -2.32, -2.51) | Image: pano_camera1/frame_0045_hp_preview.jpg | Frame: 3382 | Height: -2.51m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-6.825" cy="-6.235" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 46 | 2D: (-6.82, -6.23) | 3D: (-4.33, -2.44, -2.67) | Image: pano_camera1/frame_0046_hp_preview.jpg | Frame: 3383 | Height: -2.67m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-6.775" cy="-6.383" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 47 | 2D: (-6.77, -6.38) | 3D: (-4.30, -2.48, -2.76) | Image: pano_camera1/frame_0047_hp_preview.jpg | Frame: 3384 | Height: -2.76m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-6.480" cy="-6.723" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 48 | 2D: (-6.48, -6.72) | 3D: (-4.14, -2.58, -2.95) | Image: pano_camera1/frame_0048_hp_preview.jpg | Frame: 3385 | Height: -2.95m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-5.471" cy="-7.137" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 49 | 2D: (-5.47, -7.14) | 3D: (-3.56, -2.66, -3.25) | Image: pano_camera1/frame_0049_hp_preview.jpg | Frame: 3386 | Height: -3.25m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-4.123" cy="-7.183" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 50 | 2D: (-4.12, -7.18) | 3D: (-2.75, -2.61, -3.38) | Image: pano_camera1/frame_0050_hp_preview.jpg | Frame: 3387 | Height: -3.38m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-4.065" cy="-7.177" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 51 | 2D: (-4.06, -7.18) | 3D: (-2.72, -2.61, -3.38) | Image: pano_camera1/frame_0051_hp_preview.jpg | Frame: 3388 | Height: -3.38m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-2.691" cy="-7.367" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 52 | 2D: (-2.69, -7.37) | 3D: (-1.91, -2.59, -3.61) | Image: pano_camera1/frame_0052_hp_preview.jpg | Frame: 3389 | Height: -3.61m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-2.385" cy="-7.543" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 53 | 2D: (-2.39, -7.54) | 3D: (-1.75, -2.55, -3.77) | Image: pano_camera1/frame_0053_hp_preview.jpg | Frame: 3390 | Height: -3.77m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-2.060" cy="-8.066" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 54 | 2D: (-2.06, -8.07) | 3D: (-1.58, -2.70, -4.07) | Image: pano_camera1/frame_0054_hp_preview.jpg | Frame: 3391 | Height: -4.07m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-0.756" cy="-8.565" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 55 | 2D: (-0.76, -8.56) | 3D: (-0.82, -2.78, -4.45) | Image: pano_camera1/frame_0055_hp_preview.jpg | Frame: 3392 | Height: -4.45m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-0.123" cy="-8.475" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 56 | 2D: (-0.12, -8.47) | 3D: (-0.44, -2.73, -4.45) | Image: pano_camera1/frame_0056_hp_preview.jpg | Frame: 3393 | Height: -4.45m | Cam ID: 2</title>
+  </circle>
+  <circle cx="0.542" cy="-8.296" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 57 | 2D: (0.54, -8.30) | 3D: (-0.03, -2.64, -4.41) | Image: pano_camera1/frame_0057_hp_preview.jpg | Frame: 3394 | Height: -4.41m | Cam ID: 2</title>
+  </circle>
+  <circle cx="0.974" cy="-8.187" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 58 | 2D: (0.97, -8.19) | 3D: (0.23, -2.58, -4.39) | Image: pano_camera1/frame_0058_hp_preview.jpg | Frame: 3395 | Height: -4.39m | Cam ID: 2</title>
+  </circle>
+  <circle cx="1.438" cy="-7.605" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 59 | 2D: (1.44, -7.60) | 3D: (0.54, -2.37, -4.14) | Image: pano_camera1/frame_0059_hp_preview.jpg | Frame: 3396 | Height: -4.14m | Cam ID: 2</title>
+  </circle>
+  <circle cx="1.859" cy="-6.678" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 60 | 2D: (1.86, -6.68) | 3D: (0.83, -2.07, -3.68) | Image: pano_camera1/frame_0060_hp_preview.jpg | Frame: 3397 | Height: -3.68m | Cam ID: 2</title>
+  </circle>
+  <circle cx="2.088" cy="-6.207" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 61 | 2D: (2.09, -6.21) | 3D: (1.00, -1.93, -3.45) | Image: pano_camera1/frame_0061_hp_preview.jpg | Frame: 3398 | Height: -3.45m | Cam ID: 2</title>
+  </circle>
+  <circle cx="2.523" cy="-4.622" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 62 | 2D: (2.52, -4.62) | 3D: (1.33, -1.39, -2.68) | Image: pano_camera1/frame_0062_hp_preview.jpg | Frame: 3399 | Height: -2.68m | Cam ID: 2</title>
+  </circle>
+  <circle cx="2.883" cy="-3.437" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 63 | 2D: (2.88, -3.44) | 3D: (1.60, -1.02, -2.09) | Image: pano_camera1/frame_0063_hp_preview.jpg | Frame: 3400 | Height: -2.09m | Cam ID: 2</title>
+  </circle>
+  <circle cx="2.949" cy="-3.222" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 64 | 2D: (2.95, -3.22) | 3D: (1.65, -0.95, -1.98) | Image: pano_camera1/frame_0064_hp_preview.jpg | Frame: 3401 | Height: -1.98m | Cam ID: 2</title>
+  </circle>
+  <circle cx="3.752" cy="-1.946" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 65 | 2D: (3.75, -1.95) | 3D: (2.19, -0.50, -1.40) | Image: pano_camera1/frame_0065_hp_preview.jpg | Frame: 3402 | Height: -1.40m | Cam ID: 2</title>
+  </circle>
+  <circle cx="4.057" cy="-1.724" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 66 | 2D: (4.06, -1.72) | 3D: (2.38, -0.42, -1.31) | Image: pano_camera1/frame_0066_hp_preview.jpg | Frame: 3403 | Height: -1.31m | Cam ID: 2</title>
+  </circle>
+  <circle cx="4.934" cy="-0.668" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 67 | 2D: (4.93, -0.67) | 3D: (2.96, -0.04, -0.84) | Image: pano_camera1/frame_0067_hp_preview.jpg | Frame: 3404 | Height: -0.84m | Cam ID: 2</title>
+  </circle>
+  <circle cx="5.442" cy="0.541" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 68 | 2D: (5.44, 0.54) | 3D: (3.32, 0.35, -0.25) | Image: pano_camera1/frame_0068_hp_preview.jpg | Frame: 3405 | Height: -0.25m | Cam ID: 2</title>
+  </circle>
+  <circle cx="5.513" cy="0.725" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 69 | 2D: (5.51, 0.72) | 3D: (3.37, 0.41, -0.16) | Image: pano_camera1/frame_0069_hp_preview.jpg | Frame: 3406 | Height: -0.16m | Cam ID: 2</title>
+  </circle>
+  <circle cx="5.283" cy="2.085" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 70 | 2D: (5.28, 2.09) | 3D: (3.30, 0.82, 0.57) | Image: pano_camera1/frame_0070_hp_preview.jpg | Frame: 3407 | Height: 0.57m | Cam ID: 2</title>
+  </circle>
+  <circle cx="4.542" cy="2.808" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 71 | 2D: (4.54, 2.81) | 3D: (2.89, 1.01, 1.00) | Image: pano_camera1/frame_0071_hp_preview.jpg | Frame: 3408 | Height: 1.00m | Cam ID: 2</title>
+  </circle>
+  <circle cx="3.782" cy="3.209" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 72 | 2D: (3.78, 3.21) | 3D: (2.46, 1.10, 1.27) | Image: pano_camera1/frame_0072_hp_preview.jpg | Frame: 3409 | Height: 1.27m | Cam ID: 2</title>
+  </circle>
+  <circle cx="3.633" cy="3.253" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 73 | 2D: (3.63, 3.25) | 3D: (2.37, 1.10, 1.31) | Image: pano_camera1/frame_0073_hp_preview.jpg | Frame: 3410 | Height: 1.31m | Cam ID: 2</title>
+  </circle>
+  <circle cx="2.598" cy="3.770" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 74 | 2D: (2.60, 3.77) | 3D: (1.78, 1.21, 1.67) | Image: pano_camera1/frame_0074_hp_preview.jpg | Frame: 3411 | Height: 1.67m | Cam ID: 2</title>
+  </circle>
+  <circle cx="1.471" cy="4.456" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 75 | 2D: (1.47, 4.46) | 3D: (1.14, 1.36, 2.13) | Image: pano_camera1/frame_0075_hp_preview.jpg | Frame: 3412 | Height: 2.13m | Cam ID: 2</title>
+  </circle>
+  <circle cx="1.026" cy="4.721" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 76 | 2D: (1.03, 4.72) | 3D: (0.88, 1.43, 2.30) | Image: pano_camera1/frame_0076_hp_preview.jpg | Frame: 3413 | Height: 2.30m | Cam ID: 2</title>
+  </circle>
+  <circle cx="0.031" cy="5.286" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 77 | 2D: (0.03, 5.29) | 3D: (0.32, 1.54, 2.68) | Image: pano_camera1/frame_0077_hp_preview.jpg | Frame: 3414 | Height: 2.68m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-1.126" cy="5.903" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 78 | 2D: (-1.13, 5.90) | 3D: (-0.34, 1.66, 3.11) | Image: pano_camera1/frame_0078_hp_preview.jpg | Frame: 3415 | Height: 3.11m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-2.613" cy="6.931" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 79 | 2D: (-2.61, 6.93) | 3D: (-1.19, 1.92, 3.76) | Image: pano_camera1/frame_0079_hp_preview.jpg | Frame: 3416 | Height: 3.76m | Cam ID: 2</title>
+  </circle>
+  <circle cx="-3.255" cy="7.877" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 80 | 2D: (-3.25, 7.88) | 3D: (-1.52, 2.16, 4.31) | Image: pano_camera1/frame_0080_hp_preview.jpg | Frame: 3417 | Height: 4.31m | Cam ID: 2</title>
+  </circle>
+  <circle cx="3.787" cy="5.334" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 81 | 2D: (3.79, 5.33) | 3D: (2.57, 1.73, 2.39) | Image: pano_camera1/frame_0118_hp_preview.jpg | Frame: 3455 | Height: 2.39m | Cam ID: 2</title>
+  </circle>
+  <circle cx="3.756" cy="4.581" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 82 | 2D: (3.76, 4.58) | 3D: (2.51, 1.50, 2.00) | Image: pano_camera1/frame_0119_hp_preview.jpg | Frame: 3456 | Height: 2.00m | Cam ID: 2</title>
+  </circle>
+  <circle cx="4.371" cy="3.571" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 83 | 2D: (4.37, 3.57) | 3D: (2.83, 1.22, 1.43) | Image: pano_camera1/frame_0120_hp_preview.jpg | Frame: 3457 | Height: 1.43m | Cam ID: 2</title>
+  </circle>
+  <circle cx="4.944" cy="3.189" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 84 | 2D: (4.94, 3.19) | 3D: (3.15, 1.13, 1.18) | Image: pano_camera1/frame_0121_hp_preview.jpg | Frame: 3458 | Height: 1.18m | Cam ID: 2</title>
+  </circle>
+  <circle cx="5.464" cy="2.965" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 85 | 2D: (5.46, 2.96) | 3D: (3.45, 1.08, 1.02) | Image: pano_camera1/frame_0122_hp_preview.jpg | Frame: 3459 | Height: 1.02m | Cam ID: 2</title>
+  </circle>
+  <circle cx="6.567" cy="2.781" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 86 | 2D: (6.57, 2.78) | 3D: (4.11, 1.07, 0.83) | Image: pano_camera1/frame_0123_hp_preview.jpg | Frame: 3460 | Height: 0.83m | Cam ID: 2</title>
+  </circle>
+  <circle cx="7.434" cy="3.028" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 87 | 2D: (7.43, 3.03) | 3D: (4.64, 1.19, 0.89) | Image: pano_camera1/frame_0124_hp_preview.jpg | Frame: 3461 | Height: 0.89m | Cam ID: 2</title>
+  </circle>
+  <circle cx="7.638" cy="3.602" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 88 | 2D: (7.64, 3.60) | 3D: (4.79, 1.38, 1.17) | Image: pano_camera1/frame_0125_hp_preview.jpg | Frame: 3462 | Height: 1.17m | Cam ID: 2</title>
+  </circle>
+  <circle cx="7.641" cy="3.953" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 89 | 2D: (7.64, 3.95) | 3D: (4.81, 1.47, 1.36) | Image: pano_camera1/frame_0126_hp_preview.jpg | Frame: 3463 | Height: 1.36m | Cam ID: 2</title>
+  </circle>
+  <circle cx="7.466" cy="-0.135" r="0.0972" 
+          fill="red" stroke="darkred" stroke-width="0.0194" 
+          opacity="0.8">
+    <title>Camera 90 | 2D: (7.47, -0.14) | 3D: (4.50, 0.24, -0.77) | Image: pano_camera1/frame_0197_hp_preview.jpg | Frame: 3534 | Height: -0.77m | Cam ID: 2</title>
+  </circle>
+  <polyline points="0.919,4.716 -1.220,5.427 -2.319,5.770 -2.917,5.973 -3.018,6.237 -2.710,5.937 -2.619,5.722 -2.613,5.737 -2.622,5.827 -2.629,5.832 -2.660,5.819 -2.574,5.821 -2.631,5.693 -2.732,5.849 -2.846,5.828 -2.836,5.714 -2.194,5.513 -1.470,5.202 -1.060,4.868 -0.755,4.361 -0.586,3.393 -0.420,1.773 -0.286,1.083 -0.300,0.577 -0.694,-0.264 -1.187,-0.662 -1.657,-0.824 -0.668,-1.278 0.606,-1.522 1.758,-1.826 2.485,-2.256 2.608,-3.038 2.406,-3.470 1.120,-4.059 0.724,-3.953 -0.250,-3.619 -1.010,-3.473 -1.720,-3.350 -2.937,-3.770 -3.496,-4.359 -3.570,-4.487 -4.169,-5.543 -4.777,-6.099 -5.518,-5.924 -6.601,-5.888 -6.825,-6.235 -6.775,-6.383 -6.480,-6.723 -5.471,-7.137 -4.123,-7.183 -4.065,-7.177 -2.691,-7.367 -2.385,-7.543 -2.060,-8.066 -0.756,-8.565 -0.123,-8.475 0.542,-8.296 0.974,-8.187 1.438,-7.605 1.859,-6.678 2.088,-6.207 2.523,-4.622 2.883,-3.437 2.949,-3.222 3.752,-1.946 4.057,-1.724 4.934,-0.668 5.442,0.541 5.513,0.725 5.283,2.085 4.542,2.808 3.782,3.209 3.633,3.253 2.598,3.770 1.471,4.456 1.026,4.721 0.031,5.286 -1.126,5.903 -2.613,6.931 -3.255,7.877 3.787,5.334 3.756,4.581 4.371,3.571 4.944,3.189 5.464,2.965 6.567,2.781 7.434,3.028 7.638,3.602 7.641,3.953 7.466,-0.135" 
+            fill="none" stroke="red" stroke-width="0.0389" 
+            opacity="0.4" />
+  <line x1="-0.29165031368137234" y1="0" 
+        x2="0.29165031368137234" y2="0" 
+        stroke="blue" stroke-width="0.0194" opacity="0.5" />
+  <line x1="0" y1="-0.29165031368137234" 
+        x2="0" y2="0.29165031368137234" 
+        stroke="blue" stroke-width="0.0194" opacity="0.5" />
+</svg>

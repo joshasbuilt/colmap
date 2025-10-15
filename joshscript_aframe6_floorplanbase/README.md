@@ -15,6 +15,7 @@ Interactive floor plan viewer using pic3 technology with Mt Eden coordinates. Di
 - **Rotated Floor Plans**: Supports non-orthogonal floor plans with proper angle display
 - **Multi-Floor Support**: Display multiple floor plans with layer management
 - **Layer Control**: Right-click to send floors to back/forward
+- **SVG Overlay**: Load and display camera position SVGs from COLMAP reconstructions
 
 ## Coordinate Systems
 - **WGS84 (EPSG:4326)**: Standard global coordinates (longitude, latitude)
@@ -102,16 +103,40 @@ paul/joshscript_aframe6_floorplanbase/
 ├── floor_plan_viewer.html    # Main viewer application
 ├── server.py                 # Python HTTP server
 ├── README.md                 # This documentation
-└── floorplan_images/         # Floor plan image files
-    ├── GroundFloor.png
-    ├── FirstFloor.png
-    └── [Additional floors...]
+├── floorplan_images/         # Floor plan image files
+│   ├── GroundFloor.png
+│   ├── FirstFloor.png
+│   └── [Additional floors...]
+└── svg_files/                # SVG overlay files
+    ├── camera_positions_0.svg
+    ├── camera_positions_1.svg
+    ├── camera_positions_2.svg
+    ├── camera_positions_3.svg
+    ├── camera_positions_4.svg
+    ├── camera_positions_5.svg
+    └── camera_positions_6.svg
 ```
 
 ## Current Floors
 - **Ground Floor**: Main level with proper geolocation
 - **First Floor**: Upper level with proper geolocation
 - **Layer Management**: Right-click to send floors to back/forward
+
+## SVG Overlays
+- **Camera Positions**: 7 SVG files showing camera trajectories from COLMAP reconstructions
+- **Enhanced Metadata**: Rich tooltips with detailed camera information
+- **Interactive**: Each SVG can be selected, moved, scaled, and rotated
+- **Layer Control**: Right-click to send SVGs to back/forward
+- **Auto-loading**: All SVGs load automatically after floor plans
+
+### Enhanced Metadata Includes:
+- **2D Coordinates**: Projected position in the SVG view
+- **3D Coordinates**: Original COLMAP world coordinates
+- **Image Filename**: Source image from the reconstruction
+- **Frame ID**: Sequential frame identifier
+- **Height**: Z-coordinate (elevation) in meters
+- **Camera ID**: COLMAP camera identifier
+- **Timestamp**: Extracted from image filename (when available)
 
 ## Coordinate Extraction Process
 The coordinates used in this viewer were extracted using the process documented in `paul/joshscript_aframe5_har/COORDINATE_EXTRACTION_GUIDE.md`.
