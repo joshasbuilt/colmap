@@ -270,6 +270,7 @@
         <div class="context-menu-item" data-action="send-to-back">Send to Back</div>
         <div class="context-menu-separator"></div>
         <div class="context-menu-item" data-action="show-images">Show Images</div>
+        <div class="context-menu-item" data-action="remove-range">Remove 0203-0209</div>
         <div class="context-menu-separator"></div>
         <div class="context-menu-item" data-action="delete">Delete</div>
     </div>
@@ -615,6 +616,104 @@
         // Function to hide image preview
         function hideImagePreview() {
             document.getElementById('image-preview-overlay').style.display = 'none';
+        }
+        
+        // Function to remove a range of images from a group
+        function removeImageRangeFromGroup(group, startFrame, endFrame) {
+            if (!group || group.type !== 'group') {
+                console.log('Cannot modify: not a group');
+                return;
+            }
+            
+            const objects = group._objects || group.objects;
+            if (!objects || objects.length === 0) {
+                console.log('Cannot modify: group has no objects');
+                return;
+            }
+            
+            console.log(`Searching for images ${startFrame} to ${endFrame} in group with ${objects.length} objects`);
+            
+            // Convert frame numbers to integers for comparison
+            const startNum = parseInt(startFrame);
+            const endNum = parseInt(endFrame);
+            
+            // Find all circles that match the frame range
+            const indicesToRemove = [];
+            objects.forEach((obj, index) => {
+                if (obj.type === 'circle' && obj.title) {
+                    // Extract frame number from title (e.g., "frame_0204" -> 204)
+                    const frameMatch = obj.title.match(/frame_(\d+)/);
+                    if (frameMatch) {
+                        const frameNum = parseInt(frameMatch[1]);
+                        if (frameNum >= startNum && frameNum <= endNum) {
+                            indicesToRemove.push(index);
+                            console.log(`Found frame ${frameMatch[1]} at index ${index}: ${obj.title}`);
+                        }
+                    }
+                }
+            });
+            
+            if (indicesToRemove.length === 0) {
+                console.log(`No images found in range ${startFrame}-${endFrame}`);
+                return;
+            }
+            
+            console.log(`Removing ${indicesToRemove.length} camera positions in range ${startFrame}-${endFrame}`);
+            
+            // First, remove all polylines
+            const polylineIndices = [];
+            objects.forEach((obj, index) => {
+                if (obj.type === 'polyline') {
+                    polylineIndices.push(index);
+                }
+            });
+            
+            console.log(`Removing ${polylineIndices.length} existing polylines`);
+            polylineIndices.sort((a, b) => b - a).forEach(index => {
+                const obj = objects[index];
+                console.log(`Removing polyline at index ${index}`);
+                group.removeWithUpdate(obj);
+            });
+            
+            // Remove the camera position circles
+            indicesToRemove.sort((a, b) => b - a).forEach(index => {
+                const obj = objects[index];
+                console.log(`Removing camera position at index ${index}: ${obj.type} - ${obj.title}`);
+                group.removeWithUpdate(obj);
+            });
+            
+            // Now recreate polylines for remaining camera positions
+            const remainingObjects = group._objects || group.objects;
+            const remainingCircles = remainingObjects.filter(obj => obj.type === 'circle');
+            
+            if (remainingCircles.length > 1) {
+                console.log(`Creating new polyline for ${remainingCircles.length} remaining camera positions`);
+                
+                // Get positions of remaining circles
+                const points = remainingCircles.map(circle => ({
+                    x: circle.left || 0,
+                    y: circle.top || 0
+                }));
+                
+                // Create new polyline connecting all remaining positions
+                const newPolyline = new fabric.Polyline(points, {
+                    fill: '',
+                    stroke: 'red',
+                    strokeWidth: 1,
+                    selectable: false,
+                    evented: false
+                });
+                
+                group.addWithUpdate(newPolyline);
+                console.log(`Added new polyline with ${points.length} points`);
+            }
+            
+            // Update the group
+            group.setCoords();
+            canvas.requestRenderAll();
+            updateInfoPanel();
+            
+            console.log(`Successfully removed ${indicesToRemove.length} objects. Group now has ${group._objects.length} objects`);
         }
 
         // Function to extract image filenames from SVG circles
@@ -1280,6 +1379,14 @@
                                 canvas.getObjects().forEach((obj, index) => {
                                     console.log(`${index}: ${obj.customName || 'unnamed'} (${obj.type})`);
                                 });
+                            }
+                            break;
+                        case 'remove-range':
+                            if (contextMenuTarget && contextMenuTarget.type === 'group') {
+                                console.log('=== REMOVING RANGE 0203-0209 FROM GROUP: ' + contextMenuTarget.customName + ' ===');
+                                removeImageRangeFromGroup(contextMenuTarget, '0203', '0209');
+                            } else {
+                                console.log('This object is not a group that can be modified');
                             }
                             break;
                         case 'delete':
