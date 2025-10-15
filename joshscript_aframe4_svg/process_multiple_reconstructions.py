@@ -189,8 +189,9 @@ def create_top_down_svg(camera_data, R, origin_m, scale, output_file):
     transformed_positions = np.array(transformed_positions)
     
     # Extract X and Y coordinates (top-down view)
+    # Flip Y-axis to match SVG coordinate system (Y increases downward in SVG)
     x_coords = transformed_positions[:, 0]
-    y_coords = transformed_positions[:, 1]
+    y_coords = -transformed_positions[:, 1]  # Flip Y to match SVG coordinates
     
     # Calculate average center (mean of all points)
     avg_x = np.mean(x_coords)
