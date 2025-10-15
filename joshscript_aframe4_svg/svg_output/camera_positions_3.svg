@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="-8.449 -6.449 16.897 12.898" 
+     xmlns="http://www.w3.org/2000/svg">
+  <!-- Improved top-down view using PCA components -->
+  <!-- ViewBox is centered on median camera position -->
+  <rect x="-8.44870449160225" y="-6.448955709437148" width="16.8974089832045" height="12.897911418874296" fill="white" opacity="0"/>
+  <circle cx="-4.880" cy="4.617" r="0.1352" 
+          fill="red" stroke="darkred" stroke-width="0.0270" 
+          opacity="0.8">
+    <title>Camera 1: (-4.88, 4.62)</title>
+  </circle>
+  <circle cx="-4.917" cy="2.736" r="0.1352" 
+          fill="red" stroke="darkred" stroke-width="0.0270" 
+          opacity="0.8">
+    <title>Camera 2: (-4.92, 2.74)</title>
+  </circle>
+  <circle cx="-3.363" cy="1.639" r="0.1352" 
+          fill="red" stroke="darkred" stroke-width="0.0270" 
+          opacity="0.8">
+    <title>Camera 3: (-3.36, 1.64)</title>
+  </circle>
+  <circle cx="3.232" cy="3.470" r="0.1352" 
+          fill="red" stroke="darkred" stroke-width="0.0270" 
+          opacity="0.8">
+    <title>Camera 4: (3.23, 3.47)</title>
+  </circle>
+  <circle cx="4.333" cy="3.856" r="0.1352" 
+          fill="red" stroke="darkred" stroke-width="0.0270" 
+          opacity="0.8">
+    <title>Camera 5: (4.33, 3.86)</title>
+  </circle>
+  <circle cx="7.180" cy="3.290" r="0.1352" 
+          fill="red" stroke="darkred" stroke-width="0.0270" 
+          opacity="0.8">
+    <title>Camera 6: (7.18, 3.29)</title>
+  </circle>
+  <circle cx="7.588" cy="-2.677" r="0.1352" 
+          fill="red" stroke="darkred" stroke-width="0.0270" 
+          opacity="0.8">
+    <title>Camera 7: (7.59, -2.68)</title>
+  </circle>
+  <circle cx="3.767" cy="-6.066" r="0.1352" 
+          fill="red" stroke="darkred" stroke-width="0.0270" 
+          opacity="0.8">
+    <title>Camera 8: (3.77, -6.07)</title>
+  </circle>
+  <circle cx="-0.896" cy="-6.273" r="0.1352" 
+          fill="red" stroke="darkred" stroke-width="0.0270" 
+          opacity="0.8">
+    <title>Camera 9: (-0.90, -6.27)</title>
+  </circle>
+  <circle cx="-5.818" cy="-2.697" r="0.1352" 
+          fill="red" stroke="darkred" stroke-width="0.0270" 
+          opacity="0.8">
+    <title>Camera 10: (-5.82, -2.70)</title>
+  </circle>
+  <circle cx="-6.227" cy="-1.896" r="0.1352" 
+          fill="red" stroke="darkred" stroke-width="0.0270" 
+          opacity="0.8">
+    <title>Camera 11: (-6.23, -1.90)</title>
+  </circle>
+  <polyline points="-4.880,4.617 -4.917,2.736 -3.363,1.639 3.232,3.470 4.333,3.856 7.180,3.290 7.588,-2.677 3.767,-6.066 -0.896,-6.273 -5.818,-2.697 -6.227,-1.896" 
+            fill="none" stroke="red" stroke-width="0.0541" 
+            opacity="0.4" />
+  <line x1="-0.405537815596908" y1="0" 
+        x2="0.405537815596908" y2="0" 
+        stroke="blue" stroke-width="0.0270" opacity="0.5" />
+  <line x1="0" y1="-0.405537815596908" 
+        x2="0" y2="0.405537815596908" 
+        stroke="blue" stroke-width="0.0270" opacity="0.5" />
+</svg>

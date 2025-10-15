@@ -1,0 +1,342 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2.915 -4.240 6.599 8.606">
+  <!--Top-down view of camera positions-->
+  <rect x="-2.915" y="-4.240" width="6.599" height="8.606" fill="white" opacity="0"/>
+  <polyline points="3.134,-1.582 1.755,-0.677 -1.701,-0.149 -0.942,-0.464 -0.608,2.708 0.342,1.503 -2.365,-3.523 -1.250,3.648 0.687,1.182 -0.581,-1.473 2.145,-1.407 2.087,0.118 -0.057,3.045 -1.717,-2.658 -1.701,-0.149 -0.942,-0.464 1.755,-0.677 -2.365,-3.523 3.134,-1.582 -1.250,3.648 -0.057,3.045 -0.608,2.708 0.342,1.503 0.687,1.182 2.145,-1.407 -0.581,-1.473 2.087,0.118 -1.717,-2.658 3.134,-1.582 -1.701,-0.149 1.755,-0.677 -0.942,-0.464 -0.608,2.708 -1.250,3.648 -2.365,-3.523 0.687,1.182 0.342,1.503 -0.581,-1.473 2.145,-1.407 -0.057,3.045 2.087,0.118 -1.717,-2.658 3.134,-1.582 1.755,-0.677 -2.365,-3.523 -1.701,-0.149 -0.942,-0.464 0.342,1.503 0.687,1.182 2.145,-1.407 -0.608,2.708 -1.250,3.648 -0.581,-1.473 -0.057,3.045 2.087,0.118 -1.717,-2.658 3.134,-1.582 -2.365,-3.523 1.755,-0.677 -0.942,-0.464 -1.701,-0.149 0.342,1.503 -1.250,3.648 -0.608,2.708 0.687,1.182 -0.581,-1.473 2.145,-1.407 2.087,0.118 -0.057,3.045 -1.717,-2.658 -2.365,-3.523 3.134,-1.582 1.755,-0.677 -1.701,-0.149 -0.942,-0.464 -1.250,3.648 -0.608,2.708 0.342,1.503 0.687,1.182 -0.581,-1.473 2.145,-1.407 -0.057,3.045 2.087,0.118 -1.717,-2.658 1.755,-0.677 3.134,-1.582 -1.701,-0.149 -2.365,-3.523 -0.942,-0.464 0.687,1.182 0.342,1.503 -0.608,2.708 -0.581,-1.473 2.145,-1.407 -1.250,3.648 2.087,0.118 -0.057,3.045 -1.717,-2.658 3.134,-1.582 1.755,-0.677 -2.365,-3.523 -1.701,-0.149 -0.942,-0.464 0.342,1.503 0.687,1.182 2.145,-1.407 -0.608,2.708 -0.581,-1.473 -1.250,3.648 2.087,0.118 -0.057,3.045 -1.717,-2.658" fill="none" stroke="blue" stroke_width="0.1" opacity="0.6"/>
+  <circle cx="-1.701" cy="-0.149" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 200: (-1.70, -0.15)</title>
+  </circle>
+  <circle cx="-1.701" cy="-0.149" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 609: (-1.70, -0.15)</title>
+  </circle>
+  <circle cx="-1.701" cy="-0.149" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1034: (-1.70, -0.15)</title>
+  </circle>
+  <circle cx="-1.701" cy="-0.149" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1455: (-1.70, -0.15)</title>
+  </circle>
+  <circle cx="-1.701" cy="-0.149" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1870: (-1.70, -0.15)</title>
+  </circle>
+  <circle cx="-1.701" cy="-0.149" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2288: (-1.70, -0.15)</title>
+  </circle>
+  <circle cx="-1.701" cy="-0.149" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2704: (-1.70, -0.15)</title>
+  </circle>
+  <circle cx="-1.701" cy="-0.149" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 3121: (-1.70, -0.15)</title>
+  </circle>
+  <circle cx="2.145" cy="-1.407" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 216: (2.15, -1.41)</title>
+  </circle>
+  <circle cx="2.145" cy="-1.407" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 630: (2.15, -1.41)</title>
+  </circle>
+  <circle cx="2.145" cy="-1.407" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1047: (2.15, -1.41)</title>
+  </circle>
+  <circle cx="2.145" cy="-1.407" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1465: (2.15, -1.41)</title>
+  </circle>
+  <circle cx="2.145" cy="-1.407" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1883: (2.15, -1.41)</title>
+  </circle>
+  <circle cx="2.145" cy="-1.407" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2299: (2.15, -1.41)</title>
+  </circle>
+  <circle cx="2.145" cy="-1.407" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2715: (2.15, -1.41)</title>
+  </circle>
+  <circle cx="2.145" cy="-1.407" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 3130: (2.15, -1.41)</title>
+  </circle>
+  <circle cx="-0.942" cy="-0.464" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 204: (-0.94, -0.46)</title>
+  </circle>
+  <circle cx="-0.942" cy="-0.464" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 610: (-0.94, -0.46)</title>
+  </circle>
+  <circle cx="-0.942" cy="-0.464" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1036: (-0.94, -0.46)</title>
+  </circle>
+  <circle cx="-0.942" cy="-0.464" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1459: (-0.94, -0.46)</title>
+  </circle>
+  <circle cx="-0.942" cy="-0.464" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1869: (-0.94, -0.46)</title>
+  </circle>
+  <circle cx="-0.942" cy="-0.464" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2290: (-0.94, -0.46)</title>
+  </circle>
+  <circle cx="-0.942" cy="-0.464" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2707: (-0.94, -0.46)</title>
+  </circle>
+  <circle cx="-0.942" cy="-0.464" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 3124: (-0.94, -0.46)</title>
+  </circle>
+  <circle cx="0.342" cy="1.503" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 206: (0.34, 1.50)</title>
+  </circle>
+  <circle cx="0.342" cy="1.503" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 626: (0.34, 1.50)</title>
+  </circle>
+  <circle cx="0.342" cy="1.503" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1043: (0.34, 1.50)</title>
+  </circle>
+  <circle cx="0.342" cy="1.503" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1461: (0.34, 1.50)</title>
+  </circle>
+  <circle cx="0.342" cy="1.503" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1874: (0.34, 1.50)</title>
+  </circle>
+  <circle cx="0.342" cy="1.503" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2293: (0.34, 1.50)</title>
+  </circle>
+  <circle cx="0.342" cy="1.503" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2709: (0.34, 1.50)</title>
+  </circle>
+  <circle cx="0.342" cy="1.503" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 3126: (0.34, 1.50)</title>
+  </circle>
+  <circle cx="0.687" cy="1.182" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 210: (0.69, 1.18)</title>
+  </circle>
+  <circle cx="0.687" cy="1.182" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 627: (0.69, 1.18)</title>
+  </circle>
+  <circle cx="0.687" cy="1.182" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1042: (0.69, 1.18)</title>
+  </circle>
+  <circle cx="0.687" cy="1.182" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1464: (0.69, 1.18)</title>
+  </circle>
+  <circle cx="0.687" cy="1.182" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1878: (0.69, 1.18)</title>
+  </circle>
+  <circle cx="0.687" cy="1.182" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2294: (0.69, 1.18)</title>
+  </circle>
+  <circle cx="0.687" cy="1.182" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2708: (0.69, 1.18)</title>
+  </circle>
+  <circle cx="0.687" cy="1.182" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 3128: (0.69, 1.18)</title>
+  </circle>
+  <circle cx="-1.717" cy="-2.658" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 240: (-1.72, -2.66)</title>
+  </circle>
+  <circle cx="-1.717" cy="-2.658" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 655: (-1.72, -2.66)</title>
+  </circle>
+  <circle cx="-1.717" cy="-2.658" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1073: (-1.72, -2.66)</title>
+  </circle>
+  <circle cx="-1.717" cy="-2.658" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1490: (-1.72, -2.66)</title>
+  </circle>
+  <circle cx="-1.717" cy="-2.658" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1908: (-1.72, -2.66)</title>
+  </circle>
+  <circle cx="-1.717" cy="-2.658" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2324: (-1.72, -2.66)</title>
+  </circle>
+  <circle cx="-1.717" cy="-2.658" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2744: (-1.72, -2.66)</title>
+  </circle>
+  <circle cx="-1.717" cy="-2.658" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 3158: (-1.72, -2.66)</title>
+  </circle>
+  <circle cx="-0.608" cy="2.708" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 205: (-0.61, 2.71)</title>
+  </circle>
+  <circle cx="-0.608" cy="2.708" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 625: (-0.61, 2.71)</title>
+  </circle>
+  <circle cx="-0.608" cy="2.708" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1037: (-0.61, 2.71)</title>
+  </circle>
+  <circle cx="-0.608" cy="2.708" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1466: (-0.61, 2.71)</title>
+  </circle>
+  <circle cx="-0.608" cy="2.708" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1877: (-0.61, 2.71)</title>
+  </circle>
+  <circle cx="-0.608" cy="2.708" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2292: (-0.61, 2.71)</title>
+  </circle>
+  <circle cx="-0.608" cy="2.708" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2713: (-0.61, 2.71)</title>
+  </circle>
+  <circle cx="-0.608" cy="2.708" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 3131: (-0.61, 2.71)</title>
+  </circle>
+  <circle cx="-1.250" cy="3.648" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 208: (-1.25, 3.65)</title>
+  </circle>
+  <circle cx="-1.250" cy="3.648" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 621: (-1.25, 3.65)</title>
+  </circle>
+  <circle cx="-1.250" cy="3.648" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1038: (-1.25, 3.65)</title>
+  </circle>
+  <circle cx="-1.250" cy="3.648" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1467: (-1.25, 3.65)</title>
+  </circle>
+  <circle cx="-1.250" cy="3.648" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1875: (-1.25, 3.65)</title>
+  </circle>
+  <circle cx="-1.250" cy="3.648" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2291: (-1.25, 3.65)</title>
+  </circle>
+  <circle cx="-1.250" cy="3.648" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2716: (-1.25, 3.65)</title>
+  </circle>
+  <circle cx="-1.250" cy="3.648" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 3136: (-1.25, 3.65)</title>
+  </circle>
+  <circle cx="-0.057" cy="3.045" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 222: (-0.06, 3.05)</title>
+  </circle>
+  <circle cx="-0.057" cy="3.045" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 624: (-0.06, 3.05)</title>
+  </circle>
+  <circle cx="-0.057" cy="3.045" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1050: (-0.06, 3.05)</title>
+  </circle>
+  <circle cx="-0.057" cy="3.045" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1472: (-0.06, 3.05)</title>
+  </circle>
+  <circle cx="-0.057" cy="3.045" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1891: (-0.06, 3.05)</title>
+  </circle>
+  <circle cx="-0.057" cy="3.045" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2306: (-0.06, 3.05)</title>
+  </circle>
+  <circle cx="-0.057" cy="3.045" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2737: (-0.06, 3.05)</title>
+  </circle>
+  <circle cx="-0.057" cy="3.045" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 3155: (-0.06, 3.05)</title>
+  </circle>
+  <circle cx="-0.581" cy="-1.473" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 215: (-0.58, -1.47)</title>
+  </circle>
+  <circle cx="-0.581" cy="-1.473" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 632: (-0.58, -1.47)</title>
+  </circle>
+  <circle cx="-0.581" cy="-1.473" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1046: (-0.58, -1.47)</title>
+  </circle>
+  <circle cx="-0.581" cy="-1.473" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1468: (-0.58, -1.47)</title>
+  </circle>
+  <circle cx="-0.581" cy="-1.473" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1882: (-0.58, -1.47)</title>
+  </circle>
+  <circle cx="-0.581" cy="-1.473" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2298: (-0.58, -1.47)</title>
+  </circle>
+  <circle cx="-0.581" cy="-1.473" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2714: (-0.58, -1.47)</title>
+  </circle>
+  <circle cx="-0.581" cy="-1.473" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 3132: (-0.58, -1.47)</title>
+  </circle>
+  <circle cx="2.087" cy="0.118" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 221: (2.09, 0.12)</title>
+  </circle>
+  <circle cx="2.087" cy="0.118" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 638: (2.09, 0.12)</title>
+  </circle>
+  <circle cx="2.087" cy="0.118" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1055: (2.09, 0.12)</title>
+  </circle>
+  <circle cx="2.087" cy="0.118" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1474: (2.09, 0.12)</title>
+  </circle>
+  <circle cx="2.087" cy="0.118" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1886: (2.09, 0.12)</title>
+  </circle>
+  <circle cx="2.087" cy="0.118" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2307: (2.09, 0.12)</title>
+  </circle>
+  <circle cx="2.087" cy="0.118" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2724: (2.09, 0.12)</title>
+  </circle>
+  <circle cx="2.087" cy="0.118" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 3140: (2.09, 0.12)</title>
+  </circle>
+  <circle cx="-2.365" cy="-3.523" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 207: (-2.36, -3.52)</title>
+  </circle>
+  <circle cx="-2.365" cy="-3.523" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 618: (-2.36, -3.52)</title>
+  </circle>
+  <circle cx="-2.365" cy="-3.523" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1041: (-2.36, -3.52)</title>
+  </circle>
+  <circle cx="-2.365" cy="-3.523" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1452: (-2.36, -3.52)</title>
+  </circle>
+  <circle cx="-2.365" cy="-3.523" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1863: (-2.36, -3.52)</title>
+  </circle>
+  <circle cx="-2.365" cy="-3.523" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2280: (-2.36, -3.52)</title>
+  </circle>
+  <circle cx="-2.365" cy="-3.523" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2706: (-2.36, -3.52)</title>
+  </circle>
+  <circle cx="-2.365" cy="-3.523" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 3115: (-2.36, -3.52)</title>
+  </circle>
+  <circle cx="1.755" cy="-0.677" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 197: (1.76, -0.68)</title>
+  </circle>
+  <circle cx="1.755" cy="-0.677" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 612: (1.76, -0.68)</title>
+  </circle>
+  <circle cx="1.755" cy="-0.677" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1035: (1.76, -0.68)</title>
+  </circle>
+  <circle cx="1.755" cy="-0.677" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1447: (1.76, -0.68)</title>
+  </circle>
+  <circle cx="1.755" cy="-0.677" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1866: (1.76, -0.68)</title>
+  </circle>
+  <circle cx="1.755" cy="-0.677" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2286: (1.76, -0.68)</title>
+  </circle>
+  <circle cx="1.755" cy="-0.677" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2700: (1.76, -0.68)</title>
+  </circle>
+  <circle cx="1.755" cy="-0.677" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 3114: (1.76, -0.68)</title>
+  </circle>
+  <circle cx="3.134" cy="-1.582" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 195: (3.13, -1.58)</title>
+  </circle>
+  <circle cx="3.134" cy="-1.582" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 619: (3.13, -1.58)</title>
+  </circle>
+  <circle cx="3.134" cy="-1.582" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1033: (3.13, -1.58)</title>
+  </circle>
+  <circle cx="3.134" cy="-1.582" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1444: (3.13, -1.58)</title>
+  </circle>
+  <circle cx="3.134" cy="-1.582" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 1860: (3.13, -1.58)</title>
+  </circle>
+  <circle cx="3.134" cy="-1.582" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2284: (3.13, -1.58)</title>
+  </circle>
+  <circle cx="3.134" cy="-1.582" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 2701: (3.13, -1.58)</title>
+  </circle>
+  <circle cx="3.134" cy="-1.582" r="0.0985" fill="red" stroke="darkred" stroke_width="0.0197" opacity="0.8">
+    <title>Camera 3113: (3.13, -1.58)</title>
+  </circle>
+</svg>

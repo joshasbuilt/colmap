@@ -1,0 +1,148 @@
+{
+  "timestamp": "2025-10-15T13:10:42.946743",
+  "total_files": 2,
+  "files": [
+    {
+      "filename": "projects.asbuiltvault.com_FirstFloor_analysis.json",
+      "file_info": {
+        "version": "1.2",
+        "creator": {
+          "name": "WebInspector",
+          "version": "537.36"
+        },
+        "browser": {},
+        "total_pages": 1,
+        "total_entries": 143
+      },
+      "total_entries": 143,
+      "api_requests": 12,
+      "image_requests": 68,
+      "domains": [
+        "c.bing.com",
+        "www.googletagmanager.com",
+        "projects.asbuiltvault.com",
+        "www.google-analytics.com",
+        "scripts.clarity.ms",
+        "maxcdn.bootstrapcdn.com",
+        "events.mapbox.com",
+        "l.clarity.ms",
+        "vaultprojectswebprod.blob.core.windows.net",
+        "www.clarity.ms",
+        "api.mapbox.com",
+        "c.clarity.ms"
+      ],
+      "content_types": [
+        "application/javascript; charset=UTF-8",
+        "application/javascript; charset=utf-8",
+        "application/javascript;charset=utf-8",
+        "application/json",
+        "application/json; charset=utf-8",
+        "application/octet-stream",
+        "application/x-javascript",
+        "application/x-protobuf",
+        "font/woff2",
+        "image/gif",
+        "image/svg+xml",
+        "image/x-icon",
+        "text/css",
+        "text/css; charset=utf-8",
+        "text/html",
+        "text/plain"
+      ],
+      "user_agents": [
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+      ]
+    },
+    {
+      "filename": "projects.asbuiltvault.com_GroundFloor_analysis.json",
+      "file_info": {
+        "version": "1.2",
+        "creator": {
+          "name": "WebInspector",
+          "version": "537.36"
+        },
+        "browser": {},
+        "total_pages": 1,
+        "total_entries": 139
+      },
+      "total_entries": 139,
+      "api_requests": 12,
+      "image_requests": 68,
+      "domains": [
+        "c.bing.com",
+        "www.googletagmanager.com",
+        "projects.asbuiltvault.com",
+        "www.google-analytics.com",
+        "scripts.clarity.ms",
+        "maxcdn.bootstrapcdn.com",
+        "events.mapbox.com",
+        "l.clarity.ms",
+        "vaultprojectswebprod.blob.core.windows.net",
+        "www.clarity.ms",
+        "api.mapbox.com",
+        "c.clarity.ms"
+      ],
+      "content_types": [
+        "application/javascript; charset=UTF-8",
+        "application/javascript; charset=utf-8",
+        "application/javascript;charset=utf-8",
+        "application/json",
+        "application/json; charset=utf-8",
+        "application/octet-stream",
+        "application/x-javascript",
+        "application/x-protobuf",
+        "font/woff2",
+        "image/gif",
+        "image/svg+xml",
+        "image/x-icon",
+        "text/css",
+        "text/css; charset=utf-8",
+        "text/html",
+        "text/plain"
+      ],
+      "user_agents": [
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+      ]
+    }
+  ],
+  "summary": {
+    "total_requests": 282,
+    "total_api_requests": 24,
+    "total_image_requests": 136,
+    "unique_domains": [
+      "api.mapbox.com",
+      "c.bing.com",
+      "c.clarity.ms",
+      "events.mapbox.com",
+      "l.clarity.ms",
+      "maxcdn.bootstrapcdn.com",
+      "projects.asbuiltvault.com",
+      "scripts.clarity.ms",
+      "vaultprojectswebprod.blob.core.windows.net",
+      "www.clarity.ms",
+      "www.google-analytics.com",
+      "www.googletagmanager.com"
+    ],
+    "unique_content_types": [
+      "application/javascript; charset=UTF-8",
+      "application/javascript; charset=utf-8",
+      "application/javascript;charset=utf-8",
+      "application/json",
+      "application/json; charset=utf-8",
+      "application/octet-stream",
+      "application/x-javascript",
+      "application/x-protobuf",
+      "font/woff2",
+      "image/gif",
+      "image/svg+xml",
+      "image/x-icon",
+      "text/css",
+      "text/css; charset=utf-8",
+      "text/html",
+      "text/plain"
+    ],
+    "unique_user_agents": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+    ]
+  }
+}

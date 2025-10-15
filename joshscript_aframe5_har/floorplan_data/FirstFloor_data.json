@@ -1,0 +1,66 @@
+{
+  "floorplan_url": "https://vaultprojectswebprod.blob.core.windows.net/static/26cea261-340c-440e-ab72-793c42eb6f1f/3427e14c-ab69-46d2-94bb-115cc3811995/f9dba6e1-98a8-458e-b9dc-5f67913f2872?se=2025-10-15T00%3A10%3A56Z&sig=qQKiOkbShxPWghg%2BemGeRdmCuEFrH0rHLm%2F263Ncl%2FQ%3D&sp=r&spr=https&sr=b&sv=2025-11-05",
+  "geolocation_bounds": null,
+  "mapbox_data": [
+    {
+      "z": 7,
+      "x": 126,
+      "y": 79,
+      "url": "https://api.mapbox.com/v4/mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2,mapbox.mapbox-bathymetry-v2/7/126/79.vector.pbf?sku=101vTVzso6RkV&access_token=pk.eyJ1IjoiYWJtYXBzIiwiYSI6ImNrYmg0enNsejAxeWgycnBlZGFnZjQxcmUifQ.TJKl2UX9aVTvo7yZmluFcA"
+    },
+    {
+      "z": 7,
+      "x": 125,
+      "y": 79,
+      "url": "https://api.mapbox.com/v4/mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2,mapbox.mapbox-bathymetry-v2/7/125/79.vector.pbf?sku=101vTVzso6RkV&access_token=pk.eyJ1IjoiYWJtYXBzIiwiYSI6ImNrYmg0enNsejAxeWgycnBlZGFnZjQxcmUifQ.TJKl2UX9aVTvo7yZmluFcA"
+    },
+    {
+      "z": 8,
+      "x": 252,
+      "y": 157,
+      "url": "https://api.mapbox.com/v4/mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2,mapbox.mapbox-bathymetry-v2/8/252/157.vector.pbf?sku=101vTVzso6RkV&access_token=pk.eyJ1IjoiYWJtYXBzIiwiYSI6ImNrYmg0enNsejAxeWgycnBlZGFnZjQxcmUifQ.TJKl2UX9aVTvo7yZmluFcA"
+    },
+    {
+      "z": 8,
+      "x": 251,
+      "y": 157,
+      "url": "https://api.mapbox.com/v4/mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2,mapbox.mapbox-bathymetry-v2/8/251/157.vector.pbf?sku=101vTVzso6RkV&access_token=pk.eyJ1IjoiYWJtYXBzIiwiYSI6ImNrYmg0enNsejAxeWgycnBlZGFnZjQxcmUifQ.TJKl2UX9aVTvo7yZmluFcA"
+    },
+    {
+      "z": 10,
+      "x": 1009,
+      "y": 623,
+      "url": "https://api.mapbox.com/v4/mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2,mapbox.mapbox-bathymetry-v2/10/1009/623.vector.pbf?sku=101vTVzso6RkV&access_token=pk.eyJ1IjoiYWJtYXBzIiwiYSI6ImNrYmg0enNsejAxeWgycnBlZGFnZjQxcmUifQ.TJKl2UX9aVTvo7yZmluFcA"
+    },
+    {
+      "z": 10,
+      "x": 1008,
+      "y": 623,
+      "url": "https://api.mapbox.com/v4/mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2,mapbox.mapbox-bathymetry-v2/10/1008/623.vector.pbf?sku=101vTVzso6RkV&access_token=pk.eyJ1IjoiYWJtYXBzIiwiYSI6ImNrYmg0enNsejAxeWgycnBlZGFnZjQxcmUifQ.TJKl2UX9aVTvo7yZmluFcA"
+    },
+    {
+      "z": 13,
+      "x": 8071,
+      "y": 4996,
+      "url": "https://api.mapbox.com/v4/mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2,mapbox.mapbox-bathymetry-v2/13/8071/4996.vector.pbf?sku=101vTVzso6RkV&access_token=pk.eyJ1IjoiYWJtYXBzIiwiYSI6ImNrYmg0enNsejAxeWgycnBlZGFnZjQxcmUifQ.TJKl2UX9aVTvo7yZmluFcA"
+    },
+    {
+      "z": 14,
+      "x": 16145,
+      "y": 9994,
+      "url": "https://api.mapbox.com/v4/mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2,mapbox.mapbox-bathymetry-v2/14/16145/9994.vector.pbf?sku=101vTVzso6RkV&access_token=pk.eyJ1IjoiYWJtYXBzIiwiYSI6ImNrYmg0enNsejAxeWgycnBlZGFnZjQxcmUifQ.TJKl2UX9aVTvo7yZmluFcA"
+    },
+    {
+      "z": 14,
+      "x": 16144,
+      "y": 9994,
+      "url": "https://api.mapbox.com/v4/mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2,mapbox.mapbox-bathymetry-v2/14/16144/9994.vector.pbf?sku=101vTVzso6RkV&access_token=pk.eyJ1IjoiYWJtYXBzIiwiYSI6ImNrYmg0enNsejAxeWgycnBlZGFnZjQxcmUifQ.TJKl2UX9aVTvo7yZmluFcA"
+    }
+  ],
+  "image_sources": [
+    "https://projects.asbuiltvault.com/static/26cea261-340c-440e-ab72-793c42eb6f1f/3427e14c-ab69-46d2-94bb-115cc3811995/f9dba6e1-98a8-458e-b9dc-5f67913f2872",
+    "https://vaultprojectswebprod.blob.core.windows.net/static/26cea261-340c-440e-ab72-793c42eb6f1f/3427e14c-ab69-46d2-94bb-115cc3811995/f9dba6e1-98a8-458e-b9dc-5f67913f2872?se=2025-10-15T00%3A10%3A56Z&sig=qQKiOkbShxPWghg%2BemGeRdmCuEFrH0rHLm%2F263Ncl%2FQ%3D&sp=r&spr=https&sr=b&sv=2025-11-05",
+    "https://projects.asbuiltvault.com/static/26cea261-340c-440e-ab72-793c42eb6f1f/3427e14c-ab69-46d2-94bb-115cc3811995/f9dba6e1-98a8-458e-b9dc-5f67913f2872",
+    "https://vaultprojectswebprod.blob.core.windows.net/static/26cea261-340c-440e-ab72-793c42eb6f1f/3427e14c-ab69-46d2-94bb-115cc3811995/f9dba6e1-98a8-458e-b9dc-5f67913f2872?se=2025-10-15T00%3A10%3A56Z&sig=qQKiOkbShxPWghg%2BemGeRdmCuEFrH0rHLm%2F263Ncl%2FQ%3D&sp=r&spr=https&sr=b&sv=2025-11-05"
+  ]
+}

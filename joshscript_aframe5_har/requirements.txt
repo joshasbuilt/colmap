@@ -1,0 +1,10 @@
+# HAR file processing requirements
+# Basic Python libraries for JSON processing and file handling
+
+# Core dependencies
+pathlib2>=2.3.0; python_version < "3.4"
+argparse>=1.4.0
+
+# Optional: for advanced HAR analysis
+beautifulsoup4>=4.9.0
+requests>=2.25.0

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ground Floor Coordinate Extraction</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .instructions { background: #f0f0f0; padding: 15px; border-radius: 5px; margin: 10px 0; }
+        .code { background: #000; color: #0f0; padding: 10px; border-radius: 3px; font-family: monospace; white-space: pre-wrap; }
+        .url { background: #e6f3ff; padding: 10px; border-radius: 3px; margin: 10px 0; }
+        .warning { background: #fff3cd; padding: 10px; border-radius: 3px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>Ground Floor Coordinate Extraction</h1>
+    
+    <div class="warning">
+        <strong>⚠️ Important:</strong> This process extracts coordinates from the actual floor plan page, not from HAR files.
+    </div>
+    
+    <div class="url">
+        <strong>Floor Plan URL:</strong><br>
+        <a href="https://projects.asbuiltvault.com/asset/80cfe870-052d-4950-acae-686987bbf64c/plan-viewer/0ccb51e7-753c-4dd1-9518-11353c54e0d5/" target="_blank">
+            https://projects.asbuiltvault.com/asset/80cfe870-052d-4950-acae-686987bbf64c/plan-viewer/0ccb51e7-753c-4dd1-9518-11353c54e0d5/
+        </a>
+    </div>
+    
+    <div class="instructions">
+        <h2>Steps:</h2>
+        <ol>
+            <li>Click the URL above to open the floor plan page</li>
+            <li>Wait for the floor plan to load completely (you should see the map with the floor plan image)</li>
+            <li>Open Developer Console (F12)</li>
+            <li>Run the console commands below (copy and paste each one)</li>
+            <li>Copy the coordinates from the output</li>
+            <li>Save them to: <code>extracted_coordinates.json</code></li>
+        </ol>
+    </div>
+    
+    <h2>Console Commands (run one by one):</h2>
+    <div class="code">// Step 1: Find the map element
+const mapElement = document.querySelector('#map_show, .mapboxgl-map, [class*="mapbox"]');
+console.log('Map element found:', mapElement);
+
+// Step 2: Access React Fiber
+const fiber = mapElement.__reactFiber$26742qmob3b || 
+              mapElement._reactInternalFiber ||
+              Object.keys(mapElement).find(key => key.startsWith('__reactFiber'));
+console.log('React Fiber found:', fiber);
+
+// Step 3: Extract map instance
+const mapInstance = fiber.return.memoizedProps.map.current;
+console.log('Map instance:', mapInstance);
+
+// Step 4: Get map style and sources
+const style = mapInstance.getStyle();
+console.log('Map style sources:', Object.keys(style.sources));
+
+// Step 5: Find the floor plan image source
+const imageSources = Object.keys(style.sources).filter(key => key.includes('image-source'));
+console.log('Image sources found:', imageSources);
+
+// Step 6: Extract coordinates from the first image source
+const imageSourceKey = imageSources[0];
+const imageSource = style.sources[imageSourceKey];
+console.log('Floor plan bounds:', imageSource.coordinates);
+
+// Step 7: Copy the coordinates
+const coordinates = imageSource.coordinates;
+console.log('=== COORDINATES TO COPY ===');
+console.log(JSON.stringify(coordinates, null, 2));</div>
+    
+    <div class="instructions">
+        <h2>Expected Output:</h2>
+        <p>You should see coordinates like:</p>
+        <div class="code">[
+  [174.76904030579692, -36.845437470625626],
+  [174.76953833830476, -36.84556978976499],
+  [174.76945222065177, -36.84577937864095],
+  [174.76895418814394, -36.84564705950159]
+]</div>
+    </div>
+    
+    <div class="instructions">
+        <h2>Save the coordinates:</h2>
+        <p>Create a file called <code>extracted_coordinates.json</code> with this content:</p>
+        <div class="code">{
+  "floorplan_bounds": [
+    [174.76904030579692, -36.845437470625626],
+    [174.76953833830476, -36.84556978976499],
+    [174.76945222065177, -36.84577937864095],
+    [174.76895418814394, -36.84564705950159]
+  ]
+}</div>
+    </div>
+</body>
+</html>

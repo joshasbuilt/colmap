@@ -1,0 +1,16 @@
+{
+  "images": [
+    {
+      "filename": "FirstFloor.png",
+      "floor": "FirstFloor",
+      "size_kb": 268.0,
+      "format": "PNG"
+    },
+    {
+      "filename": "GroundFloor.png",
+      "floor": "GroundFloor",
+      "size_kb": 347.2,
+      "format": "PNG"
+    }
+  ]
+}
