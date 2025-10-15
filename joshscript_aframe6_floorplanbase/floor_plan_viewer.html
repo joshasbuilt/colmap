@@ -70,139 +70,6 @@
             margin: 4px 0;
         }
         
-        /* Image Strip Panel */
-        .image-strip-panel {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 200px;
-            height: 100vh;
-            background: rgba(20, 20, 20, 0.95);
-            border-left: 2px solid #444;
-            z-index: 6000;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .image-strip-header {
-            padding: 15px;
-            background: rgba(40, 40, 40, 0.9);
-            border-bottom: 1px solid #444;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .header-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .sort-select {
-            background: rgba(60, 60, 60, 0.9);
-            color: white;
-            border: 1px solid #666;
-            border-radius: 4px;
-            padding: 4px 8px;
-            font-size: 12px;
-            cursor: pointer;
-        }
-        
-        .sort-select:focus {
-            outline: none;
-            border-color: #0f0;
-        }
-        
-        .image-strip-header h3 {
-            color: white;
-            font-size: 16px;
-            margin: 0;
-        }
-        
-        .close-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            padding: 0;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .close-btn:hover {
-            background: rgba(255, 0, 0, 0.3);
-            border-radius: 3px;
-        }
-        
-        .image-strip-content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 10px;
-        }
-        
-        .image-thumbnail {
-            width: 100%;
-            margin-bottom: 10px;
-            border: 2px solid transparent;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: border-color 0.2s;
-        }
-        
-        .image-thumbnail:hover {
-            border-color: #0f0;
-        }
-        
-        .image-thumbnail img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 2px;
-        }
-        
-        .image-thumbnail .frame-number {
-            position: absolute;
-            bottom: 2px;
-            left: 2px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 2px 6px;
-            font-size: 11px;
-            border-radius: 2px;
-        }
-        
-        .image-thumbnail {
-            position: relative;
-        }
-        
-        /* Image preview overlay */
-        .image-preview-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 7000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            pointer-events: none;
-        }
-        
-        .image-preview-overlay img {
-            max-width: 80vw;
-            max-height: 80vh;
-            border: 2px solid #0f0;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
-        }
-        
         /* Info Panel */
         #info-panel {
             position: fixed;
@@ -269,31 +136,7 @@
         <div class="context-menu-item" data-action="bring-to-front">Bring to Front</div>
         <div class="context-menu-item" data-action="send-to-back">Send to Back</div>
         <div class="context-menu-separator"></div>
-        <div class="context-menu-item" data-action="show-images">Show Images</div>
-        <div class="context-menu-item" data-action="remove-range">Remove 0203-0209</div>
-        <div class="context-menu-separator"></div>
         <div class="context-menu-item" data-action="delete">Delete</div>
-    </div>
-    
-    <!-- Image Strip Panel -->
-    <div id="image-strip-panel" class="image-strip-panel" style="display: none;">
-        <div class="image-strip-header">
-            <div class="header-controls">
-                <select id="sort-order" class="sort-select">
-                    <option value="asc">Frame ↑</option>
-                    <option value="desc">Frame ↓</option>
-                </select>
-                <button id="close-image-strip" class="close-btn">&times;</button>
-            </div>
-        </div>
-        <div id="image-strip-content" class="image-strip-content">
-            <!-- Thumbnails will be loaded here -->
-        </div>
-    </div>
-    
-    <!-- Image Preview Overlay -->
-    <div id="image-preview-overlay" class="image-preview-overlay" style="display: none;">
-        <img id="preview-image" src="" alt="Preview">
     </div>
     
     <!-- Info Panel -->
@@ -339,11 +182,11 @@
         </div>
     </div>
 
-        <!-- Cursor Coordinates Display -->
-        <div id="cursor-coords">
-            <div>N: <span id="cursor-northing">-</span></div>
-            <div>E: <span id="cursor-easting">-</span></div>
-        </div>
+    <!-- Cursor Coordinates Display -->
+    <div id="cursor-coords">
+        <div>E: <span id="cursor-easting">-</span></div>
+        <div>N: <span id="cursor-northing">-</span></div>
+    </div>n
     
 
     <script>
@@ -453,301 +296,6 @@
         document.addEventListener('click', () => {
             hideContextMenu();
         });
-        
-        // Close image strip panel
-        document.getElementById('close-image-strip').addEventListener('click', () => {
-            hideImageStrip();
-        });
-        
-        // Sort order change handler
-        document.getElementById('sort-order').addEventListener('change', (e) => {
-            if (currentImageFilenames.length > 0) {
-                displayImagesWithSort(e.target.value);
-            }
-        });
-        
-        // Global mouse up handler to hide preview when mouse is released anywhere
-        document.addEventListener('mouseup', () => {
-            hideImagePreview();
-        });
-
-        // Function to list all objects on canvas (for debugging)
-        function listAllObjects() {
-            console.log('=== ALL OBJECTS ON CANVAS ===');
-            canvas.getObjects().forEach((obj, index) => {
-                console.log(`${index}: ${obj.customName || 'unnamed'} (${obj.type})`);
-            });
-        }
-        
-        // Make it available globally for console debugging
-        window.listAllObjects = listAllObjects;
-        
-        // Function to extract images from any SVG by name (for testing)
-        function extractImagesFromSVGByName(svgName) {
-            const svgObject = canvas.getObjects().find(obj => obj.customName === svgName);
-            if (svgObject) {
-                console.log('Found SVG:', svgName);
-                extractImageFilenamesFromSVG(svgObject);
-            } else {
-                console.log('SVG not found:', svgName);
-                console.log('Available SVGs:');
-                canvas.getObjects().forEach(obj => {
-                    if (obj.customName && obj.customName.includes('Camera Positions')) {
-                        console.log('- ' + obj.customName);
-                    }
-                });
-            }
-        }
-        
-        // Make it available globally for console debugging
-        window.extractImagesFromSVGByName = extractImagesFromSVGByName;
-        
-        // Function to map camera image filename to preview image filename
-        function mapCameraToPreviewFilename(cameraFilename) {
-            // Extract frame number from camera filename
-            // Example: "pano_camera1/frame_0414_hp_preview.jpg" -> "0414"
-            const frameMatch = cameraFilename.match(/frame_(\d+)_hp_preview\.jpg/);
-            if (frameMatch) {
-                const frameNumber = frameMatch[1];
-                return `hp_preview image/frame_${frameNumber}.jpg`;
-            }
-            return null;
-        }
-        
-        // Global variable to store current image filenames for re-sorting
-        let currentImageFilenames = [];
-        
-        // Function to show image strip panel
-        function showImageStrip(imageFilenames) {
-            const panel = document.getElementById('image-strip-panel');
-            const content = document.getElementById('image-strip-content');
-            
-            // Store filenames globally for re-sorting
-            currentImageFilenames = [...imageFilenames];
-            
-            // Clear existing content
-            content.innerHTML = '';
-            
-            // Get current sort order
-            const sortOrder = document.getElementById('sort-order').value;
-            
-            // Sort and display images
-            displayImagesWithSort(sortOrder);
-            
-            // Show the panel
-            panel.style.display = 'flex';
-        }
-        
-        // Function to display images with specified sort order
-        function displayImagesWithSort(sortOrder) {
-            const content = document.getElementById('image-strip-content');
-            
-            // Clear existing content
-            content.innerHTML = '';
-            
-            // Sort filenames by frame number
-            const sortedFilenames = [...currentImageFilenames].sort((a, b) => {
-                const frameA = a.match(/frame_(\d+)/);
-                const frameB = b.match(/frame_(\d+)/);
-                if (frameA && frameB) {
-                    const frameNumA = parseInt(frameA[1]);
-                    const frameNumB = parseInt(frameB[1]);
-                    return sortOrder === 'desc' ? frameNumB - frameNumA : frameNumA - frameNumB;
-                }
-                return a.localeCompare(b);
-            });
-            
-            // Create thumbnails for each image
-            sortedFilenames.forEach(filename => {
-                const previewFilename = mapCameraToPreviewFilename(filename);
-                if (previewFilename) {
-                    const thumbnail = document.createElement('div');
-                    thumbnail.className = 'image-thumbnail';
-                    
-                    const img = document.createElement('img');
-                    img.src = previewFilename;
-                    img.alt = filename;
-                    
-                    const frameNumber = document.createElement('div');
-                    frameNumber.className = 'frame-number';
-                    const frameMatch = filename.match(/frame_(\d+)/);
-                    frameNumber.textContent = frameMatch ? frameMatch[1] : '?';
-                    
-                    // Add mouse event listeners for preview
-                    thumbnail.addEventListener('mousedown', (e) => {
-                        e.preventDefault();
-                        showImagePreview(previewFilename);
-                    });
-                    
-                    thumbnail.addEventListener('mouseup', (e) => {
-                        e.preventDefault();
-                        hideImagePreview();
-                    });
-                    
-                    thumbnail.addEventListener('mouseleave', (e) => {
-                        hideImagePreview();
-                    });
-                    
-                    // Prevent context menu on thumbnails
-                    thumbnail.addEventListener('contextmenu', (e) => {
-                        e.preventDefault();
-                    });
-                    
-                    thumbnail.appendChild(img);
-                    thumbnail.appendChild(frameNumber);
-                    content.appendChild(thumbnail);
-                }
-            });
-        }
-        
-        // Function to hide image strip panel
-        function hideImageStrip() {
-            document.getElementById('image-strip-panel').style.display = 'none';
-        }
-        
-        // Function to show image preview
-        function showImagePreview(imageSrc) {
-            const overlay = document.getElementById('image-preview-overlay');
-            const previewImg = document.getElementById('preview-image');
-            previewImg.src = imageSrc;
-            overlay.style.display = 'flex';
-        }
-        
-        // Function to hide image preview
-        function hideImagePreview() {
-            document.getElementById('image-preview-overlay').style.display = 'none';
-        }
-        
-        // Function to remove a range of images from a group
-        function removeImageRangeFromGroup(group, startFrame, endFrame) {
-            if (!group || group.type !== 'group') {
-                console.log('Cannot modify: not a group');
-                return;
-            }
-            
-            const objects = group._objects || group.objects;
-            if (!objects || objects.length === 0) {
-                console.log('Cannot modify: group has no objects');
-                return;
-            }
-            
-            console.log(`Searching for images ${startFrame} to ${endFrame} in group with ${objects.length} objects`);
-            
-            // Convert frame numbers to integers for comparison
-            const startNum = parseInt(startFrame);
-            const endNum = parseInt(endFrame);
-            
-            // Find all circles that match the frame range
-            const indicesToRemove = [];
-            objects.forEach((obj, index) => {
-                if (obj.type === 'circle' && obj.title) {
-                    // Extract frame number from title (e.g., "frame_0204" -> 204)
-                    const frameMatch = obj.title.match(/frame_(\d+)/);
-                    if (frameMatch) {
-                        const frameNum = parseInt(frameMatch[1]);
-                        if (frameNum >= startNum && frameNum <= endNum) {
-                            indicesToRemove.push(index);
-                            console.log(`Found frame ${frameMatch[1]} at index ${index}: ${obj.title}`);
-                        }
-                    }
-                }
-            });
-            
-            if (indicesToRemove.length === 0) {
-                console.log(`No images found in range ${startFrame}-${endFrame}`);
-                return;
-            }
-            
-            console.log(`Removing ${indicesToRemove.length} camera positions in range ${startFrame}-${endFrame}`);
-            
-            // First, remove all polylines
-            const polylineIndices = [];
-            objects.forEach((obj, index) => {
-                if (obj.type === 'polyline') {
-                    polylineIndices.push(index);
-                }
-            });
-            
-            console.log(`Removing ${polylineIndices.length} existing polylines`);
-            polylineIndices.sort((a, b) => b - a).forEach(index => {
-                const obj = objects[index];
-                console.log(`Removing polyline at index ${index}`);
-                group.removeWithUpdate(obj);
-            });
-            
-            // Remove the camera position circles
-            indicesToRemove.sort((a, b) => b - a).forEach(index => {
-                const obj = objects[index];
-                console.log(`Removing camera position at index ${index}: ${obj.type} - ${obj.title}`);
-                group.removeWithUpdate(obj);
-            });
-            
-            // Now recreate polylines for remaining camera positions
-            const remainingObjects = group._objects || group.objects;
-            const remainingCircles = remainingObjects.filter(obj => obj.type === 'circle');
-            
-            if (remainingCircles.length > 1) {
-                console.log(`Creating new polyline for ${remainingCircles.length} remaining camera positions`);
-                
-                // Get positions of remaining circles
-                const points = remainingCircles.map(circle => ({
-                    x: circle.left || 0,
-                    y: circle.top || 0
-                }));
-                
-                // Create new polyline connecting all remaining positions
-                const newPolyline = new fabric.Polyline(points, {
-                    fill: '',
-                    stroke: 'red',
-                    strokeWidth: 1,
-                    selectable: false,
-                    evented: false
-                });
-                
-                group.addWithUpdate(newPolyline);
-                console.log(`Added new polyline with ${points.length} points`);
-            }
-            
-            // Update the group
-            group.setCoords();
-            canvas.requestRenderAll();
-            updateInfoPanel();
-            
-            console.log(`Successfully removed ${indicesToRemove.length} objects. Group now has ${group._objects.length} objects`);
-        }
-
-        // Function to extract image filenames from SVG circles
-        function extractImageFilenamesFromSVG(svgObject) {
-            const imageFilenames = [];
-            
-            // Get the SVG element from the Fabric object
-            const svgElement = svgObject._objects || svgObject.objects;
-            
-            if (svgElement) {
-                // Look for circles in the SVG
-                svgElement.forEach(obj => {
-                    if (obj.type === 'circle' && obj.title) {
-                        // Extract image filename from the title attribute
-                        const titleMatch = obj.title.match(/Image: ([^|]+)/);
-                        if (titleMatch) {
-                            const imageName = titleMatch[1].trim();
-                            imageFilenames.push(imageName);
-                        }
-                    }
-                });
-            }
-            
-            // Log all image filenames
-            console.log('=== IMAGE FILENAMES IN ' + svgObject.customName + ' ===');
-            imageFilenames.forEach((filename, index) => {
-                console.log(`${index + 1}. ${filename}`);
-            });
-            console.log(`Total images: ${imageFilenames.length}`);
-            console.log('==========================================');
-            
-            return imageFilenames;
-        }
-
 
         // Initialize Fabric canvas (make it global for pan handlers)
         window.canvas = new fabric.Canvas('canvas', {
@@ -775,14 +323,6 @@
             } else {
                 lockItem.style.display = 'block';
                 unlockItem.style.display = 'none';
-            }
-            
-            // Show/hide "Show Images" option based on object type
-            const showImagesItem = menu.querySelector('[data-action="show-images"]');
-            if (target.customName && target.customName.includes('Camera Positions')) {
-                showImagesItem.style.display = 'block';
-            } else {
-                showImagesItem.style.display = 'none';
             }
             
             menu.style.left = x + 'px';
@@ -860,61 +400,19 @@
         fabric.Object.prototype.controls.mtr.cornerStrokeColor = '#ffffff';
         fabric.Object.prototype.controls.mtr.cornerSize = 12;
 
-        // Geolocation data from React Fiber extraction
+        // Geolocation data from React Fiber extraction (Ground Floor - actual rotated coordinates)
         const geolocationData = {
-            groundFloor: {
-                image: 'floorplan_images/GroundFloor.png',
-                bounds: [
-                    [174.74069378281493, -36.80542933064474],   // Top-Left
-                    [174.7412528239626, -36.805448062383675],   // Top-Right
-                    [174.74123108024065, -36.80581545281087],   // Bottom-Right
-                    [174.74067203909297, -36.80579672107194]    // Bottom-Left
-                ]
-            },
-            firstFloor: {
-                image: 'floorplan_images/FirstFloor.png',
-                bounds: [
-                    [174.74067575711504, -36.805431462369086],   // Top-Left
-                    [174.74123484878098, -36.805451153593665],   // Top-Right
-                    [174.74121799992923, -36.80582960011253],    // Bottom-Right
-                    [174.7406589082633, -36.80580990888795]      // Bottom-Left
-                ]
-            }
+            floorplanBounds: [
+                [174.74069378281493, -36.80542933064474],   // Top-Left
+                [174.7412528239626, -36.805448062383675],   // Top-Right
+                [174.74123108024065, -36.80581545281087],   // Bottom-Right
+                [174.74067203909297, -36.80579672107194]    // Bottom-Left
+            ]
         };
 
         // Define projections using Proj4js
         proj4.defs("EPSG:4326", "+proj=longlat +datum=WGS84 +no_defs");
         proj4.defs("EPSG:2105", "+proj=tmerc +lat_0=-36.8797222222222 +lon_0=174.764166666667 +k=0.9999 +x_0=400000 +y_0=800000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
-
-        // Calculate combined bounding box for consistent canvas coordinate system
-        const allBounds = [
-            ...geolocationData.groundFloor.bounds,
-            ...geolocationData.firstFloor.bounds
-        ];
-        const allMtEden = allBounds.map(coord => {
-            const result = proj4("EPSG:4326", "EPSG:2105", [coord[0], coord[1]]);
-            return { x: result[0], y: result[1] };
-        });
-        
-        // Create a proper rectangular bounding box from all points
-        const minX = Math.min(...allMtEden.map(p => p.x));
-        const maxX = Math.max(...allMtEden.map(p => p.x));
-        const minY = Math.min(...allMtEden.map(p => p.y));
-        const maxY = Math.max(...allMtEden.map(p => p.y));
-        
-        // Global reference bounds for canvas coordinate system (rectangular bounding box)
-        let mtEdenBounds = [
-            { x: minX, y: maxY },  // Top-Left
-            { x: maxX, y: maxY },  // Top-Right
-            { x: maxX, y: minY },  // Bottom-Right
-            { x: minX, y: minY }   // Bottom-Left
-        ];
-        
-        console.log('=== COMBINED BOUNDING BOX ===');
-        console.log('Min X:', minX.toFixed(3), 'Max X:', maxX.toFixed(3));
-        console.log('Min Y:', minY.toFixed(3), 'Max Y:', maxY.toFixed(3));
-        console.log('Width:', (maxX - minX).toFixed(3), 'Height:', (maxY - minY).toFixed(3));
-        console.log('Combined mtEdenBounds:', mtEdenBounds);
 
         // Convert WGS84 to Mount Eden 2000 coordinates
         function wgs84ToMtEden(lng, lat) {
@@ -976,28 +474,33 @@
             return { x: x, y: y };
         }
 
+        // Convert floorplan bounds to Mt Eden coordinates
+        const mtEdenBounds = geolocationData.floorplanBounds.map(coord => 
+            wgs84ToMtEden(coord[0], coord[1])
+        );
 
-        // Load floorplan image with its specific bounds
-        function loadFloorplanImage(imageUrl, bounds, floorName) {
-            // Convert WGS84 bounds to Mt Eden coordinates (floor-specific)
-            const floorMtEdenBounds = bounds.map(coord => 
-                wgs84ToMtEden(coord[0], coord[1])
-            );
-            
-            console.log('=== LOADING', floorName, '===');
-            console.log('Floor Mt Eden TL:', floorMtEdenBounds[0]);
-            console.log('Floor Mt Eden TR:', floorMtEdenBounds[1]);
-            console.log('Floor Mt Eden BR:', floorMtEdenBounds[2]);
-            console.log('Floor Mt Eden BL:', floorMtEdenBounds[3]);
-            
+
+        // Load floorplan image
+        function loadFloorplanImage(imageUrl) {
             fabric.Image.fromURL(imageUrl, function(img) {
-                // Convert Mt Eden bounds to canvas coordinates using GLOBAL reference
-                const canvasBounds = floorMtEdenBounds.map(bound => 
+                // Convert Mt Eden bounds to canvas coordinates
+                const canvasBounds = mtEdenBounds.map(bound => 
                     mtEdenToCanvas(bound.x, bound.y, mtEdenBounds, canvas.width, canvas.height)
                 );
-                
-                console.log(floorName, 'canvas bounds:', canvasBounds);
 
+                // Create a polygon that represents the exact coordinate bounds
+                const polygon = new fabric.Polygon(canvasBounds, {
+                    fill: 'rgba(0, 150, 255, 0.1)',
+                    stroke: '#0096ff',
+                    strokeWidth: 2,
+                    selectable: true,
+                    customName: 'Floorplan Bounds'
+                });
+
+                canvas.add(polygon);
+                
+                // Lock the polygon by default
+                lockObject(polygon);
 
                 // Calculate width and height from actual polygon edges
                 // Top edge: distance from TL to TR
@@ -1030,12 +533,11 @@
                     customName: 'Floorplan Image'
                 });
 
-                // Add image to canvas
                 canvas.add(img);
                 
-                // Lock the image by default
+                // Lock the floorplan by default
                 lockObject(img);
-
+                
                 console.log('Image transformation:', {
                     topWidth: topWidth,
                     leftHeight: leftHeight,
@@ -1044,6 +546,21 @@
                     topRight: canvasBounds[1],
                     bottomRight: canvasBounds[2],
                     bottomLeft: canvasBounds[3]
+                });
+
+                // Add corner labels
+                const cornerLabels = ['TL', 'TR', 'BR', 'BL'];
+                canvasBounds.forEach((corner, index) => {
+                    const label = new fabric.Text(cornerLabels[index], {
+                        left: corner.x - 10,
+                        top: corner.y - 10,
+                        fontSize: 12,
+                        fill: '#ffffff',
+                        backgroundColor: '#0096ff',
+                        padding: 2,
+                        selectable: false
+                    });
+                    canvas.add(label);
                 });
 
                 updateInfoPanel();
@@ -1080,7 +597,7 @@
         }
 
         // Load SVG function
-        function loadSVG(url, svgName) {
+        function loadSVG(url) {
             // Use configuration system for resource loading
             const resourceUrl = config.getResourceUrl(url);
             
@@ -1109,24 +626,6 @@
                         fabric.loadSVGFromString(modifiedSvgText, function(objects, options) {
                             const svg = fabric.util.groupSVGElements(objects, options);
                             
-                            // Extract title data from raw SVG and attach to circles
-                            const parser = new DOMParser();
-                            const svgDoc = parser.parseFromString(svgText, 'image/svg+xml');
-                            const circles = svgDoc.querySelectorAll('circle');
-                            
-                            // Match circles in Fabric objects with circles in SVG DOM
-                            if (svg._objects) {
-                                const fabricCircles = svg._objects.filter(obj => obj.type === 'circle');
-                                fabricCircles.forEach((fabricCircle, index) => {
-                                    if (circles[index]) {
-                                        const titleElement = circles[index].querySelector('title');
-                                        if (titleElement) {
-                                            fabricCircle.title = titleElement.textContent;
-                                        }
-                                    }
-                                });
-                            }
-                            
                             // Ensure no clipping
                             svg.set({
                                 clipPath: null,
@@ -1154,7 +653,7 @@
                                 scaleY: targetScale,
                                 originX: 'center',
                                 originY: 'center',
-                                customName: svgName || 'SVG',
+                                customName: 'SVG',
                                 selectable: true,
                                 hasControls: true,
                                 hasBorders: true,
@@ -1231,47 +730,11 @@
                 const locked = activeObject.lockMovementX ? ' [LOCKED]' : '';
                 document.getElementById('selected-value').textContent = name + locked;
                 
-                // Console logging for current selection intelligence
-                console.log('=== CURRENT SELECTION ===');
-                console.log('Object Type:', activeObject.type);
-                console.log('Custom Name:', activeObject.customName);
-                console.log('Position:', { x: activeObject.left, y: activeObject.top });
-                console.log('Scale:', { x: activeObject.scaleX, y: activeObject.scaleY });
-                console.log('Rotation:', activeObject.angle);
-                console.log('Locked:', {
-                    movementX: activeObject.lockMovementX,
-                    movementY: activeObject.lockMovementY,
-                    rotation: activeObject.lockRotation,
-                    scalingX: activeObject.lockScalingX,
-                    scalingY: activeObject.lockScalingY
-                });
-                console.log('Selectable:', activeObject.selectable);
-                console.log('Has Controls:', activeObject.hasControls);
-                console.log('Has Borders:', activeObject.hasBorders);
-                
-                // If it's an SVG, show more details
-                if (activeObject.type === 'group' && activeObject.customName && activeObject.customName.includes('SVG')) {
-                    console.log('SVG Details:');
-                    console.log('- Objects count:', activeObject._objects ? activeObject._objects.length : 'Unknown');
-                    console.log('- Width:', activeObject.width);
-                    console.log('- Height:', activeObject.height);
-                    
-                    // Check if it has circles (camera positions)
-                    if (activeObject._objects) {
-                        const circles = activeObject._objects.filter(obj => obj.type === 'circle');
-                        console.log('- Camera position circles:', circles.length);
-                        if (circles.length > 0) {
-                            console.log('- First circle title:', circles[0].title || 'No title');
-                        }
-                    }
-                }
-                
                 // Show position in Mt Eden Circuit coordinates if model space is active
                 if (mtEdenBounds && mtEdenBounds.length > 0) {
                     const mtEdenCoords = canvasToMtEden(activeObject.left, activeObject.top, mtEdenBounds, canvas.width, canvas.height);
                     document.getElementById('position-value').textContent = 
                         `E: ${mtEdenCoords.x.toFixed(2)}m, N: ${mtEdenCoords.y.toFixed(2)}m`;
-                    console.log('Mt Eden Coordinates:', mtEdenCoords);
                 } else {
                     document.getElementById('position-value').textContent = 
                         `(${Math.round(activeObject.left)}, ${Math.round(activeObject.top)})`;
@@ -1289,7 +752,6 @@
                 document.getElementById('scale-value').textContent = '-';
                 document.getElementById('rotation-value').textContent = '-';
                 document.getElementById('locked-value').textContent = '-';
-                console.log('=== NO SELECTION ===');
             }
             
             // Update configuration display
@@ -1368,27 +830,6 @@
                         case 'send-to-back':
                             canvas.sendToBack(contextMenuTarget);
                             break;
-                        case 'show-images':
-                            if (contextMenuTarget && contextMenuTarget.customName && contextMenuTarget.customName.includes('Camera Positions')) {
-                                console.log('=== SHOWING IMAGES FROM: ' + contextMenuTarget.customName + ' ===');
-                                const imageFilenames = extractImageFilenamesFromSVG(contextMenuTarget);
-                                showImageStrip(imageFilenames);
-                            } else {
-                                console.log('This object is not a camera positions SVG');
-                                console.log('Available objects on canvas:');
-                                canvas.getObjects().forEach((obj, index) => {
-                                    console.log(`${index}: ${obj.customName || 'unnamed'} (${obj.type})`);
-                                });
-                            }
-                            break;
-                        case 'remove-range':
-                            if (contextMenuTarget && contextMenuTarget.type === 'group') {
-                                console.log('=== REMOVING RANGE 0203-0209 FROM GROUP: ' + contextMenuTarget.customName + ' ===');
-                                removeImageRangeFromGroup(contextMenuTarget, '0203', '0209');
-                            } else {
-                                console.log('This object is not a group that can be modified');
-                            }
-                            break;
                         case 'delete':
                             canvas.remove(contextMenuTarget);
                             canvas.discardActiveObject();
@@ -1413,22 +854,6 @@
                 mtEden: { x: mtEdenCoords.x, y: mtEdenCoords.y },
                 wgs84: { lng: wgs84Coords.lng, lat: wgs84Coords.lat }
             });
-            
-        });
-
-        // Right-click handler for context menu
-        canvas.on('mouse:down', function(e) {
-            if (e.e.button === 2) { // Right click
-                const clickedObject = canvas.findTarget(e.e, false);
-                console.log('Right-click detected on:', clickedObject);
-                console.log('Object custom name:', clickedObject ? clickedObject.customName : 'undefined');
-                if (clickedObject) {
-                    e.e.preventDefault();
-                    showContextMenu(e.e.clientX, e.e.clientY, clickedObject);
-                } else {
-                    console.log('Right-clicked on empty space');
-                }
-            }
         });
 
         // Zoom functionality
@@ -1474,33 +899,15 @@
         // Initialize
         updateInfoPanel();
         
-        // Load both floors
-        loadFloorplanImage(geolocationData.groundFloor.image, geolocationData.groundFloor.bounds, 'Ground Floor');
-        loadFloorplanImage(geolocationData.firstFloor.image, geolocationData.firstFloor.bounds, 'First Floor');
-        
-        console.log('=== BOTH FLOORS LOADED ===');
-        console.log('Ground Floor and First Floor loaded with their respective coordinates');
-        
-        // Load all SVG files after a short delay (let floorplans load first)
-        setTimeout(() => {
-            const svgFiles = [
-                'svg_files/camera_positions_0.svg',
-                'svg_files/camera_positions_1.svg',
-                'svg_files/camera_positions_2.svg',
-                'svg_files/camera_positions_3.svg',
-                'svg_files/camera_positions_4.svg',
-                'svg_files/camera_positions_5.svg',
-                'svg_files/camera_positions_6.svg'
-            ];
-            
-            svgFiles.forEach((svgFile, index) => {
-                loadSVG(svgFile, `Camera Positions ${index} (Enhanced)`);
-            });
-            
-            console.log('=== ALL ENHANCED SVGs LOADED ===');
-            console.log('Loaded', svgFiles.length, 'enhanced SVG files with rich metadata');
-            console.log('Hover over red dots to see detailed camera information!');
-        }, 1000);
+        // Load floorplan image
+        loadFloorplanImage('floorplan_images/GroundFloor.png');
+
+        // Log the Mt Eden coordinates
+        console.log('=== FLOORPLAN CORNER COORDINATES (Mt Eden Circuit) ===');
+        console.log('Top-Left:    E:', mtEdenBounds[0].x.toFixed(3), 'N:', mtEdenBounds[0].y.toFixed(3));
+        console.log('Top-Right:   E:', mtEdenBounds[1].x.toFixed(3), 'N:', mtEdenBounds[1].y.toFixed(3));
+        console.log('Bottom-Right: E:', mtEdenBounds[2].x.toFixed(3), 'N:', mtEdenBounds[2].y.toFixed(3));
+        console.log('Bottom-Left:  E:', mtEdenBounds[3].x.toFixed(3), 'N:', mtEdenBounds[3].y.toFixed(3));
 
     </script>
 </body>
