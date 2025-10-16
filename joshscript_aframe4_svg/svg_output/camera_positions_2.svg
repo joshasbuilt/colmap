@@ -1,71 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="-9.744 -5.181 19.488 10.362" 
+<svg viewBox="-9.729 -5.247 19.458 10.495" 
      xmlns="http://www.w3.org/2000/svg">
-  <!-- Improved top-down view using PCA components -->
+  <!-- Top-down view of camera positions -->
   <!-- ViewBox is centered on median camera position -->
-  <rect x="-9.744199259228509" y="-5.180822719908335" width="19.488398518457018" height="10.36164543981667" fill="white" opacity="0"/>
-  <circle cx="7.360" cy="-4.835" r="0.1559" 
-          fill="red" stroke="darkred" stroke-width="0.0312" 
+  <rect x="-9.72924871069966" y="-5.247405062657919" width="19.45849742139932" height="10.494810125315839" fill="white" opacity="0"/>
+  <circle cx="7.254" cy="-4.993" r="0.1557" 
+          fill="red" stroke="darkred" stroke-width="0.0311" 
           opacity="0.8">
-    <title>Camera 1: (7.36, -4.83)</title>
+    <title>Camera 1 | 2D: (7.25, -4.99) | 3D: (27.70, -1.72, 46.18) | Image: pano_camera1/frame_0089_hp_preview.jpg | Frame: 3426 | Height: 46.18m | Cam ID: 2</title>
   </circle>
-  <circle cx="7.046" cy="-1.691" r="0.1559" 
-          fill="red" stroke="darkred" stroke-width="0.0312" 
+  <circle cx="7.008" cy="-1.843" r="0.1557" 
+          fill="red" stroke="darkred" stroke-width="0.0311" 
           opacity="0.8">
-    <title>Camera 2: (7.05, -1.69)</title>
+    <title>Camera 2 | 2D: (7.01, -1.84) | 3D: (27.46, -4.87, 46.22) | Image: pano_camera1/frame_0090_hp_preview.jpg | Frame: 3427 | Height: 46.22m | Cam ID: 2</title>
   </circle>
-  <circle cx="7.031" cy="-1.611" r="0.1559" 
-          fill="red" stroke="darkred" stroke-width="0.0312" 
+  <circle cx="6.994" cy="-1.763" r="0.1557" 
+          fill="red" stroke="darkred" stroke-width="0.0311" 
           opacity="0.8">
-    <title>Camera 3: (7.03, -1.61)</title>
+    <title>Camera 3 | 2D: (6.99, -1.76) | 3D: (27.44, -4.95, 46.21) | Image: pano_camera1/frame_0091_hp_preview.jpg | Frame: 3428 | Height: 46.21m | Cam ID: 2</title>
   </circle>
-  <circle cx="4.419" cy="2.036" r="0.1559" 
-          fill="red" stroke="darkred" stroke-width="0.0312" 
+  <circle cx="4.462" cy="1.940" r="0.1557" 
+          fill="red" stroke="darkred" stroke-width="0.0311" 
           opacity="0.8">
-    <title>Camera 4: (4.42, 2.04)</title>
+    <title>Camera 4 | 2D: (4.46, 1.94) | 3D: (24.91, -8.65, 46.05) | Image: pano_camera1/frame_0092_hp_preview.jpg | Frame: 3429 | Height: 46.05m | Cam ID: 2</title>
   </circle>
-  <circle cx="3.334" cy="2.602" r="0.1559" 
-          fill="red" stroke="darkred" stroke-width="0.0312" 
+  <circle cx="3.390" cy="2.529" r="0.1557" 
+          fill="red" stroke="darkred" stroke-width="0.0311" 
           opacity="0.8">
-    <title>Camera 5: (3.33, 2.60)</title>
+    <title>Camera 5 | 2D: (3.39, 2.53) | 3D: (23.84, -9.24, 46.13) | Image: pano_camera1/frame_0093_hp_preview.jpg | Frame: 3430 | Height: 46.13m | Cam ID: 2</title>
   </circle>
-  <circle cx="1.253" cy="3.136" r="0.1559" 
-          fill="red" stroke="darkred" stroke-width="0.0312" 
+  <circle cx="1.321" cy="3.108" r="0.1557" 
+          fill="red" stroke="darkred" stroke-width="0.0311" 
           opacity="0.8">
-    <title>Camera 6: (1.25, 3.14)</title>
+    <title>Camera 6 | 2D: (1.32, 3.11) | 3D: (21.77, -9.82, 46.25) | Image: pano_camera1/frame_0094_hp_preview.jpg | Frame: 3431 | Height: 46.25m | Cam ID: 2</title>
   </circle>
-  <circle cx="-1.293" cy="3.397" r="0.1559" 
-          fill="red" stroke="darkred" stroke-width="0.0312" 
+  <circle cx="-1.220" cy="3.424" r="0.1557" 
+          fill="red" stroke="darkred" stroke-width="0.0311" 
           opacity="0.8">
-    <title>Camera 7: (-1.29, 3.40)</title>
+    <title>Camera 7 | 2D: (-1.22, 3.42) | 3D: (19.23, -10.13, 46.19) | Image: pano_camera1/frame_0095_hp_preview.jpg | Frame: 3432 | Height: 46.19m | Cam ID: 2</title>
   </circle>
-  <circle cx="-4.371" cy="2.998" r="0.1559" 
-          fill="red" stroke="darkred" stroke-width="0.0312" 
+  <circle cx="-4.305" cy="3.092" r="0.1557" 
+          fill="red" stroke="darkred" stroke-width="0.0311" 
           opacity="0.8">
-    <title>Camera 8: (-4.37, 3.00)</title>
+    <title>Camera 8 | 2D: (-4.30, 3.09) | 3D: (16.15, -9.80, 46.21) | Image: pano_camera1/frame_0096_hp_preview.jpg | Frame: 3433 | Height: 46.21m | Cam ID: 2</title>
   </circle>
-  <circle cx="-7.571" cy="-0.076" r="0.1559" 
-          fill="red" stroke="darkred" stroke-width="0.0312" 
+  <circle cx="-7.570" cy="0.088" r="0.1557" 
+          fill="red" stroke="darkred" stroke-width="0.0311" 
           opacity="0.8">
-    <title>Camera 9: (-7.57, -0.08)</title>
+    <title>Camera 9 | 2D: (-7.57, 0.09) | 3D: (12.88, -6.80, 46.20) | Image: pano_camera1/frame_0097_hp_preview.jpg | Frame: 3434 | Height: 46.20m | Cam ID: 2</title>
   </circle>
-  <circle cx="-7.945" cy="-0.790" r="0.1559" 
-          fill="red" stroke="darkred" stroke-width="0.0312" 
+  <circle cx="-7.960" cy="-0.618" r="0.1557" 
+          fill="red" stroke="darkred" stroke-width="0.0311" 
           opacity="0.8">
-    <title>Camera 10: (-7.94, -0.79)</title>
+    <title>Camera 10 | 2D: (-7.96, -0.62) | 3D: (12.49, -6.09, 46.15) | Image: pano_camera1/frame_0098_hp_preview.jpg | Frame: 3435 | Height: 46.15m | Cam ID: 2</title>
   </circle>
-  <circle cx="-9.265" cy="-5.167" r="0.1559" 
-          fill="red" stroke="darkred" stroke-width="0.0312" 
+  <circle cx="-9.374" cy="-4.965" r="0.1557" 
+          fill="red" stroke="darkred" stroke-width="0.0311" 
           opacity="0.8">
-    <title>Camera 11: (-9.26, -5.17)</title>
+    <title>Camera 11 | 2D: (-9.37, -4.96) | 3D: (11.08, -1.75, 46.15) | Image: pano_camera1/frame_0099_hp_preview.jpg | Frame: 3436 | Height: 46.15m | Cam ID: 2</title>
   </circle>
-  <polyline points="7.360,-4.835 7.046,-1.691 7.031,-1.611 4.419,2.036 3.334,2.602 1.253,3.136 -1.293,3.397 -4.371,2.998 -7.571,-0.076 -7.945,-0.790 -9.265,-5.167" 
-            fill="none" stroke="red" stroke-width="0.0624" 
+  <polyline points="7.254,-4.993 7.008,-1.843 6.994,-1.763 4.462,1.940 3.390,2.529 1.321,3.108 -1.220,3.424 -4.305,3.092 -7.570,0.088 -7.960,-0.618 -9.374,-4.965" 
+            fill="none" stroke="red" stroke-width="0.0623" 
             opacity="0.4" />
-  <line x1="-0.4677215644429684" y1="0" 
-        x2="0.4677215644429684" y2="0" 
-        stroke="blue" stroke-width="0.0312" opacity="0.5" />
-  <line x1="0" y1="-0.4677215644429684" 
-        x2="0" y2="0.4677215644429684" 
-        stroke="blue" stroke-width="0.0312" opacity="0.5" />
+  <line x1="-0.46700393811358365" y1="0" 
+        x2="0.46700393811358365" y2="0" 
+        stroke="blue" stroke-width="0.0311" opacity="0.5" />
+  <line x1="0" y1="-0.46700393811358365" 
+        x2="0" y2="0.46700393811358365" 
+        stroke="blue" stroke-width="0.0311" opacity="0.5" />
 </svg>

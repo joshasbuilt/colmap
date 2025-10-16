@@ -1,0 +1,6 @@
+C:\Users\JoshuaLumley\Dropbox\0000 Github Repos\asBuilt_DataColmap\paul\joshscript_aframe8_revitest\Source\Bluff\obj\Debug\Bluff.csproj.AssemblyReference.cache
+C:\Users\JoshuaLumley\Dropbox\0000 Github Repos\asBuilt_DataColmap\paul\joshscript_aframe8_revitest\Source\Bluff\obj\Debug\Bluff.csproj.CoreCompileInputs.cache
+C:\Users\JoshuaLumley\Dropbox\0000 Github Repos\asBuilt_DataColmap\paul\joshscript_aframe8_revitest\Source\Bluff\bin\Debug\Bluff.dll
+C:\Users\JoshuaLumley\Dropbox\0000 Github Repos\asBuilt_DataColmap\paul\joshscript_aframe8_revitest\Source\Bluff\bin\Debug\Bluff.pdb
+C:\Users\JoshuaLumley\Dropbox\0000 Github Repos\asBuilt_DataColmap\paul\joshscript_aframe8_revitest\Source\Bluff\obj\Debug\Bluff.dll
+C:\Users\JoshuaLumley\Dropbox\0000 Github Repos\asBuilt_DataColmap\paul\joshscript_aframe8_revitest\Source\Bluff\obj\Debug\Bluff.pdb

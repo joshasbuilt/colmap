@@ -880,8 +880,11 @@
             
             // Efficiently remove just the thumbnail from the image strip
             removeThumbnailFromStrip(frameNumber);
+            
+            // Save state after removing image
+            saveCanvasState();
              
-             console.log(`Successfully removed frame ${frameNumber}. ${currentImageFilenames.length} images remaining.`);
+            console.log(`Successfully removed frame ${frameNumber}. ${currentImageFilenames.length} images remaining.`);
          }
         
         // Function to remove a range of images from a group
@@ -1612,9 +1615,14 @@
                             canvas.sendToBack(contextMenuTarget);
                             break;
                         case 'show-images':
+                            console.log('=== SHOW IMAGES CLICKED ===');
+                            console.log('Context menu target:', contextMenuTarget);
+                            console.log('Target custom name:', contextMenuTarget ? contextMenuTarget.customName : 'null');
+                            
                             if (contextMenuTarget && contextMenuTarget.customName && contextMenuTarget.customName.includes('Camera Positions')) {
                                 console.log('=== SHOWING IMAGES FROM: ' + contextMenuTarget.customName + ' ===');
                                 const imageFilenames = extractImageFilenamesFromSVG(contextMenuTarget);
+                                console.log('Extracted filenames:', imageFilenames);
                                 showImageStrip(imageFilenames);
                             } else {
                                 console.log('This object is not a camera positions SVG');
@@ -1734,36 +1742,297 @@
             canvas.requestRenderAll();
         });
 
+        // Save canvas state to localStorage
+        function saveCanvasState() {
+            const canvasState = {
+                objects: canvas.toJSON(['customName', 'title']),
+                viewportTransform: canvas.viewportTransform,
+                zoom: canvas.getZoom(),
+                imageStripState: {
+                    isVisible: document.getElementById('image-strip-panel').style.display !== 'none',
+                    currentFilenames: currentImageFilenames || [],
+                    sortOrder: document.getElementById('sort-order') ? document.getElementById('sort-order').value : 'asc'
+                }
+            };
+            localStorage.setItem('floorPlanCanvasState', JSON.stringify(canvasState));
+            console.log('💾 Canvas state saved');
+        }
+        
+        // Load canvas state from localStorage
+        function loadCanvasState() {
+            const savedState = localStorage.getItem('floorPlanCanvasState');
+            if (savedState) {
+                try {
+                    const canvasState = JSON.parse(savedState);
+                    canvas.loadFromJSON(canvasState.objects, () => {
+                        canvas.setViewportTransform(canvasState.viewportTransform);
+                        canvas.setZoom(canvasState.zoom);
+                        canvas.requestRenderAll();
+                        console.log('🔄 Canvas state restored');
+                        
+                        // Restore image strip state if it exists
+                        if (canvasState.imageStripState) {
+                            restoreImageStripState(canvasState.imageStripState);
+                        }
+                        
+                        // Reattach event handlers after restoration
+                        reattachEventHandlers();
+                    });
+                    return true;
+                } catch (error) {
+                    console.error('Error loading canvas state:', error);
+                    // Clear corrupted state
+                    localStorage.removeItem('floorPlanCanvasState');
+                    return false;
+                }
+            }
+            return false;
+        }
+        
+        // Restore image strip state
+        function restoreImageStripState(imageStripState) {
+            console.log('🔄 Restoring image strip state:', imageStripState);
+            
+            // Restore the current filenames
+            currentImageFilenames = imageStripState.currentFilenames || [];
+            
+            // Restore sort order
+            if (imageStripState.sortOrder && document.getElementById('sort-order')) {
+                document.getElementById('sort-order').value = imageStripState.sortOrder;
+            }
+            
+            // Show the image strip if it was visible
+            if (imageStripState.isVisible && currentImageFilenames.length > 0) {
+                document.getElementById('image-strip-panel').style.display = 'block';
+                displayImagesWithSort(imageStripState.sortOrder || 'asc');
+                console.log('🖼️ Image strip restored with', currentImageFilenames.length, 'images');
+            }
+        }
+        
+        // Reattach event handlers after state restoration
+        function reattachEventHandlers() {
+            console.log('🔄 Reattaching event handlers after state restoration');
+            
+            // Verify that objects have their titles preserved
+            const cameraGroups = canvas.getObjects().filter(obj => 
+                obj.type === 'group' && obj.customName && obj.customName.includes('Camera Positions')
+            );
+            
+            console.log('🔍 Verifying camera groups after restoration:');
+            cameraGroups.forEach((group, index) => {
+                const circles = group._objects ? group._objects.filter(obj => obj.type === 'circle') : [];
+                const circlesWithTitles = circles.filter(obj => obj.title);
+                console.log(`Group ${index}: ${group.customName} - ${circlesWithTitles.length}/${circles.length} circles have titles`);
+            });
+            
+            canvas.requestRenderAll();
+        }
+        
+        // Auto-save on object changes
+        canvas.on('object:added', saveCanvasState);
+        canvas.on('object:removed', saveCanvasState);
+        canvas.on('object:modified', saveCanvasState);
+        canvas.on('object:moving', saveCanvasState);
+        canvas.on('object:scaling', saveCanvasState);
+        canvas.on('object:rotating', saveCanvasState);
+        canvas.on('path:created', saveCanvasState);
+        
+        // Auto-save on viewport changes
+        canvas.on('mouse:up', saveCanvasState);
+        canvas.on('mouse:wheel', saveCanvasState);
+        
         // Initialize
         updateInfoPanel();
         
-        // Load both floors
-        loadFloorplanImage(geolocationData.groundFloor.image, geolocationData.groundFloor.bounds, 'Ground Floor');
-        loadFloorplanImage(geolocationData.firstFloor.image, geolocationData.firstFloor.bounds, 'First Floor');
+        // Try to load saved state first
+        const stateLoaded = loadCanvasState();
         
-        console.log('=== BOTH FLOORS LOADED ===');
-        console.log('Ground Floor and First Floor loaded with their respective coordinates');
-        
-        // Load all SVG files after a short delay (let floorplans load first)
-        setTimeout(() => {
-            const svgFiles = [
-                'svg_files/camera_positions_0.svg',
-                'svg_files/camera_positions_1.svg',
-                'svg_files/camera_positions_2.svg',
-                'svg_files/camera_positions_3.svg',
-                'svg_files/camera_positions_4.svg',
-                'svg_files/camera_positions_5.svg',
-                'svg_files/camera_positions_6.svg'
-            ];
+        if (!stateLoaded) {
+            // Load both floors only if no saved state
+            loadFloorplanImage(geolocationData.groundFloor.image, geolocationData.groundFloor.bounds, 'Ground Floor');
+            loadFloorplanImage(geolocationData.firstFloor.image, geolocationData.firstFloor.bounds, 'First Floor');
             
-            svgFiles.forEach((svgFile, index) => {
-                loadSVG(svgFile, `Camera Positions ${index} (Enhanced)`);
+            console.log('=== BOTH FLOORS LOADED ===');
+            console.log('Ground Floor and First Floor loaded with their respective coordinates');
+            
+            // Load all SVG files after a short delay (let floorplans load first)
+            setTimeout(() => {
+                const svgFiles = [
+                    'svg_files/camera_positions_0.svg',
+                    'svg_files/camera_positions_1.svg',
+                    'svg_files/camera_positions_2.svg',
+                    'svg_files/camera_positions_3.svg',
+                    'svg_files/camera_positions_4.svg',
+                    'svg_files/camera_positions_5.svg',
+                    'svg_files/camera_positions_6.svg'
+                ];
+                
+                svgFiles.forEach((svgFile, index) => {
+                    loadSVG(svgFile, `Camera Positions ${index} (Enhanced)`);
+                });
+                
+                console.log('=== ALL ENHANCED SVGs LOADED ===');
+                console.log('Loaded', svgFiles.length, 'enhanced SVG files with rich metadata');
+                console.log('Hover over red dots to see detailed camera information!');
+            }, 1000);
+        } else {
+            console.log('=== CANVAS STATE RESTORED ===');
+            console.log('Previous canvas state loaded from localStorage');
+        }
+        
+        // Add a way to clear saved state if needed (for debugging)
+        window.clearCanvasState = function() {
+            localStorage.removeItem('floorPlanCanvasState');
+            console.log('🗑️ Canvas state cleared. Refresh to reload fresh.');
+        };
+        
+        // Add debugging for context menu
+        window.debugContextMenu = function() {
+            console.log('=== CONTEXT MENU DEBUG ===');
+            console.log('Context menu target:', contextMenuTarget);
+            console.log('Canvas objects:', canvas.getObjects().map(obj => ({
+                type: obj.type,
+                customName: obj.customName,
+                hasTitle: !!obj.title
+            })));
+        };
+        
+        // Export visible camera positions as GeoJSON
+        function exportCameraPositionsAsGeoJSON() {
+            console.log('🗺️ Exporting camera positions as GeoJSON...');
+            
+            const features = [];
+            
+            // Get all camera position groups
+            const cameraGroups = canvas.getObjects().filter(obj => 
+                obj.type === 'group' && obj.customName && obj.customName.includes('Camera Positions')
+            );
+            
+            cameraGroups.forEach((group, groupIndex) => {
+                const objects = group._objects || group.objects;
+                const circles = objects.filter(obj => obj.type === 'circle' && obj.title);
+                
+                circles.forEach((circle, circleIndex) => {
+                    // Skip if circle is not visible (has been deleted from image strip)
+                    if (currentImageFilenames && currentImageFilenames.length > 0) {
+                        const frameMatch = circle.title.match(/frame_(\d+)/);
+                        if (frameMatch) {
+                            const frameNumber = frameMatch[1];
+                            const isVisible = currentImageFilenames.some(filename => 
+                                filename.includes(`frame_${frameNumber}`)
+                            );
+                            if (!isVisible) {
+                                return; // Skip this circle
+                            }
+                        }
+                    }
+                    
+                    // Extract metadata from title
+                    const titleParts = circle.title.split(' | ');
+                    const cameraInfo = titleParts[0] || 'Unknown Camera';
+                    const coords2D = titleParts[1] || '2D: (0, 0)';
+                    const coords3D = titleParts[2] || '3D: (0, 0, 0)';
+                    const imageName = titleParts[3] || 'Image: unknown';
+                    const frameInfo = titleParts[4] || 'Frame: 0';
+                    const heightInfo = titleParts[5] || 'Height: 0m';
+                    
+                    // Get circle's actual position on canvas
+                    const groupLeft = group.left || 0;
+                    const groupTop = group.top || 0;
+                    const groupScaleX = group.scaleX || 1;
+                    const groupScaleY = group.scaleY || 1;
+                    
+                    const circleCanvasX = groupLeft + (circle.left * groupScaleX);
+                    const circleCanvasY = groupTop + (circle.top * groupScaleY);
+                    
+                    // Convert to Mt Eden coordinates
+                    const mtEdenCoords = canvasToMtEden(circleCanvasX, circleCanvasY, mtEdenBounds, canvas.width, canvas.height);
+                    
+                    // Convert to WGS84
+                    const wgs84Coords = mtEdenToWGS84(mtEdenCoords.x, mtEdenCoords.y);
+                    
+                    // Extract frame number
+                    const frameMatch = circle.title.match(/frame_(\d+)/);
+                    const frameNumber = frameMatch ? frameMatch[1] : 'unknown';
+                    
+                    // Extract oriented height from coords3D (Z-coordinate)
+                    const coords3DMatch = coords3D.match(/3D: \(([^,]+), ([^,]+), ([^)]+)\)/);
+                    const height = coords3DMatch ? parseFloat(coords3DMatch[3]) : 0;
+                    
+                    // Create GeoJSON feature
+                    const feature = {
+                        type: "Feature",
+                        geometry: {
+                            type: "Point",
+                            coordinates: [wgs84Coords.lng, wgs84Coords.lat, height]
+                        },
+                        properties: {
+                            id: `${groupIndex}_${circleIndex}`,
+                            camera: cameraInfo,
+                            frame: frameNumber,
+                            image: imageName.replace('Image: ', ''),
+                            frameId: frameInfo.replace('Frame: ', ''),
+                            height: height,
+                            coords2D: coords2D,
+                            coords3D: coords3D,
+                            easting: mtEdenCoords.x,
+                            northing: mtEdenCoords.y,
+                            longitude: wgs84Coords.lng,
+                            latitude: wgs84Coords.lat,
+                            group: group.customName,
+                            canvasX: circleCanvasX,
+                            canvasY: circleCanvasY
+                        }
+                    };
+                    
+                    features.push(feature);
+                });
             });
             
-            console.log('=== ALL ENHANCED SVGs LOADED ===');
-            console.log('Loaded', svgFiles.length, 'enhanced SVG files with rich metadata');
-            console.log('Hover over red dots to see detailed camera information!');
-        }, 1000);
+            // Create GeoJSON object
+            const geoJSON = {
+                type: "FeatureCollection",
+                features: features,
+                properties: {
+                    name: "Camera Positions Export",
+                    description: "Exported camera positions from floor plan viewer",
+                    exportDate: new Date().toISOString(),
+                    totalFeatures: features.length,
+                    coordinateSystem: "WGS84 (EPSG:4326)",
+                    originalSystem: "Mt Eden 2000 (EPSG:2105)"
+                }
+            };
+            
+            // Create and download file
+            const dataStr = JSON.stringify(geoJSON, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `camera_positions_${new Date().toISOString().split('T')[0]}.geojson`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            
+            console.log(`✅ Exported ${features.length} camera positions as GeoJSON`);
+            return geoJSON;
+        }
+        
+        // Make export function available globally
+        window.exportCameraPositionsAsGeoJSON = exportCameraPositionsAsGeoJSON;
+        
+        // Nuclear cache clearing command (use in browser console when needed)
+        window.clearCacheNuclear = function() {
+            localStorage.clear();
+            sessionStorage.clear();
+            caches.keys().then(names => {
+                names.forEach(name => caches.delete(name));
+            }).then(() => {
+                location.reload(true);
+            });
+        };
 
     </script>
 </body>

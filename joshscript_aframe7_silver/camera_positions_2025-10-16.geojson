@@ -1,0 +1,6425 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74092250681682,
+          -36.80556687581357,
+          1.46
+        ]
+      },
+      "properties": {
+        "id": "0_0",
+        "camera": "Camera 1",
+        "frame": "0140",
+        "image": "pano_camera1/frame_0140_hp_preview.jpg",
+        "frameId": "3477",
+        "height": 1.46,
+        "coords2D": "2D: (-7.36, -5.33)",
+        "coords3D": "3D: (-4.99, 1.69, 1.46)",
+        "easting": 397925.9496692106,
+        "northing": 808228.2920085754,
+        "longitude": 174.74092250681682,
+        "latitude": -36.80556687581357,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 541.031598789678,
+        "canvasY": 390.83103483002134
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74091987609026,
+          -36.80556410990869,
+          1.56
+        ]
+      },
+      "properties": {
+        "id": "0_1",
+        "camera": "Camera 2",
+        "frame": "0141",
+        "image": "pano_camera1/frame_0141_hp_preview.jpg",
+        "frameId": "3478",
+        "height": 1.56,
+        "coords2D": "2D: (-7.53, -5.56)",
+        "coords3D": "3D: (-5.14, 1.70, 1.56)",
+        "easting": 397925.7148578236,
+        "northing": 808228.5988643653,
+        "longitude": 174.74091987609026,
+        "latitude": -36.80556410990869,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 536.816177710678,
+        "canvasY": 385.3222459199644
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74091545186212,
+          -36.805558878848394,
+          1.75
+        ]
+      },
+      "properties": {
+        "id": "0_2",
+        "camera": "Camera 3",
+        "frame": "0142",
+        "image": "pano_camera1/frame_0142_hp_preview.jpg",
+        "frameId": "3479",
+        "height": 1.75,
+        "coords2D": "2D: (-7.83, -5.99)",
+        "coords3D": "3D: (-5.40, 1.73, 1.75)",
+        "easting": 397925.3199477637,
+        "northing": 808229.1792220547,
+        "longitude": 174.74091545186212,
+        "latitude": -36.805558878848394,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 529.726605895996,
+        "canvasY": 374.9034495031177
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74091199863116,
+          -36.805556581696614,
+          1.82
+        ]
+      },
+      "properties": {
+        "id": "0_3",
+        "camera": "Camera 4",
+        "frame": "0143",
+        "image": "pano_camera1/frame_0143_hp_preview.jpg",
+        "frameId": "3480",
+        "height": 1.82,
+        "coords2D": "2D: (-8.06, -6.18)",
+        "coords3D": "3D: (-5.57, 1.76, 1.82)",
+        "easting": 397925.0117578183,
+        "northing": 808229.4340457758,
+        "longitude": 174.74091199863116,
+        "latitude": -36.805556581696614,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 524.1938657298085,
+        "canvasY": 370.32875958215743
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409076025408,
+          -36.80555719403229,
+          1.73
+        ]
+      },
+      "properties": {
+        "id": "0_4",
+        "camera": "Camera 5",
+        "frame": "0144",
+        "image": "pano_camera1/frame_0144_hp_preview.jpg",
+        "frameId": "3481",
+        "height": 1.73,
+        "coords2D": "2D: (-8.35, -6.13)",
+        "coords3D": "3D: (-5.74, 1.77, 1.73)",
+        "easting": 397924.6195160696,
+        "northing": 808229.3660038398,
+        "longitude": 174.7409076025408,
+        "latitude": -36.80555719403229,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 517.1521964273879,
+        "canvasY": 371.55027364482225
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409055680609,
+          -36.805560500079764,
+          1.55
+        ]
+      },
+      "properties": {
+        "id": "0_5",
+        "camera": "Camera 6",
+        "frame": "0145",
+        "image": "pano_camera1/frame_0145_hp_preview.jpg",
+        "frameId": "3482",
+        "height": 1.55,
+        "coords2D": "2D: (-8.49, -5.86)",
+        "coords3D": "3D: (-5.76, 1.79, 1.55)",
+        "easting": 397924.4380709069,
+        "northing": 808228.9991110476,
+        "longitude": 174.7409055680609,
+        "latitude": -36.805560500079764,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 513.8948255936152,
+        "canvasY": 378.1368690807598
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409270994971,
+          -36.80555894124213,
+          1.9
+        ]
+      },
+      "properties": {
+        "id": "0_6",
+        "camera": "Camera 7",
+        "frame": "0157",
+        "image": "pano_camera1/frame_0157_hp_preview.jpg",
+        "frameId": "3494",
+        "height": 1.9,
+        "coords2D": "2D: (-7.05, -5.99)",
+        "coords3D": "3D: (-4.96, 1.64, 1.90)",
+        "easting": 397926.3592549822,
+        "northing": 808229.1725512766,
+        "longitude": 174.7409270994971,
+        "latitude": -36.80555894124213,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 548.3846344217974,
+        "canvasY": 375.0232057837711
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409307481988,
+          -36.80555761937689,
+          2.01
+        ]
+      },
+      "properties": {
+        "id": "0_7",
+        "camera": "Camera 8",
+        "frame": "0158",
+        "image": "pano_camera1/frame_0158_hp_preview.jpg",
+        "frameId": "3495",
+        "height": 2.01,
+        "coords2D": "2D: (-6.81, -6.10)",
+        "coords3D": "3D: (-4.84, 1.61, 2.01)",
+        "easting": 397926.6847889505,
+        "northing": 808229.3193083935,
+        "longitude": 174.7409307481988,
+        "latitude": -36.80555761937689,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 554.2287409176838,
+        "canvasY": 372.3885676093961
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74093230374316,
+          -36.805555864258885,
+          2.11
+        ]
+      },
+      "properties": {
+        "id": "0_8",
+        "camera": "Camera 9",
+        "frame": "0159",
+        "image": "pano_camera1/frame_0159_hp_preview.jpg",
+        "frameId": "3496",
+        "height": 2.11,
+        "coords2D": "2D: (-6.70, -6.24)",
+        "coords3D": "3D: (-4.82, 1.60, 2.11)",
+        "easting": 397926.8235411337,
+        "northing": 808229.5140951122,
+        "longitude": 174.74093230374316,
+        "latitude": -36.805555864258885,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 556.7196715552748,
+        "canvasY": 368.89168421431657
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409405008549,
+          -36.805544660015954,
+          2.75
+        ]
+      },
+      "properties": {
+        "id": "0_9",
+        "camera": "Camera 10",
+        "frame": "0160",
+        "image": "pano_camera1/frame_0160_hp_preview.jpg",
+        "frameId": "3497",
+        "height": 2.75,
+        "coords2D": "2D: (-6.15, -7.17)",
+        "coords3D": "3D: (-4.70, 1.53, 2.75)",
+        "easting": 397927.5546584068,
+        "northing": 808230.7575281387,
+        "longitude": 174.7409405008549,
+        "latitude": -36.805544660015954,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 569.8449599148885,
+        "canvasY": 346.5691135005208
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74094646810806,
+          -36.80554008025136,
+          3.05
+        ]
+      },
+      "properties": {
+        "id": "0_10",
+        "camera": "Camera 11",
+        "frame": "0161",
+        "image": "pano_camera1/frame_0161_hp_preview.jpg",
+        "frameId": "3498",
+        "height": 3.05,
+        "coords2D": "2D: (-5.75, -7.55)",
+        "coords3D": "3D: (-4.55, 1.49, 3.05)",
+        "easting": 397928.08698649437,
+        "northing": 808231.2658414253,
+        "longitude": 174.74094646810806,
+        "latitude": -36.80554008025136,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 579.4015111110307,
+        "canvasY": 337.44368491473097
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409548576621,
+          -36.805535272513914,
+          3.39
+        ]
+      },
+      "properties": {
+        "id": "0_11",
+        "camera": "Camera 12",
+        "frame": "0162",
+        "image": "pano_camera1/frame_0162_hp_preview.jpg",
+        "frameId": "3499",
+        "height": 3.39,
+        "coords2D": "2D: (-5.19, -7.95)",
+        "coords3D": "3D: (-4.31, 1.41, 3.39)",
+        "easting": 397928.83544779033,
+        "northing": 808231.7995036684,
+        "longitude": 174.7409548576621,
+        "latitude": -36.805535272513914,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 592.8381658003433,
+        "canvasY": 327.8631824624581
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74096048040695,
+          -36.80553271261892,
+          3.58
+        ]
+      },
+      "properties": {
+        "id": "0_12",
+        "camera": "Camera 13",
+        "frame": "0163",
+        "image": "pano_camera1/frame_0163_hp_preview.jpg",
+        "frameId": "3500",
+        "height": 3.58,
+        "coords2D": "2D: (-4.82, -8.17)",
+        "coords3D": "3D: (-4.15, 1.36, 3.58)",
+        "easting": 397929.3370902989,
+        "northing": 808232.083678813,
+        "longitude": 174.74096048040695,
+        "latitude": -36.80553271261892,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 601.8438381054798,
+        "canvasY": 322.7615649066229
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74096647683302,
+          -36.80553054956999,
+          3.76
+        ]
+      },
+      "properties": {
+        "id": "0_13",
+        "camera": "Camera 14",
+        "frame": "0164",
+        "image": "pano_camera1/frame_0164_hp_preview.jpg",
+        "frameId": "3501",
+        "height": 3.76,
+        "coords2D": "2D: (-4.42, -8.35)",
+        "coords3D": "3D: (-3.96, 1.31, 3.76)",
+        "easting": 397929.87208669767,
+        "northing": 808232.3238268223,
+        "longitude": 174.74096647683302,
+        "latitude": -36.80553054956999,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 611.4482918138833,
+        "canvasY": 318.45033880310007
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74097606072155,
+          -36.80553180187672,
+          3.83
+        ]
+      },
+      "properties": {
+        "id": "0_14",
+        "camera": "Camera 15",
+        "frame": "0165",
+        "image": "pano_camera1/frame_0165_hp_preview.jpg",
+        "frameId": "3502",
+        "height": 3.83,
+        "coords2D": "2D: (-3.78, -8.24)",
+        "coords3D": "3D: (-3.57, 1.24, 3.83)",
+        "easting": 397930.7272804423,
+        "northing": 808232.1850746392,
+        "longitude": 174.74097606072155,
+        "latitude": -36.80553180187672,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 626.8010469936505,
+        "canvasY": 320.94126944069103
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74097948384622,
+          -36.805534772333274,
+          3.73
+        ]
+      },
+      "properties": {
+        "id": "0_15",
+        "camera": "Camera 16",
+        "frame": "0166",
+        "image": "pano_camera1/frame_0166_hp_preview.jpg",
+        "frameId": "3503",
+        "height": 3.73,
+        "coords2D": "2D: (-3.55, -8.00)",
+        "coords3D": "3D: (-3.39, 1.22, 3.73)",
+        "easting": 397931.0328020765,
+        "northing": 808231.855538204,
+        "longitude": 174.74097948384622,
+        "latitude": -36.805534772333274,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 632.2858846475767,
+        "canvasY": 326.8572297049694
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74098417649665,
+          -36.80554238408422,
+          3.42
+        ]
+      },
+      "properties": {
+        "id": "0_16",
+        "camera": "Camera 17",
+        "frame": "0167",
+        "image": "pano_camera1/frame_0167_hp_preview.jpg",
+        "frameId": "3504",
+        "height": 3.42,
+        "coords2D": "2D: (-3.23, -7.36)",
+        "coords3D": "3D: (-3.08, 1.19, 3.42)",
+        "easting": 397931.4517269374,
+        "northing": 808231.0110177043,
+        "longitude": 174.74098417649665,
+        "latitude": -36.80554238408422,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 639.8065790726109,
+        "canvasY": 342.01837483569125
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74098149786408,
+          -36.805549729882564,
+          3.03
+        ]
+      },
+      "properties": {
+        "id": "0_17",
+        "camera": "Camera 18",
+        "frame": "0168",
+        "image": "pano_camera1/frame_0168_hp_preview.jpg",
+        "frameId": "3505",
+        "height": 3.03,
+        "coords2D": "2D: (-3.41, -6.75)",
+        "coords3D": "3D: (-3.05, 1.22, 3.03)",
+        "easting": 397931.21291308355,
+        "northing": 808230.1958486278,
+        "longitude": 174.74098149786408,
+        "latitude": -36.805549729882564,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 635.5193042252188,
+        "canvasY": 356.652592331538
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409789254905,
+          -36.80555178538893,
+          2.9
+        ]
+      },
+      "properties": {
+        "id": "0_18",
+        "camera": "Camera 19",
+        "frame": "0169",
+        "image": "pano_camera1/frame_0169_hp_preview.jpg",
+        "frameId": "3506",
+        "height": 2.9,
+        "coords2D": "2D: (-3.58, -6.58)",
+        "coords3D": "3D: (-3.12, 1.23, 2.90)",
+        "easting": 397930.983438319,
+        "northing": 808229.967708019,
+        "longitude": 174.7409789254905,
+        "latitude": -36.80555178538893,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 631.3996881707415,
+        "canvasY": 360.7482571298846
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409639707423,
+          -36.80556070386313,
+          2.28
+        ]
+      },
+      "properties": {
+        "id": "0_19",
+        "camera": "Camera 20",
+        "frame": "0170",
+        "image": "pano_camera1/frame_0170_hp_preview.jpg",
+        "frameId": "3507",
+        "height": 2.28,
+        "coords2D": "2D: (-4.58, -5.84)",
+        "coords3D": "3D: (-3.53, 1.37, 2.28)",
+        "easting": 397929.64928271115,
+        "northing": 808228.9777645579,
+        "longitude": 174.7409639707423,
+        "latitude": -36.80556070386313,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 607.4484320400594,
+        "canvasY": 378.52008917885075
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409619967042,
+          -36.80556191784521,
+          2.2
+        ]
+      },
+      "properties": {
+        "id": "0_20",
+        "camera": "Camera 21",
+        "frame": "0171",
+        "image": "pano_camera1/frame_0171_hp_preview.jpg",
+        "frameId": "3508",
+        "height": 2.2,
+        "coords2D": "2D: (-4.72, -5.74)",
+        "coords3D": "3D: (-3.59, 1.37, 2.20)",
+        "easting": 397929.4731741709,
+        "northing": 808228.8430148414,
+        "longitude": 174.7409619967042,
+        "latitude": -36.80556191784521,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 604.2868662308093,
+        "canvasY": 380.93916604804963
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74095254537002,
+          -36.805567326547774,
+          1.82
+        ]
+      },
+      "properties": {
+        "id": "0_21",
+        "camera": "Camera 22",
+        "frame": "0172",
+        "image": "pano_camera1/frame_0172_hp_preview.jpg",
+        "frameId": "3509",
+        "height": 1.82,
+        "coords2D": "2D: (-5.35, -5.29)",
+        "coords3D": "3D: (-3.85, 1.46, 1.82)",
+        "easting": 397928.62998782675,
+        "northing": 808228.2426448179,
+        "longitude": 174.74095254537002,
+        "latitude": -36.805567326547774,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 589.1496723562183,
+        "canvasY": 391.71723130685655
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74094931355086,
+          -36.805574527956125,
+          1.43
+        ]
+      },
+      "properties": {
+        "id": "0_22",
+        "camera": "Camera 23",
+        "frame": "0173",
+        "image": "pano_camera1/frame_0173_hp_preview.jpg",
+        "frameId": "3510",
+        "height": 1.43,
+        "coords2D": "2D: (-5.56, -4.69)",
+        "coords3D": "3D: (-3.85, 1.48, 1.43)",
+        "easting": 397928.34181021544,
+        "northing": 808227.4434856089,
+        "longitude": 174.74094931355086,
+        "latitude": -36.805574527956125,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 583.976201031991,
+        "canvasY": 406.0640337291351
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74095307934343,
+          -36.80558157442573,
+          1.14
+        ]
+      },
+      "properties": {
+        "id": "0_23",
+        "camera": "Camera 24",
+        "frame": "0174",
+        "image": "pano_camera1/frame_0174_hp_preview.jpg",
+        "frameId": "3511",
+        "height": 1.14,
+        "coords2D": "2D: (-5.31, -4.10)",
+        "coords3D": "3D: (-3.59, 1.46, 1.14)",
+        "easting": 397928.6780174286,
+        "northing": 808226.6616704226,
+        "longitude": 174.74095307934343,
+        "latitude": -36.80558157442573,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 590.0119175769228,
+        "canvasY": 420.0994698217148
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409532886324,
+          -36.8055817067244,
+          1.13
+        ]
+      },
+      "properties": {
+        "id": "0_24",
+        "camera": "Camera 25",
+        "frame": "0175",
+        "image": "pano_camera1/frame_0175_hp_preview.jpg",
+        "frameId": "3512",
+        "height": 1.13,
+        "coords2D": "2D: (-5.30, -4.09)",
+        "coords3D": "3D: (-3.58, 1.45, 1.13)",
+        "easting": 397928.69669560716,
+        "northing": 808226.646994711,
+        "longitude": 174.7409532886324,
+        "latitude": -36.8055817067244,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 590.3472351627524,
+        "canvasY": 420.3629336391523
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74096339535592,
+          -36.805584594321694,
+          1.12
+        ]
+      },
+      "properties": {
+        "id": "0_25",
+        "camera": "Camera 26",
+        "frame": "0176",
+        "image": "pano_camera1/frame_0176_hp_preview.jpg",
+        "frameId": "3513",
+        "height": 1.12,
+        "coords2D": "2D: (-4.62, -3.85)",
+        "coords3D": "3D: (-3.14, 1.39, 1.12)",
+        "easting": 397929.59858479805,
+        "northing": 808226.3267973651,
+        "longitude": 174.74096339535592,
+        "latitude": -36.805584594321694,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 606.5382843070935,
+        "canvasY": 426.111235110516
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409695108367,
+          -36.805584306952156,
+          1.22
+        ]
+      },
+      "properties": {
+        "id": "0_26",
+        "camera": "Camera 27",
+        "frame": "0177",
+        "image": "pano_camera1/frame_0177_hp_preview.jpg",
+        "frameId": "3514",
+        "height": 1.22,
+        "coords2D": "2D: (-4.21, -3.88)",
+        "coords3D": "3D: (-2.91, 1.33, 1.22)",
+        "easting": 397930.14425444166,
+        "northing": 808226.3588170997,
+        "longitude": 174.7409695108367,
+        "latitude": -36.805584306952156,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 616.3343480645424,
+        "canvasY": 425.53640496337965
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74098078444922,
+          -36.80558511472084,
+          1.32
+        ]
+      },
+      "properties": {
+        "id": "0_27",
+        "camera": "Camera 28",
+        "frame": "0178",
+        "image": "pano_camera1/frame_0178_hp_preview.jpg",
+        "frameId": "3515",
+        "height": 1.32,
+        "coords2D": "2D: (-3.46, -3.81)",
+        "coords3D": "3D: (-2.47, 1.25, 1.32)",
+        "easting": 397931.15020777,
+        "northing": 808226.2694286739,
+        "longitude": 174.74098078444922,
+        "latitude": -36.80558511472084,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 634.3935951870767,
+        "canvasY": 427.14113912413535
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74098769060637,
+          -36.80559074303587,
+          1.14
+        ]
+      },
+      "properties": {
+        "id": "0_28",
+        "camera": "Camera 29",
+        "frame": "0179",
+        "image": "pano_camera1/frame_0179_hp_preview.jpg",
+        "frameId": "3516",
+        "height": 1.14,
+        "coords2D": "2D: (-3.00, -3.34)",
+        "coords3D": "3D: (-2.11, 1.20, 1.14)",
+        "easting": 397931.7665876608,
+        "northing": 808225.6450438495,
+        "longitude": 174.74098769060637,
+        "latitude": -36.80559074303587,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 645.4590755194519,
+        "canvasY": 438.3503269932946
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74098800343646,
+          -36.805594602620346,
+          0.96
+        ]
+      },
+      "properties": {
+        "id": "0_29",
+        "camera": "Camera 30",
+        "frame": "0180",
+        "image": "pano_camera1/frame_0180_hp_preview.jpg",
+        "frameId": "3517",
+        "height": 0.96,
+        "coords2D": "2D: (-2.98, -3.02)",
+        "coords3D": "3D: (-2.03, 1.21, 0.96)",
+        "easting": 397931.7946049286,
+        "northing": 808225.2167798993,
+        "longitude": 174.74098800343646,
+        "latitude": -36.805594602620346,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 645.9620518981961,
+        "canvasY": 446.0386802112435
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74098389034643,
+          -36.805598822045305,
+          0.7
+        ]
+      },
+      "properties": {
+        "id": "0_30",
+        "camera": "Camera 31",
+        "frame": "0181",
+        "image": "pano_camera1/frame_0181_hp_preview.jpg",
+        "frameId": "3518",
+        "height": 0.7,
+        "coords2D": "2D: (-3.25, -2.67)",
+        "coords3D": "3D: (-2.11, 1.26, 0.70)",
+        "easting": 397931.4277121364,
+        "northing": 808224.7484912811,
+        "longitude": 174.74098389034643,
+        "latitude": -36.805598822045305,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 639.3754564622586,
+        "canvasY": 454.4455711131129
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74097856661712,
+          -36.80560145414031,
+          0.51
+        ]
+      },
+      "properties": {
+        "id": "0_31",
+        "camera": "Camera 32",
+        "frame": "0182",
+        "image": "pano_camera1/frame_0182_hp_preview.jpg",
+        "frameId": "3519",
+        "height": 0.51,
+        "coords2D": "2D: (-3.61, -2.45)",
+        "coords3D": "3D: (-2.27, 1.30, 0.51)",
+        "easting": 397930.95275274,
+        "northing": 808224.4563112028,
+        "longitude": 174.74097856661712,
+        "latitude": -36.80560145414031,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 630.8488092797357,
+        "canvasY": 459.6908962057323
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409719860036,
+          -36.8056071038728,
+          0.15
+        ]
+      },
+      "properties": {
+        "id": "0_32",
+        "camera": "Camera 33",
+        "frame": "0183",
+        "image": "pano_camera1/frame_0183_hp_preview.jpg",
+        "frameId": "3520",
+        "height": 0.15,
+        "coords2D": "2D: (-4.05, -1.98)",
+        "coords3D": "3D: (-2.42, 1.35, 0.15)",
+        "easting": 397930.36572427256,
+        "northing": 808223.8292580672,
+        "longitude": 174.7409719860036,
+        "latitude": -36.8056071038728,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 620.3102565822356,
+        "canvasY": 470.94798658715285
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74097509506188,
+          -36.805610326760416,
+          0.03
+        ]
+      },
+      "properties": {
+        "id": "0_33",
+        "camera": "Camera 34",
+        "frame": "0184",
+        "image": "pano_camera1/frame_0184_hp_preview.jpg",
+        "frameId": "3521",
+        "height": 0.03,
+        "coords2D": "2D: (-3.84, -1.71)",
+        "coords3D": "3D: (-2.24, 1.34, 0.03)",
+        "easting": 397930.643228639,
+        "northing": 808223.4717043643,
+        "longitude": 174.74097509506188,
+        "latitude": -36.805610326760416,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 625.2921178574176,
+        "canvasY": 477.36692323017564
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74097901267044,
+          -36.80560977444614,
+          0.11
+        ]
+      },
+      "properties": {
+        "id": "0_34",
+        "camera": "Camera 35",
+        "frame": "0185",
+        "image": "pano_camera1/frame_0185_hp_preview.jpg",
+        "frameId": "3522",
+        "height": 0.11,
+        "coords2D": "2D: (-3.58, -1.76)",
+        "coords3D": "3D: (-2.11, 1.31, 0.11)",
+        "easting": 397930.9927774083,
+        "northing": 808223.5330755223,
+        "longitude": 174.74097901267044,
+        "latitude": -36.80560977444614,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 631.5673469636563,
+        "canvasY": 476.2651654481643
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74098420173746,
+          -36.80560745493426,
+          0.29
+        ]
+      },
+      "properties": {
+        "id": "0_35",
+        "camera": "Camera 36",
+        "frame": "0186",
+        "image": "pano_camera1/frame_0186_hp_preview.jpg",
+        "frameId": "3523",
+        "height": 0.29,
+        "coords2D": "2D: (-3.23, -1.95)",
+        "coords3D": "3D: (-1.95, 1.27, 0.29)",
+        "easting": 397931.4557294042,
+        "northing": 808223.7905675545,
+        "longitude": 174.74098420173746,
+        "latitude": -36.80560745493426,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 639.8784328410029,
+        "canvasY": 471.6425730149426
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74098951036277,
+          -36.805605327820444,
+          0.46
+        ]
+      },
+      "properties": {
+        "id": "0_36",
+        "camera": "Camera 37",
+        "frame": "0187",
+        "image": "pano_camera1/frame_0187_hp_preview.jpg",
+        "frameId": "3524",
+        "height": 0.46,
+        "coords2D": "2D: (-2.87, -2.13)",
+        "coords3D": "3D: (-1.78, 1.23, 0.46)",
+        "easting": 397931.92935464496,
+        "northing": 808224.0267130971,
+        "longitude": 174.74098951036277,
+        "latitude": -36.805605327820444,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 648.381128767395,
+        "canvasY": 467.4032006798119
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409971662014,
+          -36.80560406685121,
+          0.62
+        ]
+      },
+      "properties": {
+        "id": "0_37",
+        "camera": "Camera 38",
+        "frame": "0188",
+        "image": "pano_camera1/frame_0188_hp_preview.jpg",
+        "frameId": "3525",
+        "height": 0.62,
+        "coords2D": "2D: (-2.36, -2.23)",
+        "coords3D": "3D: (-1.51, 1.17, 0.62)",
+        "easting": 397932.6124423162,
+        "northing": 808224.166799436,
+        "longitude": 174.7409971662014,
+        "latitude": -36.80560406685121,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 660.6441719063043,
+        "canvasY": 464.8883187860903
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74100420787883,
+          -36.80560654505099,
+          0.59
+        ]
+      },
+      "properties": {
+        "id": "0_38",
+        "camera": "Camera 39",
+        "frame": "0189",
+        "image": "pano_camera1/frame_0189_hp_preview.jpg",
+        "frameId": "3526",
+        "height": 0.59,
+        "coords2D": "2D: (-1.89, -2.03)",
+        "coords3D": "3D: (-1.20, 1.12, 0.59)",
+        "easting": 397933.2408296075,
+        "northing": 808223.8919633807,
+        "longitude": 174.74100420787883,
+        "latitude": -36.80560654505099,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 671.9252135438555,
+        "canvasY": 469.82227754901083
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410049104884,
+          -36.80560700207845,
+          0.57
+        ]
+      },
+      "properties": {
+        "id": "0_39",
+        "camera": "Camera 40",
+        "frame": "0190",
+        "image": "pano_camera1/frame_0190_hp_preview.jpg",
+        "frameId": "3527",
+        "height": 0.57,
+        "coords2D": "2D: (-1.85, -1.99)",
+        "coords3D": "3D: (-1.17, 1.11, 0.57)",
+        "easting": 397933.303534921,
+        "northing": 808223.8412654677,
+        "longitude": 174.7410049104884,
+        "latitude": -36.80560700207845,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 673.0509225819976,
+        "canvasY": 470.7324252819767
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74100818360802,
+          -36.805611595669056,
+          0.39
+        ]
+      },
+      "properties": {
+        "id": "0_40",
+        "camera": "Camera 41",
+        "frame": "0191",
+        "image": "pano_camera1/frame_0191_hp_preview.jpg",
+        "frameId": "3528",
+        "height": 0.39,
+        "coords2D": "2D: (-1.63, -1.61)",
+        "coords3D": "3D: (-0.97, 1.08, 0.39)",
+        "easting": 397933.59571499913,
+        "northing": 808223.3316180254,
+        "longitude": 174.74100818360802,
+        "latitude": -36.805611595669056,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 678.296247674617,
+        "canvasY": 479.88180512389727
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74100694048263,
+          -36.80561858104427,
+          0.04
+        ]
+      },
+      "properties": {
+        "id": "0_41",
+        "camera": "Camera 42",
+        "frame": "0192",
+        "image": "pano_camera1/frame_0192_hp_preview.jpg",
+        "frameId": "3529",
+        "height": 0.04,
+        "coords2D": "2D: (-1.71, -1.03)",
+        "coords3D": "3D: (-0.89, 1.10, 0.04)",
+        "easting": 397933.4849800837,
+        "northing": 808222.5564736173,
+        "longitude": 174.74100694048263,
+        "latitude": -36.80561858104427,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 676.3082934157703,
+        "canvasY": 493.79748493582355
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74100281234976,
+          -36.80562310105287,
+          -0.23
+        ]
+      },
+      "properties": {
+        "id": "0_42",
+        "camera": "Camera 43",
+        "frame": "0193",
+        "image": "pano_camera1/frame_0193_hp_preview.jpg",
+        "frameId": "3530",
+        "height": -0.23,
+        "coords2D": "2D: (-1.98, -0.65)",
+        "coords3D": "3D: (-0.97, 1.14, -0.23)",
+        "easting": 397933.1167531359,
+        "northing": 808222.0548311088,
+        "longitude": 174.74100281234976,
+        "latitude": -36.80562310105287,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 669.6977467237022,
+        "canvasY": 502.80315724096005
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74099642634133,
+          -36.80562799334804,
+          -0.55
+        ]
+      },
+      "properties": {
+        "id": "0_43",
+        "camera": "Camera 44",
+        "frame": "0194",
+        "image": "pano_camera1/frame_0194_hp_preview.jpg",
+        "frameId": "3531",
+        "height": -0.55,
+        "coords2D": "2D: (-2.41, -0.24)",
+        "coords3D": "3D: (-1.13, 1.20, -0.55)",
+        "easting": 397932.5470686914,
+        "northing": 808221.5118297763,
+        "longitude": 174.74099642634133,
+        "latitude": -36.80562799334804,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 659.4705603559008,
+        "canvasY": 512.5513184861477
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409923133768,
+          -36.80563179195296,
+          -0.78
+        ]
+      },
+      "properties": {
+        "id": "0_44",
+        "camera": "Camera 45",
+        "frame": "0195",
+        "image": "pano_camera1/frame_0195_hp_preview.jpg",
+        "frameId": "3532",
+        "height": -0.78,
+        "coords2D": "2D: (-2.69, 0.07)",
+        "coords3D": "3D: (-1.22, 1.23, -0.78)",
+        "easting": 397932.18017589924,
+        "northing": 808221.0902366043,
+        "longitude": 174.7409923133768,
+        "latitude": -36.80563179195296,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 652.8839649199633,
+        "canvasY": 520.1199154234432
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74099220751302,
+          -36.8056357716902,
+          -0.97
+        ]
+      },
+      "properties": {
+        "id": "0_45",
+        "camera": "Camera 46",
+        "frame": "0196",
+        "image": "pano_camera1/frame_0196_hp_preview.jpg",
+        "frameId": "3533",
+        "height": -0.97,
+        "coords2D": "2D: (-2.69, 0.40)",
+        "coords3D": "3D: (-1.15, 1.25, -0.97)",
+        "easting": 397932.17083680996,
+        "northing": 808220.6486310981,
+        "longitude": 174.74099220751302,
+        "latitude": -36.8056357716902,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 652.7163061270485,
+        "canvasY": 528.047781202699
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409957039687,
+          -36.80564350344185,
+          -1.3
+        ]
+      },
+      "properties": {
+        "id": "0_46",
+        "camera": "Camera 47",
+        "frame": "0197",
+        "image": "pano_camera1/frame_0197_hp_preview.jpg",
+        "frameId": "3534",
+        "height": -1.3,
+        "coords2D": "2D: (-2.46, 1.05)",
+        "coords3D": "3D: (-0.88, 1.23, -1.30)",
+        "easting": 397932.48302922223,
+        "northing": 808219.7907690422,
+        "longitude": 174.7409957039687,
+        "latitude": -36.80564350344185,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 658.3209000616281,
+        "canvasY": 543.4484388947275
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74100317689872,
+          -36.805653821007006,
+          -1.7
+        ]
+      },
+      "properties": {
+        "id": "0_47",
+        "camera": "Camera 48",
+        "frame": "0198",
+        "image": "pano_camera1/frame_0198_hp_preview.jpg",
+        "frameId": "3535",
+        "height": -1.7,
+        "coords2D": "2D: (-1.96, 1.90)",
+        "coords3D": "3D: (-0.43, 1.17, -1.70)",
+        "easting": 397933.15010702616,
+        "northing": 808218.6460635307,
+        "longitude": 174.74100317689872,
+        "latitude": -36.805653821007006,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 670.2965281269692,
+        "canvasY": 563.9986166548528
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410053589893,
+          -36.805656851338256,
+          -1.82
+        ]
+      },
+      "properties": {
+        "id": "0_48",
+        "camera": "Camera 49",
+        "frame": "0199",
+        "image": "pano_camera1/frame_0199_hp_preview.jpg",
+        "frameId": "3536",
+        "height": -1.82,
+        "coords2D": "2D: (-1.81, 2.16)",
+        "coords3D": "3D: (-0.29, 1.15, -1.82)",
+        "easting": 397933.34489374486,
+        "northing": 808218.3098563176,
+        "longitude": 174.7410053589893,
+        "latitude": -36.805656851338256,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 673.7934115220487,
+        "canvasY": 570.0343331997847
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74101851299895,
+          -36.80566953862585,
+          -2.26
+        ]
+      },
+      "properties": {
+        "id": "0_49",
+        "camera": "Camera 50",
+        "frame": "0200",
+        "image": "pano_camera1/frame_0200_hp_preview.jpg",
+        "frameId": "3537",
+        "height": -2.26,
+        "coords2D": "2D: (-0.93, 3.21)",
+        "coords3D": "3D: (0.42, 1.03, -2.26)",
+        "easting": 397934.5189506798,
+        "northing": 808216.9023221512,
+        "longitude": 174.74101851299895,
+        "latitude": -36.80566953862585,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 694.870516917049,
+        "canvasY": 595.3029084176542
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74101809375443,
+          -36.80567148634114,
+          -2.36
+        ]
+      },
+      "properties": {
+        "id": "0_50",
+        "camera": "Camera 51",
+        "frame": "0201",
+        "image": "pano_camera1/frame_0201_hp_preview.jpg",
+        "frameId": "3538",
+        "height": -2.36,
+        "coords2D": "2D: (-0.96, 3.37)",
+        "coords3D": "3D: (0.42, 1.00, -2.36)",
+        "easting": 397934.4815943228,
+        "northing": 808216.6861889428,
+        "longitude": 174.74101809375443,
+        "latitude": -36.80567148634114,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 694.1998817453899,
+        "canvasY": 599.1830119108247
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74102321462772,
+          -36.80564735629852,
+          -1.14
+        ]
+      },
+      "properties": {
+        "id": "0_51",
+        "camera": "Camera 52",
+        "frame": "0226",
+        "image": "pano_camera1/frame_0226_hp_preview.jpg",
+        "frameId": "3563",
+        "height": -1.14,
+        "coords2D": "2D: (-0.62, 1.37)",
+        "coords3D": "3D: (0.22, 1.01, -1.14)",
+        "easting": 397934.93787554064,
+        "northing": 808219.3638392477,
+        "longitude": 174.74102321462772,
+        "latitude": -36.80564735629852,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 702.3912113420831,
+        "canvasY": 551.1128408565457
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410425097641,
+          -36.805624214934284,
+          0.22
+        ]
+      },
+      "properties": {
+        "id": "0_52",
+        "camera": "Camera 53",
+        "frame": "0240",
+        "image": "pano_camera1/frame_0240_hp_preview.jpg",
+        "frameId": "3577",
+        "height": 0.22,
+        "coords2D": "2D: (0.67, -0.56)",
+        "coords3D": "3D: (0.55, 0.84, 0.22)",
+        "easting": 397936.65893627476,
+        "northing": 808221.9320887928,
+        "longitude": 174.7410425097641,
+        "latitude": -36.805624214934284,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 733.288331750663,
+        "canvasY": 505.00667280498277
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74104237559678,
+          -36.80562288030661,
+          0.28
+        ]
+      },
+      "properties": {
+        "id": "0_53",
+        "camera": "Camera 54",
+        "frame": "0241",
+        "image": "pano_camera1/frame_0241_hp_preview.jpg",
+        "frameId": "3578",
+        "height": 0.28,
+        "coords2D": "2D: (0.66, -0.67)",
+        "coords3D": "3D: (0.53, 0.84, 0.28)",
+        "easting": 397936.6469288743,
+        "northing": 808222.0801800654,
+        "longitude": 174.74104237559678,
+        "latitude": -36.80562288030661,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 733.0727704454869,
+        "canvasY": 502.3480833744771
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74104587592475,
+          -36.80561774697926,
+          0.58
+        ]
+      },
+      "properties": {
+        "id": "0_54",
+        "camera": "Camera 55",
+        "frame": "0242",
+        "image": "pano_camera1/frame_0242_hp_preview.jpg",
+        "frameId": "3579",
+        "height": 0.58,
+        "coords2D": "2D: (0.89, -1.10)",
+        "coords3D": "3D: (0.57, 0.82, 0.58)",
+        "easting": 397936.9591212865,
+        "northing": 808222.6498645098,
+        "longitude": 174.74104587592475,
+        "latitude": -36.80561774697926,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 738.6773643800665,
+        "canvasY": 492.1208970066758
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74104358929569,
+          -36.8056142958081,
+          0.71
+        ]
+      },
+      "properties": {
+        "id": "0_55",
+        "camera": "Camera 56",
+        "frame": "0243",
+        "image": "pano_camera1/frame_0243_hp_preview.jpg",
+        "frameId": "3580",
+        "height": 0.71,
+        "coords2D": "2D: (0.74, -1.38)",
+        "coords3D": "3D: (0.43, 0.83, 0.71)",
+        "easting": 397936.75499547855,
+        "northing": 808223.0327671693,
+        "longitude": 174.74104358929569,
+        "latitude": -36.8056142958081,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 735.0128221920721,
+        "canvasY": 485.24688649717007
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74103835614758,
+          -36.805614042298345,
+          0.66
+        ]
+      },
+      "properties": {
+        "id": "0_56",
+        "camera": "Camera 57",
+        "frame": "0244",
+        "image": "pano_camera1/frame_0244_hp_preview.jpg",
+        "frameId": "3581",
+        "height": 0.66,
+        "coords2D": "2D: (0.39, -1.41)",
+        "coords3D": "3D: (0.23, 0.88, 0.66)",
+        "easting": 397936.2880410158,
+        "northing": 808223.0607844371,
+        "longitude": 174.74103835614758,
+        "latitude": -36.805614042298345,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 726.6298825463334,
+        "canvasY": 484.74391011842573
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410358892443,
+          -36.80561341659982,
+          0.66
+        ]
+      },
+      "properties": {
+        "id": "0_57",
+        "camera": "Camera 58",
+        "frame": "0245",
+        "image": "pano_camera1/frame_0245_hp_preview.jpg",
+        "frameId": "3582",
+        "height": 0.66,
+        "coords2D": "2D: (0.23, -1.46)",
+        "coords3D": "3D: (0.12, 0.90, 0.66)",
+        "easting": 397936.0679053405,
+        "northing": 808223.1301605287,
+        "longitude": 174.7410358892443,
+        "latitude": -36.80561341659982,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 722.6779252847708,
+        "canvasY": 483.49844479963025
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410294604517,
+          -36.80561143148209,
+          0.67
+        ]
+      },
+      "properties": {
+        "id": "0_58",
+        "camera": "Camera 59",
+        "frame": "0246",
+        "image": "pano_camera1/frame_0246_hp_preview.jpg",
+        "frameId": "3583",
+        "height": 0.67,
+        "coords2D": "2D: (-0.20, -1.62)",
+        "coords3D": "3D: (-0.15, 0.97, 0.67)",
+        "easting": 397935.49421842914,
+        "northing": 808223.350296204,
+        "longitude": 174.7410294604517,
+        "latitude": -36.80561143148209,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 712.3788851485776,
+        "canvasY": 479.5464875380677
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410261257968,
+          -36.80561257305989,
+          0.57
+        ]
+      },
+      "properties": {
+        "id": "0_59",
+        "camera": "Camera 60",
+        "frame": "0247",
+        "image": "pano_camera1/frame_0247_hp_preview.jpg",
+        "frameId": "3584",
+        "height": 0.57,
+        "coords2D": "2D: (-0.43, -1.53)",
+        "coords3D": "3D: (-0.26, 0.99, 0.57)",
+        "easting": 397935.19670172856,
+        "northing": 808223.2235514212,
+        "longitude": 174.7410261257968,
+        "latitude": -36.80561257305989,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 707.0377550314355,
+        "canvasY": 481.8218568704825
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74101872518526,
+          -36.80561037133062,
+          0.58
+        ]
+      },
+      "properties": {
+        "id": "0_60",
+        "camera": "Camera 61",
+        "frame": "0248",
+        "image": "pano_camera1/frame_0248_hp_preview.jpg",
+        "frameId": "3585",
+        "height": 0.58,
+        "coords2D": "2D: (-0.92, -1.71)",
+        "coords3D": "3D: (-0.58, 1.04, 0.58)",
+        "easting": 397934.5362947027,
+        "northing": 808223.4677018975,
+        "longitude": 174.74101872518526,
+        "latitude": -36.80561037133062,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 695.1818832467478,
+        "canvasY": 477.43877699856773
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74101791791833,
+          -36.80560989023597,
+          0.6
+        ]
+      },
+      "properties": {
+        "id": "0_61",
+        "camera": "Camera 62",
+        "frame": "0249",
+        "image": "pano_camera1/frame_0249_hp_preview.jpg",
+        "frameId": "3586",
+        "height": 0.6,
+        "coords2D": "2D: (-0.97, -1.75)",
+        "coords3D": "3D: (-0.61, 1.05, 0.60)",
+        "easting": 397934.46425029985,
+        "northing": 808223.5210681218,
+        "longitude": 174.74101791791833,
+        "latitude": -36.80560989023597,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 693.888515415691,
+        "canvasY": 476.48072675334043
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74100440444658,
+          -36.805599270909475,
+          0.94
+        ]
+      },
+      "properties": {
+        "id": "0_62",
+        "camera": "Camera 63",
+        "frame": "0250",
+        "image": "pano_camera1/frame_0250_hp_preview.jpg",
+        "frameId": "3587",
+        "height": 0.94,
+        "coords2D": "2D: (-1.88, -2.63)",
+        "coords3D": "3D: (-1.31, 1.13, 0.94)",
+        "easting": 397933.2581736304,
+        "northing": 808224.6991275235,
+        "longitude": 174.74100440444658,
+        "latitude": -36.805599270909475,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 672.2365798735544,
+        "canvasY": 455.3317675899482
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410041802308,
+          -36.80559905444392,
+          0.94
+        ]
+      },
+      "properties": {
+        "id": "0_63",
+        "camera": "Camera 64",
+        "frame": "0251",
+        "image": "pano_camera1/frame_0251_hp_preview.jpg",
+        "frameId": "3588",
+        "height": 0.94,
+        "coords2D": "2D: (-1.89, -2.65)",
+        "coords3D": "3D: (-1.32, 1.14, 0.94)",
+        "easting": 397933.23816129623,
+        "northing": 808224.7231423245,
+        "longitude": 174.7410041802308,
+        "latitude": -36.80559905444392,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 671.8773110315942,
+        "canvasY": 454.9006449795959
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74099838150968,
+          -36.805590155970535,
+          1.3
+        ]
+      },
+      "properties": {
+        "id": "0_64",
+        "camera": "Camera 65",
+        "frame": "0252",
+        "image": "pano_camera1/frame_0252_hp_preview.jpg",
+        "frameId": "3589",
+        "height": 1.3,
+        "coords2D": "2D: (-2.28, -3.39)",
+        "coords3D": "3D: (-1.70, 1.16, 1.30)",
+        "easting": 397932.72050892044,
+        "northing": 808225.7104174743,
+        "longitude": 174.74099838150968,
+        "latitude": -36.805590155970535,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 662.5842236528895,
+        "canvasY": 437.1767154428911
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409967699289,
+          -36.80557939467982,
+          1.8
+        ]
+      },
+      "properties": {
+        "id": "0_65",
+        "camera": "Camera 66",
+        "frame": "0253",
+        "image": "pano_camera1/frame_0253_hp_preview.jpg",
+        "frameId": "3590",
+        "height": 1.8,
+        "coords2D": "2D: (-2.39, -4.29)",
+        "coords3D": "3D: (-1.96, 1.14, 1.80)",
+        "easting": 397932.5764201148,
+        "northing": 808226.9044867433,
+        "longitude": 174.7409967699289,
+        "latitude": -36.80557939467982,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 659.9974879907759,
+        "canvasY": 415.7403412059307
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410045765891,
+          -36.80557380530189,
+          2.17
+        ]
+      },
+      "properties": {
+        "id": "0_66",
+        "camera": "Camera 67",
+        "frame": "0254",
+        "image": "pano_camera1/frame_0254_hp_preview.jpg",
+        "frameId": "3591",
+        "height": 2.17,
+        "coords2D": "2D: (-1.87, -4.75)",
+        "coords3D": "3D: (-1.76, 1.07, 2.17)",
+        "easting": 397933.272849342,
+        "northing": 808227.5248691009,
+        "longitude": 174.7410045765891,
+        "latitude": -36.80557380530189,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 672.5000436909919,
+        "canvasY": 404.6030071051635
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74100562323696,
+          -36.805573793482274,
+          2.18
+        ]
+      },
+      "properties": {
+        "id": "0_67",
+        "camera": "Camera 68",
+        "frame": "0255",
+        "image": "pano_camera1/frame_0255_hp_preview.jpg",
+        "frameId": "3592",
+        "height": 2.18,
+        "coords2D": "2D: (-1.80, -4.75)",
+        "coords3D": "3D: (-1.72, 1.06, 2.18)",
+        "easting": 397933.3662402346,
+        "northing": 808227.5262032566,
+        "longitude": 174.74100562323696,
+        "latitude": -36.805573793482274,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 674.1766316201397,
+        "canvasY": 404.57905584903284
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74101492097554,
+          -36.805581911113066,
+          1.91
+        ]
+      },
+      "properties": {
+        "id": "0_68",
+        "camera": "Camera 69",
+        "frame": "0256",
+        "image": "pano_camera1/frame_0256_hp_preview.jpg",
+        "frameId": "3593",
+        "height": 1.91,
+        "coords2D": "2D: (-1.18, -4.08)",
+        "coords3D": "3D: (-1.24, 0.97, 1.91)",
+        "easting": 397934.1960850227,
+        "northing": 808226.6256482212,
+        "longitude": 174.74101492097554,
+        "latitude": -36.805581911113066,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 689.0743129334239,
+        "canvasY": 420.7461537372432
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74101780548222,
+          -36.805586035713695,
+          1.75
+        ]
+      },
+      "properties": {
+        "id": "0_69",
+        "camera": "Camera 70",
+        "frame": "0257",
+        "image": "pano_camera1/frame_0257_hp_preview.jpg",
+        "frameId": "3594",
+        "height": 1.75,
+        "coords2D": "2D: (-0.98, -3.73)",
+        "coords3D": "3D: (-1.10, 0.83, 1.75)",
+        "easting": 397934.453577055,
+        "northing": 808226.1680328478,
+        "longitude": 174.74101780548222,
+        "latitude": -36.805586035713695,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 693.6969053666455,
+        "canvasY": 428.9614345900672
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74101898618855,
+          -36.80558771922479,
+          1.69
+        ]
+      },
+      "properties": {
+        "id": "0_70",
+        "camera": "Camera 71",
+        "frame": "0258",
+        "image": "pano_camera1/frame_0258_hp_preview.jpg",
+        "frameId": "3595",
+        "height": 1.69,
+        "coords2D": "2D: (-0.90, -3.59)",
+        "coords3D": "3D: (-1.05, 0.74, 1.69)",
+        "easting": 397934.558975348,
+        "northing": 808225.9812510627,
+        "longitude": 174.74101898618855,
+        "latitude": -36.80558771922479,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 695.5890546009695,
+        "canvasY": 432.31461044836266
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74102065996567,
+          -36.80559055708185,
+          1.58
+        ]
+      },
+      "properties": {
+        "id": "0_71",
+        "camera": "Camera 72",
+        "frame": "0259",
+        "image": "pano_camera1/frame_0259_hp_preview.jpg",
+        "frameId": "3596",
+        "height": 1.58,
+        "coords2D": "2D: (-0.79, -3.36)",
+        "coords3D": "3D: (-0.96, 0.66, 1.58)",
+        "easting": 397934.7084007761,
+        "northing": 808225.6663903393,
+        "longitude": 174.74102065996567,
+        "latitude": -36.80559055708185,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 698.2715952876058,
+        "canvasY": 437.96710689520364
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74102475485213,
+          -36.805597134699134,
+          1.33
+        ]
+      },
+      "properties": {
+        "id": "0_72",
+        "camera": "Camera 73",
+        "frame": "0260",
+        "image": "pano_camera1/frame_0260_hp_preview.jpg",
+        "frameId": "3597",
+        "height": 1.33,
+        "coords2D": "2D: (-0.52, -2.81)",
+        "coords3D": "3D: (-0.77, 0.40, 1.33)",
+        "easting": 397935.07395941264,
+        "northing": 808224.9366072217,
+        "longitude": 174.74102475485213,
+        "latitude": -36.805597134699134,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 704.8342394674128,
+        "canvasY": 451.06844399868675
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74102481461696,
+          -36.805597278992025,
+          1.32
+        ]
+      },
+      "properties": {
+        "id": "0_73",
+        "camera": "Camera 74",
+        "frame": "0261",
+        "image": "pano_camera1/frame_0261_hp_preview.jpg",
+        "frameId": "3598",
+        "height": 1.32,
+        "coords2D": "2D: (-0.51, -2.80)",
+        "coords3D": "3D: (-0.77, 0.40, 1.32)",
+        "easting": 397935.0792960351,
+        "northing": 808224.9205973544,
+        "longitude": 174.74102481461696,
+        "latitude": -36.805597278992025,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 704.9300444919354,
+        "canvasY": 451.35585907225493
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74102974684521,
+          -36.805603772607995,
+          1.08
+        ]
+      },
+      "properties": {
+        "id": "0_74",
+        "camera": "Camera 75",
+        "frame": "0262",
+        "image": "pano_camera1/frame_0262_hp_preview.jpg",
+        "frameId": "3599",
+        "height": 1.08,
+        "coords2D": "2D: (-0.18, -2.26)",
+        "coords3D": "3D: (-0.55, 0.12, 1.08)",
+        "easting": 397935.51956738567,
+        "northing": 808224.2001533262,
+        "longitude": 174.74102974684521,
+        "latitude": -36.805603772607995,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 712.8339590150605,
+        "canvasY": 464.28953738282326
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74103000097608,
+          -36.805603953009005,
+          1.08
+        ]
+      },
+      "properties": {
+        "id": "0_75",
+        "camera": "Camera 76",
+        "frame": "0263",
+        "image": "pano_camera1/frame_0263_hp_preview.jpg",
+        "frameId": "3600",
+        "height": 1.08,
+        "coords2D": "2D: (-0.17, -2.24)",
+        "coords3D": "3D: (-0.54, 0.11, 1.08)",
+        "easting": 397935.542248031,
+        "northing": 808224.180140992,
+        "longitude": 174.74103000097608,
+        "latitude": -36.805603953009005,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 713.2411303692821,
+        "canvasY": 464.64880622478347
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74103246703987,
+          -36.80560736814502,
+          0.95
+        ]
+      },
+      "properties": {
+        "id": "0_76",
+        "camera": "Camera 77",
+        "frame": "0264",
+        "image": "pano_camera1/frame_0264_hp_preview.jpg",
+        "frameId": "3601",
+        "height": 0.95,
+        "coords2D": "2D: (-0.00, -1.96)",
+        "coords3D": "3D: (-0.43, -0.05, 0.95)",
+        "easting": 397935.7623837063,
+        "northing": 808223.8012407995,
+        "longitude": 174.74103246703987,
+        "latitude": -36.80560736814502,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 717.1930876308447,
+        "canvasY": 471.4509629658972
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410361736446,
+          -36.80561238263948,
+          0.77
+        ]
+      },
+      "properties": {
+        "id": "0_77",
+        "camera": "Camera 78",
+        "frame": "0265",
+        "image": "pano_camera1/frame_0265_hp_preview.jpg",
+        "frameId": "3602",
+        "height": 0.77,
+        "coords2D": "2D: (0.25, -1.54)",
+        "coords3D": "3D: (-0.27, -0.24, 0.77)",
+        "easting": 397936.09325429704,
+        "northing": 808223.244897911,
+        "longitude": 174.7410361736446,
+        "latitude": -36.80561238263948,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 723.1329991512538,
+        "canvasY": 481.43863677239165
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410368449978,
+          -36.805617336426366,
+          0.54
+        ]
+      },
+      "properties": {
+        "id": "0_78",
+        "camera": "Camera 79",
+        "frame": "0266",
+        "image": "pano_camera1/frame_0266_hp_preview.jpg",
+        "frameId": "3603",
+        "height": 0.54,
+        "coords2D": "2D: (0.29, -1.13)",
+        "coords3D": "3D: (-0.20, -0.37, 0.54)",
+        "easting": 397936.1532912994,
+        "northing": 808222.6952258005,
+        "longitude": 174.7410368449978,
+        "latitude": -36.805617336426366,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 724.2108056771345,
+        "canvasY": 491.30655429823264
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74103599144246,
+          -36.805621616604185,
+          0.33
+        ]
+      },
+      "properties": {
+        "id": "0_79",
+        "camera": "Camera 80",
+        "frame": "0267",
+        "image": "pano_camera1/frame_0267_hp_preview.jpg",
+        "frameId": "3604",
+        "height": 0.33,
+        "coords2D": "2D: (0.23, -0.78)",
+        "coords3D": "3D: (-0.18, -0.43, 0.33)",
+        "easting": 397936.07724442973,
+        "northing": 808222.2202664041,
+        "longitude": 174.74103599144246,
+        "latitude": -36.805621616604185,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 722.8455840776857,
+        "canvasY": 499.83320148075546
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74103024865383,
+          -36.80562558322157,
+          0.07
+        ]
+      },
+      "properties": {
+        "id": "0_80",
+        "camera": "Camera 81",
+        "frame": "0268",
+        "image": "pano_camera1/frame_0268_hp_preview.jpg",
+        "frameId": "3605",
+        "height": 0.07,
+        "coords2D": "2D: (-0.15, -0.44)",
+        "coords3D": "3D: (-0.33, -0.38, 0.07)",
+        "easting": 397935.56492867635,
+        "northing": 808221.7799950535,
+        "longitude": 174.74103024865383,
+        "latitude": -36.80562558322157,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 713.6483017235038,
+        "canvasY": 507.73711600388054
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410198999643,
+          -36.80563174923142,
+          -0.36
+        ]
+      },
+      "properties": {
+        "id": "0_81",
+        "camera": "Camera 82",
+        "frame": "0269",
+        "image": "pano_camera1/frame_0269_hp_preview.jpg",
+        "frameId": "3606",
+        "height": -0.36,
+        "coords2D": "2D: (-0.84, 0.07)",
+        "coords3D": "3D: (-0.62, -0.30, -0.36)",
+        "easting": 397934.64169299573,
+        "northing": 808221.0955732267,
+        "longitude": 174.7410198999643,
+        "latitude": -36.80563174923142,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 697.0740324810718,
+        "canvasY": 520.0241103989205
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74101487528625,
+          -36.80563434531592,
+          -0.55
+        ]
+      },
+      "properties": {
+        "id": "0_82",
+        "camera": "Camera 83",
+        "frame": "0270",
+        "image": "pano_camera1/frame_0270_hp_preview.jpg",
+        "frameId": "3607",
+        "height": -0.55,
+        "coords2D": "2D: (-1.18, 0.28)",
+        "coords3D": "3D: (-0.77, -0.28, -0.55)",
+        "easting": 397934.19341671147,
+        "northing": 808220.8073956154,
+        "longitude": 174.74101487528625,
+        "latitude": -36.80563434531592,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 689.0264104211626,
+        "canvasY": 525.1975817231478
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74100499072057,
+          -36.80563847945386,
+          -0.87
+        ]
+      },
+      "properties": {
+        "id": "0_83",
+        "camera": "Camera 84",
+        "frame": "0271",
+        "image": "pano_camera1/frame_0271_hp_preview.jpg",
+        "frameId": "3608",
+        "height": -0.87,
+        "coords2D": "2D: (-1.84, 0.63)",
+        "coords3D": "3D: (-1.07, -0.20, -0.87)",
+        "easting": 397933.3115398547,
+        "northing": 808220.3484460863,
+        "longitude": 174.74100499072057,
+        "latitude": -36.80563847945386,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 673.1946301187817,
+        "canvasY": 533.4368138321024
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74099583884893,
+          -36.80564246945249,
+          -1.18
+        ]
+      },
+      "properties": {
+        "id": "0_84",
+        "camera": "Camera 85",
+        "frame": "0272",
+        "image": "pano_camera1/frame_0272_hp_preview.jpg",
+        "frameId": "3609",
+        "height": -1.18,
+        "coords2D": "2D: (-2.45, 0.96)",
+        "coords3D": "3D: (-1.35, -0.13, -1.18)",
+        "easting": 397932.4950366227,
+        "northing": 808219.9055064245,
+        "longitude": 174.74099583884893,
+        "latitude": -36.80564246945249,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 658.5364613668042,
+        "canvasY": 541.3886308674888
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74099090393614,
+          -36.8056448852019,
+          -1.36
+        ]
+      },
+      "properties": {
+        "id": "0_85",
+        "camera": "Camera 86",
+        "frame": "0273",
+        "image": "pano_camera1/frame_0273_hp_preview.jpg",
+        "frameId": "3610",
+        "height": -1.36,
+        "coords2D": "2D: (-2.78, 1.16)",
+        "coords3D": "3D: (-1.50, -0.10, -1.36)",
+        "easting": 397932.05476527207,
+        "northing": 808219.6373411473,
+        "longitude": 174.74099090393614,
+        "latitude": -36.8056448852019,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 650.6325468436792,
+        "canvasY": 546.202833349756
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74097499276044,
+          -36.80565207211594,
+          -1.91
+        ]
+      },
+      "properties": {
+        "id": "0_86",
+        "camera": "Camera 87",
+        "frame": "0274",
+        "image": "pano_camera1/frame_0274_hp_preview.jpg",
+        "frameId": "3611",
+        "height": -1.91,
+        "coords2D": "2D: (-3.84, 1.76)",
+        "coords3D": "3D: (-1.98, 0.03, -1.91)",
+        "easting": 397930.6352237053,
+        "northing": 808218.8395160938,
+        "longitude": 174.74097499276044,
+        "latitude": -36.80565207211594,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 625.1484103206335,
+        "canvasY": 560.5256845159039
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74097339259822,
+          -36.8056530336789,
+          -1.98
+        ]
+      },
+      "properties": {
+        "id": "0_87",
+        "camera": "Camera 88",
+        "frame": "0275",
+        "image": "pano_camera1/frame_0275_hp_preview.jpg",
+        "frameId": "3612",
+        "height": -1.98,
+        "coords2D": "2D: (-3.95, 1.84)",
+        "coords3D": "3D: (-2.03, 0.04, -1.98)",
+        "easting": 397930.4924690553,
+        "northing": 808218.7327836453,
+        "longitude": 174.74097339259822,
+        "latitude": -36.8056530336789,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 622.5856259146504,
+        "canvasY": 562.4417850063584
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74096062169656,
+          -36.80565909100025,
+          -2.43
+        ]
+      },
+      "properties": {
+        "id": "0_88",
+        "camera": "Camera 89",
+        "frame": "0276",
+        "image": "pano_camera1/frame_0276_hp_preview.jpg",
+        "frameId": "3613",
+        "height": -2.43,
+        "coords2D": "2D: (-4.81, 2.34)",
+        "coords3D": "3D: (-2.41, 0.13, -2.43)",
+        "easting": 397929.3531001662,
+        "northing": 808218.0603692188,
+        "longitude": 174.74096062169656,
+        "latitude": -36.80565909100025,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 602.1312531790479,
+        "canvasY": 574.5132180962222
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409568082709,
+          -36.805661230427994,
+          -2.58
+        ]
+      },
+      "properties": {
+        "id": "0_89",
+        "camera": "Camera 90",
+        "frame": "0277",
+        "image": "pano_camera1/frame_0277_hp_preview.jpg",
+        "frameId": "3614",
+        "height": -2.58,
+        "coords2D": "2D: (-5.06, 2.52)",
+        "coords3D": "3D: (-2.52, 0.16, -2.58)",
+        "easting": 397929.0128904862,
+        "northing": 808217.8228895207,
+        "longitude": 174.7409568082709,
+        "latitude": -36.805661230427994,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 596.023682865724,
+        "canvasY": 578.7765416874836
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74094524823084,
+          -36.80566812962459,
+          -3.06
+        ]
+      },
+      "properties": {
+        "id": "0_90",
+        "camera": "Camera 91",
+        "frame": "0278",
+        "image": "pano_camera1/frame_0278_hp_preview.jpg",
+        "frameId": "3615",
+        "height": -3.06,
+        "coords2D": "2D: (-5.83, 3.09)",
+        "coords3D": "3D: (-2.85, 0.23, -3.06)",
+        "easting": 397927.98158820136,
+        "northing": 808217.0570842017,
+        "longitude": 174.74094524823084,
+        "latitude": -36.80566812962459,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 577.5093618767069,
+        "canvasY": 592.5245627064951
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74093886287957,
+          -36.80567082162769,
+          -3.27
+        ]
+      },
+      "properties": {
+        "id": "0_91",
+        "camera": "Camera 92",
+        "frame": "0279",
+        "image": "pano_camera1/frame_0279_hp_preview.jpg",
+        "frameId": "3616",
+        "height": -3.27,
+        "coords2D": "2D: (-6.26, 3.32)",
+        "coords3D": "3D: (-3.04, 0.29, -3.27)",
+        "easting": 397927.4119037568,
+        "northing": 808216.7582333456,
+        "longitude": 174.74093886287957,
+        "latitude": -36.80567082162769,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 567.2821755089055,
+        "canvasY": 597.8896440797679
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74092290651035,
+          -36.80567909063529,
+          -3.87
+        ]
+      },
+      "properties": {
+        "id": "0_92",
+        "camera": "Camera 93",
+        "frame": "0280",
+        "image": "pano_camera1/frame_0280_hp_preview.jpg",
+        "frameId": "3617",
+        "height": -3.87,
+        "coords2D": "2D: (-7.33, 4.01)",
+        "coords3D": "3D: (-3.51, 0.41, -3.87)",
+        "easting": 397925.98835972324,
+        "northing": 808215.8403342874,
+        "longitude": 174.74092290651035,
+        "latitude": -36.80567909063529,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 541.7261852174678,
+        "canvasY": 614.3681082976772
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74091987084532,
+          -36.805680388573215,
+          -3.97
+        ]
+      },
+      "properties": {
+        "id": "0_93",
+        "camera": "Camera 94",
+        "frame": "0281",
+        "image": "pano_camera1/frame_0281_hp_preview.jpg",
+        "frameId": "3618",
+        "height": -3.97,
+        "coords2D": "2D: (-7.53, 4.11)",
+        "coords3D": "3D: (-3.60, 0.43, -3.97)",
+        "easting": 397925.7175261348,
+        "northing": 808215.6962454817,
+        "longitude": 174.74091987084532,
+        "latitude": -36.805680388573215,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 536.8640802229393,
+        "canvasY": 616.9548439597909
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74091562367624,
+          -36.80568296075861,
+          -4.15
+        ]
+      },
+      "properties": {
+        "id": "0_94",
+        "camera": "Camera 95",
+        "frame": "0282",
+        "image": "pano_camera1/frame_0282_hp_preview.jpg",
+        "frameId": "3619",
+        "height": -4.15,
+        "coords2D": "2D: (-7.81, 4.33)",
+        "coords3D": "3D: (-3.71, 0.47, -4.15)",
+        "easting": 397925.3386259422,
+        "northing": 808215.4107361817,
+        "longitude": 174.74091562367624,
+        "latitude": -36.80568296075861,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 530.0619234818256,
+        "canvasY": 622.0804127717568
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74091288612914,
+          -36.80568731270776,
+          -4.39
+        ]
+      },
+      "properties": {
+        "id": "0_95",
+        "camera": "Camera 96",
+        "frame": "0283",
+        "image": "pano_camera1/frame_0283_hp_preview.jpg",
+        "frameId": "3620",
+        "height": -4.39,
+        "coords2D": "2D: (-8.00, 4.69)",
+        "coords3D": "3D: (-3.74, 0.50, -4.39)",
+        "easting": 397925.09447546594,
+        "northing": 808214.9277718517,
+        "longitude": 174.74091288612914,
+        "latitude": -36.80568731270776,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 525.6788436099107,
+        "canvasY": 630.7507674910637
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409157993861,
+          -36.8056952487461,
+          -4.74
+        ]
+      },
+      "properties": {
+        "id": "0_96",
+        "camera": "Camera 97",
+        "frame": "0284",
+        "image": "pano_camera1/frame_0284_hp_preview.jpg",
+        "frameId": "3621",
+        "height": -4.74,
+        "coords2D": "2D: (-7.80, 5.35)",
+        "coords3D": "3D: (-3.49, 0.49, -4.74)",
+        "easting": 397925.3546358095,
+        "northing": 808214.0472291504,
+        "longitude": 174.7409157993861,
+        "latitude": -36.8056952487461,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 530.3493385553938,
+        "canvasY": 646.5585965373139
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74091660662054,
+          -36.80569583805236,
+          -4.76
+        ]
+      },
+      "properties": {
+        "id": "0_97",
+        "camera": "Camera 98",
+        "frame": "0285",
+        "image": "pano_camera1/frame_0285_hp_preview.jpg",
+        "frameId": "3622",
+        "height": -4.76,
+        "coords2D": "2D: (-7.75, 5.40)",
+        "coords3D": "3D: (-3.45, 0.49, -4.76)",
+        "easting": 397925.4266802123,
+        "northing": 808213.9818555256,
+        "longitude": 174.74091660662054,
+        "latitude": -36.80569583805236,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 531.6427063864506,
+        "canvasY": 647.7322080877173
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74092204778017,
+          -36.80570046813938,
+          -4.91
+        ]
+      },
+      "properties": {
+        "id": "0_98",
+        "camera": "Camera 99",
+        "frame": "0286",
+        "image": "pano_camera1/frame_0286_hp_preview.jpg",
+        "frameId": "3623",
+        "height": -4.91,
+        "coords2D": "2D: (-7.38, 5.78)",
+        "coords3D": "3D: (-3.16, 0.45, -4.91)",
+        "easting": 397925.91231285356,
+        "northing": 808213.4682056167,
+        "longitude": 174.74092204778017,
+        "latitude": -36.80570046813938,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 540.3609636180189,
+        "canvasY": 656.9534416980299
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74092692194932,
+          -36.805701166451286,
+          -4.88
+        ]
+      },
+      "properties": {
+        "id": "0_99",
+        "camera": "Camera 100",
+        "frame": "0287",
+        "image": "pano_camera1/frame_0287_hp_preview.jpg",
+        "frameId": "3624",
+        "height": -4.88,
+        "coords2D": "2D: (-7.06, 5.84)",
+        "coords3D": "3D: (-2.97, 0.40, -4.88)",
+        "easting": 397926.34724758175,
+        "northing": 808213.3908245914,
+        "longitude": 174.74092692194932,
+        "latitude": -36.805701166451286,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 548.1690731166212,
+        "canvasY": 658.3426145536095
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409332314352,
+          -36.805702141582465,
+          -4.85
+        ]
+      },
+      "properties": {
+        "id": "0_100",
+        "camera": "Camera 101",
+        "frame": "0288",
+        "image": "pano_camera1/frame_0288_hp_preview.jpg",
+        "frameId": "3625",
+        "height": -4.85,
+        "coords2D": "2D: (-6.64, 5.92)",
+        "coords3D": "3D: (-2.72, 0.35, -4.85)",
+        "easting": 397926.91026124824,
+        "northing": 808213.2827579872,
+        "longitude": 174.7409332314352,
+        "latitude": -36.805702141582465,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 558.2765032037692,
+        "canvasY": 660.2826663001947
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409367296567,
+          -36.80570401792204,
+          -4.89
+        ]
+      },
+      "properties": {
+        "id": "0_101",
+        "camera": "Camera 102",
+        "frame": "0289",
+        "image": "pano_camera1/frame_0289_hp_preview.jpg",
+        "frameId": "3626",
+        "height": -4.89,
+        "coords2D": "2D: (-6.40, 6.08)",
+        "coords3D": "3D: (-2.55, 0.32, -4.89)",
+        "easting": 397927.22245366045,
+        "northing": 808213.0746297124,
+        "longitude": 174.7409367296567,
+        "latitude": -36.80570401792204,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 563.8810971383487,
+        "canvasY": 664.0190622565812
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74093838777304,
+          -36.805709200347465,
+          -5.12
+        ]
+      },
+      "properties": {
+        "id": "0_102",
+        "camera": "Camera 103",
+        "frame": "0290",
+        "image": "pano_camera1/frame_0290_hp_preview.jpg",
+        "frameId": "3627",
+        "height": -5.12,
+        "coords2D": "2D: (-6.29, 6.51)",
+        "coords3D": "3D: (-2.40, 0.31, -5.12)",
+        "easting": 397927.37054493296,
+        "northing": 808212.4996086453,
+        "longitude": 174.74093838777304,
+        "latitude": -36.805709200347465,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 566.5396865688544,
+        "canvasY": 674.3420536489051
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409387283954,
+          -36.805720045554594,
+          -5.64
+        ]
+      },
+      "properties": {
+        "id": "0_103",
+        "camera": "Camera 104",
+        "frame": "0291",
+        "image": "pano_camera1/frame_0291_hp_preview.jpg",
+        "frameId": "3628",
+        "height": -5.64,
+        "coords2D": "2D: (-6.27, 7.41)",
+        "coords3D": "3D: (-2.20, 0.33, -5.64)",
+        "easting": 397927.4012305119,
+        "northing": 808211.2962002871,
+        "longitude": 174.7409387283954,
+        "latitude": -36.805720045554594,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 567.09056545986,
+        "canvasY": 695.9460866787804
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409395494675,
+          -36.80572432605867,
+          -5.84
+        ]
+      },
+      "properties": {
+        "id": "0_104",
+        "camera": "Camera 105",
+        "frame": "0292",
+        "image": "pano_camera1/frame_0292_hp_preview.jpg",
+        "frameId": "3629",
+        "height": -5.84,
+        "coords2D": "2D: (-6.21, 7.77)",
+        "coords3D": "3D: (-2.09, 0.33, -5.84)",
+        "easting": 397927.47460907034,
+        "northing": 808210.8212408907,
+        "longitude": 174.7409395494675,
+        "latitude": -36.80572432605867,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 568.4078845470476,
+        "canvasY": 704.4727338613031
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74093993715425,
+          -36.805727861025005,
+          -6
+        ]
+      },
+      "properties": {
+        "id": "0_105",
+        "camera": "Camera 106",
+        "frame": "0293",
+        "image": "pano_camera1/frame_0293_hp_preview.jpg",
+        "frameId": "3630",
+        "height": -6,
+        "coords2D": "2D: (-6.19, 8.06)",
+        "coords3D": "3D: (-2.01, 0.33, -6.00)",
+        "easting": 397927.50929711614,
+        "northing": 808210.428999142,
+        "longitude": 174.74093993715425,
+        "latitude": -36.805727861025005,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 569.0306172064454,
+        "canvasY": 711.5144031637237
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74094945869587,
+          -36.80573760186845,
+          -6.35
+        ]
+      },
+      "properties": {
+        "id": "0_106",
+        "camera": "Camera 107",
+        "frame": "0294",
+        "image": "pano_camera1/frame_0294_hp_preview.jpg",
+        "frameId": "3631",
+        "height": -6.35,
+        "coords2D": "2D: (-5.55, 8.87)",
+        "coords3D": "3D: (-1.48, 0.29, -6.35)",
+        "easting": 397928.35915423837,
+        "northing": 808209.3483330996,
+        "longitude": 174.74094945869587,
+        "latitude": -36.80573760186845,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 584.2875673616898,
+        "canvasY": 730.9149206295762
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409506248502,
+          -36.805737962799235,
+          -6.35
+        ]
+      },
+      "properties": {
+        "id": "0_107",
+        "camera": "Camera 108",
+        "frame": "0295",
+        "image": "pano_camera1/frame_0295_hp_preview.jpg",
+        "frameId": "3632",
+        "height": -6.35,
+        "coords2D": "2D: (-5.47, 8.90)",
+        "coords3D": "3D: (-1.43, 0.28, -6.35)",
+        "easting": 397928.46321837575,
+        "northing": 808209.3083084314,
+        "longitude": 174.7409506248502,
+        "latitude": -36.805737962799235,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 586.155765339883,
+        "canvasY": 731.6334583134966
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74096444130942,
+          -36.805735560808,
+          -6.06
+        ]
+      },
+      "properties": {
+        "id": "0_108",
+        "camera": "Camera 109",
+        "frame": "0296",
+        "image": "pano_camera1/frame_0296_hp_preview.jpg",
+        "frameId": "3633",
+        "height": -6.06,
+        "coords2D": "2D: (-4.55, 8.70)",
+        "coords3D": "3D: (-0.94, 0.18, -6.06)",
+        "easting": 397929.6959781574,
+        "northing": 808209.5751395529,
+        "longitude": 174.74096444130942,
+        "latitude": -36.805735560808,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 608.2867260046332,
+        "canvasY": 726.8432070873602
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74096812146453,
+          -36.80572912898688,
+          -5.7
+        ]
+      },
+      "properties": {
+        "id": "0_109",
+        "camera": "Camera 110",
+        "frame": "0297",
+        "image": "pano_camera1/frame_0297_hp_preview.jpg",
+        "frameId": "3634",
+        "height": -5.7,
+        "coords2D": "2D: (-4.30, 8.17)",
+        "coords3D": "3D: (-0.91, 0.14, -5.70)",
+        "easting": 397930.024180437,
+        "northing": 808210.2889128032,
+        "longitude": 174.74096812146453,
+        "latitude": -36.80572912898688,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 614.1787350127811,
+        "canvasY": 714.0292850574452
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74096987266526,
+          -36.80572314165661,
+          -5.39
+        ]
+      },
+      "properties": {
+        "id": "0_110",
+        "camera": "Camera 111",
+        "frame": "0298",
+        "image": "pano_camera1/frame_0298_hp_preview.jpg",
+        "frameId": "3635",
+        "height": -5.39,
+        "coords2D": "2D: (-4.19, 7.67)",
+        "coords3D": "3D: (-0.95, 0.13, -5.39)",
+        "easting": 397930.1802766431,
+        "northing": 808210.9533222959,
+        "longitude": 174.74096987266526,
+        "latitude": -36.80572314165661,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 616.9810319800708,
+        "canvasY": 702.1015595043656
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409710552838,
+          -36.80571848881698,
+          -5.16
+        ]
+      },
+      "properties": {
+        "id": "0_111",
+        "camera": "Camera 112",
+        "frame": "0299",
+        "image": "pano_camera1/frame_0299_hp_preview.jpg",
+        "frameId": "3636",
+        "height": -5.16,
+        "coords2D": "2D: (-4.11, 7.28)",
+        "coords3D": "3D: (-0.99, 0.11, -5.16)",
+        "easting": 397930.2856749361,
+        "northing": 808211.4696405161,
+        "longitude": 174.7409710552838,
+        "latitude": -36.80571848881698,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 618.8731812143948,
+        "canvasY": 692.8324233817916
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409734801983,
+          -36.805709615993045,
+          -4.7
+        ]
+      },
+      "properties": {
+        "id": "0_112",
+        "camera": "Camera 113",
+        "frame": "0300",
+        "image": "pano_camera1/frame_0300_hp_preview.jpg",
+        "frameId": "3637",
+        "height": -4.7,
+        "coords2D": "2D: (-3.95, 6.55)",
+        "coords3D": "3D: (-1.05, 0.08, -4.70)",
+        "easting": 397930.50180814456,
+        "northing": 808212.4542473546,
+        "longitude": 174.7409734801983,
+        "latitude": -36.805709615993045,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 622.7532847075653,
+        "canvasY": 675.1563963573483
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74097464834296,
+          -36.80570337605678,
+          -4.38
+        ]
+      },
+      "properties": {
+        "id": "0_113",
+        "camera": "Camera 114",
+        "frame": "0301",
+        "image": "pano_camera1/frame_0301_hp_preview.jpg",
+        "frameId": "3638",
+        "height": -4.38,
+        "coords2D": "2D: (-3.87, 6.03)",
+        "coords3D": "3D: (-1.11, 0.08, -4.38)",
+        "easting": 397930.60587228194,
+        "northing": 808213.1466741152,
+        "longitude": 174.74097464834296,
+        "latitude": -36.80570337605678,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 624.6214826857585,
+        "canvasY": 662.7256944255242
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7409750539565,
+          -36.80569705180776,
+          -4.07
+        ]
+      },
+      "properties": {
+        "id": "0_114",
+        "camera": "Camera 115",
+        "frame": "0302",
+        "image": "pano_camera1/frame_0302_hp_preview.jpg",
+        "frameId": "3639",
+        "height": -4.07,
+        "coords2D": "2D: (-3.84, 5.50)",
+        "coords3D": "3D: (-1.20, 0.08, -4.07)",
+        "easting": 397930.64189448336,
+        "northing": 808213.8484399649,
+        "longitude": 174.7409750539565,
+        "latitude": -36.80569705180776,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 625.2681666012869,
+        "canvasY": 650.1273337007855
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74097389033003,
+          -36.80568831054177,
+          -3.67
+        ]
+      },
+      "properties": {
+        "id": "0_115",
+        "camera": "Camera 116",
+        "frame": "0303",
+        "image": "pano_camera1/frame_0303_hp_preview.jpg",
+        "frameId": "3640",
+        "height": -3.67,
+        "coords2D": "2D: (-3.92, 4.77)",
+        "coords3D": "3D: (-1.40, 0.07, -3.67)",
+        "easting": 397930.537830346,
+        "northing": 808214.8183710919,
+        "longitude": 174.74097389033003,
+        "latitude": -36.80568831054177,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 623.3999686230936,
+        "canvasY": 632.7147704937796
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74097347302424,
+          -36.80568382571819,
+          -3.46
+        ]
+      },
+      "properties": {
+        "id": "0_116",
+        "camera": "Camera 117",
+        "frame": "0304",
+        "image": "pano_camera1/frame_0304_hp_preview.jpg",
+        "frameId": "3641",
+        "height": -3.46,
+        "coords2D": "2D: (-3.95, 4.40)",
+        "coords3D": "3D: (-1.49, 0.07, -3.46)",
+        "easting": 397930.50047398894,
+        "northing": 808215.3160111335,
+        "longitude": 174.74097347302424,
+        "latitude": -36.80568382571819,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 622.7293334514345,
+        "canvasY": 623.7809519570352
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74097380511384,
+          -36.805673401462606,
+          -2.95
+        ]
+      },
+      "properties": {
+        "id": "0_117",
+        "camera": "Camera 118",
+        "frame": "0305",
+        "image": "pano_camera1/frame_0305_hp_preview.jpg",
+        "frameId": "3642",
+        "height": -2.95,
+        "coords2D": "2D: (-3.92, 3.53)",
+        "coords3D": "3D: (-1.65, 0.07, -2.95)",
+        "easting": 397930.5298254123,
+        "northing": 808216.4727240455,
+        "longitude": 174.74097380511384,
+        "latitude": -36.805673401462606,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 623.2562610863096,
+        "canvasY": 603.0152128917339
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74097717237004,
+          -36.80566332647852,
+          -2.42
+        ]
+      },
+      "properties": {
+        "id": "0_118",
+        "camera": "Camera 119",
+        "frame": "0306",
+        "image": "pano_camera1/frame_0306_hp_preview.jpg",
+        "frameId": "3643",
+        "height": -2.42,
+        "coords2D": "2D: (-3.70, 2.70)",
+        "coords3D": "3D: (-1.70, 0.04, -2.42)",
+        "easting": 397930.8300104241,
+        "northing": 808217.5907464449,
+        "longitude": 174.74097717237004,
+        "latitude": -36.80566332647852,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 628.645293715713,
+        "canvasY": 582.9440602542222
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74098076275018,
+          -36.80565708701443,
+          -2.08
+        ]
+      },
+      "properties": {
+        "id": "0_119",
+        "camera": "Camera 120",
+        "frame": "0307",
+        "image": "pano_camera1/frame_0307_hp_preview.jpg",
+        "frameId": "3644",
+        "height": -2.08,
+        "coords2D": "2D: (-3.46, 2.18)",
+        "coords3D": "3D: (-1.67, 0.01, -2.08)",
+        "easting": 397931.15020777,
+        "northing": 808218.2831732053,
+        "longitude": 174.74098076275018,
+        "latitude": -36.80565708701443,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 634.3935951870767,
+        "canvasY": 570.5133583223983
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74098215370296,
+          -36.80565572863715,
+          -2
+        ]
+      },
+      "properties": {
+        "id": "0_120",
+        "camera": "Camera 121",
+        "frame": "0308",
+        "image": "pano_camera1/frame_0308_hp_preview.jpg",
+        "frameId": "3645",
+        "height": -2,
+        "coords2D": "2D: (-3.37, 2.06)",
+        "coords3D": "3D: (-1.64, -0.00, -2.00)",
+        "easting": 397931.2742842415,
+        "northing": 808218.433932789,
+        "longitude": 174.74098215370296,
+        "latitude": -36.80565572863715,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 636.6210620072302,
+        "canvasY": 567.8068663796312
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74099250190963,
+          -36.805651185794574,
+          -1.65
+        ]
+      },
+      "properties": {
+        "id": "0_121",
+        "camera": "Camera 122",
+        "frame": "0309",
+        "image": "pano_camera1/frame_0309_hp_preview.jpg",
+        "frameId": "3646",
+        "height": -1.65,
+        "coords2D": "2D: (-2.67, 1.68)",
+        "coords3D": "3D: (-1.32, -0.08, -1.65)",
+        "easting": 397932.1975199221,
+        "northing": 808218.9382436088,
+        "longitude": 174.74099250190963,
+        "latitude": -36.805651185794574,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 653.1953312496621,
+        "canvasY": 558.7532915622334
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410038650853,
+          -36.805652522609776,
+          -1.56
+        ]
+      },
+      "properties": {
+        "id": "0_122",
+        "camera": "Camera 123",
+        "frame": "0310",
+        "image": "pano_camera1/frame_0310_hp_preview.jpg",
+        "frameId": "3647",
+        "height": -1.56,
+        "coords2D": "2D: (-1.91, 1.80)",
+        "coords3D": "3D: (-0.87, -0.18, -1.56)",
+        "easting": 397933.2114781841,
+        "northing": 808218.7901523364,
+        "longitude": 174.7410038650853,
+        "latitude": -36.805652522609776,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 671.3982859089806,
+        "canvasY": 561.411880992739
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74100863334573,
+          -36.80565734493682,
+          -1.74
+        ]
+      },
+      "properties": {
+        "id": "0_123",
+        "camera": "Camera 124",
+        "frame": "0311",
+        "image": "pano_camera1/frame_0311_hp_preview.jpg",
+        "frameId": "3648",
+        "height": -1.74,
+        "coords2D": "2D: (-1.60, 2.20)",
+        "coords3D": "3D: (-0.60, -0.20, -1.74)",
+        "easting": 397933.637073823,
+        "northing": 808218.2551559376,
+        "longitude": 174.74100863334573,
+        "latitude": -36.80565734493682,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 679.0387366146681,
+        "canvasY": 571.0163347011426
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410112473961,
+          -36.805665858039596,
+          -2.11
+        ]
+      },
+      "properties": {
+        "id": "0_124",
+        "camera": "Camera 125",
+        "frame": "0312",
+        "image": "pano_camera1/frame_0312_hp_preview.jpg",
+        "frameId": "3649",
+        "height": -2.11,
+        "coords2D": "2D: (-1.42, 2.91)",
+        "coords3D": "3D: (-0.36, -0.22, -2.11)",
+        "easting": 397933.87055105437,
+        "northing": 808217.3105737673,
+        "longitude": 174.7410112473961,
+        "latitude": -36.805665858039596,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 683.2302064375375,
+        "canvasY": 587.9738240416655
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74101178379937,
+          -36.80567207426125,
+          -2.41
+        ]
+      },
+      "properties": {
+        "id": "0_125",
+        "camera": "Camera 126",
+        "frame": "0313",
+        "image": "pano_camera1/frame_0313_hp_preview.jpg",
+        "frameId": "3650",
+        "height": -2.41,
+        "coords2D": "2D: (-1.38, 3.42)",
+        "coords3D": "3D: (-0.23, -0.22, -2.41)",
+        "easting": 397933.91858065623,
+        "northing": 808216.620815318,
+        "longitude": 174.74101178379937,
+        "latitude": -36.80567207426125,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 684.092451658242,
+        "canvasY": 600.3566234612282
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74101157279773,
+          -36.805677629048326,
+          -2.67
+        ]
+      },
+      "properties": {
+        "id": "0_126",
+        "camera": "Camera 127",
+        "frame": "0314",
+        "image": "pano_camera1/frame_0314_hp_preview.jpg",
+        "frameId": "3651",
+        "height": -2.67,
+        "coords2D": "2D: (-1.40, 3.88)",
+        "coords3D": "3D: (-0.15, -0.21, -2.67)",
+        "easting": 397933.89990247774,
+        "northing": 808216.0044354271,
+        "longitude": 174.74101157279773,
+        "latitude": -36.805677629048326,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 683.7571340724126,
+        "canvasY": 611.4221037936032
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74101150890223,
+          -36.80569120349685,
+          -3.33
+        ]
+      },
+      "properties": {
+        "id": "0_127",
+        "camera": "Camera 128",
+        "frame": "0315",
+        "image": "pano_camera1/frame_0315_hp_preview.jpg",
+        "frameId": "3652",
+        "height": -3.33,
+        "coords2D": "2D: (-1.40, 5.01)",
+        "coords3D": "3D: (0.09, -0.20, -3.33)",
+        "easting": 397933.8945658553,
+        "northing": 808214.4981737459,
+        "longitude": 174.74101150890223,
+        "latitude": -36.80569120349685,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 683.6613290478898,
+        "canvasY": 638.4630719651433
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410116282148,
+          -36.80569221348882,
+          -3.38
+        ]
+      },
+      "properties": {
+        "id": "0_128",
+        "camera": "Camera 129",
+        "frame": "0316",
+        "image": "pano_camera1/frame_0316_hp_preview.jpg",
+        "frameId": "3653",
+        "height": -3.38,
+        "coords2D": "2D: (-1.39, 5.10)",
+        "coords3D": "3D: (0.11, -0.21, -3.38)",
+        "easting": 397933.90523910016,
+        "northing": 808214.3861046749,
+        "longitude": 174.7410116282148,
+        "latitude": -36.80569221348882,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 683.8529390969352,
+        "canvasY": 640.4749774801206
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74101282175343,
+          -36.805700942736834,
+          -3.78
+        ]
+      },
+      "properties": {
+        "id": "0_129",
+        "camera": "Camera 130",
+        "frame": "0317",
+        "image": "pano_camera1/frame_0317_hp_preview.jpg",
+        "frameId": "3654",
+        "height": -3.78,
+        "coords2D": "2D: (-1.31, 5.82)",
+        "coords3D": "3D: (0.30, -0.20, -3.78)",
+        "easting": 397934.0119715488,
+        "northing": 808213.4175077035,
+        "longitude": 174.74101282175343,
+        "latitude": -36.805700942736834,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 685.7690395873898,
+        "canvasY": 657.8635894309958
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74101809733878,
+          -36.80570925195909,
+          -4.11
+        ]
+      },
+      "properties": {
+        "id": "0_130",
+        "camera": "Camera 131",
+        "frame": "0318",
+        "image": "pano_camera1/frame_0318_hp_preview.jpg",
+        "frameId": "3655",
+        "height": -4.11,
+        "coords2D": "2D: (-0.96, 6.51)",
+        "coords3D": "3D: (0.65, -0.22, -4.11)",
+        "easting": 397934.4829284784,
+        "northing": 808212.4956061785,
+        "longitude": 174.74101809733878,
+        "latitude": -36.80570925195909,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 694.2238330015206,
+        "canvasY": 674.4139074172972
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.741021147409,
+          -36.80570976956052,
+          -4.1
+        ]
+      },
+      "properties": {
+        "id": "0_131",
+        "camera": "Camera 132",
+        "frame": "0319",
+        "image": "pano_camera1/frame_0319_hp_preview.jpg",
+        "frameId": "3656",
+        "height": -4.1,
+        "coords2D": "2D: (-0.76, 6.56)",
+        "coords3D": "3D: (0.78, -0.24, -4.10)",
+        "easting": 397934.7550962224,
+        "northing": 808212.4382374875,
+        "longitude": 174.741021147409,
+        "latitude": -36.80570976956052,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 699.1098892521798,
+        "canvasY": 675.4438114309164
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74102990961427,
+          -36.805708833437315,
+          -3.94
+        ]
+      },
+      "properties": {
+        "id": "0_132",
+        "camera": "Camera 133",
+        "frame": "0320",
+        "image": "pano_camera1/frame_0320_hp_preview.jpg",
+        "frameId": "3657",
+        "height": -3.94,
+        "coords2D": "2D: (-0.17, 6.48)",
+        "coords3D": "3D: (1.09, -0.33, -3.94)",
+        "easting": 397935.5369114086,
+        "northing": 808212.5423016248,
+        "longitude": 174.74102990961427,
+        "latitude": -36.805708833437315,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 713.1453253447594,
+        "canvasY": 673.5756134527232
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74104434077867,
+          -36.80570085268138,
+          -3.38
+        ]
+      },
+      "properties": {
+        "id": "0_133",
+        "camera": "Camera 134",
+        "frame": "0321",
+        "image": "pano_camera1/frame_0321_hp_preview.jpg",
+        "frameId": "3658",
+        "height": -3.38,
+        "coords2D": "2D: (0.79, 5.82)",
+        "coords3D": "3D: (1.50, -0.45, -3.38)",
+        "easting": 397936.82437157014,
+        "northing": 808213.4281809485,
+        "longitude": 174.74104434077867,
+        "latitude": -36.80570085268138,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 736.2582875108676,
+        "canvasY": 657.6719793819503
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410451483612,
+          -36.80570028773682,
+          -3.34
+        ]
+      },
+      "properties": {
+        "id": "0_134",
+        "camera": "Camera 135",
+        "frame": "0322",
+        "image": "pano_camera1/frame_0322_hp_preview.jpg",
+        "frameId": "3659",
+        "height": -3.34,
+        "coords2D": "2D: (0.85, 5.77)",
+        "coords3D": "3D: (1.52, -0.45, -3.34)",
+        "easting": 397936.89641597297,
+        "northing": 808213.490886262,
+        "longitude": 174.7410451483612,
+        "latitude": -36.80570028773682,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 737.5516553419244,
+        "canvasY": 656.5462703438083
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74104959177257,
+          -36.80569149946777,
+          -2.86
+        ]
+      },
+      "properties": {
+        "id": "0_135",
+        "camera": "Camera 136",
+        "frame": "0323",
+        "image": "pano_camera1/frame_0323_hp_preview.jpg",
+        "frameId": "3660",
+        "height": -2.86,
+        "coords2D": "2D: (1.15, 5.04)",
+        "coords3D": "3D: (1.54, -0.48, -2.86)",
+        "easting": 397937.2926601885,
+        "northing": 808214.4661540113,
+        "longitude": 174.74104959177257,
+        "latitude": -36.80569149946777,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 744.6651784127371,
+        "canvasY": 639.0379021122797
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74104993848232,
+          -36.805682145300764,
+          -2.4
+        ]
+      },
+      "properties": {
+        "id": "0_136",
+        "camera": "Camera 137",
+        "frame": "0324",
+        "image": "pano_camera1/frame_0324_hp_preview.jpg",
+        "frameId": "3661",
+        "height": -2.4,
+        "coords2D": "2D: (1.17, 4.26)",
+        "coords3D": "3D: (1.39, -0.50, -2.40)",
+        "easting": 397937.32334576745,
+        "northing": 808215.5041270743,
+        "longitude": 174.74104993848232,
+        "latitude": -36.805682145300764,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 745.2160573037427,
+        "canvasY": 620.4038248426091
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74105023780584,
+          -36.805681207530824,
+          -2.36
+        ]
+      },
+      "properties": {
+        "id": "0_137",
+        "camera": "Camera 138",
+        "frame": "0325",
+        "image": "pano_camera1/frame_0325_hp_preview.jpg",
+        "frameId": "3662",
+        "height": -2.36,
+        "coords2D": "2D: (1.19, 4.18)",
+        "coords3D": "3D: (1.39, -0.49, -2.36)",
+        "easting": 397937.35002887965,
+        "northing": 808215.6081912116,
+        "longitude": 174.74105023780584,
+        "latitude": -36.805681207530824,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 745.6950824263563,
+        "canvasY": 618.5356268644158
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74105711822753,
+          -36.80567300888356,
+          -1.87
+        ]
+      },
+      "properties": {
+        "id": "0_138",
+        "camera": "Camera 139",
+        "frame": "0326",
+        "image": "pano_camera1/frame_0326_hp_preview.jpg",
+        "frameId": "3663",
+        "height": -1.87,
+        "coords2D": "2D: (1.65, 3.50)",
+        "coords3D": "3D: (1.51, -0.55, -1.87)",
+        "easting": 397937.96374045924,
+        "northing": 808216.5180853362,
+        "longitude": 174.74105711822753,
+        "latitude": -36.80567300888356,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 756.7126602464701,
+        "canvasY": 602.2008701832907
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74106372714084,
+          -36.80567269755818,
+          -1.78
+        ]
+      },
+      "properties": {
+        "id": "0_139",
+        "camera": "Camera 140",
+        "frame": "0327",
+        "image": "pano_camera1/frame_0327_hp_preview.jpg",
+        "frameId": "3664",
+        "height": -1.78,
+        "coords2D": "2D: (2.09, 3.47)",
+        "coords3D": "3D: (1.76, -0.59, -1.78)",
+        "easting": 397938.5534372379,
+        "northing": 808216.552773382,
+        "longitude": 174.74106372714084,
+        "latitude": -36.80567269755818,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 767.2991154562316,
+        "canvasY": 601.5781375238929
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74106686673457,
+          -36.80567384039459,
+          -1.79
+        ]
+      },
+      "properties": {
+        "id": "0_140",
+        "camera": "Camera 141",
+        "frame": "0328",
+        "image": "pano_camera1/frame_0328_hp_preview.jpg",
+        "frameId": "3665",
+        "height": -1.79,
+        "coords2D": "2D: (2.30, 3.57)",
+        "coords3D": "3D: (1.89, -0.62, -1.79)",
+        "easting": 397938.8336099156,
+        "northing": 808216.4260285993,
+        "longitude": 174.74106686673457,
+        "latitude": -36.80567384039459,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 772.3288792436748,
+        "canvasY": 603.8535068563077
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74107106731947,
+          -36.80567700337446,
+          -1.89
+        ]
+      },
+      "properties": {
+        "id": "0_141",
+        "camera": "Camera 142",
+        "frame": "0329",
+        "image": "pano_camera1/frame_0329_hp_preview.jpg",
+        "frameId": "3666",
+        "height": -1.89,
+        "coords2D": "2D: (2.58, 3.83)",
+        "coords3D": "3D: (2.11, -0.66, -1.89)",
+        "easting": 397939.2085076414,
+        "northing": 808216.0751456744,
+        "longitude": 174.74107106731947,
+        "latitude": -36.80567700337446,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 779.0591822163965,
+        "canvasY": 610.1526872186771
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74107920021555,
+          -36.80568045568012,
+          -1.95
+        ]
+      },
+      "properties": {
+        "id": "0_142",
+        "camera": "Camera 143",
+        "frame": "0330",
+        "image": "pano_camera1/frame_0330_hp_preview.jpg",
+        "frameId": "3667",
+        "height": -1.95,
+        "coords2D": "2D: (3.12, 4.12)",
+        "coords3D": "3D: (2.47, -0.72, -1.95)",
+        "easting": 397939.934288292,
+        "northing": 808215.6922430149,
+        "longitude": 174.74107920021555,
+        "latitude": -36.80568045568012,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 792.0886655514876,
+        "canvasY": 617.0266977281829
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74108234058937,
+          -36.80567900145377,
+          -1.84
+        ]
+      },
+      "properties": {
+        "id": "0_143",
+        "camera": "Camera 144",
+        "frame": "0331",
+        "image": "pano_camera1/frame_0331_hp_preview.jpg",
+        "frameId": "3668",
+        "height": -1.84,
+        "coords2D": "2D: (3.33, 4.00)",
+        "coords3D": "3D: (2.57, -0.74, -1.84)",
+        "easting": 397940.21446096967,
+        "northing": 808215.8536758434,
+        "longitude": 174.74108234058937,
+        "latitude": -36.80567900145377,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 797.1184293389308,
+        "canvasY": 614.1285957363704
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74108007032385,
+          -36.805670837098994,
+          -1.48
+        ]
+      },
+      "properties": {
+        "id": "0_144",
+        "camera": "Camera 145",
+        "frame": "0332",
+        "image": "pano_camera1/frame_0332_hp_preview.jpg",
+        "frameId": "3669",
+        "height": -1.48,
+        "coords2D": "2D: (3.18, 3.32)",
+        "coords3D": "3D: (2.34, -0.72, -1.48)",
+        "easting": 397940.0116693173,
+        "northing": 808216.7595675013,
+        "longitude": 174.74108007032385,
+        "latitude": -36.805670837098994,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 793.4778384070671,
+        "canvasY": 597.8656928236372
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410763630961,
+          -36.80566787861365,
+          -1.38
+        ]
+      },
+      "properties": {
+        "id": "0_145",
+        "camera": "Camera 146",
+        "frame": "0333",
+        "image": "pano_camera1/frame_0333_hp_preview.jpg",
+        "frameId": "3670",
+        "height": -1.38,
+        "coords2D": "2D: (2.93, 3.07)",
+        "coords3D": "3D: (2.15, -0.69, -1.38)",
+        "easting": 397939.68079872656,
+        "northing": 808217.0877697808,
+        "longitude": 174.7410763630961,
+        "latitude": -36.80566787861365,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 787.5379268866579,
+        "canvasY": 591.9736838154894
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74107089248392,
+          -36.805661721551374,
+          -1.16
+        ]
+      },
+      "properties": {
+        "id": "0_146",
+        "camera": "Camera 147",
+        "frame": "0334",
+        "image": "pano_camera1/frame_0334_hp_preview.jpg",
+        "frameId": "3671",
+        "height": -1.16,
+        "coords2D": "2D: (2.57, 2.56)",
+        "coords3D": "3D: (1.84, -0.65, -1.16)",
+        "easting": 397939.1924977741,
+        "northing": 808217.770857452,
+        "longitude": 174.74107089248392,
+        "latitude": -36.805661721551374,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 778.7717671428284,
+        "canvasY": 579.7106406765802
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410690694427,
+          -36.805658017978566,
+          -1
+        ]
+      },
+      "properties": {
+        "id": "0_147",
+        "camera": "Camera 148",
+        "frame": "0335",
+        "image": "pano_camera1/frame_0335_hp_preview.jpg",
+        "frameId": "3672",
+        "height": -1,
+        "coords2D": "2D: (2.45, 2.25)",
+        "coords3D": "3D: (1.71, -0.64, -1.00)",
+        "easting": 397939.0297307899,
+        "northing": 808218.1817773792,
+        "longitude": 174.7410690694427,
+        "latitude": -36.805658017978566,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 775.8497138948851,
+        "canvasY": 572.3336537883301
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74106676804706,
+          -36.80565394158624,
+          -0.83
+        ]
+      },
+      "properties": {
+        "id": "0_148",
+        "camera": "Camera 149",
+        "frame": "0336",
+        "image": "pano_camera1/frame_0336_hp_preview.jpg",
+        "frameId": "3673",
+        "height": -0.83,
+        "coords2D": "2D: (2.29, 1.91)",
+        "coords3D": "3D: (1.55, -0.62, -0.83)",
+        "easting": 397938.8242708263,
+        "northing": 808218.6340561302,
+        "longitude": 174.74106676804706,
+        "latitude": -36.80565394158624,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 772.1612204507601,
+        "canvasY": 564.2141779600289
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74106289831647,
+          -36.805644430295416,
+          -0.43
+        ]
+      },
+      "properties": {
+        "id": "0_149",
+        "camera": "Camera 150",
+        "frame": "0337",
+        "image": "pano_camera1/frame_0337_hp_preview.jpg",
+        "frameId": "3674",
+        "height": -0.43,
+        "coords2D": "2D: (2.03, 1.12)",
+        "coords3D": "3D: (1.24, -0.59, -0.43)",
+        "easting": 397938.47872452385,
+        "northing": 808219.689373216,
+        "longitude": 174.74106289831647,
+        "latitude": -36.805644430295416,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 765.9578451129134,
+        "canvasY": 545.2687343606593
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410610606346,
+          -36.80563969270398,
+          -0.22
+        ]
+      },
+      "properties": {
+        "id": "0_150",
+        "camera": "Camera 151",
+        "frame": "0338",
+        "image": "pano_camera1/frame_0338_hp_preview.jpg",
+        "frameId": "3675",
+        "height": -0.22,
+        "coords2D": "2D: (1.91, 0.73)",
+        "coords3D": "3D: (1.09, -0.59, -0.22)",
+        "easting": 397938.3146233841,
+        "northing": 808220.2150305256,
+        "longitude": 174.7410610606346,
+        "latitude": -36.80563969270398,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 763.0118406088395,
+        "canvasY": 535.8319394451706
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74105746094597,
+          -36.805627175606006,
+          0.33
+        ]
+      },
+      "properties": {
+        "id": "0_151",
+        "camera": "Camera 152",
+        "frame": "0339",
+        "image": "pano_camera1/frame_0339_hp_preview.jpg",
+        "frameId": "3676",
+        "height": 0.33,
+        "coords2D": "2D: (1.67, -0.31)",
+        "coords3D": "3D: (0.74, -0.57, 0.33)",
+        "easting": 397937.9930918826,
+        "northing": 808221.6038865133,
+        "longitude": 174.74105746094597,
+        "latitude": -36.805627175606006,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 757.2395878813451,
+        "canvasY": 510.89868181313057
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410566559404,
+          -36.805619167840106,
+          0.71
+        ]
+      },
+      "properties": {
+        "id": "0_152",
+        "camera": "Camera 153",
+        "frame": "0340",
+        "image": "pano_camera1/frame_0340_hp_preview.jpg",
+        "frameId": "3677",
+        "height": 0.71,
+        "coords2D": "2D: (1.62, -0.98)",
+        "coords3D": "3D: (0.56, -0.59, 0.71)",
+        "easting": 397937.9210474798,
+        "northing": 808222.4924341481,
+        "longitude": 174.7410566559404,
+        "latitude": -36.805619167840106,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 755.9462200502883,
+        "canvasY": 494.94714523009634
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74105623793284,
+          -36.8056170035401,
+          0.81
+        ]
+      },
+      "properties": {
+        "id": "0_153",
+        "camera": "Camera 154",
+        "frame": "0341",
+        "image": "pano_camera1/frame_0341_hp_preview.jpg",
+        "frameId": "3678",
+        "height": 0.81,
+        "coords2D": "2D: (1.59, -1.16)",
+        "coords3D": "3D: (0.51, -0.59, 0.81)",
+        "easting": 397937.88369112276,
+        "northing": 808222.7325821576,
+        "longitude": 174.74105623793284,
+        "latitude": -36.8056170035401,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 755.2755848786292,
+        "canvasY": 490.6359191265735
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74105423622734,
+          -36.8056107750104,
+          1.08
+        ]
+      },
+      "properties": {
+        "id": "0_154",
+        "camera": "Camera 155",
+        "frame": "0342",
+        "image": "pano_camera1/frame_0342_hp_preview.jpg",
+        "frameId": "3679",
+        "height": 1.08,
+        "coords2D": "2D: (1.45, -1.68)",
+        "coords3D": "3D: (0.33, -0.58, 1.08)",
+        "easting": 397937.7049142713,
+        "northing": 808223.4236747624,
+        "longitude": 174.74105423622734,
+        "latitude": -36.8056107750104,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 752.0661165571178,
+        "canvasY": 478.22916845088025
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74104984252762,
+          -36.80560342783604,
+          1.38
+        ]
+      },
+      "properties": {
+        "id": "0_155",
+        "camera": "Camera 156",
+        "frame": "0343",
+        "image": "pano_camera1/frame_0343_hp_preview.jpg",
+        "frameId": "3680",
+        "height": 1.38,
+        "coords2D": "2D: (1.16, -2.29)",
+        "coords3D": "3D: (0.03, -0.56, 1.38)",
+        "easting": 397937.3126725226,
+        "northing": 808224.2388438388,
+        "longitude": 174.74104984252762,
+        "latitude": -36.80560342783604,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 745.0244472546973,
+        "canvasY": 463.5949509550335
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74105219198606,
+          -36.80559682742539,
+          1.73
+        ]
+      },
+      "properties": {
+        "id": "0_156",
+        "camera": "Camera 157",
+        "frame": "0344",
+        "image": "pano_camera1/frame_0344_hp_preview.jpg",
+        "frameId": "3681",
+        "height": 1.73,
+        "coords2D": "2D: (1.32, -2.84)",
+        "coords3D": "3D: (0.00, -0.59, 1.73)",
+        "easting": 397937.52213495306,
+        "northing": 808224.9712952675,
+        "longitude": 174.74105219198606,
+        "latitude": -36.80559682742539,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 748.7847944672143,
+        "canvasY": 450.445711339289
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74105800766384,
+          -36.80559907693839,
+          1.7
+        ]
+      },
+      "properties": {
+        "id": "0_157",
+        "camera": "Camera 158",
+        "frame": "0345",
+        "image": "pano_camera1/frame_0345_hp_preview.jpg",
+        "frameId": "3682",
+        "height": 1.7,
+        "coords2D": "2D: (1.71, -2.65)",
+        "coords3D": "3D: (0.26, -0.63, 1.70)",
+        "easting": 397938.0411214845,
+        "northing": 808224.7218081688,
+        "longitude": 174.74105800766384,
+        "latitude": -36.80559907693839,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 758.1018331020497,
+        "canvasY": 454.92459623572654
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74106210331252,
+          -36.80560312963262,
+          1.55
+        ]
+      },
+      "properties": {
+        "id": "0_158",
+        "camera": "Camera 159",
+        "frame": "0346",
+        "image": "pano_camera1/frame_0346_hp_preview.jpg",
+        "frameId": "3683",
+        "height": 1.55,
+        "coords2D": "2D: (1.98, -2.31)",
+        "coords3D": "3D: (0.49, -0.65, 1.55)",
+        "easting": 397938.406680121,
+        "northing": 808224.272197729,
+        "longitude": 174.74106210331252,
+        "latitude": -36.80560312963262,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 764.6644772818565,
+        "canvasY": 462.9961695517664
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410638215179,
+          -36.80560739828678,
+          1.37
+        ]
+      },
+      "properties": {
+        "id": "0_159",
+        "camera": "Camera 160",
+        "frame": "0347",
+        "image": "pano_camera1/frame_0347_hp_preview.jpg",
+        "frameId": "3684",
+        "height": 1.37,
+        "coords2D": "2D: (2.10, -1.96)",
+        "coords3D": "3D: (0.63, -0.66, 1.37)",
+        "easting": 397938.56010801595,
+        "northing": 808223.7985724882,
+        "longitude": 174.7410638215179,
+        "latitude": -36.80560739828678,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 767.418871736885,
+        "canvasY": 471.49886547815856
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410660180344,
+          -36.80561218404164,
+          1.17
+        ]
+      },
+      "properties": {
+        "id": "0_160",
+        "camera": "Camera 161",
+        "frame": "0348",
+        "image": "pano_camera1/frame_0348_hp_preview.jpg",
+        "frameId": "3685",
+        "height": 1.17,
+        "coords2D": "2D: (2.24, -1.56)",
+        "coords3D": "3D: (0.80, -0.67, 1.17)",
+        "easting": 397938.7562288903,
+        "northing": 808223.2675785563,
+        "longitude": 174.7410660180344,
+        "latitude": -36.80561218404164,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 770.9397063880953,
+        "canvasY": 481.03146541817
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74107123291927,
+          -36.805623463039,
+          0.69
+        ]
+      },
+      "properties": {
+        "id": "0_161",
+        "camera": "Camera 162",
+        "frame": "0349",
+        "image": "pano_camera1/frame_0349_hp_preview.jpg",
+        "frameId": "3686",
+        "height": 0.69,
+        "coords2D": "2D: (2.59, -0.62)",
+        "coords3D": "3D: (1.19, -0.69, 0.69)",
+        "easting": 397939.22184919746,
+        "northing": 808222.0161405961,
+        "longitude": 174.74107123291927,
+        "latitude": -36.805623463039,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 779.2986947777033,
+        "canvasY": 503.4977436687498
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410752237719,
+          -36.8056279605796,
+          0.52
+        ]
+      },
+      "properties": {
+        "id": "0_162",
+        "camera": "Camera 163",
+        "frame": "0350",
+        "image": "pano_camera1/frame_0350_hp_preview.jpg",
+        "frameId": "3687",
+        "height": 0.52,
+        "coords2D": "2D: (2.86, -0.25)",
+        "coords3D": "3D: (1.43, -0.70, 0.52)",
+        "easting": 397939.57806874474,
+        "northing": 808221.5171663988,
+        "longitude": 174.7410752237719,
+        "latitude": -36.8056279605796,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 785.6936801645954,
+        "canvasY": 512.455513461625
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74107842254415,
+          -36.805631195505356,
+          0.41
+        ]
+      },
+      "properties": {
+        "id": "0_163",
+        "camera": "Camera 164",
+        "frame": "0351",
+        "image": "pano_camera1/frame_0351_hp_preview.jpg",
+        "frameId": "3688",
+        "height": 0.41,
+        "coords2D": "2D: (3.07, 0.02)",
+        "coords3D": "3D: (1.61, -0.72, 0.41)",
+        "easting": 397939.8635780448,
+        "northing": 808221.1582785402,
+        "longitude": 174.74107842254415,
+        "latitude": -36.805631195505356,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 790.8192489765614,
+        "canvasY": 518.8984013607784
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74108839405716,
+          -36.80563625930795,
+          0.29
+        ]
+      },
+      "properties": {
+        "id": "0_164",
+        "camera": "Camera 165",
+        "frame": "0352",
+        "image": "pano_camera1/frame_0352_hp_preview.jpg",
+        "frameId": "3689",
+        "height": 0.29,
+        "coords2D": "2D: (3.74, 0.44)",
+        "coords3D": "3D: (2.07, -0.79, 0.29)",
+        "easting": 397940.75345983525,
+        "northing": 808220.5965990294,
+        "longitude": 174.74108839405716,
+        "latitude": -36.80563625930795,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 806.7947368157263,
+        "canvasY": 528.9818801917955
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410937016751,
+          -36.8056374867284,
+          0.3
+        ]
+      },
+      "properties": {
+        "id": "0_165",
+        "camera": "Camera 166",
+        "frame": "0353",
+        "image": "pano_camera1/frame_0353_hp_preview.jpg",
+        "frameId": "3690",
+        "height": 0.3,
+        "coords2D": "2D: (4.09, 0.54)",
+        "coords3D": "3D: (2.29, -0.84, 0.30)",
+        "easting": 397941.22708507604,
+        "northing": 808220.4605151574,
+        "longitude": 174.7410937016751,
+        "latitude": -36.8056374867284,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 815.2974327421185,
+        "canvasY": 531.4249083171251
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74110181937073,
+          -36.805641756623345,
+          0.2
+        ]
+      },
+      "properties": {
+        "id": "0_166",
+        "camera": "Camera 167",
+        "frame": "0354",
+        "image": "pano_camera1/frame_0354_hp_preview.jpg",
+        "frameId": "3691",
+        "height": 0.2,
+        "coords2D": "2D: (4.64, 0.90)",
+        "coords3D": "3D: (2.67, -0.90, 0.20)",
+        "easting": 397941.9515315711,
+        "northing": 808219.9868899166,
+        "longitude": 174.74110181937073,
+        "latitude": -36.805641756623345,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 828.3029648210788,
+        "canvasY": 539.9276042435173
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74110401619345,
+          -36.80564553240877,
+          0.04
+        ]
+      },
+      "properties": {
+        "id": "0_167",
+        "camera": "Camera 168",
+        "frame": "0355",
+        "image": "pano_camera1/frame_0355_hp_preview.jpg",
+        "frameId": "3692",
+        "height": 0.04,
+        "coords2D": "2D: (4.78, 1.21)",
+        "coords3D": "3D: (2.82, -0.93, 0.04)",
+        "easting": 397942.1476524455,
+        "northing": 808219.5679650557,
+        "longitude": 174.74110401619345,
+        "latitude": -36.80564553240877,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 831.8237994722891,
+        "canvasY": 547.4482986685514
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74110061968872,
+          -36.805653479242345,
+          -0.38
+        ]
+      },
+      "properties": {
+        "id": "0_168",
+        "camera": "Camera 169",
+        "frame": "0356",
+        "image": "pano_camera1/frame_0356_hp_preview.jpg",
+        "frameId": "3693",
+        "height": -0.38,
+        "coords2D": "2D: (4.56, 1.87)",
+        "coords3D": "3D: (2.82, -0.90, -0.38)",
+        "easting": 397941.8447991225,
+        "northing": 808218.6860881989,
+        "longitude": 174.74110061968872,
+        "latitude": -36.805653479242345,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 826.3868643306243,
+        "canvasY": 563.2800789709323
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74109777716762,
+          -36.805658901261374,
+          -0.68
+        ]
+      },
+      "properties": {
+        "id": "0_169",
+        "camera": "Camera 170",
+        "frame": "0357",
+        "image": "pano_camera1/frame_0357_hp_preview.jpg",
+        "frameId": "3694",
+        "height": -0.68,
+        "coords2D": "2D: (4.37, 2.32)",
+        "coords3D": "3D: (2.81, -0.86, -0.68)",
+        "easting": 397941.59130955697,
+        "northing": 808218.0843840198,
+        "longitude": 174.74109777716762,
+        "latitude": -36.805658901261374,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 821.8361256657947,
+        "canvasY": 574.0820954858699
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74109635629102,
+          -36.80566033177484,
+          -0.77
+        ]
+      },
+      "properties": {
+        "id": "0_170",
+        "camera": "Camera 171",
+        "frame": "0358",
+        "image": "pano_camera1/frame_0358_hp_preview.jpg",
+        "frameId": "3695",
+        "height": -0.77,
+        "coords2D": "2D: (4.27, 2.44)",
+        "coords3D": "3D: (2.79, -0.83, -0.77)",
+        "easting": 397941.46456477424,
+        "northing": 808217.9256195024,
+        "longitude": 174.74109635629102,
+        "latitude": -36.80566033177484,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 819.5607563333799,
+        "canvasY": 576.9322949654211
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74109548896953,
+          -36.80566066826284,
+          -0.79
+        ]
+      },
+      "properties": {
+        "id": "0_171",
+        "camera": "Camera 172",
+        "frame": "0359",
+        "image": "pano_camera1/frame_0359_hp_preview.jpg",
+        "frameId": "3696",
+        "height": -0.79,
+        "coords2D": "2D: (4.21, 2.47)",
+        "coords3D": "3D: (2.76, -0.82, -0.79)",
+        "easting": 397941.387183749,
+        "northing": 808217.8882631455,
+        "longitude": 174.74109548896953,
+        "latitude": -36.80566066826284,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 818.1715834778004,
+        "canvasY": 577.6029301370802
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74109667009714,
+          -36.80566095705446,
+          -0.79
+        ]
+      },
+      "properties": {
+        "id": "0_172",
+        "camera": "Camera 173",
+        "frame": "0360",
+        "image": "pano_camera1/frame_0360_hp_preview.jpg",
+        "frameId": "3697",
+        "height": -0.79,
+        "coords2D": "2D: (4.29, 2.50)",
+        "coords3D": "3D: (2.81, -0.84, -0.79)",
+        "easting": 397941.492582042,
+        "northing": 808217.8562434108,
+        "longitude": 174.74109667009714,
+        "latitude": -36.80566095705446,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 820.0637327121242,
+        "canvasY": 578.1777602842166
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410966551198,
+          -36.80566104121562,
+          -0.8
+        ]
+      },
+      "properties": {
+        "id": "0_173",
+        "camera": "Camera 174",
+        "frame": "0361",
+        "image": "pano_camera1/frame_0361_hp_preview.jpg",
+        "frameId": "3698",
+        "height": -0.8,
+        "coords2D": "2D: (4.29, 2.50)",
+        "coords3D": "3D: (2.81, -0.84, -0.80)",
+        "easting": 397941.4912478864,
+        "northing": 808217.8469043216,
+        "longitude": 174.7410966551198,
+        "latitude": -36.80566104121562,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 820.0397814559935,
+        "canvasY": 578.3454190771313
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74109837296777,
+          -36.80566651221294,
+          -1.04
+        ]
+      },
+      "properties": {
+        "id": "0_174",
+        "camera": "Camera 175",
+        "frame": "0362",
+        "image": "pano_camera1/frame_0362_hp_preview.jpg",
+        "frameId": "3699",
+        "height": -1.04,
+        "coords2D": "2D: (4.41, 2.96)",
+        "coords3D": "3D: (2.97, -0.85, -1.04)",
+        "easting": 397941.6446757813,
+        "northing": 808217.23986352,
+        "longitude": 174.74109837296777,
+        "latitude": -36.80566651221294,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 822.794175911022,
+        "canvasY": 589.2432406165917
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74110140779982,
+          -36.80566797966092,
+          -1.07
+        ]
+      },
+      "properties": {
+        "id": "0_175",
+        "camera": "Camera 176",
+        "frame": "0363",
+        "image": "pano_camera1/frame_0363_hp_preview.jpg",
+        "frameId": "3700",
+        "height": -1.07,
+        "coords2D": "2D: (4.61, 3.08)",
+        "coords3D": "3D: (3.11, -0.88, -1.07)",
+        "easting": 397941.9155093697,
+        "northing": 808217.0770965359,
+        "longitude": 174.74110140779982,
+        "latitude": -36.80566797966092,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 827.6562809055504,
+        "canvasY": 592.1652938645349
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74110774715692,
+          -36.80566906299958,
+          -1.04
+        ]
+      },
+      "properties": {
+        "id": "0_176",
+        "camera": "Camera 177",
+        "frame": "0364",
+        "image": "pano_camera1/frame_0364_hp_preview.jpg",
+        "frameId": "3701",
+        "height": -1.04,
+        "coords2D": "2D: (5.03, 3.17)",
+        "coords3D": "3D: (3.36, -0.95, -1.04)",
+        "easting": 397942.4811913474,
+        "northing": 808216.9570225312,
+        "longitude": 174.74110774715692,
+        "latitude": -36.80566906299958,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 837.8116135049596,
+        "canvasY": 594.3209069162963
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74110991546075,
+          -36.80566822177933,
+          -0.97
+        ]
+      },
+      "properties": {
+        "id": "0_177",
+        "camera": "Camera 178",
+        "frame": "0365",
+        "image": "pano_camera1/frame_0365_hp_preview.jpg",
+        "frameId": "3702",
+        "height": -0.97,
+        "coords2D": "2D: (5.18, 3.10)",
+        "coords3D": "3D: (3.42, -0.97, -0.97)",
+        "easting": 397942.67464391055,
+        "northing": 808217.0504134237,
+        "longitude": 174.74110991546075,
+        "latitude": -36.80566822177933,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 841.2845456439086,
+        "canvasY": 592.6443189871485
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74111241474677,
+          -36.80566058738096,
+          -0.57
+        ]
+      },
+      "properties": {
+        "id": "0_178",
+        "camera": "Camera 179",
+        "frame": "0366",
+        "image": "pano_camera1/frame_0366_hp_preview.jpg",
+        "frameId": "3703",
+        "height": -0.57,
+        "coords2D": "2D: (5.35, 2.46)",
+        "coords3D": "3D: (3.39, -0.99, -0.57)",
+        "easting": 397942.89744789706,
+        "northing": 808217.8976022347,
+        "longitude": 174.74111241474677,
+        "latitude": -36.80566058738096,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 845.2844054177324,
+        "canvasY": 577.4352713441654
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74111207122024,
+          -36.8056593489003,
+          -0.52
+        ]
+      },
+      "properties": {
+        "id": "0_179",
+        "camera": "Camera 180",
+        "frame": "0367",
+        "image": "pano_camera1/frame_0367_hp_preview.jpg",
+        "frameId": "3704",
+        "height": -0.52,
+        "coords2D": "2D: (5.32, 2.36)",
+        "coords3D": "3D: (3.36, -0.99, -0.52)",
+        "easting": 397942.86676231807,
+        "northing": 808218.0350202624,
+        "longitude": 174.74111207122024,
+        "latitude": -36.8056593489003,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 844.7335265267268,
+        "canvasY": 574.9682919627052
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74110972562218,
+          -36.80565308423461,
+          -0.25
+        ]
+      },
+      "properties": {
+        "id": "0_180",
+        "camera": "Camera 181",
+        "frame": "0368",
+        "image": "pano_camera1/frame_0368_hp_preview.jpg",
+        "frameId": "3705",
+        "height": -0.25,
+        "coords2D": "2D: (5.17, 1.84)",
+        "coords3D": "3D: (3.16, -0.96, -0.25)",
+        "easting": 397942.6572998876,
+        "northing": 808218.730115334,
+        "longitude": 174.74110972562218,
+        "latitude": -36.80565308423461,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 840.9731793142097,
+        "canvasY": 562.4896875186198
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7411047055645,
+          -36.80564027830022,
+          0.31
+        ]
+      },
+      "properties": {
+        "id": "0_181",
+        "camera": "Camera 182",
+        "frame": "0369",
+        "image": "pano_camera1/frame_0369_hp_preview.jpg",
+        "frameId": "3706",
+        "height": 0.31,
+        "coords2D": "2D: (4.83, 0.78)",
+        "coords3D": "3D: (2.75, -0.93, 0.31)",
+        "easting": 397942.2090236034,
+        "northing": 808220.1509910563,
+        "longitude": 174.7411047055645,
+        "latitude": -36.80564027830022,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 832.9255572543004,
+        "canvasY": 536.9815997394434
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7411056188452,
+          -36.805636262649145,
+          0.51
+        ]
+      },
+      "properties": {
+        "id": "0_182",
+        "camera": "Camera 183",
+        "frame": "0370",
+        "image": "pano_camera1/frame_0370_hp_preview.jpg",
+        "frameId": "3707",
+        "height": 0.51,
+        "coords2D": "2D: (4.89, 0.44)",
+        "coords3D": "3D: (2.73, -0.92, 0.51)",
+        "easting": 397942.2904070955,
+        "northing": 808220.5965990294,
+        "longitude": 174.7411056188452,
+        "latitude": -36.805636262649145,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 834.3865838782721,
+        "canvasY": 528.9818801917955
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7411095668738,
+          -36.80563399098491,
+          0.67
+        ]
+      },
+      "properties": {
+        "id": "0_183",
+        "camera": "Camera 184",
+        "frame": "0371",
+        "image": "pano_camera1/frame_0371_hp_preview.jpg",
+        "frameId": "3708",
+        "height": 0.67,
+        "coords2D": "2D: (5.16, 0.25)",
+        "coords3D": "3D: (2.83, -0.98, 0.67)",
+        "easting": 397942.642624176,
+        "northing": 808220.8487544393,
+        "longitude": 174.7411095668738,
+        "latitude": -36.80563399098491,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 840.7097154967722,
+        "canvasY": 524.4550927830967
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74111728155225,
+          -36.80563596432406,
+          0.67
+        ]
+      },
+      "properties": {
+        "id": "0_184",
+        "camera": "Camera 185",
+        "frame": "0372",
+        "image": "pano_camera1/frame_0372_hp_preview.jpg",
+        "frameId": "3709",
+        "height": 0.67,
+        "coords2D": "2D: (5.67, 0.42)",
+        "coords3D": "3D: (3.16, -1.03, 0.67)",
+        "easting": 397943.3310484696,
+        "northing": 808220.6299529196,
+        "longitude": 174.74111728155225,
+        "latitude": -36.80563596432406,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 853.0685636602041,
+        "canvasY": 528.3830987885285
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74112252805813,
+          -36.805641544215824,
+          0.47
+        ]
+      },
+      "properties": {
+        "id": "0_185",
+        "camera": "Camera 186",
+        "frame": "0373",
+        "image": "pano_camera1/frame_0373_hp_preview.jpg",
+        "frameId": "3710",
+        "height": 0.47,
+        "coords2D": "2D: (6.02, 0.88)",
+        "coords3D": "3D: (3.45, -1.07, 0.47)",
+        "easting": 397943.79933708796,
+        "northing": 808220.0109047175,
+        "longitude": 174.74112252805813,
+        "latitude": -36.805641544215824,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 861.4754545620735,
+        "canvasY": 539.496481633165
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74113599731675,
+          -36.805650095489,
+          0.23
+        ]
+      },
+      "properties": {
+        "id": "0_186",
+        "camera": "Camera 187",
+        "frame": "0374",
+        "image": "pano_camera1/frame_0374_hp_preview.jpg",
+        "frameId": "3711",
+        "height": 0.23,
+        "coords2D": "2D: (6.92, 1.59)",
+        "coords3D": "3D: (4.11, -1.16, 0.23)",
+        "easting": 397945.00141129066,
+        "northing": 808219.0623200804,
+        "longitude": 174.74113599731675,
+        "latitude": -36.805650095489,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 883.055536335818,
+        "canvasY": 556.52582474208
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74114064719268,
+          -36.805650829819044,
+          0.26
+        ]
+      },
+      "properties": {
+        "id": "0_187",
+        "camera": "Camera 188",
+        "frame": "0375",
+        "image": "pano_camera1/frame_0375_hp_preview.jpg",
+        "frameId": "3712",
+        "height": 0.26,
+        "coords2D": "2D: (7.23, 1.65)",
+        "coords3D": "3D: (4.30, -1.20, 0.26)",
+        "easting": 397945.4163336847,
+        "northing": 808218.9809365883,
+        "longitude": 174.74114064719268,
+        "latitude": -36.805650829819044,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 890.5043769924603,
+        "canvasY": 557.9868513660515
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7411463441855,
+          -36.80564998928126,
+          0.37
+        ]
+      },
+      "properties": {
+        "id": "0_188",
+        "camera": "Camera 189",
+        "frame": "0376",
+        "image": "pano_camera1/frame_0376_hp_preview.jpg",
+        "frameId": "3713",
+        "height": 0.37,
+        "coords2D": "2D: (7.61, 1.58)",
+        "coords3D": "3D: (4.50, -1.26, 0.37)",
+        "easting": 397945.9246469713,
+        "northing": 808219.0743274809,
+        "longitude": 174.7411463441855,
+        "latitude": -36.80564998928126,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 899.6298055782501,
+        "canvasY": 556.3102634369038
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7411509498242,
+          -36.80564865557107,
+          0.49
+        ]
+      },
+      "properties": {
+        "id": "0_189",
+        "camera": "Camera 190",
+        "frame": "0377",
+        "image": "pano_camera1/frame_0377_hp_preview.jpg",
+        "frameId": "3714",
+        "height": 0.49,
+        "coords2D": "2D: (7.92, 1.47)",
+        "coords3D": "3D: (4.65, -1.30, 0.49)",
+        "easting": 397946.33556689846,
+        "northing": 808219.2224187533,
+        "longitude": 174.7411509498242,
+        "latitude": -36.80564865557107,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 907.0067924665002,
+        "canvasY": 553.6516740063981
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74116463281806,
+          -36.80564249019474,
+          0.96
+        ]
+      },
+      "properties": {
+        "id": "0_190",
+        "camera": "Camera 191",
+        "frame": "0378",
+        "image": "pano_camera1/frame_0378_hp_preview.jpg",
+        "frameId": "3715",
+        "height": 0.96,
+        "coords2D": "2D: (8.84, 0.96)",
+        "coords3D": "3D: (5.05, -1.43, 0.96)",
+        "easting": 397947.55631927965,
+        "northing": 808219.9068405802,
+        "longitude": 174.74116463281806,
+        "latitude": -36.80564249019474,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 928.9221918260743,
+        "canvasY": 541.3646796113582
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74116796791088,
+          -36.80563988175377,
+          1.13
+        ]
+      },
+      "properties": {
+        "id": "0_191",
+        "camera": "Camera 192",
+        "frame": "0379",
+        "image": "pano_camera1/frame_0379_hp_preview.jpg",
+        "frameId": "3716",
+        "height": 1.13,
+        "coords2D": "2D: (9.06, 0.74)",
+        "coords3D": "3D: (5.14, -1.45, 1.13)",
+        "easting": 397947.85383598023,
+        "northing": 808220.196352347,
+        "longitude": 174.74116796791088,
+        "latitude": -36.80563988175377,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 934.2633219432164,
+        "canvasY": 536.1672570310002
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74117161745,
+          -36.805635758420344,
+          1.38
+        ]
+      },
+      "properties": {
+        "id": "0_192",
+        "camera": "Camera 193",
+        "frame": "0380",
+        "image": "pano_camera1/frame_0380_hp_preview.jpg",
+        "frameId": "3717",
+        "height": 1.38,
+        "coords2D": "2D: (9.30, 0.40)",
+        "coords3D": "3D: (5.20, -1.48, 1.38)",
+        "easting": 397948.1793699485,
+        "northing": 808220.6539677206,
+        "longitude": 174.74117161745,
+        "latitude": -36.805635758420344,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 940.1074284391027,
+        "canvasY": 527.9519761781762
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74117287361463,
+          -36.80563512142102,
+          1.42
+        ]
+      },
+      "properties": {
+        "id": "0_193",
+        "camera": "Camera 194",
+        "frame": "0381",
+        "image": "pano_camera1/frame_0381_hp_preview.jpg",
+        "frameId": "3718",
+        "height": 1.42,
+        "coords2D": "2D: (9.39, 0.35)",
+        "coords3D": "3D: (5.28, -1.37, 1.42)",
+        "easting": 397948.2914390196,
+        "northing": 808220.7246779677,
+        "longitude": 174.74117287361463,
+        "latitude": -36.80563512142102,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 942.11933395408,
+        "canvasY": 526.6825596032501
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74117368201516,
+          -36.80563181513196,
+          1.58
+        ]
+      },
+      "properties": {
+        "id": "0_194",
+        "camera": "Camera 195",
+        "frame": "0382",
+        "image": "pano_camera1/frame_0382_hp_preview.jpg",
+        "frameId": "3719",
+        "height": 1.58,
+        "coords2D": "2D: (9.44, 0.07)",
+        "coords3D": "3D: (5.30, -1.26, 1.58)",
+        "easting": 397948.36348342244,
+        "northing": 808221.0915707599,
+        "longitude": 174.74117368201516,
+        "latitude": -36.80563181513196,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 943.412701785137,
+        "canvasY": 520.0959641673124
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74117405719014,
+          -36.80562722225132,
+          1.81
+        ]
+      },
+      "properties": {
+        "id": "0_195",
+        "camera": "Camera 196",
+        "frame": "0383",
+        "image": "pano_camera1/frame_0383_hp_preview.jpg",
+        "frameId": "3720",
+        "height": 1.81,
+        "coords2D": "2D: (9.47, -0.31)",
+        "coords3D": "3D: (5.16, -1.46, 1.81)",
+        "easting": 397948.3968373126,
+        "northing": 808221.6012182022,
+        "longitude": 174.74117405719014,
+        "latitude": -36.80562722225132,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 944.011483188404,
+        "canvasY": 510.94658432539194
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74117338434334,
+          -36.805627234144666,
+          1.81
+        ]
+      },
+      "properties": {
+        "id": "0_196",
+        "camera": "Camera 197",
+        "frame": "0384",
+        "image": "pano_camera1/frame_0384_hp_preview.jpg",
+        "frameId": "3721",
+        "height": 1.81,
+        "coords2D": "2D: (9.42, -0.31)",
+        "coords3D": "3D: (5.13, -1.47, 1.81)",
+        "easting": 397948.33680031024,
+        "northing": 808221.5998840465,
+        "longitude": 174.74117338434334,
+        "latitude": -36.805627234144666,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 942.9336766625232,
+        "canvasY": 510.97053558152265
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7411702307111,
+          -36.805623037355176,
+          1.97
+        ]
+      },
+      "properties": {
+        "id": "0_197",
+        "camera": "Camera 198",
+        "frame": "0385",
+        "image": "pano_camera1/frame_0385_hp_preview.jpg",
+        "frameId": "3722",
+        "height": 1.97,
+        "coords2D": "2D: (9.21, -0.66)",
+        "coords3D": "3D: (4.94, -1.46, 1.97)",
+        "easting": 397948.055293477,
+        "northing": 808222.0655043536,
+        "longitude": 174.7411702307111,
+        "latitude": -36.805623037355176,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 937.8799616189493,
+        "canvasY": 502.61154719191455
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74116414801276,
+          -36.80561369396781,
+          2.34
+        ]
+      },
+      "properties": {
+        "id": "0_198",
+        "camera": "Camera 199",
+        "frame": "0386",
+        "image": "pano_camera1/frame_0386_hp_preview.jpg",
+        "frameId": "3723",
+        "height": 2.34,
+        "coords2D": "2D: (8.81, -1.44)",
+        "coords3D": "3D: (4.54, -1.43, 2.34)",
+        "easting": 397947.5122921446,
+        "northing": 808223.1021432609,
+        "longitude": 174.74116414801276,
+        "latitude": -36.80561369396781,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 928.1318003737617,
+        "canvasY": 484.0014211783746
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74116190656918,
+          -36.80560912462795,
+          2.53
+        ]
+      },
+      "properties": {
+        "id": "0_199",
+        "camera": "Camera 200",
+        "frame": "0387",
+        "image": "pano_camera1/frame_0387_hp_preview.jpg",
+        "frameId": "3724",
+        "height": 2.53,
+        "coords2D": "2D: (8.65, -1.82)",
+        "coords3D": "3D: (4.38, -1.42, 2.53)",
+        "easting": 397947.3121688034,
+        "northing": 808223.6091223919,
+        "longitude": 174.74116190656918,
+        "latitude": -36.80560912462795,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 924.5391119541594,
+        "canvasY": 474.8999438487154
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74115323843924,
+          -36.80559552444292,
+          3.08
+        ]
+      },
+      "properties": {
+        "id": "0_200",
+        "camera": "Camera 201",
+        "frame": "0388",
+        "image": "pano_camera1/frame_0388_hp_preview.jpg",
+        "frameId": "3725",
+        "height": 3.08,
+        "coords2D": "2D: (8.07, -2.95)",
+        "coords3D": "3D: (3.81, -1.37, 3.08)",
+        "easting": 397946.53835855087,
+        "northing": 808225.1180523844,
+        "longitude": 174.74115323843924,
+        "latitude": -36.80559552444292,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 910.6473833983638,
+        "canvasY": 447.811073164914
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74114679660408,
+          -36.80558715488358,
+          3.4
+        ]
+      },
+      "properties": {
+        "id": "0_201",
+        "camera": "Camera 202",
+        "frame": "0389",
+        "image": "pano_camera1/frame_0389_hp_preview.jpg",
+        "frameId": "3726",
+        "height": 3.4,
+        "coords2D": "2D: (7.64, -3.64)",
+        "coords3D": "3D: (3.43, -1.32, 3.40)",
+        "easting": 397945.9633374839,
+        "northing": 808226.0466246874,
+        "longitude": 174.74114679660408,
+        "latitude": -36.80558715488358,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 900.3243920060398,
+        "canvasY": 431.14099889795926
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74114374733702,
+          -36.805583968082324,
+          3.51
+        ]
+      },
+      "properties": {
+        "id": "0_202",
+        "camera": "Camera 203",
+        "frame": "0390",
+        "image": "pano_camera1/frame_0390_hp_preview.jpg",
+        "frameId": "3727",
+        "height": 3.51,
+        "coords2D": "2D: (7.44, -3.91)",
+        "coords3D": "3D: (3.26, -1.29, 3.51)",
+        "easting": 397945.6911697399,
+        "northing": 808226.4001759235,
+        "longitude": 174.74114374733702,
+        "latitude": -36.805583968082324,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 895.4383357553808,
+        "canvasY": 424.7939160233285
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74113440371292,
+          -36.805579241062176,
+          3.62
+        ]
+      },
+      "properties": {
+        "id": "0_203",
+        "camera": "Camera 204",
+        "frame": "0391",
+        "image": "pano_camera1/frame_0391_hp_preview.jpg",
+        "frameId": "3728",
+        "height": 3.62,
+        "coords2D": "2D: (6.81, -4.30)",
+        "coords3D": "3D: (2.82, -1.23, 3.62)",
+        "easting": 397944.857322485,
+        "northing": 808226.9244990774,
+        "longitude": 174.74113440371292,
+        "latitude": -36.805579241062176,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 880.4688006737044,
+        "canvasY": 415.3810723639705
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74113217566483,
+          -36.80557987787286,
+          3.56
+        ]
+      },
+      "properties": {
+        "id": "0_204",
+        "camera": "Camera 205",
+        "frame": "0392",
+        "image": "pano_camera1/frame_0392_hp_preview.jpg",
+        "frameId": "3729",
+        "height": 3.56,
+        "coords2D": "2D: (6.67, -4.25)",
+        "coords3D": "3D: (2.75, -1.21, 3.56)",
+        "easting": 397944.6585332994,
+        "northing": 808226.8537888302,
+        "longitude": 174.74113217566483,
+        "latitude": -36.80557987787286,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 876.9000635102328,
+        "canvasY": 416.6504889388966
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7411324735753,
+          -36.80558365329002,
+          3.38
+        ]
+      },
+      "properties": {
+        "id": "0_205",
+        "camera": "Camera 206",
+        "frame": "0393",
+        "image": "pano_camera1/frame_0393_hp_preview.jpg",
+        "frameId": "3730",
+        "height": 3.38,
+        "coords2D": "2D: (6.69, -3.93)",
+        "coords3D": "3D: (2.83, -1.20, 3.38)",
+        "easting": 397944.6852164116,
+        "northing": 808226.4348639693,
+        "longitude": 174.7411324735753,
+        "latitude": -36.80558365329002,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 877.3790886328464,
+        "canvasY": 424.17118336393077
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74113610597595,
+          -36.805586828181035,
+          3.28
+        ]
+      },
+      "properties": {
+        "id": "0_206",
+        "camera": "Camera 207",
+        "frame": "0394",
+        "image": "pano_camera1/frame_0394_hp_preview.jpg",
+        "frameId": "3731",
+        "height": 3.28,
+        "coords2D": "2D: (6.93, -3.67)",
+        "coords3D": "3D: (3.02, -1.22, 3.28)",
+        "easting": 397945.00941622426,
+        "northing": 808226.0826468888,
+        "longitude": 174.74113610597595,
+        "latitude": -36.805586828181035,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 883.1992438726022,
+        "canvasY": 430.49431498243086
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7411424291509,
+          -36.80559199948356,
+          3.11
+        ]
+      },
+      "properties": {
+        "id": "0_207",
+        "camera": "Camera 208",
+        "frame": "0395",
+        "image": "pano_camera1/frame_0395_hp_preview.jpg",
+        "frameId": "3732",
+        "height": 3.11,
+        "coords2D": "2D: (7.35, -3.24)",
+        "coords3D": "3D: (3.35, -1.26, 3.11)",
+        "easting": 397945.5737640464,
+        "northing": 808225.5089599774,
+        "longitude": 174.7411424291509,
+        "latitude": -36.80559199948356,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 893.3306252158807,
+        "canvasY": 440.79335511862416
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74114635949596,
+          -36.805598841580434,
+          2.83
+        ]
+      },
+      "properties": {
+        "id": "0_208",
+        "camera": "Camera 209",
+        "frame": "0396",
+        "image": "pano_camera1/frame_0396_hp_preview.jpg",
+        "frameId": "3733",
+        "height": 2.83,
+        "coords2D": "2D: (7.62, -2.67)",
+        "coords3D": "3D: (3.62, -1.28, 2.83)",
+        "easting": 397945.9246469713,
+        "northing": 808224.7498254366,
+        "longitude": 174.74114635949596,
+        "latitude": -36.805598841580434,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 899.6298055782501,
+        "canvasY": 454.42161985698226
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7411400922476,
+          -36.80560663155481,
+          2.38
+        ]
+      },
+      "properties": {
+        "id": "0_209",
+        "camera": "Camera 210",
+        "frame": "0397",
+        "image": "pano_camera1/frame_0397_hp_preview.jpg",
+        "frameId": "3734",
+        "height": 2.38,
+        "coords2D": "2D: (7.20, -2.02)",
+        "coords3D": "3D: (3.51, -1.25, 2.38)",
+        "easting": 397945.3656357716,
+        "northing": 808223.8852926027,
+        "longitude": 174.7411400922476,
+        "latitude": -36.80560663155481,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 889.5942292594943,
+        "canvasY": 469.94203382966424
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7411363985973,
+          -36.805608266027136,
+          2.25
+        ]
+      },
+      "properties": {
+        "id": "0_210",
+        "camera": "Camera 211",
+        "frame": "0398",
+        "image": "pano_camera1/frame_0398_hp_preview.jpg",
+        "frameId": "3735",
+        "height": 2.25,
+        "coords2D": "2D: (6.95, -1.89)",
+        "coords3D": "3D: (3.40, -1.22, 2.25)",
+        "easting": 397945.03609933646,
+        "northing": 808223.7038474401,
+        "longitude": 174.7411363985973,
+        "latitude": -36.805608266027136,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 883.6782689952158,
+        "canvasY": 473.199404663437
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74112475118167,
+          -36.80560744617735,
+          2.14
+        ]
+      },
+      "properties": {
+        "id": "0_211",
+        "camera": "Camera 212",
+        "frame": "0399",
+        "image": "pano_camera1/frame_0399_hp_preview.jpg",
+        "frameId": "3736",
+        "height": 2.14,
+        "coords2D": "2D: (6.17, -1.95)",
+        "coords3D": "3D: (2.94, -1.13, 2.14)",
+        "easting": 397943.99679211795,
+        "northing": 808223.7945700214,
+        "longitude": 174.74112475118167,
+        "latitude": -36.80560744617735,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 865.0202404694145,
+        "canvasY": 471.5707192465506
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74111684389482,
+          -36.805599581316855,
+          2.42
+        ]
+      },
+      "properties": {
+        "id": "0_212",
+        "camera": "Camera 213",
+        "frame": "0400",
+        "image": "pano_camera1/frame_0400_hp_preview.jpg",
+        "frameId": "3737",
+        "height": 2.42,
+        "coords2D": "2D: (5.64, -2.61)",
+        "coords3D": "3D: (2.51, -1.07, 2.42)",
+        "easting": 397943.2910238014,
+        "northing": 808224.667107789,
+        "longitude": 174.74111684389482,
+        "latitude": -36.805599581316855,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 852.3500259762836,
+        "canvasY": 455.90659773708455
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7411112238717,
+          -36.80559306352428,
+          2.66
+        ]
+      },
+      "properties": {
+        "id": "0_213",
+        "camera": "Camera 214",
+        "frame": "0401",
+        "image": "pano_camera1/frame_0401_hp_preview.jpg",
+        "frameId": "3738",
+        "height": 2.66,
+        "coords2D": "2D: (5.27, -3.15)",
+        "coords3D": "3D: (2.18, -1.03, 2.66)",
+        "easting": 397942.7893812928,
+        "northing": 808225.3902201283,
+        "longitude": 174.7411112238717,
+        "latitude": -36.80559306352428,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 843.3443536711472,
+        "canvasY": 442.92501691425485
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7411107903844,
+          -36.805592654643355,
+          2.68
+        ]
+      },
+      "properties": {
+        "id": "0_214",
+        "camera": "Camera 215",
+        "frame": "0402",
+        "image": "pano_camera1/frame_0402_hp_preview.jpg",
+        "frameId": "3739",
+        "height": 2.68,
+        "coords2D": "2D: (5.24, -3.18)",
+        "coords3D": "3D: (2.16, -1.03, 2.68)",
+        "easting": 397942.7506907802,
+        "northing": 808225.435581419,
+        "longitude": 174.7411107903844,
+        "latitude": -36.805592654643355,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 842.6497672433574,
+        "canvasY": 442.1106742058116
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74110561884132,
+          -36.80558641347652,
+          2.91
+        ]
+      },
+      "properties": {
+        "id": "0_215",
+        "camera": "Camera 216",
+        "frame": "0403",
+        "image": "pano_camera1/frame_0403_hp_preview.jpg",
+        "frameId": "3740",
+        "height": 2.91,
+        "coords2D": "2D: (4.89, -3.70)",
+        "coords3D": "3D: (1.86, -0.99, 2.91)",
+        "easting": 397942.2890729399,
+        "northing": 808226.1280081795,
+        "longitude": 174.74110561884132,
+        "latitude": -36.80558641347652,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 834.3626326221414,
+        "canvasY": 429.6799722739877
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74109295479724,
+          -36.805585232723345,
+          2.81
+        ]
+      },
+      "properties": {
+        "id": "0_216",
+        "camera": "Camera 217",
+        "frame": "0404",
+        "image": "pano_camera1/frame_0404_hp_preview.jpg",
+        "frameId": "3741",
+        "height": 2.81,
+        "coords2D": "2D: (4.04, -3.80)",
+        "coords3D": "3D: (1.36, -0.89, 2.81)",
+        "easting": 397941.15904314,
+        "northing": 808226.2587554291,
+        "longitude": 174.74109295479724,
+        "latitude": -36.805585232723345,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 814.0759186794537,
+        "canvasY": 427.3327491731808
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74109216217917,
+          -36.80558576160083,
+          2.77
+        ]
+      },
+      "properties": {
+        "id": "0_217",
+        "camera": "Camera 218",
+        "frame": "0405",
+        "image": "pano_camera1/frame_0405_hp_preview.jpg",
+        "frameId": "3742",
+        "height": 2.77,
+        "coords2D": "2D: (3.99, -3.76)",
+        "coords3D": "3D: (1.33, -0.89, 2.77)",
+        "easting": 397941.0883328928,
+        "northing": 808226.2000525823,
+        "longitude": 174.74109216217917,
+        "latitude": -36.80558576160083,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 812.8065021045276,
+        "canvasY": 428.38660444293083
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74108680678222,
+          -36.80559428517901,
+          2.29
+        ]
+      },
+      "properties": {
+        "id": "0_218",
+        "camera": "Camera 219",
+        "frame": "0406",
+        "image": "pano_camera1/frame_0406_hp_preview.jpg",
+        "frameId": "3743",
+        "height": 2.29,
+        "coords2D": "2D: (3.63, -3.05)",
+        "coords3D": "3D: (1.27, -0.86, 2.29)",
+        "easting": 397940.6107051852,
+        "northing": 808225.2541362564,
+        "longitude": 174.74108680678222,
+        "latitude": -36.80559428517901,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 804.2319524097434,
+        "canvasY": 445.36804503958444
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74109188820427,
+          -36.80560188497765,
+          1.99
+        ]
+      },
+      "properties": {
+        "id": "0_219",
+        "camera": "Camera 220",
+        "frame": "0407",
+        "image": "pano_camera1/frame_0407_hp_preview.jpg",
+        "frameId": "3744",
+        "height": 1.99,
+        "coords2D": "2D: (3.97, -2.42)",
+        "coords3D": "3D: (1.60, -0.87, 1.99)",
+        "easting": 397941.0643180919,
+        "northing": 808224.4109499123,
+        "longitude": 174.74109188820427,
+        "latitude": -36.80560188497765,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 812.3753794941753,
+        "canvasY": 460.5052389141755
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74109475781785,
+          -36.80560582922193,
+          1.84
+        ]
+      },
+      "properties": {
+        "id": "0_220",
+        "camera": "Camera 221",
+        "frame": "0408",
+        "image": "pano_camera1/frame_0408_hp_preview.jpg",
+        "frameId": "3745",
+        "height": 1.84,
+        "coords2D": "2D: (4.16, -2.09)",
+        "coords3D": "3D: (1.78, -0.90, 1.84)",
+        "easting": 397941.3204759686,
+        "northing": 808223.9733468728,
+        "longitude": 174.74109475781785,
+        "latitude": -36.80560582922193,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 816.9740206712662,
+        "canvasY": 468.3612509250392
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74109696987978,
+          -36.80560864313546,
+          1.73
+        ]
+      },
+      "properties": {
+        "id": "0_221",
+        "camera": "Camera 222",
+        "frame": "0409",
+        "image": "pano_camera1/frame_0409_hp_preview.jpg",
+        "frameId": "3746",
+        "height": 1.73,
+        "coords2D": "2D: (4.31, -1.86)",
+        "coords3D": "3D: (1.91, -0.90, 1.73)",
+        "easting": 397941.5179309985,
+        "northing": 808223.6611544606,
+        "longitude": 174.74109696987978,
+        "latitude": -36.80560864313546,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 820.5188065786072,
+        "canvasY": 473.9658448596188
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74109844802823,
+          -36.805615665109784,
+          1.41
+        ]
+      },
+      "properties": {
+        "id": "0_222",
+        "camera": "Camera 223",
+        "frame": "0410",
+        "image": "pano_camera1/frame_0410_hp_preview.jpg",
+        "frameId": "3747",
+        "height": 1.41,
+        "coords2D": "2D: (4.41, -1.27)",
+        "coords3D": "3D: (2.09, -0.92, 1.41)",
+        "easting": 397941.6500124037,
+        "northing": 808222.8820075856,
+        "longitude": 174.74109844802823,
+        "latitude": -36.805615665109784,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 822.8899809355447,
+        "canvasY": 487.9533784399371
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410886665031,
+          -36.805625233868504,
+          0.83
+        ]
+      },
+      "properties": {
+        "id": "0_223",
+        "camera": "Camera 224",
+        "frame": "0411",
+        "image": "pano_camera1/frame_0411_hp_preview.jpg",
+        "frameId": "3748",
+        "height": 0.83,
+        "coords2D": "2D: (3.76, -0.47)",
+        "coords3D": "3D: (1.88, -0.83, 0.83)",
+        "easting": 397940.7774746362,
+        "northing": 808221.8200197218,
+        "longitude": 174.7410886665031,
+        "latitude": -36.805625233868504,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 807.2258594260786,
+        "canvasY": 507.01857831996006
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74108694673347,
+          -36.80562617136291,
+          0.76
+        ]
+      },
+      "properties": {
+        "id": "0_224",
+        "camera": "Camera 225",
+        "frame": "0412",
+        "image": "pano_camera1/frame_0412_hp_preview.jpg",
+        "frameId": "3749",
+        "height": 0.76,
+        "coords2D": "2D: (3.64, -0.40)",
+        "coords3D": "3D: (1.83, -0.81, 0.76)",
+        "easting": 397940.6240467413,
+        "northing": 808221.7159555844,
+        "longitude": 174.74108694673347,
+        "latitude": -36.80562617136291,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 804.4714649710502,
+        "canvasY": 508.8867762981533
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74108310308404,
+          -36.805629392898254,
+          0.55
+        ]
+      },
+      "properties": {
+        "id": "0_225",
+        "camera": "Camera 226",
+        "frame": "0413",
+        "image": "pano_camera1/frame_0413_hp_preview.jpg",
+        "frameId": "3750",
+        "height": 0.55,
+        "coords2D": "2D: (3.38, -0.13)",
+        "coords3D": "3D: (1.74, -0.78, 0.55)",
+        "easting": 397940.2811687501,
+        "northing": 808221.3584018814,
+        "longitude": 174.74108310308404,
+        "latitude": -36.805629392898254,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 798.3159921454649,
+        "canvasY": 515.3057129411761
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410835964519,
+          -36.805629561322135,
+          0.55
+        ]
+      },
+      "properties": {
+        "id": "0_226",
+        "camera": "Camera 227",
+        "frame": "0414",
+        "image": "pano_camera1/frame_0414_hp_preview.jpg",
+        "frameId": "3751",
+        "height": 0.55,
+        "coords2D": "2D: (3.42, -0.12)",
+        "coords3D": "3D: (1.76, -0.79, 0.55)",
+        "easting": 397940.32519588515,
+        "northing": 808221.339723703,
+        "longitude": 174.7410835964519,
+        "latitude": -36.805629561322135,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 799.1063835977774,
+        "canvasY": 515.6410305270057
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.74108364131533,
+          -36.805629537283956,
+          0.56
+        ]
+      },
+      "properties": {
+        "id": "0_227",
+        "camera": "Camera 228",
+        "frame": "0415",
+        "image": "pano_camera1/frame_0415_hp_preview.jpg",
+        "frameId": "3752",
+        "height": 0.56,
+        "coords2D": "2D: (3.42, -0.12)",
+        "coords3D": "3D: (1.76, -0.79, 0.56)",
+        "easting": 397940.32919835194,
+        "northing": 808221.3423920142,
+        "longitude": 174.74108364131533,
+        "latitude": -36.805629537283956,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 799.1782373661695,
+        "canvasY": 515.5931280147443
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7410835366508,
+          -36.80562953726364,
+          0.55
+        ]
+      },
+      "properties": {
+        "id": "0_228",
+        "camera": "Camera 229",
+        "frame": "0416",
+        "image": "pano_camera1/frame_0416_hp_preview.jpg",
+        "frameId": "3753",
+        "height": 0.55,
+        "coords2D": "2D: (3.41, -0.12)",
+        "coords3D": "3D: (1.76, -0.78, 0.55)",
+        "easting": 397940.31985926273,
+        "northing": 808221.3423920142,
+        "longitude": 174.7410835366508,
+        "latitude": -36.80562953726364,
+        "group": "Camera Positions 0 (Enhanced)",
+        "canvasX": 799.0105785732546,
+        "canvasY": 515.5931280147443
+      }
+    }
+  ],
+  "properties": {
+    "name": "Camera Positions Export",
+    "description": "Exported camera positions from floor plan viewer",
+    "exportDate": "2025-10-16T04:56:05.514Z",
+    "totalFeatures": 229,
+    "coordinateSystem": "WGS84 (EPSG:4326)",
+    "originalSystem": "Mt Eden 2000 (EPSG:2105)"
+  }
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Name>Bluff Command</Name>
+    <Assembly>Source\Bluff\bin\Debug\Bluff.dll</Assembly>
+    <AddInId>5BA86B1B-D589-45D8-ADC6-01F9BC851D57</AddInId>
+    <FullClassName>Bluff.BluffCommand</FullClassName>
+    <Text>Bluff</Text>
+    <Description>A simple Bluff command for Revit</Description>
+    <VendorId>YOURNAME</VendorId>
+    <VendorDescription>Your Name</VendorDescription>
+  </AddIn>
+</RevitAddIns>

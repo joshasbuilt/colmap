@@ -1,0 +1,1808 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="-6.030 -2.407 12.061 4.814" 
+     xmlns="http://www.w3.org/2000/svg">
+  <!-- Gravity-corrected camera positions -->
+  <circle cx="-1.411" cy="-0.214" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 1 | 2D: (-1.41, -0.21) | 3D: (-1.39, -0.18, -0.00) | Image: pano_camera0/frame_0037.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-3.928" cy="-0.433" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 2 | 2D: (-3.93, -0.43) | 3D: (-3.90, -0.40, -0.02) | Image: pano_camera7/frame_0035.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-2.155" cy="-0.251" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 3 | 2D: (-2.16, -0.25) | 3D: (-2.13, -0.22, 0.01) | Image: pano_camera2/frame_0036.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-2.155" cy="-0.251" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 4 | 2D: (-2.16, -0.25) | 3D: (-2.13, -0.22, 0.01) | Image: pano_camera1/frame_0036.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-1.376" cy="1.041" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 5 | 2D: (-1.38, 1.04) | 3D: (-1.35, 1.07, -0.00) | Image: pano_camera1/frame_0074.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-1.411" cy="-0.214" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 6 | 2D: (-1.41, -0.21) | 3D: (-1.39, -0.18, -0.00) | Image: pano_camera4/frame_0037.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-5.262" cy="-1.925" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 7 | 2D: (-5.26, -1.92) | 3D: (-5.24, -1.90, -0.01) | Image: pano_camera7/frame_0023.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-2.422" cy="-0.748" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 8 | 2D: (-2.42, -0.75) | 3D: (-2.40, -0.72, 0.00) | Image: pano_camera1/frame_0029.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="-1.411" cy="-0.214" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 9 | 2D: (-1.41, -0.21) | 3D: (-1.39, -0.18, -0.00) | Image: pano_camera2/frame_0037.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-0.842" cy="0.242" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 10 | 2D: (-0.84, 0.24) | 3D: (-0.82, 0.27, -0.03) | Image: pano_camera4/frame_0073.jpg | Frame: unknown | Height: -0.03m</title>
+  </circle>
+  <circle cx="-4.632" cy="-1.066" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 11 | 2D: (-4.63, -1.07) | 3D: (-4.61, -1.04, -0.00) | Image: pano_camera7/frame_0031.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-3.508" cy="-0.878" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 12 | 2D: (-3.51, -0.88) | 3D: (-3.48, -0.85, -0.02) | Image: pano_camera0/frame_0030.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-2.422" cy="-0.748" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 13 | 2D: (-2.42, -0.75) | 3D: (-2.40, -0.72, 0.00) | Image: pano_camera6/frame_0029.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="-1.411" cy="-0.214" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 14 | 2D: (-1.41, -0.21) | 3D: (-1.39, -0.18, -0.00) | Image: pano_camera1/frame_0037.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-3.508" cy="-0.878" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 15 | 2D: (-3.51, -0.88) | 3D: (-3.48, -0.85, -0.02) | Image: pano_camera5/frame_0030.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-0.842" cy="0.242" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 16 | 2D: (-0.84, 0.24) | 3D: (-0.82, 0.27, -0.03) | Image: pano_camera2/frame_0073.jpg | Frame: unknown | Height: -0.03m</title>
+  </circle>
+  <circle cx="-0.248" cy="1.044" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 17 | 2D: (-0.25, 1.04) | 3D: (-0.22, 1.07, -0.00) | Image: pano_camera3/frame_0072.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-1.411" cy="-0.214" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 18 | 2D: (-1.41, -0.21) | 3D: (-1.39, -0.18, -0.00) | Image: pano_camera6/frame_0037.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-1.411" cy="-0.214" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 19 | 2D: (-1.41, -0.21) | 3D: (-1.39, -0.18, -0.00) | Image: pano_camera3/frame_0037.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-1.411" cy="-0.214" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 20 | 2D: (-1.41, -0.21) | 3D: (-1.39, -0.18, -0.00) | Image: pano_camera5/frame_0037.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-1.336" cy="-0.795" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 21 | 2D: (-1.34, -0.79) | 3D: (-1.31, -0.77, 0.01) | Image: pano_camera3/frame_0028.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-1.411" cy="-0.214" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 22 | 2D: (-1.41, -0.21) | 3D: (-1.39, -0.18, -0.00) | Image: pano_camera7/frame_0037.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-2.422" cy="-0.748" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 23 | 2D: (-2.42, -0.75) | 3D: (-2.40, -0.72, 0.00) | Image: pano_camera0/frame_0029.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="-0.842" cy="0.242" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 24 | 2D: (-0.84, 0.24) | 3D: (-0.82, 0.27, -0.03) | Image: pano_camera7/frame_0073.jpg | Frame: unknown | Height: -0.03m</title>
+  </circle>
+  <circle cx="-1.376" cy="1.041" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 25 | 2D: (-1.38, 1.04) | 3D: (-1.35, 1.07, -0.00) | Image: pano_camera0/frame_0074.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-2.422" cy="-0.748" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 26 | 2D: (-2.42, -0.75) | 3D: (-2.40, -0.72, 0.00) | Image: pano_camera2/frame_0029.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="-0.842" cy="0.242" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 27 | 2D: (-0.84, 0.24) | 3D: (-0.82, 0.27, -0.03) | Image: pano_camera5/frame_0073.jpg | Frame: unknown | Height: -0.03m</title>
+  </circle>
+  <circle cx="-2.358" cy="-1.831" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 28 | 2D: (-2.36, -1.83) | 3D: (-2.34, -1.80, -0.01) | Image: pano_camera1/frame_0026.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-1.336" cy="-0.795" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 29 | 2D: (-1.34, -0.79) | 3D: (-1.31, -0.77, 0.01) | Image: pano_camera7/frame_0028.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-2.422" cy="-0.748" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 30 | 2D: (-2.42, -0.75) | 3D: (-2.40, -0.72, 0.00) | Image: pano_camera3/frame_0029.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="6.282" cy="-0.759" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 31 | 2D: (6.28, -0.76) | 3D: (6.30, -0.73, -0.02) | Image: pano_camera6/frame_0048.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-2.422" cy="-0.748" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 32 | 2D: (-2.42, -0.75) | 3D: (-2.40, -0.72, 0.00) | Image: pano_camera4/frame_0029.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="-2.422" cy="-0.748" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 33 | 2D: (-2.42, -0.75) | 3D: (-2.40, -0.72, 0.00) | Image: pano_camera5/frame_0029.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="-4.423" cy="-1.877" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 34 | 2D: (-4.42, -1.88) | 3D: (-4.40, -1.85, -0.02) | Image: pano_camera0/frame_0024.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-2.422" cy="-0.748" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 35 | 2D: (-2.42, -0.75) | 3D: (-2.40, -0.72, 0.00) | Image: pano_camera7/frame_0029.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="-3.928" cy="-0.433" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 36 | 2D: (-3.93, -0.43) | 3D: (-3.90, -0.40, -0.02) | Image: pano_camera6/frame_0035.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="1.326" cy="-0.443" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 37 | 2D: (1.33, -0.44) | 3D: (1.35, -0.41, -0.01) | Image: pano_camera7/frame_0040.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-2.155" cy="-0.251" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 38 | 2D: (-2.16, -0.25) | 3D: (-2.13, -0.22, 0.01) | Image: pano_camera0/frame_0036.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-1.336" cy="-0.795" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 39 | 2D: (-1.34, -0.79) | 3D: (-1.31, -0.77, 0.01) | Image: pano_camera2/frame_0028.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-2.155" cy="-0.251" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 40 | 2D: (-2.16, -0.25) | 3D: (-2.13, -0.22, 0.01) | Image: pano_camera3/frame_0036.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-2.732" cy="-1.840" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 41 | 2D: (-2.73, -1.84) | 3D: (-2.71, -1.81, -0.01) | Image: pano_camera5/frame_0025.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-2.155" cy="-0.251" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 42 | 2D: (-2.16, -0.25) | 3D: (-2.13, -0.22, 0.01) | Image: pano_camera4/frame_0036.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-2.155" cy="-0.251" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 43 | 2D: (-2.16, -0.25) | 3D: (-2.13, -0.22, 0.01) | Image: pano_camera5/frame_0036.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="3.083" cy="-1.193" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 44 | 2D: (3.08, -1.19) | 3D: (3.11, -1.16, 0.00) | Image: pano_camera7/frame_0044.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="-1.336" cy="-0.795" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 45 | 2D: (-1.34, -0.79) | 3D: (-1.31, -0.77, 0.01) | Image: pano_camera0/frame_0028.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-2.155" cy="-0.251" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 46 | 2D: (-2.16, -0.25) | 3D: (-2.13, -0.22, 0.01) | Image: pano_camera6/frame_0036.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-2.155" cy="-0.251" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 47 | 2D: (-2.16, -0.25) | 3D: (-2.13, -0.22, 0.01) | Image: pano_camera7/frame_0036.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-1.376" cy="1.041" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 48 | 2D: (-1.38, 1.04) | 3D: (-1.35, 1.07, -0.00) | Image: pano_camera4/frame_0074.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-1.336" cy="-0.795" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 49 | 2D: (-1.34, -0.79) | 3D: (-1.31, -0.77, 0.01) | Image: pano_camera6/frame_0028.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-1.336" cy="-0.795" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 50 | 2D: (-1.34, -0.79) | 3D: (-1.31, -0.77, 0.01) | Image: pano_camera1/frame_0028.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-1.336" cy="-0.795" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 51 | 2D: (-1.34, -0.79) | 3D: (-1.31, -0.77, 0.01) | Image: pano_camera4/frame_0028.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-4.632" cy="-1.066" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 52 | 2D: (-4.63, -1.07) | 3D: (-4.61, -1.04, -0.00) | Image: pano_camera4/frame_0031.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-1.336" cy="-0.795" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 53 | 2D: (-1.34, -0.79) | 3D: (-1.31, -0.77, 0.01) | Image: pano_camera5/frame_0028.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-3.508" cy="-0.878" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 54 | 2D: (-3.51, -0.88) | 3D: (-3.48, -0.85, -0.02) | Image: pano_camera1/frame_0030.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-3.508" cy="-0.878" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 55 | 2D: (-3.51, -0.88) | 3D: (-3.48, -0.85, -0.02) | Image: pano_camera2/frame_0030.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-3.508" cy="-0.878" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 56 | 2D: (-3.51, -0.88) | 3D: (-3.48, -0.85, -0.02) | Image: pano_camera3/frame_0030.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-5.184" cy="-1.168" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 57 | 2D: (-5.18, -1.17) | 3D: (-5.16, -1.14, -0.02) | Image: pano_camera5/frame_0032.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-3.508" cy="-0.878" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 58 | 2D: (-3.51, -0.88) | 3D: (-3.48, -0.85, -0.02) | Image: pano_camera4/frame_0030.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-3.508" cy="-0.878" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 59 | 2D: (-3.51, -0.88) | 3D: (-3.48, -0.85, -0.02) | Image: pano_camera6/frame_0030.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-0.842" cy="0.242" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 60 | 2D: (-0.84, 0.24) | 3D: (-0.82, 0.27, -0.03) | Image: pano_camera3/frame_0073.jpg | Frame: unknown | Height: -0.03m</title>
+  </circle>
+  <circle cx="-3.508" cy="-0.878" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 61 | 2D: (-3.51, -0.88) | 3D: (-3.48, -0.85, -0.02) | Image: pano_camera7/frame_0030.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-0.842" cy="0.242" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 62 | 2D: (-0.84, 0.24) | 3D: (-0.82, 0.27, -0.03) | Image: pano_camera0/frame_0073.jpg | Frame: unknown | Height: -0.03m</title>
+  </circle>
+  <circle cx="-0.842" cy="0.242" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 63 | 2D: (-0.84, 0.24) | 3D: (-0.82, 0.27, -0.03) | Image: pano_camera1/frame_0073.jpg | Frame: unknown | Height: -0.03m</title>
+  </circle>
+  <circle cx="-3.928" cy="-0.433" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 64 | 2D: (-3.93, -0.43) | 3D: (-3.90, -0.40, -0.02) | Image: pano_camera3/frame_0035.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-0.842" cy="0.242" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 65 | 2D: (-0.84, 0.24) | 3D: (-0.82, 0.27, -0.03) | Image: pano_camera6/frame_0073.jpg | Frame: unknown | Height: -0.03m</title>
+  </circle>
+  <circle cx="-3.928" cy="-0.433" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 66 | 2D: (-3.93, -0.43) | 3D: (-3.90, -0.40, -0.02) | Image: pano_camera0/frame_0035.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="1.951" cy="0.744" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 67 | 2D: (1.95, 0.74) | 3D: (1.97, 0.77, -0.00) | Image: pano_camera3/frame_0067.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-1.376" cy="1.041" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 68 | 2D: (-1.38, 1.04) | 3D: (-1.35, 1.07, -0.00) | Image: pano_camera5/frame_0074.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-3.928" cy="-0.433" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 69 | 2D: (-3.93, -0.43) | 3D: (-3.90, -0.40, -0.02) | Image: pano_camera1/frame_0035.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-3.928" cy="-0.433" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 70 | 2D: (-3.93, -0.43) | 3D: (-3.90, -0.40, -0.02) | Image: pano_camera2/frame_0035.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-3.928" cy="-0.433" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 71 | 2D: (-3.93, -0.43) | 3D: (-3.90, -0.40, -0.02) | Image: pano_camera4/frame_0035.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="1.997" cy="-0.935" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 72 | 2D: (2.00, -0.93) | 3D: (2.02, -0.91, 0.08) | Image: pano_camera3/frame_0041.jpg | Frame: unknown | Height: 0.08m</title>
+  </circle>
+  <circle cx="-3.928" cy="-0.433" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 73 | 2D: (-3.93, -0.43) | 3D: (-3.90, -0.40, -0.02) | Image: pano_camera5/frame_0035.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-1.376" cy="1.041" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 74 | 2D: (-1.38, 1.04) | 3D: (-1.35, 1.07, -0.00) | Image: pano_camera2/frame_0074.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-1.376" cy="1.041" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 75 | 2D: (-1.38, 1.04) | 3D: (-1.35, 1.07, -0.00) | Image: pano_camera3/frame_0074.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="3.932" cy="0.739" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 76 | 2D: (3.93, 0.74) | 3D: (3.96, 0.77, -0.01) | Image: pano_camera4/frame_0051.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-1.376" cy="1.041" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 77 | 2D: (-1.38, 1.04) | 3D: (-1.35, 1.07, -0.00) | Image: pano_camera6/frame_0074.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-1.376" cy="1.041" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 78 | 2D: (-1.38, 1.04) | 3D: (-1.35, 1.07, -0.00) | Image: pano_camera7/frame_0074.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-3.791" cy="1.538" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 79 | 2D: (-3.79, 1.54) | 3D: (-3.77, 1.57, 0.01) | Image: pano_camera0/frame_0076.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-3.791" cy="1.538" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 80 | 2D: (-3.79, 1.54) | 3D: (-3.77, 1.57, 0.01) | Image: pano_camera1/frame_0076.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-3.791" cy="1.538" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 81 | 2D: (-3.79, 1.54) | 3D: (-3.77, 1.57, 0.01) | Image: pano_camera2/frame_0076.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-0.984" cy="-1.478" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 82 | 2D: (-0.98, -1.48) | 3D: (-0.96, -1.45, -0.00) | Image: pano_camera6/frame_0027.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-3.791" cy="1.538" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 83 | 2D: (-3.79, 1.54) | 3D: (-3.77, 1.57, 0.01) | Image: pano_camera3/frame_0076.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="2.864" cy="2.080" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 84 | 2D: (2.86, 2.08) | 3D: (2.89, 2.11, 0.01) | Image: pano_camera2/frame_0065.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-3.791" cy="1.538" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 85 | 2D: (-3.79, 1.54) | 3D: (-3.77, 1.57, 0.01) | Image: pano_camera4/frame_0076.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-0.248" cy="1.078" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 86 | 2D: (-0.25, 1.08) | 3D: (-0.23, 1.11, -0.01) | Image: pano_camera3/frame_0071.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-3.791" cy="1.538" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 87 | 2D: (-3.79, 1.54) | 3D: (-3.77, 1.57, 0.01) | Image: pano_camera5/frame_0076.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-0.984" cy="-1.478" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 88 | 2D: (-0.98, -1.48) | 3D: (-0.96, -1.45, -0.00) | Image: pano_camera1/frame_0027.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-3.791" cy="1.538" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 89 | 2D: (-3.79, 1.54) | 3D: (-3.77, 1.57, 0.01) | Image: pano_camera6/frame_0076.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-3.791" cy="1.538" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 90 | 2D: (-3.79, 1.54) | 3D: (-3.77, 1.57, 0.01) | Image: pano_camera7/frame_0076.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-4.632" cy="-1.066" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 91 | 2D: (-4.63, -1.07) | 3D: (-4.61, -1.04, -0.00) | Image: pano_camera0/frame_0031.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-4.632" cy="-1.066" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 92 | 2D: (-4.63, -1.07) | 3D: (-4.61, -1.04, -0.00) | Image: pano_camera1/frame_0031.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="1.951" cy="0.744" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 93 | 2D: (1.95, 0.74) | 3D: (1.97, 0.77, -0.00) | Image: pano_camera5/frame_0067.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-4.632" cy="-1.066" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 94 | 2D: (-4.63, -1.07) | 3D: (-4.61, -1.04, -0.00) | Image: pano_camera2/frame_0031.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-4.632" cy="-1.066" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 95 | 2D: (-4.63, -1.07) | 3D: (-4.61, -1.04, -0.00) | Image: pano_camera3/frame_0031.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-4.632" cy="-1.066" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 96 | 2D: (-4.63, -1.07) | 3D: (-4.61, -1.04, -0.00) | Image: pano_camera5/frame_0031.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-4.632" cy="-1.066" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 97 | 2D: (-4.63, -1.07) | 3D: (-4.61, -1.04, -0.00) | Image: pano_camera6/frame_0031.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-4.830" cy="1.302" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 98 | 2D: (-4.83, 1.30) | 3D: (-4.81, 1.33, -0.02) | Image: pano_camera0/frame_0077.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-4.830" cy="1.302" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 99 | 2D: (-4.83, 1.30) | 3D: (-4.81, 1.33, -0.02) | Image: pano_camera1/frame_0077.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-4.830" cy="1.302" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 100 | 2D: (-4.83, 1.30) | 3D: (-4.81, 1.33, -0.02) | Image: pano_camera2/frame_0077.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-4.830" cy="1.302" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 101 | 2D: (-4.83, 1.30) | 3D: (-4.81, 1.33, -0.02) | Image: pano_camera3/frame_0077.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="3.847" cy="1.062" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 102 | 2D: (3.85, 1.06) | 3D: (3.87, 1.09, -0.00) | Image: pano_camera2/frame_0052.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-4.830" cy="1.302" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 103 | 2D: (-4.83, 1.30) | 3D: (-4.81, 1.33, -0.02) | Image: pano_camera4/frame_0077.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-4.830" cy="1.302" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 104 | 2D: (-4.83, 1.30) | 3D: (-4.81, 1.33, -0.02) | Image: pano_camera5/frame_0077.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-4.830" cy="1.302" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 105 | 2D: (-4.83, 1.30) | 3D: (-4.81, 1.33, -0.02) | Image: pano_camera6/frame_0077.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-4.830" cy="1.302" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 106 | 2D: (-4.83, 1.30) | 3D: (-4.81, 1.33, -0.02) | Image: pano_camera7/frame_0077.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-2.563" cy="1.663" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 107 | 2D: (-2.56, 1.66) | 3D: (-2.54, 1.69, 0.02) | Image: pano_camera0/frame_0075.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="-2.563" cy="1.663" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 108 | 2D: (-2.56, 1.66) | 3D: (-2.54, 1.69, 0.02) | Image: pano_camera1/frame_0075.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="-4.423" cy="-1.877" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 109 | 2D: (-4.42, -1.88) | 3D: (-4.40, -1.85, -0.02) | Image: pano_camera5/frame_0024.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-2.563" cy="1.663" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 110 | 2D: (-2.56, 1.66) | 3D: (-2.54, 1.69, 0.02) | Image: pano_camera2/frame_0075.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="-2.563" cy="1.663" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 111 | 2D: (-2.56, 1.66) | 3D: (-2.54, 1.69, 0.02) | Image: pano_camera3/frame_0075.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="-2.563" cy="1.663" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 112 | 2D: (-2.56, 1.66) | 3D: (-2.54, 1.69, 0.02) | Image: pano_camera4/frame_0075.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="-2.563" cy="1.663" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 113 | 2D: (-2.56, 1.66) | 3D: (-2.54, 1.69, 0.02) | Image: pano_camera5/frame_0075.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="-2.563" cy="1.663" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 114 | 2D: (-2.56, 1.66) | 3D: (-2.54, 1.69, 0.02) | Image: pano_camera6/frame_0075.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="-2.563" cy="1.663" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 115 | 2D: (-2.56, 1.66) | 3D: (-2.54, 1.69, 0.02) | Image: pano_camera7/frame_0075.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="-5.515" cy="-0.734" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 116 | 2D: (-5.52, -0.73) | 3D: (-5.49, -0.70, 0.00) | Image: pano_camera7/frame_0033.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="-0.473" cy="-0.194" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 117 | 2D: (-0.47, -0.19) | 3D: (-0.45, -0.16, -0.01) | Image: pano_camera0/frame_0038.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-0.473" cy="-0.194" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 118 | 2D: (-0.47, -0.19) | 3D: (-0.45, -0.16, -0.01) | Image: pano_camera1/frame_0038.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-0.473" cy="-0.194" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 119 | 2D: (-0.47, -0.19) | 3D: (-0.45, -0.16, -0.01) | Image: pano_camera2/frame_0038.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-0.473" cy="-0.194" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 120 | 2D: (-0.47, -0.19) | 3D: (-0.45, -0.16, -0.01) | Image: pano_camera3/frame_0038.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="3.083" cy="-1.193" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 121 | 2D: (3.08, -1.19) | 3D: (3.11, -1.16, 0.00) | Image: pano_camera6/frame_0044.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="-0.473" cy="-0.194" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 122 | 2D: (-0.47, -0.19) | 3D: (-0.45, -0.16, -0.01) | Image: pano_camera4/frame_0038.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-0.473" cy="-0.194" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 123 | 2D: (-0.47, -0.19) | 3D: (-0.45, -0.16, -0.01) | Image: pano_camera5/frame_0038.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-0.473" cy="-0.194" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 124 | 2D: (-0.47, -0.19) | 3D: (-0.45, -0.16, -0.01) | Image: pano_camera6/frame_0038.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-0.473" cy="-0.194" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 125 | 2D: (-0.47, -0.19) | 3D: (-0.45, -0.16, -0.01) | Image: pano_camera7/frame_0038.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-5.515" cy="-0.734" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 126 | 2D: (-5.52, -0.73) | 3D: (-5.49, -0.70, 0.00) | Image: pano_camera0/frame_0033.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="-5.515" cy="-0.734" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 127 | 2D: (-5.52, -0.73) | 3D: (-5.49, -0.70, 0.00) | Image: pano_camera1/frame_0033.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="-5.515" cy="-0.734" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 128 | 2D: (-5.52, -0.73) | 3D: (-5.49, -0.70, 0.00) | Image: pano_camera2/frame_0033.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="-5.515" cy="-0.734" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 129 | 2D: (-5.52, -0.73) | 3D: (-5.49, -0.70, 0.00) | Image: pano_camera3/frame_0033.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="-5.515" cy="-0.734" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 130 | 2D: (-5.52, -0.73) | 3D: (-5.49, -0.70, 0.00) | Image: pano_camera4/frame_0033.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="-5.515" cy="-0.734" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 131 | 2D: (-5.52, -0.73) | 3D: (-5.49, -0.70, 0.00) | Image: pano_camera5/frame_0033.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="-5.515" cy="-0.734" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 132 | 2D: (-5.52, -0.73) | 3D: (-5.49, -0.70, 0.00) | Image: pano_camera6/frame_0033.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="-5.117" cy="-0.530" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 133 | 2D: (-5.12, -0.53) | 3D: (-5.09, -0.50, -0.00) | Image: pano_camera0/frame_0034.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-5.117" cy="-0.530" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 134 | 2D: (-5.12, -0.53) | 3D: (-5.09, -0.50, -0.00) | Image: pano_camera1/frame_0034.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-5.117" cy="-0.530" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 135 | 2D: (-5.12, -0.53) | 3D: (-5.09, -0.50, -0.00) | Image: pano_camera2/frame_0034.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="5.489" cy="-0.598" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 136 | 2D: (5.49, -0.60) | 3D: (5.51, -0.57, -0.03) | Image: pano_camera5/frame_0049.jpg | Frame: unknown | Height: -0.03m</title>
+  </circle>
+  <circle cx="-5.117" cy="-0.530" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 137 | 2D: (-5.12, -0.53) | 3D: (-5.09, -0.50, -0.00) | Image: pano_camera3/frame_0034.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-5.117" cy="-0.530" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 138 | 2D: (-5.12, -0.53) | 3D: (-5.09, -0.50, -0.00) | Image: pano_camera4/frame_0034.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="2.919" cy="-1.875" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 139 | 2D: (2.92, -1.87) | 3D: (2.94, -1.85, -0.02) | Image: pano_camera3/frame_0043.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-5.117" cy="-0.530" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 140 | 2D: (-5.12, -0.53) | 3D: (-5.09, -0.50, -0.00) | Image: pano_camera5/frame_0034.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.253" cy="1.112" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 141 | 2D: (0.25, 1.11) | 3D: (0.28, 1.14, -0.00) | Image: pano_camera3/frame_0069.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-5.117" cy="-0.530" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 142 | 2D: (-5.12, -0.53) | 3D: (-5.09, -0.50, -0.00) | Image: pano_camera6/frame_0034.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-5.117" cy="-0.530" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 143 | 2D: (-5.12, -0.53) | 3D: (-5.09, -0.50, -0.00) | Image: pano_camera7/frame_0034.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.253" cy="1.112" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 144 | 2D: (0.25, 1.11) | 3D: (0.28, 1.14, -0.00) | Image: pano_camera0/frame_0069.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.253" cy="1.112" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 145 | 2D: (0.25, 1.11) | 3D: (0.28, 1.14, -0.00) | Image: pano_camera1/frame_0069.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.253" cy="1.112" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 146 | 2D: (0.25, 1.11) | 3D: (0.28, 1.14, -0.00) | Image: pano_camera2/frame_0069.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.253" cy="1.112" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 147 | 2D: (0.25, 1.11) | 3D: (0.28, 1.14, -0.00) | Image: pano_camera4/frame_0069.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="3.847" cy="1.062" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 148 | 2D: (3.85, 1.06) | 3D: (3.87, 1.09, -0.00) | Image: pano_camera3/frame_0052.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.253" cy="1.112" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 149 | 2D: (0.25, 1.11) | 3D: (0.28, 1.14, -0.00) | Image: pano_camera5/frame_0069.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="3.932" cy="0.739" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 150 | 2D: (3.93, 0.74) | 3D: (3.96, 0.77, -0.01) | Image: pano_camera3/frame_0051.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="0.253" cy="1.112" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 151 | 2D: (0.25, 1.11) | 3D: (0.28, 1.14, -0.00) | Image: pano_camera6/frame_0069.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.253" cy="1.112" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 152 | 2D: (0.25, 1.11) | 3D: (0.28, 1.14, -0.00) | Image: pano_camera7/frame_0069.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.445" cy="0.495" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 153 | 2D: (0.45, 0.50) | 3D: (0.47, 0.52, -0.00) | Image: pano_camera0/frame_0068.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.445" cy="0.495" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 154 | 2D: (0.45, 0.50) | 3D: (0.47, 0.52, -0.00) | Image: pano_camera1/frame_0068.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.445" cy="0.495" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 155 | 2D: (0.45, 0.50) | 3D: (0.47, 0.52, -0.00) | Image: pano_camera2/frame_0068.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-2.358" cy="-1.831" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 156 | 2D: (-2.36, -1.83) | 3D: (-2.34, -1.80, -0.01) | Image: pano_camera6/frame_0026.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="0.445" cy="0.495" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 157 | 2D: (0.45, 0.50) | 3D: (0.47, 0.52, -0.00) | Image: pano_camera3/frame_0068.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.445" cy="0.495" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 158 | 2D: (0.45, 0.50) | 3D: (0.47, 0.52, -0.00) | Image: pano_camera4/frame_0068.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.445" cy="0.495" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 159 | 2D: (0.45, 0.50) | 3D: (0.47, 0.52, -0.00) | Image: pano_camera5/frame_0068.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.445" cy="0.495" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 160 | 2D: (0.45, 0.50) | 3D: (0.47, 0.52, -0.00) | Image: pano_camera6/frame_0068.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="1.979" cy="0.852" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 161 | 2D: (1.98, 0.85) | 3D: (2.00, 0.88, 0.01) | Image: pano_camera0/frame_0066.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="0.445" cy="0.495" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 162 | 2D: (0.45, 0.50) | 3D: (0.47, 0.52, -0.00) | Image: pano_camera7/frame_0068.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.237" cy="1.552" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 163 | 2D: (0.24, 1.55) | 3D: (0.26, 1.58, -0.00) | Image: pano_camera0/frame_0070.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.237" cy="1.552" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 164 | 2D: (0.24, 1.55) | 3D: (0.26, 1.58, -0.00) | Image: pano_camera1/frame_0070.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.237" cy="1.552" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 165 | 2D: (0.24, 1.55) | 3D: (0.26, 1.58, -0.00) | Image: pano_camera2/frame_0070.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.237" cy="1.552" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 166 | 2D: (0.24, 1.55) | 3D: (0.26, 1.58, -0.00) | Image: pano_camera3/frame_0070.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.237" cy="1.552" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 167 | 2D: (0.24, 1.55) | 3D: (0.26, 1.58, -0.00) | Image: pano_camera4/frame_0070.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.237" cy="1.552" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 168 | 2D: (0.24, 1.55) | 3D: (0.26, 1.58, -0.00) | Image: pano_camera5/frame_0070.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.237" cy="1.552" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 169 | 2D: (0.24, 1.55) | 3D: (0.26, 1.58, -0.00) | Image: pano_camera6/frame_0070.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.237" cy="1.552" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 170 | 2D: (0.24, 1.55) | 3D: (0.26, 1.58, -0.00) | Image: pano_camera7/frame_0070.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-0.248" cy="1.078" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 171 | 2D: (-0.25, 1.08) | 3D: (-0.23, 1.11, -0.01) | Image: pano_camera0/frame_0071.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-0.248" cy="1.078" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 172 | 2D: (-0.25, 1.08) | 3D: (-0.23, 1.11, -0.01) | Image: pano_camera1/frame_0071.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="1.997" cy="-0.935" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 173 | 2D: (2.00, -0.93) | 3D: (2.02, -0.91, 0.08) | Image: pano_camera5/frame_0041.jpg | Frame: unknown | Height: 0.08m</title>
+  </circle>
+  <circle cx="-0.248" cy="1.078" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 174 | 2D: (-0.25, 1.08) | 3D: (-0.23, 1.11, -0.01) | Image: pano_camera2/frame_0071.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-0.248" cy="1.078" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 175 | 2D: (-0.25, 1.08) | 3D: (-0.23, 1.11, -0.01) | Image: pano_camera4/frame_0071.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="4.694" cy="2.273" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 176 | 2D: (4.69, 2.27) | 3D: (4.72, 2.30, -0.04) | Image: pano_camera3/frame_0063.jpg | Frame: unknown | Height: -0.04m</title>
+  </circle>
+  <circle cx="-0.248" cy="1.078" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 177 | 2D: (-0.25, 1.08) | 3D: (-0.23, 1.11, -0.01) | Image: pano_camera5/frame_0071.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-0.248" cy="1.078" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 178 | 2D: (-0.25, 1.08) | 3D: (-0.23, 1.11, -0.01) | Image: pano_camera6/frame_0071.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="2.864" cy="2.080" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 179 | 2D: (2.86, 2.08) | 3D: (2.89, 2.11, 0.01) | Image: pano_camera0/frame_0065.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-0.248" cy="1.078" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 180 | 2D: (-0.25, 1.08) | 3D: (-0.23, 1.11, -0.01) | Image: pano_camera7/frame_0071.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-0.248" cy="1.044" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 181 | 2D: (-0.25, 1.04) | 3D: (-0.22, 1.07, -0.00) | Image: pano_camera0/frame_0072.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-0.248" cy="1.044" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 182 | 2D: (-0.25, 1.04) | 3D: (-0.22, 1.07, -0.00) | Image: pano_camera1/frame_0072.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-0.248" cy="1.044" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 183 | 2D: (-0.25, 1.04) | 3D: (-0.22, 1.07, -0.00) | Image: pano_camera2/frame_0072.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-0.248" cy="1.044" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 184 | 2D: (-0.25, 1.04) | 3D: (-0.22, 1.07, -0.00) | Image: pano_camera4/frame_0072.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-0.248" cy="1.044" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 185 | 2D: (-0.25, 1.04) | 3D: (-0.22, 1.07, -0.00) | Image: pano_camera5/frame_0072.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-0.248" cy="1.044" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 186 | 2D: (-0.25, 1.04) | 3D: (-0.22, 1.07, -0.00) | Image: pano_camera6/frame_0072.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-0.248" cy="1.044" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 187 | 2D: (-0.25, 1.04) | 3D: (-0.22, 1.07, -0.00) | Image: pano_camera7/frame_0072.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="0.448" cy="-0.135" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 188 | 2D: (0.45, -0.14) | 3D: (0.47, -0.11, -0.01) | Image: pano_camera0/frame_0039.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="0.448" cy="-0.135" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 189 | 2D: (0.45, -0.14) | 3D: (0.47, -0.11, -0.01) | Image: pano_camera1/frame_0039.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="0.448" cy="-0.135" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 190 | 2D: (0.45, -0.14) | 3D: (0.47, -0.11, -0.01) | Image: pano_camera2/frame_0039.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="0.448" cy="-0.135" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 191 | 2D: (0.45, -0.14) | 3D: (0.47, -0.11, -0.01) | Image: pano_camera3/frame_0039.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="0.448" cy="-0.135" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 192 | 2D: (0.45, -0.14) | 3D: (0.47, -0.11, -0.01) | Image: pano_camera4/frame_0039.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="0.448" cy="-0.135" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 193 | 2D: (0.45, -0.14) | 3D: (0.47, -0.11, -0.01) | Image: pano_camera5/frame_0039.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="0.448" cy="-0.135" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 194 | 2D: (0.45, -0.14) | 3D: (0.47, -0.11, -0.01) | Image: pano_camera6/frame_0039.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="0.448" cy="-0.135" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 195 | 2D: (0.45, -0.14) | 3D: (0.47, -0.11, -0.01) | Image: pano_camera7/frame_0039.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-5.184" cy="-1.168" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 196 | 2D: (-5.18, -1.17) | 3D: (-5.16, -1.14, -0.02) | Image: pano_camera7/frame_0032.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-5.184" cy="-1.168" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 197 | 2D: (-5.18, -1.17) | 3D: (-5.16, -1.14, -0.02) | Image: pano_camera0/frame_0032.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-5.184" cy="-1.168" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 198 | 2D: (-5.18, -1.17) | 3D: (-5.16, -1.14, -0.02) | Image: pano_camera1/frame_0032.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-5.184" cy="-1.168" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 199 | 2D: (-5.18, -1.17) | 3D: (-5.16, -1.14, -0.02) | Image: pano_camera2/frame_0032.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="3.237" cy="2.097" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 200 | 2D: (3.24, 2.10) | 3D: (3.26, 2.13, 0.01) | Image: pano_camera5/frame_0064.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="-5.184" cy="-1.168" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 201 | 2D: (-5.18, -1.17) | 3D: (-5.16, -1.14, -0.02) | Image: pano_camera3/frame_0032.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-5.184" cy="-1.168" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 202 | 2D: (-5.18, -1.17) | 3D: (-5.16, -1.14, -0.02) | Image: pano_camera4/frame_0032.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-5.184" cy="-1.168" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 203 | 2D: (-5.18, -1.17) | 3D: (-5.16, -1.14, -0.02) | Image: pano_camera6/frame_0032.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-0.984" cy="-1.478" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 204 | 2D: (-0.98, -1.48) | 3D: (-0.96, -1.45, -0.00) | Image: pano_camera0/frame_0027.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-0.984" cy="-1.478" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 205 | 2D: (-0.98, -1.48) | 3D: (-0.96, -1.45, -0.00) | Image: pano_camera2/frame_0027.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="6.282" cy="-0.759" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 206 | 2D: (6.28, -0.76) | 3D: (6.30, -0.73, -0.02) | Image: pano_camera5/frame_0048.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-0.984" cy="-1.478" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 207 | 2D: (-0.98, -1.48) | 3D: (-0.96, -1.45, -0.00) | Image: pano_camera3/frame_0027.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-0.984" cy="-1.478" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 208 | 2D: (-0.98, -1.48) | 3D: (-0.96, -1.45, -0.00) | Image: pano_camera4/frame_0027.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="1.951" cy="0.744" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 209 | 2D: (1.95, 0.74) | 3D: (1.97, 0.77, -0.00) | Image: pano_camera2/frame_0067.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-0.984" cy="-1.478" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 210 | 2D: (-0.98, -1.48) | 3D: (-0.96, -1.45, -0.00) | Image: pano_camera5/frame_0027.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-0.984" cy="-1.478" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 211 | 2D: (-0.98, -1.48) | 3D: (-0.96, -1.45, -0.00) | Image: pano_camera7/frame_0027.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-2.358" cy="-1.831" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 212 | 2D: (-2.36, -1.83) | 3D: (-2.34, -1.80, -0.01) | Image: pano_camera0/frame_0026.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-2.358" cy="-1.831" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 213 | 2D: (-2.36, -1.83) | 3D: (-2.34, -1.80, -0.01) | Image: pano_camera2/frame_0026.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-2.358" cy="-1.831" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 214 | 2D: (-2.36, -1.83) | 3D: (-2.34, -1.80, -0.01) | Image: pano_camera3/frame_0026.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-2.358" cy="-1.831" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 215 | 2D: (-2.36, -1.83) | 3D: (-2.34, -1.80, -0.01) | Image: pano_camera4/frame_0026.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-2.358" cy="-1.831" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 216 | 2D: (-2.36, -1.83) | 3D: (-2.34, -1.80, -0.01) | Image: pano_camera5/frame_0026.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="2.772" cy="-1.595" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 217 | 2D: (2.77, -1.60) | 3D: (2.79, -1.57, 0.00) | Image: pano_camera0/frame_0042.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="-2.358" cy="-1.831" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 218 | 2D: (-2.36, -1.83) | 3D: (-2.34, -1.80, -0.01) | Image: pano_camera7/frame_0026.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="2.864" cy="2.080" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 219 | 2D: (2.86, 2.08) | 3D: (2.89, 2.11, 0.01) | Image: pano_camera1/frame_0065.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="2.864" cy="2.080" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 220 | 2D: (2.86, 2.08) | 3D: (2.89, 2.11, 0.01) | Image: pano_camera3/frame_0065.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="2.864" cy="2.080" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 221 | 2D: (2.86, 2.08) | 3D: (2.89, 2.11, 0.01) | Image: pano_camera4/frame_0065.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="2.864" cy="2.080" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 222 | 2D: (2.86, 2.08) | 3D: (2.89, 2.11, 0.01) | Image: pano_camera5/frame_0065.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="2.864" cy="2.080" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 223 | 2D: (2.86, 2.08) | 3D: (2.89, 2.11, 0.01) | Image: pano_camera6/frame_0065.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="2.864" cy="2.080" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 224 | 2D: (2.86, 2.08) | 3D: (2.89, 2.11, 0.01) | Image: pano_camera7/frame_0065.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="3.237" cy="2.097" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 225 | 2D: (3.24, 2.10) | 3D: (3.26, 2.13, 0.01) | Image: pano_camera0/frame_0064.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="3.237" cy="2.097" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 226 | 2D: (3.24, 2.10) | 3D: (3.26, 2.13, 0.01) | Image: pano_camera1/frame_0064.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="3.237" cy="2.097" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 227 | 2D: (3.24, 2.10) | 3D: (3.26, 2.13, 0.01) | Image: pano_camera2/frame_0064.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="3.237" cy="2.097" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 228 | 2D: (3.24, 2.10) | 3D: (3.26, 2.13, 0.01) | Image: pano_camera3/frame_0064.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="3.237" cy="2.097" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 229 | 2D: (3.24, 2.10) | 3D: (3.26, 2.13, 0.01) | Image: pano_camera4/frame_0064.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="3.237" cy="2.097" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 230 | 2D: (3.24, 2.10) | 3D: (3.26, 2.13, 0.01) | Image: pano_camera6/frame_0064.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="4.694" cy="2.273" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 231 | 2D: (4.69, 2.27) | 3D: (4.72, 2.30, -0.04) | Image: pano_camera0/frame_0063.jpg | Frame: unknown | Height: -0.04m</title>
+  </circle>
+  <circle cx="3.237" cy="2.097" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 232 | 2D: (3.24, 2.10) | 3D: (3.26, 2.13, 0.01) | Image: pano_camera7/frame_0064.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="1.979" cy="0.852" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 233 | 2D: (1.98, 0.85) | 3D: (2.00, 0.88, 0.01) | Image: pano_camera1/frame_0066.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="1.979" cy="0.852" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 234 | 2D: (1.98, 0.85) | 3D: (2.00, 0.88, 0.01) | Image: pano_camera2/frame_0066.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="1.979" cy="0.852" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 235 | 2D: (1.98, 0.85) | 3D: (2.00, 0.88, 0.01) | Image: pano_camera3/frame_0066.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="1.979" cy="0.852" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 236 | 2D: (1.98, 0.85) | 3D: (2.00, 0.88, 0.01) | Image: pano_camera4/frame_0066.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="1.979" cy="0.852" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 237 | 2D: (1.98, 0.85) | 3D: (2.00, 0.88, 0.01) | Image: pano_camera5/frame_0066.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="1.979" cy="0.852" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 238 | 2D: (1.98, 0.85) | 3D: (2.00, 0.88, 0.01) | Image: pano_camera6/frame_0066.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="1.979" cy="0.852" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 239 | 2D: (1.98, 0.85) | 3D: (2.00, 0.88, 0.01) | Image: pano_camera7/frame_0066.jpg | Frame: unknown | Height: 0.01m</title>
+  </circle>
+  <circle cx="1.951" cy="0.744" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 240 | 2D: (1.95, 0.74) | 3D: (1.97, 0.77, -0.00) | Image: pano_camera0/frame_0067.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="1.951" cy="0.744" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 241 | 2D: (1.95, 0.74) | 3D: (1.97, 0.77, -0.00) | Image: pano_camera1/frame_0067.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="4.694" cy="2.273" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 242 | 2D: (4.69, 2.27) | 3D: (4.72, 2.30, -0.04) | Image: pano_camera2/frame_0063.jpg | Frame: unknown | Height: -0.04m</title>
+  </circle>
+  <circle cx="1.951" cy="0.744" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 243 | 2D: (1.95, 0.74) | 3D: (1.97, 0.77, -0.00) | Image: pano_camera4/frame_0067.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="1.951" cy="0.744" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 244 | 2D: (1.95, 0.74) | 3D: (1.97, 0.77, -0.00) | Image: pano_camera6/frame_0067.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="1.951" cy="0.744" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 245 | 2D: (1.95, 0.74) | 3D: (1.97, 0.77, -0.00) | Image: pano_camera7/frame_0067.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="4.694" cy="2.273" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 246 | 2D: (4.69, 2.27) | 3D: (4.72, 2.30, -0.04) | Image: pano_camera1/frame_0063.jpg | Frame: unknown | Height: -0.04m</title>
+  </circle>
+  <circle cx="4.694" cy="2.273" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 247 | 2D: (4.69, 2.27) | 3D: (4.72, 2.30, -0.04) | Image: pano_camera4/frame_0063.jpg | Frame: unknown | Height: -0.04m</title>
+  </circle>
+  <circle cx="4.694" cy="2.273" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 248 | 2D: (4.69, 2.27) | 3D: (4.72, 2.30, -0.04) | Image: pano_camera5/frame_0063.jpg | Frame: unknown | Height: -0.04m</title>
+  </circle>
+  <circle cx="4.694" cy="2.273" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 249 | 2D: (4.69, 2.27) | 3D: (4.72, 2.30, -0.04) | Image: pano_camera6/frame_0063.jpg | Frame: unknown | Height: -0.04m</title>
+  </circle>
+  <circle cx="4.694" cy="2.273" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 250 | 2D: (4.69, 2.27) | 3D: (4.72, 2.30, -0.04) | Image: pano_camera7/frame_0063.jpg | Frame: unknown | Height: -0.04m</title>
+  </circle>
+  <circle cx="3.932" cy="0.739" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 251 | 2D: (3.93, 0.74) | 3D: (3.96, 0.77, -0.01) | Image: pano_camera0/frame_0051.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="3.932" cy="0.739" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 252 | 2D: (3.93, 0.74) | 3D: (3.96, 0.77, -0.01) | Image: pano_camera1/frame_0051.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="3.932" cy="0.739" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 253 | 2D: (3.93, 0.74) | 3D: (3.96, 0.77, -0.01) | Image: pano_camera2/frame_0051.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="4.280" cy="-0.232" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 254 | 2D: (4.28, -0.23) | 3D: (4.30, -0.20, 0.02) | Image: pano_camera3/frame_0050.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="3.932" cy="0.739" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 255 | 2D: (3.93, 0.74) | 3D: (3.96, 0.77, -0.01) | Image: pano_camera5/frame_0051.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="3.932" cy="0.739" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 256 | 2D: (3.93, 0.74) | 3D: (3.96, 0.77, -0.01) | Image: pano_camera6/frame_0051.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="3.932" cy="0.739" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 257 | 2D: (3.93, 0.74) | 3D: (3.96, 0.77, -0.01) | Image: pano_camera7/frame_0051.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="3.847" cy="1.062" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 258 | 2D: (3.85, 1.06) | 3D: (3.87, 1.09, -0.00) | Image: pano_camera0/frame_0052.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="3.847" cy="1.062" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 259 | 2D: (3.85, 1.06) | 3D: (3.87, 1.09, -0.00) | Image: pano_camera1/frame_0052.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="3.847" cy="1.062" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 260 | 2D: (3.85, 1.06) | 3D: (3.87, 1.09, -0.00) | Image: pano_camera4/frame_0052.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="3.847" cy="1.062" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 261 | 2D: (3.85, 1.06) | 3D: (3.87, 1.09, -0.00) | Image: pano_camera5/frame_0052.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="4.280" cy="-0.232" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 262 | 2D: (4.28, -0.23) | 3D: (4.30, -0.20, 0.02) | Image: pano_camera4/frame_0050.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="3.847" cy="1.062" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 263 | 2D: (3.85, 1.06) | 3D: (3.87, 1.09, -0.00) | Image: pano_camera6/frame_0052.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="3.847" cy="1.062" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 264 | 2D: (3.85, 1.06) | 3D: (3.87, 1.09, -0.00) | Image: pano_camera7/frame_0052.jpg | Frame: unknown | Height: -0.00m</title>
+  </circle>
+  <circle cx="-2.732" cy="-1.840" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 265 | 2D: (-2.73, -1.84) | 3D: (-2.71, -1.81, -0.01) | Image: pano_camera0/frame_0025.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-2.732" cy="-1.840" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 266 | 2D: (-2.73, -1.84) | 3D: (-2.71, -1.81, -0.01) | Image: pano_camera1/frame_0025.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-2.732" cy="-1.840" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 267 | 2D: (-2.73, -1.84) | 3D: (-2.71, -1.81, -0.01) | Image: pano_camera2/frame_0025.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-2.732" cy="-1.840" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 268 | 2D: (-2.73, -1.84) | 3D: (-2.71, -1.81, -0.01) | Image: pano_camera3/frame_0025.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-2.732" cy="-1.840" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 269 | 2D: (-2.73, -1.84) | 3D: (-2.71, -1.81, -0.01) | Image: pano_camera4/frame_0025.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-2.732" cy="-1.840" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 270 | 2D: (-2.73, -1.84) | 3D: (-2.71, -1.81, -0.01) | Image: pano_camera6/frame_0025.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-2.732" cy="-1.840" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 271 | 2D: (-2.73, -1.84) | 3D: (-2.71, -1.81, -0.01) | Image: pano_camera7/frame_0025.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-4.423" cy="-1.877" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 272 | 2D: (-4.42, -1.88) | 3D: (-4.40, -1.85, -0.02) | Image: pano_camera1/frame_0024.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-4.423" cy="-1.877" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 273 | 2D: (-4.42, -1.88) | 3D: (-4.40, -1.85, -0.02) | Image: pano_camera2/frame_0024.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-4.423" cy="-1.877" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 274 | 2D: (-4.42, -1.88) | 3D: (-4.40, -1.85, -0.02) | Image: pano_camera3/frame_0024.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="1.997" cy="-0.935" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 275 | 2D: (2.00, -0.93) | 3D: (2.02, -0.91, 0.08) | Image: pano_camera6/frame_0041.jpg | Frame: unknown | Height: 0.08m</title>
+  </circle>
+  <circle cx="-4.423" cy="-1.877" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 276 | 2D: (-4.42, -1.88) | 3D: (-4.40, -1.85, -0.02) | Image: pano_camera4/frame_0024.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-4.423" cy="-1.877" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 277 | 2D: (-4.42, -1.88) | 3D: (-4.40, -1.85, -0.02) | Image: pano_camera6/frame_0024.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-4.423" cy="-1.877" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 278 | 2D: (-4.42, -1.88) | 3D: (-4.40, -1.85, -0.02) | Image: pano_camera7/frame_0024.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="-5.262" cy="-1.925" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 279 | 2D: (-5.26, -1.92) | 3D: (-5.24, -1.90, -0.01) | Image: pano_camera0/frame_0023.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-5.262" cy="-1.925" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 280 | 2D: (-5.26, -1.92) | 3D: (-5.24, -1.90, -0.01) | Image: pano_camera1/frame_0023.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-5.262" cy="-1.925" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 281 | 2D: (-5.26, -1.92) | 3D: (-5.24, -1.90, -0.01) | Image: pano_camera2/frame_0023.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-5.262" cy="-1.925" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 282 | 2D: (-5.26, -1.92) | 3D: (-5.24, -1.90, -0.01) | Image: pano_camera3/frame_0023.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-5.262" cy="-1.925" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 283 | 2D: (-5.26, -1.92) | 3D: (-5.24, -1.90, -0.01) | Image: pano_camera4/frame_0023.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-5.262" cy="-1.925" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 284 | 2D: (-5.26, -1.92) | 3D: (-5.24, -1.90, -0.01) | Image: pano_camera5/frame_0023.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="-5.262" cy="-1.925" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 285 | 2D: (-5.26, -1.92) | 3D: (-5.24, -1.90, -0.01) | Image: pano_camera6/frame_0023.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="4.447" cy="1.904" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 286 | 2D: (4.45, 1.90) | 3D: (4.47, 1.93, 0.02) | Image: pano_camera0/frame_0053.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="4.447" cy="1.904" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 287 | 2D: (4.45, 1.90) | 3D: (4.47, 1.93, 0.02) | Image: pano_camera1/frame_0053.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="4.447" cy="1.904" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 288 | 2D: (4.45, 1.90) | 3D: (4.47, 1.93, 0.02) | Image: pano_camera2/frame_0053.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="4.447" cy="1.904" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 289 | 2D: (4.45, 1.90) | 3D: (4.47, 1.93, 0.02) | Image: pano_camera3/frame_0053.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="4.447" cy="1.904" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 290 | 2D: (4.45, 1.90) | 3D: (4.47, 1.93, 0.02) | Image: pano_camera4/frame_0053.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="4.447" cy="1.904" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 291 | 2D: (4.45, 1.90) | 3D: (4.47, 1.93, 0.02) | Image: pano_camera5/frame_0053.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="4.447" cy="1.904" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 292 | 2D: (4.45, 1.90) | 3D: (4.47, 1.93, 0.02) | Image: pano_camera6/frame_0053.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="4.447" cy="1.904" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 293 | 2D: (4.45, 1.90) | 3D: (4.47, 1.93, 0.02) | Image: pano_camera7/frame_0053.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="1.326" cy="-0.443" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 294 | 2D: (1.33, -0.44) | 3D: (1.35, -0.41, -0.01) | Image: pano_camera0/frame_0040.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="1.326" cy="-0.443" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 295 | 2D: (1.33, -0.44) | 3D: (1.35, -0.41, -0.01) | Image: pano_camera1/frame_0040.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="1.326" cy="-0.443" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 296 | 2D: (1.33, -0.44) | 3D: (1.35, -0.41, -0.01) | Image: pano_camera2/frame_0040.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="1.326" cy="-0.443" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 297 | 2D: (1.33, -0.44) | 3D: (1.35, -0.41, -0.01) | Image: pano_camera3/frame_0040.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="1.326" cy="-0.443" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 298 | 2D: (1.33, -0.44) | 3D: (1.35, -0.41, -0.01) | Image: pano_camera4/frame_0040.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="1.326" cy="-0.443" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 299 | 2D: (1.33, -0.44) | 3D: (1.35, -0.41, -0.01) | Image: pano_camera5/frame_0040.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="1.326" cy="-0.443" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 300 | 2D: (1.33, -0.44) | 3D: (1.35, -0.41, -0.01) | Image: pano_camera6/frame_0040.jpg | Frame: unknown | Height: -0.01m</title>
+  </circle>
+  <circle cx="4.280" cy="-0.232" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 301 | 2D: (4.28, -0.23) | 3D: (4.30, -0.20, 0.02) | Image: pano_camera0/frame_0050.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="4.280" cy="-0.232" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 302 | 2D: (4.28, -0.23) | 3D: (4.30, -0.20, 0.02) | Image: pano_camera1/frame_0050.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="4.280" cy="-0.232" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 303 | 2D: (4.28, -0.23) | 3D: (4.30, -0.20, 0.02) | Image: pano_camera2/frame_0050.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="4.280" cy="-0.232" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 304 | 2D: (4.28, -0.23) | 3D: (4.30, -0.20, 0.02) | Image: pano_camera5/frame_0050.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="1.997" cy="-0.935" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 305 | 2D: (2.00, -0.93) | 3D: (2.02, -0.91, 0.08) | Image: pano_camera4/frame_0041.jpg | Frame: unknown | Height: 0.08m</title>
+  </circle>
+  <circle cx="4.280" cy="-0.232" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 306 | 2D: (4.28, -0.23) | 3D: (4.30, -0.20, 0.02) | Image: pano_camera6/frame_0050.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="4.280" cy="-0.232" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 307 | 2D: (4.28, -0.23) | 3D: (4.30, -0.20, 0.02) | Image: pano_camera7/frame_0050.jpg | Frame: unknown | Height: 0.02m</title>
+  </circle>
+  <circle cx="5.489" cy="-0.598" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 308 | 2D: (5.49, -0.60) | 3D: (5.51, -0.57, -0.03) | Image: pano_camera0/frame_0049.jpg | Frame: unknown | Height: -0.03m</title>
+  </circle>
+  <circle cx="5.489" cy="-0.598" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 309 | 2D: (5.49, -0.60) | 3D: (5.51, -0.57, -0.03) | Image: pano_camera1/frame_0049.jpg | Frame: unknown | Height: -0.03m</title>
+  </circle>
+  <circle cx="5.500" cy="1.872" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 310 | 2D: (5.50, 1.87) | 3D: (5.52, 1.90, -0.05) | Image: pano_camera4/frame_0062.jpg | Frame: unknown | Height: -0.05m</title>
+  </circle>
+  <circle cx="5.489" cy="-0.598" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 311 | 2D: (5.49, -0.60) | 3D: (5.51, -0.57, -0.03) | Image: pano_camera2/frame_0049.jpg | Frame: unknown | Height: -0.03m</title>
+  </circle>
+  <circle cx="5.489" cy="-0.598" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 312 | 2D: (5.49, -0.60) | 3D: (5.51, -0.57, -0.03) | Image: pano_camera3/frame_0049.jpg | Frame: unknown | Height: -0.03m</title>
+  </circle>
+  <circle cx="5.489" cy="-0.598" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 313 | 2D: (5.49, -0.60) | 3D: (5.51, -0.57, -0.03) | Image: pano_camera4/frame_0049.jpg | Frame: unknown | Height: -0.03m</title>
+  </circle>
+  <circle cx="5.489" cy="-0.598" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 314 | 2D: (5.49, -0.60) | 3D: (5.51, -0.57, -0.03) | Image: pano_camera6/frame_0049.jpg | Frame: unknown | Height: -0.03m</title>
+  </circle>
+  <circle cx="6.282" cy="-0.759" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 315 | 2D: (6.28, -0.76) | 3D: (6.30, -0.73, -0.02) | Image: pano_camera0/frame_0048.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="5.489" cy="-0.598" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 316 | 2D: (5.49, -0.60) | 3D: (5.51, -0.57, -0.03) | Image: pano_camera7/frame_0049.jpg | Frame: unknown | Height: -0.03m</title>
+  </circle>
+  <circle cx="6.282" cy="-0.759" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 317 | 2D: (6.28, -0.76) | 3D: (6.30, -0.73, -0.02) | Image: pano_camera1/frame_0048.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="6.282" cy="-0.759" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 318 | 2D: (6.28, -0.76) | 3D: (6.30, -0.73, -0.02) | Image: pano_camera2/frame_0048.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="6.282" cy="-0.759" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 319 | 2D: (6.28, -0.76) | 3D: (6.30, -0.73, -0.02) | Image: pano_camera3/frame_0048.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="6.282" cy="-0.759" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 320 | 2D: (6.28, -0.76) | 3D: (6.30, -0.73, -0.02) | Image: pano_camera4/frame_0048.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="6.282" cy="-0.759" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 321 | 2D: (6.28, -0.76) | 3D: (6.30, -0.73, -0.02) | Image: pano_camera7/frame_0048.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="1.997" cy="-0.935" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 322 | 2D: (2.00, -0.93) | 3D: (2.02, -0.91, 0.08) | Image: pano_camera0/frame_0041.jpg | Frame: unknown | Height: 0.08m</title>
+  </circle>
+  <circle cx="1.997" cy="-0.935" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 323 | 2D: (2.00, -0.93) | 3D: (2.02, -0.91, 0.08) | Image: pano_camera1/frame_0041.jpg | Frame: unknown | Height: 0.08m</title>
+  </circle>
+  <circle cx="1.997" cy="-0.935" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 324 | 2D: (2.00, -0.93) | 3D: (2.02, -0.91, 0.08) | Image: pano_camera2/frame_0041.jpg | Frame: unknown | Height: 0.08m</title>
+  </circle>
+  <circle cx="1.997" cy="-0.935" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 325 | 2D: (2.00, -0.93) | 3D: (2.02, -0.91, 0.08) | Image: pano_camera7/frame_0041.jpg | Frame: unknown | Height: 0.08m</title>
+  </circle>
+  <circle cx="2.772" cy="-1.595" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 326 | 2D: (2.77, -1.60) | 3D: (2.79, -1.57, 0.00) | Image: pano_camera1/frame_0042.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="2.772" cy="-1.595" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 327 | 2D: (2.77, -1.60) | 3D: (2.79, -1.57, 0.00) | Image: pano_camera2/frame_0042.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="2.772" cy="-1.595" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 328 | 2D: (2.77, -1.60) | 3D: (2.79, -1.57, 0.00) | Image: pano_camera3/frame_0042.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="2.772" cy="-1.595" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 329 | 2D: (2.77, -1.60) | 3D: (2.79, -1.57, 0.00) | Image: pano_camera4/frame_0042.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="2.772" cy="-1.595" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 330 | 2D: (2.77, -1.60) | 3D: (2.79, -1.57, 0.00) | Image: pano_camera5/frame_0042.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="2.772" cy="-1.595" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 331 | 2D: (2.77, -1.60) | 3D: (2.79, -1.57, 0.00) | Image: pano_camera6/frame_0042.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="3.356" cy="-0.966" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 332 | 2D: (3.36, -0.97) | 3D: (3.38, -0.94, 0.00) | Image: pano_camera0/frame_0045.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="2.772" cy="-1.595" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 333 | 2D: (2.77, -1.60) | 3D: (2.79, -1.57, 0.00) | Image: pano_camera7/frame_0042.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="3.083" cy="-1.193" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 334 | 2D: (3.08, -1.19) | 3D: (3.11, -1.16, 0.00) | Image: pano_camera0/frame_0044.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="3.083" cy="-1.193" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 335 | 2D: (3.08, -1.19) | 3D: (3.11, -1.16, 0.00) | Image: pano_camera1/frame_0044.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="3.083" cy="-1.193" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 336 | 2D: (3.08, -1.19) | 3D: (3.11, -1.16, 0.00) | Image: pano_camera2/frame_0044.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="3.083" cy="-1.193" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 337 | 2D: (3.08, -1.19) | 3D: (3.11, -1.16, 0.00) | Image: pano_camera3/frame_0044.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="3.083" cy="-1.193" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 338 | 2D: (3.08, -1.19) | 3D: (3.11, -1.16, 0.00) | Image: pano_camera4/frame_0044.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="3.356" cy="-0.966" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 339 | 2D: (3.36, -0.97) | 3D: (3.38, -0.94, 0.00) | Image: pano_camera3/frame_0045.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="3.083" cy="-1.193" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 340 | 2D: (3.08, -1.19) | 3D: (3.11, -1.16, 0.00) | Image: pano_camera5/frame_0044.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="3.356" cy="-0.966" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 341 | 2D: (3.36, -0.97) | 3D: (3.38, -0.94, 0.00) | Image: pano_camera1/frame_0045.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="3.356" cy="-0.966" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 342 | 2D: (3.36, -0.97) | 3D: (3.38, -0.94, 0.00) | Image: pano_camera2/frame_0045.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="3.356" cy="-0.966" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 343 | 2D: (3.36, -0.97) | 3D: (3.38, -0.94, 0.00) | Image: pano_camera4/frame_0045.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="3.356" cy="-0.966" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 344 | 2D: (3.36, -0.97) | 3D: (3.38, -0.94, 0.00) | Image: pano_camera5/frame_0045.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="3.356" cy="-0.966" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 345 | 2D: (3.36, -0.97) | 3D: (3.38, -0.94, 0.00) | Image: pano_camera6/frame_0045.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="3.356" cy="-0.966" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 346 | 2D: (3.36, -0.97) | 3D: (3.38, -0.94, 0.00) | Image: pano_camera7/frame_0045.jpg | Frame: unknown | Height: 0.00m</title>
+  </circle>
+  <circle cx="2.919" cy="-1.875" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 347 | 2D: (2.92, -1.87) | 3D: (2.94, -1.85, -0.02) | Image: pano_camera0/frame_0043.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="2.919" cy="-1.875" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 348 | 2D: (2.92, -1.87) | 3D: (2.94, -1.85, -0.02) | Image: pano_camera1/frame_0043.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="2.919" cy="-1.875" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 349 | 2D: (2.92, -1.87) | 3D: (2.94, -1.85, -0.02) | Image: pano_camera2/frame_0043.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="2.919" cy="-1.875" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 350 | 2D: (2.92, -1.87) | 3D: (2.94, -1.85, -0.02) | Image: pano_camera4/frame_0043.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="2.919" cy="-1.875" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 351 | 2D: (2.92, -1.87) | 3D: (2.94, -1.85, -0.02) | Image: pano_camera5/frame_0043.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="2.919" cy="-1.875" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 352 | 2D: (2.92, -1.87) | 3D: (2.94, -1.85, -0.02) | Image: pano_camera6/frame_0043.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="2.919" cy="-1.875" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 353 | 2D: (2.92, -1.87) | 3D: (2.94, -1.85, -0.02) | Image: pano_camera7/frame_0043.jpg | Frame: unknown | Height: -0.02m</title>
+  </circle>
+  <circle cx="5.500" cy="1.872" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 354 | 2D: (5.50, 1.87) | 3D: (5.52, 1.90, -0.05) | Image: pano_camera0/frame_0062.jpg | Frame: unknown | Height: -0.05m</title>
+  </circle>
+  <circle cx="5.500" cy="1.872" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 355 | 2D: (5.50, 1.87) | 3D: (5.52, 1.90, -0.05) | Image: pano_camera1/frame_0062.jpg | Frame: unknown | Height: -0.05m</title>
+  </circle>
+  <circle cx="5.500" cy="1.872" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 356 | 2D: (5.50, 1.87) | 3D: (5.52, 1.90, -0.05) | Image: pano_camera2/frame_0062.jpg | Frame: unknown | Height: -0.05m</title>
+  </circle>
+  <circle cx="5.500" cy="1.872" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 357 | 2D: (5.50, 1.87) | 3D: (5.52, 1.90, -0.05) | Image: pano_camera3/frame_0062.jpg | Frame: unknown | Height: -0.05m</title>
+  </circle>
+  <circle cx="5.500" cy="1.872" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 358 | 2D: (5.50, 1.87) | 3D: (5.52, 1.90, -0.05) | Image: pano_camera5/frame_0062.jpg | Frame: unknown | Height: -0.05m</title>
+  </circle>
+  <circle cx="5.500" cy="1.872" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 359 | 2D: (5.50, 1.87) | 3D: (5.52, 1.90, -0.05) | Image: pano_camera6/frame_0062.jpg | Frame: unknown | Height: -0.05m</title>
+  </circle>
+  <circle cx="5.500" cy="1.872" r="0.0965" 
+          fill="red" stroke="darkred" stroke-width="0.0193" 
+          opacity="0.8">
+    <title>Camera 360 | 2D: (5.50, 1.87) | 3D: (5.52, 1.90, -0.05) | Image: pano_camera7/frame_0062.jpg | Frame: unknown | Height: -0.05m</title>
+  </circle>
+  <polyline points="-1.411,-0.214 -3.928,-0.433 -2.155,-0.251 -2.155,-0.251 -1.376,1.041 -1.411,-0.214 -5.262,-1.925 -2.422,-0.748 -1.411,-0.214 -0.842,0.242 -4.632,-1.066 -3.508,-0.878 -2.422,-0.748 -1.411,-0.214 -3.508,-0.878 -0.842,0.242 -0.248,1.044 -1.411,-0.214 -1.411,-0.214 -1.411,-0.214 -1.336,-0.795 -1.411,-0.214 -2.422,-0.748 -0.842,0.242 -1.376,1.041 -2.422,-0.748 -0.842,0.242 -2.358,-1.831 -1.336,-0.795 -2.422,-0.748 6.282,-0.759 -2.422,-0.748 -2.422,-0.748 -4.423,-1.877 -2.422,-0.748 -3.928,-0.433 1.326,-0.443 -2.155,-0.251 -1.336,-0.795 -2.155,-0.251 -2.732,-1.840 -2.155,-0.251 -2.155,-0.251 3.083,-1.193 -1.336,-0.795 -2.155,-0.251 -2.155,-0.251 -1.376,1.041 -1.336,-0.795 -1.336,-0.795 -1.336,-0.795 -4.632,-1.066 -1.336,-0.795 -3.508,-0.878 -3.508,-0.878 -3.508,-0.878 -5.184,-1.168 -3.508,-0.878 -3.508,-0.878 -0.842,0.242 -3.508,-0.878 -0.842,0.242 -0.842,0.242 -3.928,-0.433 -0.842,0.242 -3.928,-0.433 1.951,0.744 -1.376,1.041 -3.928,-0.433 -3.928,-0.433 -3.928,-0.433 1.997,-0.935 -3.928,-0.433 -1.376,1.041 -1.376,1.041 3.932,0.739 -1.376,1.041 -1.376,1.041 -3.791,1.538 -3.791,1.538 -3.791,1.538 -0.984,-1.478 -3.791,1.538 2.864,2.080 -3.791,1.538 -0.248,1.078 -3.791,1.538 -0.984,-1.478 -3.791,1.538 -3.791,1.538 -4.632,-1.066 -4.632,-1.066 1.951,0.744 -4.632,-1.066 -4.632,-1.066 -4.632,-1.066 -4.632,-1.066 -4.830,1.302 -4.830,1.302 -4.830,1.302 -4.830,1.302 3.847,1.062 -4.830,1.302 -4.830,1.302 -4.830,1.302 -4.830,1.302 -2.563,1.663 -2.563,1.663 -4.423,-1.877 -2.563,1.663 -2.563,1.663 -2.563,1.663 -2.563,1.663 -2.563,1.663 -2.563,1.663 -5.515,-0.734 -0.473,-0.194 -0.473,-0.194 -0.473,-0.194 -0.473,-0.194 3.083,-1.193 -0.473,-0.194 -0.473,-0.194 -0.473,-0.194 -0.473,-0.194 -5.515,-0.734 -5.515,-0.734 -5.515,-0.734 -5.515,-0.734 -5.515,-0.734 -5.515,-0.734 -5.515,-0.734 -5.117,-0.530 -5.117,-0.530 -5.117,-0.530 5.489,-0.598 -5.117,-0.530 -5.117,-0.530 2.919,-1.875 -5.117,-0.530 0.253,1.112 -5.117,-0.530 -5.117,-0.530 0.253,1.112 0.253,1.112 0.253,1.112 0.253,1.112 3.847,1.062 0.253,1.112 3.932,0.739 0.253,1.112 0.253,1.112 0.445,0.495 0.445,0.495 0.445,0.495 -2.358,-1.831 0.445,0.495 0.445,0.495 0.445,0.495 0.445,0.495 1.979,0.852 0.445,0.495 0.237,1.552 0.237,1.552 0.237,1.552 0.237,1.552 0.237,1.552 0.237,1.552 0.237,1.552 0.237,1.552 -0.248,1.078 -0.248,1.078 1.997,-0.935 -0.248,1.078 -0.248,1.078 4.694,2.273 -0.248,1.078 -0.248,1.078 2.864,2.080 -0.248,1.078 -0.248,1.044 -0.248,1.044 -0.248,1.044 -0.248,1.044 -0.248,1.044 -0.248,1.044 -0.248,1.044 0.448,-0.135 0.448,-0.135 0.448,-0.135 0.448,-0.135 0.448,-0.135 0.448,-0.135 0.448,-0.135 0.448,-0.135 -5.184,-1.168 -5.184,-1.168 -5.184,-1.168 -5.184,-1.168 3.237,2.097 -5.184,-1.168 -5.184,-1.168 -5.184,-1.168 -0.984,-1.478 -0.984,-1.478 6.282,-0.759 -0.984,-1.478 -0.984,-1.478 1.951,0.744 -0.984,-1.478 -0.984,-1.478 -2.358,-1.831 -2.358,-1.831 -2.358,-1.831 -2.358,-1.831 -2.358,-1.831 2.772,-1.595 -2.358,-1.831 2.864,2.080 2.864,2.080 2.864,2.080 2.864,2.080 2.864,2.080 2.864,2.080 3.237,2.097 3.237,2.097 3.237,2.097 3.237,2.097 3.237,2.097 3.237,2.097 4.694,2.273 3.237,2.097 1.979,0.852 1.979,0.852 1.979,0.852 1.979,0.852 1.979,0.852 1.979,0.852 1.979,0.852 1.951,0.744 1.951,0.744 4.694,2.273 1.951,0.744 1.951,0.744 1.951,0.744 4.694,2.273 4.694,2.273 4.694,2.273 4.694,2.273 4.694,2.273 3.932,0.739 3.932,0.739 3.932,0.739 4.280,-0.232 3.932,0.739 3.932,0.739 3.932,0.739 3.847,1.062 3.847,1.062 3.847,1.062 3.847,1.062 4.280,-0.232 3.847,1.062 3.847,1.062 -2.732,-1.840 -2.732,-1.840 -2.732,-1.840 -2.732,-1.840 -2.732,-1.840 -2.732,-1.840 -2.732,-1.840 -4.423,-1.877 -4.423,-1.877 -4.423,-1.877 1.997,-0.935 -4.423,-1.877 -4.423,-1.877 -4.423,-1.877 -5.262,-1.925 -5.262,-1.925 -5.262,-1.925 -5.262,-1.925 -5.262,-1.925 -5.262,-1.925 -5.262,-1.925 4.447,1.904 4.447,1.904 4.447,1.904 4.447,1.904 4.447,1.904 4.447,1.904 4.447,1.904 4.447,1.904 1.326,-0.443 1.326,-0.443 1.326,-0.443 1.326,-0.443 1.326,-0.443 1.326,-0.443 1.326,-0.443 4.280,-0.232 4.280,-0.232 4.280,-0.232 4.280,-0.232 1.997,-0.935 4.280,-0.232 4.280,-0.232 5.489,-0.598 5.489,-0.598 5.500,1.872 5.489,-0.598 5.489,-0.598 5.489,-0.598 5.489,-0.598 6.282,-0.759 5.489,-0.598 6.282,-0.759 6.282,-0.759 6.282,-0.759 6.282,-0.759 6.282,-0.759 1.997,-0.935 1.997,-0.935 1.997,-0.935 1.997,-0.935 2.772,-1.595 2.772,-1.595 2.772,-1.595 2.772,-1.595 2.772,-1.595 2.772,-1.595 3.356,-0.966 2.772,-1.595 3.083,-1.193 3.083,-1.193 3.083,-1.193 3.083,-1.193 3.083,-1.193 3.356,-0.966 3.083,-1.193 3.356,-0.966 3.356,-0.966 3.356,-0.966 3.356,-0.966 3.356,-0.966 3.356,-0.966 2.919,-1.875 2.919,-1.875 2.919,-1.875 2.919,-1.875 2.919,-1.875 2.919,-1.875 2.919,-1.875 5.500,1.872 5.500,1.872 5.500,1.872 5.500,1.872 5.500,1.872 5.500,1.872 5.500,1.872" 
+            fill="none" stroke="red" stroke-width="0.0386" 
+            opacity="0.4" />
+</svg>

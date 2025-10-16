@@ -11,6 +11,30 @@ from pathlib import Path
 from datetime import datetime
 from sklearn.decomposition import PCA
 
+def export_point_cloud(camera_data, output_file):
+    """
+    Export camera positions as point cloud in PTS format.
+    PTS format: X Y Z R G B Intensity
+    """
+    with open(output_file, 'w') as f:
+        # Write header with point count
+        f.write(f"{len(camera_data)}\n")
+        
+        # Write each camera position as a point
+        for cam_data in camera_data:
+            # Get oriented 3D position
+            pos = cam_data['position_3d_oriented']
+            x, y, z = pos[0], pos[1], pos[2]
+            
+            # Use red color for all camera positions
+            r, g, b = 255, 0, 0
+            intensity = 255  # Full intensity for camera positions
+            
+            # PTS format: X Y Z R G B Intensity
+            f.write(f"{x:.6f} {y:.6f} {z:.6f} {r} {g} {b} {intensity}\n")
+    
+    print(f"Exported {len(camera_data)} camera positions to {output_file}")
+
 def estimate_gravity_from_cameras(camera_positions):
     """
     Estimate gravity direction from camera positions using PCA.
@@ -182,9 +206,13 @@ def create_top_down_svg(camera_data, R, origin_m, scale, output_file):
     
     # Transform camera positions same way as DXF export
     transformed_positions = []
-    for cam_pos in camera_positions:
+    for i, cam_pos in enumerate(camera_positions):
         transformed_pos = origin_m + scale * (R @ cam_pos)
         transformed_positions.append(transformed_pos)
+        
+        # Update the camera_data with oriented Z-coordinate for height
+        camera_data[i]['height'] = transformed_pos[2]
+        camera_data[i]['position_3d_oriented'] = transformed_pos
     
     transformed_positions = np.array(transformed_positions)
     
@@ -242,10 +270,10 @@ def create_top_down_svg(camera_data, R, origin_m, scale, output_file):
         tooltip_parts = [
             f"Camera {i+1}",
             f"2D: ({x:.2f}, {y:.2f})",
-            f"3D: ({cam_data['position_3d'][0]:.2f}, {cam_data['position_3d'][1]:.2f}, {cam_data['position_3d'][2]:.2f})",
+            f"3D: ({cam_data['position_3d_oriented'][0]:.2f}, {cam_data['position_3d_oriented'][1]:.2f}, {cam_data['position_3d_oriented'][2]:.2f})",
             f"Image: {cam_data['image_name']}",
             f"Frame: {cam_data['frame_id']}",
-            f"Height: {cam_data['height']:.2f}m"
+            f"Height: {cam_data['position_3d_oriented'][2]:.2f}m"
         ]
         
         # Add timestamp if available
@@ -287,6 +315,13 @@ def create_top_down_svg(camera_data, R, origin_m, scale, output_file):
     print(f"  Saved SVG to: {output_file}")
     print(f"  {len(camera_positions)} camera positions rendered")
     print(f"  ViewBox centered on median - no offset calculations needed in HTML!")
+    
+    # Export point cloud (PTS format)
+    pts_output_file = str(output_file).replace('.svg', '.pts')
+    export_point_cloud(camera_data, pts_output_file)
+    
+    print(f"  Saved point cloud to: {pts_output_file}")
+    print(f"  {len(camera_data)} points exported")
 
 def process_single_reconstruction(sparse_folder, output_dir, camera_index=1, 
                                 origin_feet=(67.472490761, -23.114793212, 151.586679018),
@@ -337,7 +372,7 @@ def process_single_reconstruction(sparse_folder, output_dir, camera_index=1,
 
 def main():
     parser = argparse.ArgumentParser(description='Process multiple COLMAP reconstructions with gravity correction')
-    parser.add_argument('--sparse-dir', required=True, help='Path to sparse directory containing numbered folders')
+    parser.add_argument('--sparse-dir', default='D:/Camera01/reconstruction_mask3_012_previews_run/sparse', help='Path to sparse directory containing numbered folders')
     parser.add_argument('--folders', nargs='+', type=int, default=None, help='Specific folder numbers to process (e.g., 0 1 2 3)')
     parser.add_argument('--output-dir', default='svg_output', help='Output directory for SVG files')
     parser.add_argument('--camera-index', type=int, default=1, help='Camera index to extract (e.g., 1 for camera1)')
