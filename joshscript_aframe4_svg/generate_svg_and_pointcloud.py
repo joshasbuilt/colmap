@@ -256,12 +256,18 @@ def main():
         temp_positions.append(temp_pos)
     temp_positions = np.array(temp_positions)
     
+    # Get the clustering labels from first pass
+    positions = np.array([cam['position_3d'] for cam in camera_data])
+    from sklearn.cluster import KMeans
+    kmeans_first = KMeans(n_clusters=2, random_state=42, n_init=10)
+    labels = kmeans_first.fit_predict(positions)
+    
     # Now find the best X-axis rotation to align building floors horizontally
     # Simple X-axis rotation (around X-axis) - no flattening, just find the angle
     best_angle_x = 0
     best_variance = float('inf')
     
-    # Test X-axis rotation angles (every 0.5 degrees for higher precision)
+    # Test X-axis rotation angles (every 0.5 degrees, full range)
     for angle_x_deg in np.arange(-90, 91, 0.5):
         angle_x_rad = np.radians(angle_x_deg)
         
@@ -275,11 +281,44 @@ def main():
         # Apply test rotation to full 3D points
         rotated = temp_positions @ R_x_test.T
         
-        # Calculate Z-variance (minimize to make floors horizontal)
-        z_variance = np.var(rotated[:, 2])
+        # CORRECT METHOD: Find parallel lines in Y-Z plane
+        # Disregard X, treat Y as X and Z as Y for 2D analysis
+        yz_points = rotated[:, [1, 2]]  # Only Y and Z coordinates
         
-        if z_variance < best_variance:
-            best_variance = z_variance
+        # Use the SAME clustering as first pass (don't re-cluster)
+        # Just analyze the Y-Z coordinates of the existing clusters
+        cluster_0_yz = yz_points[labels == 0]  # Ground floor Y-Z points
+        cluster_1_yz = yz_points[labels == 1]  # Upstairs Y-Z points
+        
+        # Check if both clusters have enough points
+        if len(cluster_0_yz) < 50 or len(cluster_1_yz) < 50:
+            continue
+            
+        # Use RANSAC to find the best horizontal lines
+        from sklearn.linear_model import RANSACRegressor
+        
+        if len(cluster_0_yz) > 50 and len(cluster_1_yz) > 50:
+            # Fit horizontal lines using RANSAC
+            ransac_0 = RANSACRegressor(random_state=42)
+            ransac_0.fit(cluster_0_yz[:, 0:1], cluster_0_yz[:, 1])
+            slope_0 = ransac_0.estimator_.coef_[0]
+            
+            ransac_1 = RANSACRegressor(random_state=42)
+            ransac_1.fit(cluster_1_yz[:, 0:1], cluster_1_yz[:, 1])
+            slope_1 = ransac_1.estimator_.coef_[0]
+            
+            # Both lines should be horizontal (slope ≈ 0)
+            horizontal_penalty = abs(slope_0) + abs(slope_1)
+            
+            # Lines should be parallel (similar slopes)
+            parallel_penalty = abs(slope_0 - slope_1)
+            
+            total_z_variance = horizontal_penalty + parallel_penalty
+        else:
+            total_z_variance = float('inf')
+        
+        if total_z_variance < best_variance:
+            best_variance = total_z_variance
             best_angle_x = angle_x_deg
     
     print(f"  Best X-axis rotation: {best_angle_x}° (Z-variance: {best_variance:.6f})")
@@ -294,6 +333,19 @@ def main():
     
     # Combined rotation: gravity alignment + optimal X-axis rotation
     R_combined = R_x_optimal @ R
+    
+    print(f"  DEBUG: Second pass rotation matrix:")
+    print(f"    R_x_optimal = {R_x_optimal}")
+    print(f"    Angle applied: {best_angle_x}°")
+    print(f"  DEBUG: Testing if second pass is working...")
+    
+    # Test a few points to see the difference
+    test_cam = camera_data[0]
+    before_second = R @ test_cam['position_3d']
+    after_second = R_combined @ test_cam['position_3d']
+    print(f"    Test camera before second pass: ({before_second[0]:.3f}, {before_second[1]:.3f}, {before_second[2]:.3f})")
+    print(f"    Test camera after second pass:  ({after_second[0]:.3f}, {after_second[1]:.3f}, {after_second[2]:.3f})")
+    print(f"    Z difference: {after_second[2] - before_second[2]:.6f}")
     
     print(f"Sample transformations (first 5 cameras):")
     for i, cam_data in enumerate(camera_data):
