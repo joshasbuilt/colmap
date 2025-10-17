@@ -628,9 +628,10 @@
                           e.preventDefault();
                           showImagePreview(previewFilename);
                           
-                          // Highlight the specific dot - ONLY when thumbnail is clicked
+                          // Highlight the specific dot and show point info - ONLY when thumbnail is clicked
                           if (frameMatch) {
                               highlightThumbnailDot(frameMatch[1]);
+                              showPointInfo(frameMatch[1], filename);
                           }
                       });
                       
@@ -684,8 +685,8 @@
              document.getElementById('image-preview-overlay').style.display = 'none';
          }
          
-        // Function to highlight a specific dot when thumbnail is clicked
-        function highlightThumbnailDot(frameNumber) {
+        // Function to show detailed point information when image is clicked
+        function showPointInfo(frameNumber, imageFilename) {
             const activeObject = canvas.getActiveObject();
             if (!activeObject) {
                 console.log('No object selected');
@@ -701,104 +702,167 @@
                 return;
             }
 
+            console.log('=== POINT INFORMATION ===');
+            console.log('Image:', imageFilename);
+            console.log('Frame Number:', frameNumber);
+            console.log('Selected Object:', activeObject.customName);
+
+            // Find the closest point to this frame number
             const group = activeObject;
             const objects = group._objects || group.objects;
-
-            // First, clear any existing highlights to ensure only one dot is highlighted
-            clearThumbnailHighlights();
-
-            // Find and highlight ONLY the specific circle - change appearance only
-            let found = false;
+            
+            let closestPoint = null;
+            let minDistance = Infinity;
+            
             objects.forEach((obj, index) => {
                 if (obj.type === 'circle' && obj.title) {
                     const frameMatch = obj.title.match(/frame_(\d+)/);
                     
-                    if (frameMatch && frameMatch[1] === frameNumber) {
-                        // Highlight the circle by changing its appearance
-                        obj.set({
-                            fill: '#ffff00', // Yellow highlight
-                            stroke: '#ff0000', // Red border
-                            strokeWidth: 2,
-                            radius: 4 // Make it slightly larger when highlighted
-                        });
+                    if (frameMatch) {
+                        const pointFrame = parseInt(frameMatch[1]);
+                        const targetFrame = parseInt(frameNumber);
+                        const distance = Math.abs(pointFrame - targetFrame);
                         
-                        found = true;
-                        
-                        // Extract camera info from title for display
-                        const titleParts = obj.title.split('\n');
-                        const cameraInfo = titleParts[0]; // "R0 - Red"
-                        const coords3D = titleParts[1]; // "X: 3.15, Y: 1.13, Z: 1.18"
-                        const imageName = titleParts[2]; // "Image: pano_camera1/frame_0121_hp_preview.jpg"
-                        const frameInfo = titleParts[3]; // "Frame: 0121"
-                            
-                            // Get the circle's actual position on the canvas (accounting for group transform)
-                            const group = activeObject;
-                            const groupLeft = group.left || 0;
-                            const groupTop = group.top || 0;
-                            const groupScaleX = group.scaleX || 1;
-                            const groupScaleY = group.scaleY || 1;
-                            
-                            // Calculate the circle's absolute position on canvas
-                            const circleCanvasX = groupLeft + (obj.left * groupScaleX);
-                            const circleCanvasY = groupTop + (obj.top * groupScaleY);
-                            
-                            // Convert to Mt Eden coordinates using the actual canvas position
-                            const mtEdenCoords = canvasToMtEden(circleCanvasX, circleCanvasY, mtEdenBounds, canvas.width, canvas.height);
-                            
-                            console.log('🎯 SELECTED CAMERA:', {
-                                camera: cameraInfo,
-                                frame: frameNumber,
-                                coords2D: coords2D,
-                                coords3D: coords3D,
-                                image: imageName.replace('Image: ', ''),
-                                frameId: frameInfo.replace('Frame: ', ''),
-                                height: heightInfo.replace('Height: ', '')
-                            });
-                            console.log('📍 COORDINATES:');
-                            console.log(`   Easting: E: ${mtEdenCoords.x.toFixed(3)}`);
-                            console.log(`   Northing: N: ${mtEdenCoords.y.toFixed(3)}`);
-                        
-                        // Only change appearance properties, don't touch position or size
-                        obj.set('fill', 'green');
-                        obj.set('stroke', 'darkgreen');
-                        obj.set('strokeWidth', 0.1);
-                        found = true;
+                        if (distance < minDistance) {
+                            minDistance = distance;
+                            closestPoint = obj;
+                        }
                     }
                 }
             });
-             
-            if (!found) {
-                console.log('❌ No matching circle found for frame:', frameNumber);
+
+            if (closestPoint) {
+                const titleParts = closestPoint.title.split('\n');
+                const cameraInfo = titleParts[0]; // "R0 - Red (Start)"
+                const coords3D = titleParts[1]; // "X: 3.15, Y: 1.13, Z: 1.18"
+                const imageName = titleParts[2]; // "Image: pano_camera1/frame_0121_hp_preview.jpg"
+                const frameInfo = titleParts[3]; // "Frame: 0121"
+                
+                console.log('🎯 CLOSEST POINT FOUND:');
+                console.log('  Point Type:', cameraInfo);
+                console.log('  3D Coordinates:', coords3D);
+                console.log('  Point Image:', imageName);
+                console.log('  Point Frame:', frameInfo);
+                console.log('  Distance from target:', minDistance, 'frames');
+                
+                // Show position on canvas
+                const groupLeft = group.left || 0;
+                const groupTop = group.top || 0;
+                const circleX = groupLeft + (closestPoint.left || 0);
+                const circleY = groupTop + (closestPoint.top || 0);
+                
+                console.log('📍 CANVAS POSITION:');
+                console.log('  X:', circleX.toFixed(1), 'Y:', circleY.toFixed(1));
+                
+                // Update info panel to show this point
+                updateInfoPanelForPoint(closestPoint, frameNumber, minDistance);
+            } else {
+                console.log('❌ No point found for frame', frameNumber);
             }
-             
+        }
+
+        // Function to update info panel with specific point details
+        function updateInfoPanelForPoint(point, targetFrame, distance) {
+            const titleParts = point.title.split('\n');
+            const cameraInfo = titleParts[0];
+            const coords3D = titleParts[1];
+            const imageName = titleParts[2];
+            const frameInfo = titleParts[3];
+            
+            // Update the info panel with point-specific information
+            document.getElementById('selected-value').textContent = cameraInfo;
+            document.getElementById('position-value').textContent = coords3D;
+            document.getElementById('scale-value').textContent = `Target: ${targetFrame}, Actual: ${frameInfo.replace('Frame: ', '')}, Distance: ${distance}`;
+            document.getElementById('rotation-value').textContent = imageName.replace('Image: ', '');
+            document.getElementById('locked-value').textContent = `Frame ${targetFrame} → ${cameraInfo}`;
+        }
+
+        // Function to highlight a specific dot when thumbnail is clicked
+        function highlightThumbnailDot(frameNumber) {
+            console.log('🎯 Highlighting dot for frame:', frameNumber);
+            
+            // Find all trajectory groups on the canvas
+            const trajectoryGroups = canvas.getObjects().filter(obj => 
+                obj.type === 'group' && obj.customName && 
+                (obj.customName.includes('R') && obj.customName.includes('points'))
+            );
+            
+            if (trajectoryGroups.length === 0) {
+                console.log('No trajectory groups found on canvas');
+                return;
+            }
+            
+            console.log('Found trajectory groups:', trajectoryGroups.map(g => g.customName));
+            
+            // Search through all trajectory groups to find the closest point
+            let bestMatch = null;
+            let bestDistance = Infinity;
+            let bestGroup = null;
+            
+            trajectoryGroups.forEach(group => {
+                const objects = group._objects || group.objects;
+                
+                objects.forEach((obj, index) => {
+                    if (obj.type === 'circle' && obj.title) {
+                        // Extract frame number from the title
+                        const frameMatch = obj.title.match(/Frame: (\d+)/);
+                        
+                        if (frameMatch) {
+                            const pointFrame = parseInt(frameMatch[1]);
+                            const targetFrame = parseInt(frameNumber);
+                            const distance = Math.abs(pointFrame - targetFrame);
+                            
+                            if (distance < bestDistance) {
+                                bestDistance = distance;
+                                bestMatch = obj;
+                                bestGroup = group;
+                            }
+                        }
+                    }
+                });
+            });
+            
+            if (!bestMatch || !bestGroup) {
+                console.log('No matching point found for frame', frameNumber);
+                return;
+            }
+            
+            console.log('Best match found:', bestMatch.customName, 'in group:', bestGroup.customName);
+            
+            // Clear existing highlights first
+            clearThumbnailHighlights();
+            
+            // Highlight the best match
+            bestMatch.set({
+                fill: '#ffff00', // Yellow highlight
+                stroke: '#ff0000', // Red border
+                strokeWidth: 2,
+                radius: 6 // Make it larger when highlighted
+            });
+            
+            // Make the group active so it can be manipulated
+            canvas.setActiveObject(bestGroup);
             canvas.requestRenderAll();
+            
+            console.log('✅ Point highlighted successfully');
         }
          
          
         // Function to clear highlights - ONLY called from thumbnail interactions
         function clearThumbnailHighlights() {
-            const activeObject = canvas.getActiveObject();
+            // Clear highlights from ALL trajectory groups, not just the active one
+            const trajectoryGroups = canvas.getObjects().filter(obj => 
+                obj.type === 'group' && obj.customName && 
+                (obj.customName.includes('R') && obj.customName.includes('points'))
+            );
             
-            if (!activeObject) {
-                return;
-            }
+            trajectoryGroups.forEach(group => {
+                const objects = group._objects || group.objects;
 
-            // Check if it's a PTS trajectory group or SVG group
-            const isPTSGroup = activeObject.customName && activeObject.customName.includes('R') && activeObject.customName.includes('points');
-            const isSVGGroup = activeObject.customName && activeObject.customName.includes('Camera Positions');
-            
-            if (!isPTSGroup && !isSVGGroup) {
-                return;
-            }
-            
-            const group = activeObject;
-            const objects = group._objects || group.objects;
-            
-            // Reset all circles to their original appearance
-            objects.forEach((obj) => {
-                if (obj.type === 'circle') {
-                    if (isPTSGroup) {
-                        // For PTS data, restore original colors from the group's color
+                // Reset all circles to their original appearance
+                objects.forEach(obj => {
+                    if (obj.type === 'circle') {
+                        // Get original color from the group's custom name
                         const groupColor = group.customName.match(/(\w+)\s*\(/);
                         if (groupColor) {
                             const colorName = groupColor[1].toLowerCase();
@@ -812,22 +876,26 @@
                                 'orange': '#ff8844'
                             };
                             const originalColor = colorMap[colorName] || '#ff4444';
+                            
+                            // Determine original radius based on point type
+                            let originalRadius = 3; // Default
+                            if (obj.customName.includes('Start')) {
+                                originalRadius = 6;
+                            } else if (obj.customName.includes('End')) {
+                                originalRadius = 5;
+                            } else if (obj.customName.includes('Middle')) {
+                                originalRadius = 4;
+                            }
+                            
                             obj.set({
                                 fill: originalColor,
                                 stroke: 'white',
-                                strokeWidth: 0.5,
-                                radius: 2
+                                strokeWidth: 1,
+                                radius: originalRadius
                             });
                         }
-                    } else {
-                        // For SVG data, reset to red
-                        obj.set({
-                            fill: 'red',
-                            stroke: 'darkred',
-                            strokeWidth: 0.0246
-                        });
                     }
-                }
+                });
             });
             
             canvas.requestRenderAll();
@@ -854,24 +922,32 @@
              const group = activeObject;
              const objects = group._objects || group.objects;
              
-             // Find the circle with the matching frame number
-             let circleToRemove = null;
-             let circleIndex = -1;
-             
-             objects.forEach((obj, index) => {
-                 if (obj.type === 'circle' && obj.title) {
-                     const frameMatch = obj.title.match(/frame_(\d+)/);
-                     if (frameMatch && frameMatch[1] === frameNumber) {
-                         circleToRemove = obj;
-                         circleIndex = index;
-                     }
-                 }
-             });
-             
-             if (!circleToRemove) {
-                 console.log(`Camera position with frame ${frameNumber} not found`);
-                 return;
-             }
+            // Find the closest key point to the frame number
+            let circleToRemove = null;
+            let minDistance = Infinity;
+            
+            objects.forEach((obj, index) => {
+                if (obj.type === 'circle' && obj.title) {
+                    const frameMatch = obj.title.match(/Frame: (\d+)/);
+                    if (frameMatch) {
+                        const pointFrame = parseInt(frameMatch[1]);
+                        const targetFrame = parseInt(frameNumber);
+                        const distance = Math.abs(pointFrame - targetFrame);
+                        
+                        if (distance < minDistance) {
+                            minDistance = distance;
+                            circleToRemove = obj;
+                        }
+                    }
+                }
+            });
+            
+            if (!circleToRemove) {
+                console.log(`No key point found near frame ${frameNumber}`);
+                return;
+            }
+            
+            console.log(`Removing closest key point to frame ${frameNumber} (distance: ${minDistance})`);
              
              console.log(`Removing single camera position: frame ${frameNumber}`);
              
@@ -896,16 +972,16 @@
              const remainingCircles = remainingObjects.filter(obj => obj.type === 'circle');
              
              if (remainingCircles.length > 1) {
-                 // Sort remaining circles by frame number
-                 const sortedCircles = remainingCircles.sort((a, b) => {
-                     const frameA = a.title ? a.title.match(/frame_(\d+)/) : null;
-                     const frameB = b.title ? b.title.match(/frame_(\d+)/) : null;
-                     
-                     if (frameA && frameB) {
-                         return parseInt(frameA[1]) - parseInt(frameB[1]);
-                     }
-                     return 0;
-                 });
+                // Sort remaining circles by frame number
+                const sortedCircles = remainingCircles.sort((a, b) => {
+                    const frameA = a.title ? a.title.match(/Frame: (\d+)/) : null;
+                    const frameB = b.title ? b.title.match(/Frame: (\d+)/) : null;
+                    
+                    if (frameA && frameB) {
+                        return parseInt(frameA[1]) - parseInt(frameB[1]);
+                    }
+                    return 0;
+                });
                  
                  // Get positions of remaining circles
                  const groupLeft = group.left || 0;
@@ -916,11 +992,28 @@
                      y: (circle.top || 0) + groupTop
                  }));
                  
-                 // Create new polyline
-                 const newPolyline = new fabric.Polyline(points, {
-                     fill: '',
-                     stroke: 'red',
-                     strokeWidth: 1,
+                // Get the original color from the group's custom name
+                const groupColor = group.customName.match(/(\w+)\s*\(/);
+                let originalColor = 'red'; // Default fallback
+                if (groupColor) {
+                    const colorName = groupColor[1].toLowerCase();
+                    const colorMap = {
+                        'red': '#ff4444',
+                        'green': '#44ff44', 
+                        'blue': '#4444ff',
+                        'yellow': '#ffff44',
+                        'magenta': '#ff44ff',
+                        'cyan': '#44ffff',
+                        'orange': '#ff8844'
+                    };
+                    originalColor = colorMap[colorName] || '#ff4444';
+                }
+                
+                // Create new polyline
+                const newPolyline = new fabric.Polyline(points, {
+                    fill: '',
+                    stroke: originalColor,
+                    strokeWidth: 3,
                      selectable: false,
                      evented: false
                  });
@@ -949,15 +1042,37 @@
                     const objectId = objectIdMatch[1];
                     const ptsObject = window.loadedPTSObjects.find(obj => obj.id === objectId);
                     if (ptsObject) {
-                        // Remove the point from the PTS data
-                        const pointIndex = ptsObject.points.findIndex(point => {
+                        // Find the closest point in the filtered pano_camera0 data
+                        const filteredPoints = ptsObject.points.filter(point => 
+                            point.imageName.includes('pano_camera0/')
+                        );
+                        
+                        let closestPointIndex = -1;
+                        let minDistance = Infinity;
+                        
+                        filteredPoints.forEach((point, index) => {
                             const frameMatch = point.imageName.match(/frame_(\d+)/);
-                            return frameMatch && frameMatch[1] === frameNumber;
+                            if (frameMatch) {
+                                const pointFrame = parseInt(frameMatch[1]);
+                                const targetFrame = parseInt(frameNumber);
+                                const distance = Math.abs(pointFrame - targetFrame);
+                                
+                                if (distance < minDistance) {
+                                    minDistance = distance;
+                                    // Find the original index in the full points array
+                                    closestPointIndex = ptsObject.points.findIndex(p => p === point);
+                                }
+                            }
                         });
-                        if (pointIndex !== -1) {
-                            ptsObject.points.splice(pointIndex, 1);
+                        
+                        if (closestPointIndex !== -1) {
+                            ptsObject.points.splice(closestPointIndex, 1);
                             ptsObject.pointCount = ptsObject.points.length;
-                            console.log(`Removed point from PTS data. Remaining: ${ptsObject.pointCount} points`);
+                            console.log(`Removed closest point from PTS data. Remaining: ${ptsObject.pointCount} points`);
+                            
+                            // Update localStorage with modified PTS objects
+                            localStorage.setItem('loadedPTSObjects', JSON.stringify(window.loadedPTSObjects));
+                            console.log('💾 Updated PTS objects saved to localStorage');
                         }
                     }
                 }
@@ -1116,7 +1231,14 @@
                 if (objectData) {
                     console.log('Found object data:', objectData);
                     console.log('Object has', objectData.points.length, 'points');
-                    const imageFilenames = objectData.points.map(point => point.imageName);
+                    
+                    // Filter to only show images from pano_camera0 (same as visualization)
+                    const filteredPoints = objectData.points.filter(point => 
+                        point.imageName.includes('pano_camera0/')
+                    );
+                    
+                    const imageFilenames = filteredPoints.map(point => point.imageName);
+                    console.log('Filtered to pano_camera0 only:', filteredPoints.length, 'points');
                     console.log('First few image filenames:', imageFilenames.slice(0, 5));
                     console.log('Total image filenames:', imageFilenames.length);
                     return imageFilenames;
@@ -1618,9 +1740,19 @@
 
         // Load PTS file function
         function loadPTSFile(filename) {
+            console.log('=== LOADING PTS FILE ===');
+            console.log('Filename:', filename);
+            
             fetch(filename)
-                .then(response => response.text())
+                .then(response => {
+                    console.log('PTS fetch response:', response.status, response.statusText);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.text();
+                })
                 .then(ptsText => {
+                    console.log('PTS file loaded, length:', ptsText.length);
                     const lines = ptsText.trim().split('\n');
                     const points = [];
                     const objects = [];
@@ -1704,12 +1836,26 @@
                     
                     // Store objects globally for context menu access
                     window.loadedPTSObjects = objects;
+                    console.log('=== PTS OBJECTS STORED GLOBALLY ===');
+                    console.log('window.loadedPTSObjects:', window.loadedPTSObjects);
+                    console.log('Number of objects:', window.loadedPTSObjects.length);
+                    
+                    // Save PTS objects to localStorage for restoration
+                    localStorage.setItem('loadedPTSObjects', JSON.stringify(objects));
+                    console.log('💾 PTS objects saved to localStorage');
                     
                     // Create visualization with objects
                     createEnhancedPTSVisualization(objects, points);
+                    
+                    // Attach event handlers to the new objects after a short delay
+                    setTimeout(() => {
+                        reattachEventHandlers();
+                    }, 100);
                 })
                 .catch(error => {
-                    console.error('Failed to load PTS file:', error);
+                    console.error('=== FAILED TO LOAD PTS FILE ===');
+                    console.error('Error:', error);
+                    console.error('Filename:', filename);
                 });
         }
 
@@ -1788,31 +1934,44 @@
                     group.addWithUpdate(path);
                 }
                 
-                // Create circles for key points only (start, middle, end) for better performance
-                const keyPoints = [
-                    { point: singleCameraPoints[0], label: 'Start' },
-                    { point: singleCameraPoints[Math.floor(singleCameraPoints.length / 2)], label: 'Middle' },
-                    { point: singleCameraPoints[singleCameraPoints.length - 1], label: 'End' }
-                ];
-                
-                keyPoints.forEach((keyPoint, index) => {
-                    const canvasX = (keyPoint.point.x - centerX) * scale;
-                    const canvasY = (keyPoint.point.z - centerY) * scale;
+                // Create circles for ALL individual points (not just key points)
+                singleCameraPoints.forEach((point, index) => {
+                    const canvasX = (point.x - centerX) * scale;
+                    const canvasY = (point.z - centerY) * scale;
                     
                     // Extract frame number from image name for highlighting
-                    const frameMatch = keyPoint.point.imageName.match(/frame_(\d+)/);
+                    const frameMatch = point.imageName.match(/frame_(\d+)/);
                     const frameNumber = frameMatch ? frameMatch[1] : 'unknown';
+                    
+                    // Determine if this is a special point (start, middle, end)
+                    const isStart = index === 0;
+                    const isEnd = index === singleCameraPoints.length - 1;
+                    const isMiddle = index === Math.floor(singleCameraPoints.length / 2);
+                    
+                    let pointLabel = 'Point';
+                    let pointRadius = 3; // Default size
+                    
+                    if (isStart) {
+                        pointLabel = 'Start';
+                        pointRadius = 6; // Larger for start
+                    } else if (isEnd) {
+                        pointLabel = 'End';
+                        pointRadius = 5; // Medium for end
+                    } else if (isMiddle) {
+                        pointLabel = 'Middle';
+                        pointRadius = 4; // Medium for middle
+                    }
                     
                     const circle = new fabric.Circle({
                         left: canvasX,
                         top: canvasY,
-                        radius: index === 0 ? 6 : 4, // Start point is larger
+                        radius: pointRadius,
                         fill: color,
                         stroke: 'white',
                         strokeWidth: 1,
                         selectable: false,
-                        customName: `${obj.id} ${keyPoint.label}`,
-                        title: `${obj.id} - ${obj.color} (${keyPoint.label})\nX: ${keyPoint.point.x.toFixed(3)}, Y: ${keyPoint.point.y.toFixed(3)}, Z: ${keyPoint.point.z.toFixed(3)}\nImage: ${keyPoint.point.imageName}\nFrame: ${frameNumber}`
+                        customName: `${obj.id} ${pointLabel}`,
+                        title: `${obj.id} - ${obj.color} (${pointLabel})\nX: ${point.x.toFixed(3)}, Y: ${point.y.toFixed(3)}, Z: ${point.z.toFixed(3)}\nImage: ${point.imageName}\nFrame: ${frameNumber}`
                     });
                     
                     group.addWithUpdate(circle);
@@ -2038,7 +2197,6 @@
                 document.getElementById('scale-value').textContent = '-';
                 document.getElementById('rotation-value').textContent = '-';
                 document.getElementById('locked-value').textContent = '-';
-                console.log('=== NO SELECTION ===');
             }
             
             // Update configuration display
@@ -2196,29 +2354,30 @@
                     }
                 });
             } else {
-                console.log('📍 CANVAS CLICK:', {
-                    pixel: { x: pointer.x, y: pointer.y },
-                    mtEden: { x: mtEdenCoords.x, y: mtEdenCoords.y },
-                    wgs84: { lng: wgs84Coords.lng, lat: wgs84Coords.lat }
-                });
             }
             
         });
 
         // Right-click handler for context menu
-        canvas.on('mouse:down', function(e) {
+        function onContextMenu(e) {
+            console.log('onContextMenu called, button:', e.e.button);
             if (e.e.button === 2) { // Right click
+                console.log('Right-click detected!');
                 const clickedObject = canvas.findTarget(e.e, false);
                 console.log('Right-click detected on:', clickedObject);
                 console.log('Object custom name:', clickedObject ? clickedObject.customName : 'undefined');
                 if (clickedObject) {
                     e.e.preventDefault();
+                    console.log('Showing context menu for:', clickedObject.customName);
                     showContextMenu(e.e.clientX, e.e.clientY, clickedObject);
                 } else {
                     console.log('Right-clicked on empty space');
                 }
             }
-        });
+        }
+        
+        // Attach the context menu handler
+        canvas.on('mouse:down', onContextMenu);
 
         // Zoom functionality
         canvas.on('mouse:wheel', function(opt) {
@@ -2273,7 +2432,6 @@
                 }
             };
             localStorage.setItem('floorPlanCanvasState', JSON.stringify(canvasState));
-            console.log('💾 Canvas state saved');
         }
         
         // Load canvas state from localStorage
@@ -2286,15 +2444,27 @@
                         canvas.setViewportTransform(canvasState.viewportTransform);
                         canvas.setZoom(canvasState.zoom);
                         canvas.requestRenderAll();
-                        console.log('🔄 Canvas state restored');
                         
                         // Restore image strip state if it exists
                         if (canvasState.imageStripState) {
                             restoreImageStripState(canvasState.imageStripState);
                         }
                         
-                        // Reattach event handlers after restoration
-                        reattachEventHandlers();
+                        // Restore PTS objects if they exist
+                        const savedPTSObjects = localStorage.getItem('loadedPTSObjects');
+                        if (savedPTSObjects) {
+                            try {
+                                window.loadedPTSObjects = JSON.parse(savedPTSObjects);
+                                console.log('🔄 PTS objects restored from localStorage:', window.loadedPTSObjects.length, 'objects');
+                            } catch (error) {
+                                console.error('Error restoring PTS objects:', error);
+                            }
+                        }
+                        
+                        // Reattach event handlers after restoration with delay
+                        setTimeout(() => {
+                            reattachEventHandlers();
+                        }, 100);
                     });
                     return true;
                 } catch (error) {
@@ -2323,7 +2493,6 @@
             if (imageStripState.isVisible && currentImageFilenames.length > 0) {
                 document.getElementById('image-strip-panel').style.display = 'block';
                 displayImagesWithSort(imageStripState.sortOrder || 'asc');
-                console.log('🖼️ Image strip restored with', currentImageFilenames.length, 'images');
             }
         }
         
@@ -2331,18 +2500,40 @@
         function reattachEventHandlers() {
             console.log('🔄 Reattaching event handlers after state restoration');
             
-            // Verify that objects have their titles preserved
-            const cameraGroups = canvas.getObjects().filter(obj => 
-                obj.type === 'group' && obj.customName && obj.customName.includes('Camera Positions')
-            );
+            // Remove ALL existing mouse:down handlers first
+            canvas.off('mouse:down');
             
-            console.log('🔍 Verifying camera groups after restoration:');
-            cameraGroups.forEach((group, index) => {
-                const circles = group._objects ? group._objects.filter(obj => obj.type === 'circle') : [];
-                const circlesWithTitles = circles.filter(obj => obj.title);
-                console.log(`Group ${index}: ${group.customName} - ${circlesWithTitles.length}/${circles.length} circles have titles`);
+            // Reattach context menu handlers to all objects
+            canvas.getObjects().forEach(obj => {
+                if (obj.type === 'group') {
+                    // Make sure groups are selectable for context menu
+                    obj.set('selectable', true);
+                    console.log('Made group selectable:', obj.customName);
+                    
+                    // Reattach event handlers to group objects
+                    if (obj._objects) {
+                        obj._objects.forEach(subObj => {
+                            if (subObj.type === 'circle') {
+                                // Make sure circles have proper titles for context menu
+                                if (!subObj.title) {
+                                    // Try to reconstruct title from customName if missing
+                                    const frameMatch = subObj.customName ? subObj.customName.match(/frame_(\d+)/) : null;
+                                    if (frameMatch) {
+                                        subObj.set('title', `Frame: ${frameMatch[1]}`);
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
             });
             
+            // Reattach the main context menu handler
+            canvas.on('mouse:down', onContextMenu);
+            console.log('✅ Context menu handler reattached');
+            
+            // Test if the handler is working
+            console.log('Testing context menu handler attachment...');
             canvas.requestRenderAll();
         }
         
