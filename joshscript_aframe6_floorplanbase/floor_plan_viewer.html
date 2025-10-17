@@ -687,8 +687,17 @@
         // Function to highlight a specific dot when thumbnail is clicked
         function highlightThumbnailDot(frameNumber) {
             const activeObject = canvas.getActiveObject();
-            if (!activeObject || !activeObject.customName || !activeObject.customName.includes('Camera Positions')) {
-                console.log('No camera positions SVG selected');
+            if (!activeObject) {
+                console.log('No object selected');
+                return;
+            }
+
+            // Check if it's a PTS trajectory group
+            const isPTSGroup = activeObject.customName && activeObject.customName.includes('R') && activeObject.customName.includes('points');
+            const isSVGGroup = activeObject.customName && activeObject.customName.includes('Camera Positions');
+            
+            if (!isPTSGroup && !isSVGGroup) {
+                console.log('No camera positions group selected');
                 return;
             }
 
@@ -704,15 +713,23 @@
                 if (obj.type === 'circle' && obj.title) {
                     const frameMatch = obj.title.match(/frame_(\d+)/);
                     
-                        if (frameMatch && frameMatch[1] === frameNumber) {
-                            // Extract camera info from title for display
-                            const titleParts = obj.title.split(' | ');
-                            const cameraInfo = titleParts[0]; // "Camera 84"
-                            const coords2D = titleParts[1]; // "2D: (4.94, -3.19)"
-                            const coords3D = titleParts[2]; // "3D: (3.15, 1.13, 1.18)"
-                            const imageName = titleParts[3]; // "Image: pano_camera1/frame_0121_hp_preview.jpg"
-                            const frameInfo = titleParts[4]; // "Frame: 3458"
-                            const heightInfo = titleParts[5]; // "Height: 1.18m"
+                    if (frameMatch && frameMatch[1] === frameNumber) {
+                        // Highlight the circle by changing its appearance
+                        obj.set({
+                            fill: '#ffff00', // Yellow highlight
+                            stroke: '#ff0000', // Red border
+                            strokeWidth: 2,
+                            radius: 4 // Make it slightly larger when highlighted
+                        });
+                        
+                        found = true;
+                        
+                        // Extract camera info from title for display
+                        const titleParts = obj.title.split('\n');
+                        const cameraInfo = titleParts[0]; // "R0 - Red"
+                        const coords3D = titleParts[1]; // "X: 3.15, Y: 1.13, Z: 1.18"
+                        const imageName = titleParts[2]; // "Image: pano_camera1/frame_0121_hp_preview.jpg"
+                        const frameInfo = titleParts[3]; // "Frame: 0121"
                             
                             // Get the circle's actual position on the canvas (accounting for group transform)
                             const group = activeObject;
@@ -762,19 +779,54 @@
         function clearThumbnailHighlights() {
             const activeObject = canvas.getActiveObject();
             
-            if (!activeObject || !activeObject.customName || !activeObject.customName.includes('Camera Positions')) {
+            if (!activeObject) {
+                return;
+            }
+
+            // Check if it's a PTS trajectory group or SVG group
+            const isPTSGroup = activeObject.customName && activeObject.customName.includes('R') && activeObject.customName.includes('points');
+            const isSVGGroup = activeObject.customName && activeObject.customName.includes('Camera Positions');
+            
+            if (!isPTSGroup && !isSVGGroup) {
                 return;
             }
             
             const group = activeObject;
             const objects = group._objects || group.objects;
             
-            // Reset all circles to red
+            // Reset all circles to their original appearance
             objects.forEach((obj) => {
                 if (obj.type === 'circle') {
-                    obj.set('fill', 'red');
-                    obj.set('stroke', 'darkred');
-                    obj.set('strokeWidth', 0.0246); // Reset to original small stroke width
+                    if (isPTSGroup) {
+                        // For PTS data, restore original colors from the group's color
+                        const groupColor = group.customName.match(/(\w+)\s*\(/);
+                        if (groupColor) {
+                            const colorName = groupColor[1].toLowerCase();
+                            const colorMap = {
+                                'red': '#ff4444',
+                                'green': '#44ff44', 
+                                'blue': '#4444ff',
+                                'yellow': '#ffff44',
+                                'magenta': '#ff44ff',
+                                'cyan': '#44ffff',
+                                'orange': '#ff8844'
+                            };
+                            const originalColor = colorMap[colorName] || '#ff4444';
+                            obj.set({
+                                fill: originalColor,
+                                stroke: 'white',
+                                strokeWidth: 0.5,
+                                radius: 2
+                            });
+                        }
+                    } else {
+                        // For SVG data, reset to red
+                        obj.set({
+                            fill: 'red',
+                            stroke: 'darkred',
+                            strokeWidth: 0.0246
+                        });
+                    }
                 }
             });
             
@@ -783,10 +835,19 @@
          
          // Function to remove a single camera position from the current SVG group
          function removeSingleCameraPosition(frameNumber) {
-             // Find the currently selected SVG group
+             // Find the currently selected group (PTS or SVG)
              const activeObject = canvas.getActiveObject();
-             if (!activeObject || !activeObject.customName || !activeObject.customName.includes('Camera Positions')) {
-                 console.log('No camera positions SVG selected');
+             if (!activeObject) {
+                 console.log('No object selected');
+                 return;
+             }
+
+             // Check if it's a PTS trajectory group or SVG group
+             const isPTSGroup = activeObject.customName && activeObject.customName.includes('R') && activeObject.customName.includes('points');
+             const isSVGGroup = activeObject.customName && activeObject.customName.includes('Camera Positions');
+             
+             if (!isPTSGroup && !isSVGGroup) {
+                 console.log('No camera positions group selected');
                  return;
              }
              
@@ -880,6 +941,27 @@
             
             // Efficiently remove just the thumbnail from the image strip
             removeThumbnailFromStrip(frameNumber);
+            
+            // If it's PTS data, also remove from the global PTS objects
+            if (isPTSGroup && typeof window.loadedPTSObjects !== 'undefined') {
+                const objectIdMatch = group.customName.match(/(R\d+)/);
+                if (objectIdMatch) {
+                    const objectId = objectIdMatch[1];
+                    const ptsObject = window.loadedPTSObjects.find(obj => obj.id === objectId);
+                    if (ptsObject) {
+                        // Remove the point from the PTS data
+                        const pointIndex = ptsObject.points.findIndex(point => {
+                            const frameMatch = point.imageName.match(/frame_(\d+)/);
+                            return frameMatch && frameMatch[1] === frameNumber;
+                        });
+                        if (pointIndex !== -1) {
+                            ptsObject.points.splice(pointIndex, 1);
+                            ptsObject.pointCount = ptsObject.points.length;
+                            console.log(`Removed point from PTS data. Remaining: ${ptsObject.pointCount} points`);
+                        }
+                    }
+                }
+            }
             
             // Save state after removing image
             saveCanvasState();
@@ -1656,23 +1738,35 @@
             const canvasHeight = canvas.getHeight();
             const scale = Math.min(canvasWidth / width, canvasHeight / height) * 0.8;
             
-            // Create separate groups for each object (full camera trajectory)
+            // Create separate groups for each object (ONE camera per trajectory)
             objects.forEach((obj, objIndex) => {
+                // Filter to only show ONE camera per reconstruction (e.g., pano_camera0 only)
+                const singleCameraPoints = obj.points.filter(point => 
+                    point.imageName.includes('pano_camera0/')
+                );
+                
+                if (singleCameraPoints.length === 0) {
+                    console.log(`No pano_camera0 points found for ${obj.id}, skipping`);
+                    return;
+                }
+                
+                console.log(`${obj.id}: Using ${singleCameraPoints.length} points from pano_camera0 (filtered from ${obj.points.length} total)`);
+                
                 const group = new fabric.Group([], {
                     left: canvasWidth / 2,
                     top: canvasHeight / 2,
                     originX: 'center',
                     originY: 'center',
                     selectable: true,
-                    customName: `${obj.id} - ${obj.color} (${obj.pointCount} points)`
+                    customName: `${obj.id} - ${obj.color} (${singleCameraPoints.length} points)`
                 });
                 
                 // Convert RGB to hex color
-                const color = `#${obj.points[0].r.toString(16).padStart(2, '0')}${obj.points[0].g.toString(16).padStart(2, '0')}${obj.points[0].b.toString(16).padStart(2, '0')}`;
+                const color = `#${singleCameraPoints[0].r.toString(16).padStart(2, '0')}${singleCameraPoints[0].g.toString(16).padStart(2, '0')}${singleCameraPoints[0].b.toString(16).padStart(2, '0')}`;
                 
                 // Create path connecting all points in this camera trajectory (open path, no closing)
-                if (obj.points.length > 1) {
-                    const pathPoints = obj.points.map(point => {
+                if (singleCameraPoints.length > 1) {
+                    const pathPoints = singleCameraPoints.map(point => {
                         const canvasX = (point.x - centerX) * scale;
                         const canvasY = (point.z - centerY) * scale;
                         return { x: canvasX, y: canvasY };
@@ -1694,15 +1788,20 @@
                     group.addWithUpdate(path);
                 }
                 
-                // Create circles for key points (start and end only for better performance)
+                // Create circles for key points only (start, middle, end) for better performance
                 const keyPoints = [
-                    { point: obj.points[0], label: 'Start' },
-                    { point: obj.points[obj.points.length - 1], label: 'End' }
+                    { point: singleCameraPoints[0], label: 'Start' },
+                    { point: singleCameraPoints[Math.floor(singleCameraPoints.length / 2)], label: 'Middle' },
+                    { point: singleCameraPoints[singleCameraPoints.length - 1], label: 'End' }
                 ];
                 
                 keyPoints.forEach((keyPoint, index) => {
                     const canvasX = (keyPoint.point.x - centerX) * scale;
                     const canvasY = (keyPoint.point.z - centerY) * scale;
+                    
+                    // Extract frame number from image name for highlighting
+                    const frameMatch = keyPoint.point.imageName.match(/frame_(\d+)/);
+                    const frameNumber = frameMatch ? frameMatch[1] : 'unknown';
                     
                     const circle = new fabric.Circle({
                         left: canvasX,
@@ -1713,7 +1812,7 @@
                         strokeWidth: 1,
                         selectable: false,
                         customName: `${obj.id} ${keyPoint.label}`,
-                        title: `${obj.id} - ${obj.color} (${keyPoint.label})\nX: ${keyPoint.point.x.toFixed(3)}, Y: ${keyPoint.point.y.toFixed(3)}, Z: ${keyPoint.point.z.toFixed(3)}\nImage: ${keyPoint.point.imageName}`
+                        title: `${obj.id} - ${obj.color} (${keyPoint.label})\nX: ${keyPoint.point.x.toFixed(3)}, Y: ${keyPoint.point.y.toFixed(3)}, Z: ${keyPoint.point.z.toFixed(3)}\nImage: ${keyPoint.point.imageName}\nFrame: ${frameNumber}`
                     });
                     
                     group.addWithUpdate(circle);
