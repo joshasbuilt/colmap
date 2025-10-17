@@ -30,16 +30,17 @@ class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         print(f"[{self.log_date_time_string()}] {format % args}")
 
 def main():
-    # Change to script directory
+    # Change to parent directory to serve both floor plan viewer and SVG source
     script_dir = Path(__file__).parent
-    os.chdir(script_dir)
+    parent_dir = script_dir.parent  # Go up one level to paul/
+    os.chdir(parent_dir)
     
     # Create socket server
     Handler = MyHTTPRequestHandler
     
     try:
         with socketserver.TCPServer((HOST, PORT), Handler) as httpd:
-            url = f"http://{HOST}:{PORT}/floor_plan_viewer.html"
+            url = f"http://{HOST}:{PORT}/joshscript_aframe6_floorplanbase/floor_plan_viewer.html"
             
             print("=" * 70)
             print("Floor Plan Viewer Server")

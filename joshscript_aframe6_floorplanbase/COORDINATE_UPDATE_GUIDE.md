@@ -33,8 +33,47 @@ floorplanBounds: [
 ]
 ```
 
+## Nuclear Option - Clear All Browser Memory
+
+When you need to completely clear all saved data and start fresh:
+
+1. Open browser Developer Console (F12)
+2. Run this command:
+   ```javascript
+   clearCacheNuclear()
+   ```
+
+This will:
+- Clear all localStorage data
+- Clear all sessionStorage data
+- Clear all browser caches
+- Force reload the page
+
+## Individual Clearing Commands
+
+For more granular control, you can run these individual commands in the browser console:
+
+```javascript
+// Clear just the canvas state
+clearCanvasState()
+
+// Clear all localStorage
+localStorage.clear()
+
+// Clear all sessionStorage
+sessionStorage.clear()
+
+// Clear all caches and reload
+caches.keys().then(names => {
+    names.forEach(name => caches.delete(name));
+}).then(() => {
+    location.reload(true);
+});
+```
+
 ## Troubleshooting
 - **Orthogonal display**: Wrong coordinates (using extents instead of corners)
 - **Upside down**: Incorrect coordinate order
 - **Wrong location**: Wrong project coordinates
+- **Saved data persists**: Use `clearCacheNuclear()` in browser console
 
