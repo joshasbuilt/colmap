@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive 3D Camera Trajectory Viewer - TransformControls</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/TransformControls.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            overflow: hidden;
+        }
+        
+        #canvas-container {
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        #controls {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(30, 30, 30, 0.95);
+            padding: 15px;
+            border-radius: 8px;
+            max-width: 300px;
+            max-height: calc(100vh - 20px);
+            overflow-y: auto;
+        }
+        
+        #controls h3 {
+            margin: 0 0 10px 0;
+            color: #4CAF50;
+        }
+        
+        .control-group {
+            margin-bottom: 15px;
+        }
+        
+        .control-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #bbb;
+            font-size: 12px;
+        }
+        
+        button {
+            padding: 8px 12px;
+            background: #444;
+            color: white;
+            border: 1px solid #666;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin: 2px;
+        }
+        
+        button:hover {
+            background: #555;
+        }
+        
+        button.active {
+            background: #0066cc;
+            border-color: #0088ff;
+        }
+        
+        .recon-btn {
+            padding: 6px 10px;
+            font-weight: bold;
+            font-size: 11px;
+        }
+        
+        .recon-btn.selected {
+            border-color: #fff;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+        
+        .recon-btn.deleted {
+            opacity: 0.3;
+            text-decoration: line-through;
+            background: #666;
+            border-color: #999;
+        }
+        
+        #info {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(30, 30, 30, 0.95);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            color: #bbb;
+        }
+        
+        #status {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(30, 30, 30, 0.95);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 12px;
+        }
+        
+        #view-cube-container {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 128px;
+            height: 128px;
+            cursor: pointer;
+        }
+        
+        #view-cube-canvas {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    
+    <div id="controls">
+        <h3>3D Trajectory Viewer</h3>
+        
+        <div class="control-group">
+            <button id="load-all-btn">Load All Reconstructions</button>
+        </div>
+        
+        <div class="control-group">
+            <label>Transform Mode:</label>
+            <button id="translate-btn" class="active">Translate</button>
+            <button id="rotate-btn">Rotate</button>
+            <button id="scale-btn">Scale</button>
+        </div>
+        
+        <div class="control-group">
+            <label>Select Reconstruction:</label>
+            <div id="recon-buttons"></div>
+        </div>
+        
+        <div class="control-group">
+            <button id="deselect-btn">Deselect All</button>
+            <button id="delete-btn" style="background: #cc0000; border-color: #ff0000;">Delete Selected</button>
+        </div>
+        
+        <div class="control-group">
+            <button id="download-pts-btn" style="background: #0066cc; border-color: #0088ff;">Download PTS</button>
+        </div>
+    </div>
+    
+    <div id="status">Ready</div>
+    
+    <div id="info">
+        <strong>Controls:</strong><br>
+        • Click reconstruction to select<br>
+        • Drag gizmo handles to transform<br>
+        • Right-click + drag to orbit view<br>
+        • Scroll to zoom
+    </div>
+    
+    <div id="view-cube-container">
+        <canvas id="view-cube-canvas"></canvas>
+    </div>
+
+    <script>
+        // Three.js setup
+        let scene, camera, renderer, orbitControls, transformControls;
+        let allReconstructions = [];
+        let reconstructionGroups = [];
+        let selectedIndex = null;
+        let deletedReconstructions = new Set(); // Track deleted reconstructions
+        let originalCameraData = []; // Store original camera data with image names
+        
+        // ViewCube setup
+        let viewCubeScene, viewCubeCamera, viewCubeRenderer;
+        let viewCube;
+        
+        // Colors for each reconstruction
+        const reconstructionColors = [
+            0xff4444, // Red - R0
+            0x44ff44, // Green - R1
+            0x4444ff, // Blue - R2
+            0xffff44, // Yellow - R3
+            0xff44ff, // Magenta - R4
+            0x44ffff, // Cyan - R5
+            0xff8844  // Orange - R6
+        ];
+        
+        init();
+        initViewCube();
+        animate();
+        loadAllReconstructions();
+        
+        function init() {
+            // Create scene
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x1a1a1a);
+            
+            // Create orthographic camera
+            const aspect = window.innerWidth / window.innerHeight;
+            const frustumSize = 10;
+            camera = new THREE.OrthographicCamera(
+                frustumSize * aspect / -2,
+                frustumSize * aspect / 2,
+                frustumSize / 2,
+                frustumSize / -2,
+                0.1,
+                1000
+            );
+            camera.position.set(10, 10, 10);
+            camera.lookAt(0, 0, 0);
+            
+            // Create renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+            
+            // Add orbit controls
+            orbitControls = new THREE.OrbitControls(camera, renderer.domElement);
+            orbitControls.enableDamping = true;
+            orbitControls.dampingFactor = 0.05;
+            
+            // Add transform controls
+            transformControls = new THREE.TransformControls(camera, renderer.domElement);
+            transformControls.addEventListener('change', () => renderer.domElement.dispatchEvent(new Event('render')));
+            transformControls.addEventListener('dragging-changed', (event) => {
+                orbitControls.enabled = !event.value;
+            });
+            scene.add(transformControls);
+            
+            // Add lights
+            const ambientLight = new THREE.AmbientLight(0x404040);
+            scene.add(ambientLight);
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+            directionalLight.position.set(1, 1, 1);
+            scene.add(directionalLight);
+            
+            // Add grid
+            const gridHelper = new THREE.GridHelper(20, 20);
+            scene.add(gridHelper);
+            
+            // Add axes
+            const axesHelper = new THREE.AxesHelper(5);
+            scene.add(axesHelper);
+            
+            // Initialize controls
+            initializeControls();
+            
+            // Handle window resize
+            window.addEventListener('resize', onWindowResize, false);
+        }
+        
+        function initializeControls() {
+            // Transform mode buttons
+            document.getElementById('translate-btn').addEventListener('click', () => {
+                setTransformMode('translate');
+            });
+            document.getElementById('rotate-btn').addEventListener('click', () => {
+                setTransformMode('rotate');
+            });
+            document.getElementById('scale-btn').addEventListener('click', () => {
+                setTransformMode('scale');
+            });
+            
+            // Load all button
+            document.getElementById('load-all-btn').addEventListener('click', () => {
+                loadAllReconstructions();
+            });
+            
+            // Deselect button
+            document.getElementById('deselect-btn').addEventListener('click', () => {
+                deselectAll();
+            });
+            
+            // Delete button
+            document.getElementById('delete-btn').addEventListener('click', () => {
+                deleteSelected();
+            });
+            
+            // Download PTS button
+            document.getElementById('download-pts-btn').addEventListener('click', () => {
+                downloadPTS();
+            });
+        }
+        
+        function setTransformMode(mode) {
+            transformControls.setMode(mode);
+            
+            // Update button states
+            document.querySelectorAll('#controls button').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`${mode}-btn`).classList.add('active');
+        }
+        
+        function deselectAll() {
+            selectedIndex = null;
+            transformControls.detach();
+            updateSelectionUI();
+        }
+        
+        function deleteSelected() {
+            if (selectedIndex !== null && !deletedReconstructions.has(selectedIndex)) {
+                // Remove from scene
+                const group = reconstructionGroups[selectedIndex];
+                if (group) {
+                    scene.remove(group);
+                }
+                
+                // Mark as deleted
+                deletedReconstructions.add(selectedIndex);
+                
+                // Update UI
+                const btn = document.querySelector(`[data-index="${selectedIndex}"]`);
+                if (btn) {
+                    btn.classList.add('deleted');
+                }
+                
+                // Deselect
+                deselectAll();
+                
+                document.getElementById('status').textContent = `Deleted reconstruction R${selectedIndex}`;
+            }
+        }
+        
+        async function loadAllReconstructions() {
+            document.getElementById('status').textContent = 'Loading reconstructions...';
+            
+            // Clear existing
+            reconstructionGroups.forEach(group => scene.remove(group));
+            reconstructionGroups = [];
+            allReconstructions = [];
+            originalCameraData = [];
+            deletedReconstructions.clear();
+            
+            // Load all 7 reconstructions
+            for (let i = 0; i < 7; i++) {
+                try {
+                    await loadReconstruction(i);
+                } catch (error) {
+                    console.error(`Error loading reconstruction ${i}:`, error);
+                }
+            }
+            
+            centerCameraOnData();
+            generateReconstructionButtons();
+            
+            document.getElementById('status').textContent = `Loaded ${allReconstructions.length} reconstructions`;
+        }
+        
+        async function loadReconstruction(index) {
+            const jsonPath = `../joshscript_aframe4_svg/svg_output/camera_data_${index}.json`;
+            const response = await fetch(jsonPath);
+            const data = await response.json();
+            
+            // Sort by image name
+            const sortedCameras = data.cameras.sort((a, b) => a.image_name.localeCompare(b.image_name));
+            
+            // Remove duplicates
+            const cameraPoints = [];
+            const seenPositions = new Set();
+            
+            for (const cam of sortedCameras) {
+                const posKey = `${cam.x.toFixed(3)},${cam.y.toFixed(3)},${cam.z.toFixed(3)}`;
+                if (!seenPositions.has(posKey)) {
+                    // Invert Y and Z coordinates
+                    cameraPoints.push({ x: cam.x, y: cam.z, z: cam.y });
+                    seenPositions.add(posKey);
+                }
+            }
+            
+            // Store original data with image names for PTS export
+            originalCameraData[index] = sortedCameras.map(cam => ({
+                x: cam.x,
+                y: cam.z, // Invert Y and Z
+                z: cam.y,
+                image_name: cam.image_name,
+                image_id: cam.image_id
+            }));
+            
+            allReconstructions[index] = cameraPoints;
+            createReconstructionGroup(index, cameraPoints);
+        }
+        
+        function createReconstructionGroup(index, points) {
+            const group = new THREE.Group();
+            group.userData.reconstructionIndex = index;
+            
+            // Create points
+            const pointsGeometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(points.length * 3);
+            
+            for (let i = 0; i < points.length; i++) {
+                positions[i * 3] = points[i].x;
+                positions[i * 3 + 1] = points[i].y;
+                positions[i * 3 + 2] = points[i].z;
+            }
+            
+            pointsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            
+            const pointsMaterial = new THREE.PointsMaterial({
+                size: 0.1,
+                color: reconstructionColors[index]
+            });
+            
+            const pointsMesh = new THREE.Points(pointsGeometry, pointsMaterial);
+            group.add(pointsMesh);
+            
+            // Create path
+            const pathGeometry = new THREE.BufferGeometry();
+            pathGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            
+            const pathMaterial = new THREE.LineBasicMaterial({
+                color: reconstructionColors[index],
+                opacity: 0.7,
+                transparent: true
+            });
+            
+            const pathLine = new THREE.Line(pathGeometry, pathMaterial);
+            group.add(pathLine);
+            
+            scene.add(group);
+            reconstructionGroups[index] = group;
+        }
+        
+        function generateReconstructionButtons() {
+            const container = document.getElementById('recon-buttons');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < allReconstructions.length; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'recon-btn';
+                btn.textContent = `R${i}`;
+                btn.setAttribute('data-index', i);
+                btn.style.color = `#${reconstructionColors[i].toString(16).padStart(6, '0')}`;
+                
+                if (deletedReconstructions.has(i)) {
+                    btn.classList.add('deleted');
+                }
+                
+                btn.addEventListener('click', () => {
+                    if (!deletedReconstructions.has(i)) {
+                        selectReconstruction(i);
+                    }
+                });
+                container.appendChild(btn);
+            }
+        }
+        
+        function selectReconstruction(index) {
+            if (!deletedReconstructions.has(index)) {
+                selectedIndex = index;
+                const group = reconstructionGroups[index];
+                transformControls.attach(group);
+                updateSelectionUI();
+            }
+        }
+        
+        function updateSelectionUI() {
+            document.querySelectorAll('.recon-btn').forEach((btn, i) => {
+                btn.classList.toggle('selected', i === selectedIndex);
+            });
+        }
+        
+        function downloadPTS() {
+            let ptsContent = '';
+            let totalPoints = 0;
+            
+            // Color mapping for reconstructions
+            const colors = [
+                { hex: 0xff4444, name: 'Red', rgb: [255, 68, 68] },
+                { hex: 0x44ff44, name: 'Green', rgb: [68, 255, 68] },
+                { hex: 0x4444ff, name: 'Blue', rgb: [68, 68, 255] },
+                { hex: 0xffff44, name: 'Yellow', rgb: [255, 255, 68] },
+                { hex: 0xff44ff, name: 'Magenta', rgb: [255, 68, 255] },
+                { hex: 0x44ffff, name: 'Cyan', rgb: [68, 255, 255] },
+                { hex: 0xff8844, name: 'Orange', rgb: [255, 136, 68] }
+            ];
+            
+            // Add header with metadata
+            ptsContent += '# Enhanced PTS File with Visual Information\n';
+            ptsContent += '# Format: X Y Z R G B OBJECT_ID IMAGE_NAME\n';
+            ptsContent += '# Generated from Three.js Transform Viewer\n';
+            ptsContent += `# Export Date: ${new Date().toISOString()}\n`;
+            ptsContent += `# Total Objects: ${originalCameraData.length - deletedReconstructions.size}\n\n`;
+            
+            // Process each non-deleted reconstruction
+            for (let i = 0; i < originalCameraData.length; i++) {
+                if (deletedReconstructions.has(i)) continue;
+                
+                const group = reconstructionGroups[i];
+                if (!group) continue;
+                
+                // Get object information
+                const color = colors[i % colors.length];
+                const objectId = `R${i}`;
+                const pointCount = originalCameraData[i].length;
+                
+                // Add object header
+                ptsContent += `# Object ${objectId}: ${color.name} (${pointCount} points)\n`;
+                
+                // Get the current transformation matrix
+                const matrix = new THREE.Matrix4();
+                group.updateMatrixWorld();
+                matrix.copy(group.matrixWorld);
+                
+                // Extract transformation components for metadata
+                const position = new THREE.Vector3();
+                const quaternion = new THREE.Quaternion();
+                const scale = new THREE.Vector3();
+                matrix.decompose(position, quaternion, scale);
+                
+                // Add transformation metadata
+                ptsContent += `# Transform: Pos(${position.x.toFixed(3)}, ${position.y.toFixed(3)}, ${position.z.toFixed(3)}) `;
+                ptsContent += `Scale(${scale.x.toFixed(3)}, ${scale.y.toFixed(3)}, ${scale.z.toFixed(3)}) `;
+                ptsContent += `Quat(${quaternion.x.toFixed(3)}, ${quaternion.y.toFixed(3)}, ${quaternion.z.toFixed(3)}, ${quaternion.w.toFixed(3)})\n`;
+                
+                // Apply transformation to each point
+                const originalData = originalCameraData[i];
+                for (const point of originalData) {
+                    // Create vector from original point
+                    const vector = new THREE.Vector3(point.x, point.y, point.z);
+                    
+                    // Apply transformation
+                    vector.applyMatrix4(matrix);
+                    
+                    // Add to PTS content with enhanced information
+                    // Format: X Y Z R G B OBJECT_ID IMAGE_NAME
+                    ptsContent += `${vector.x.toFixed(6)} ${vector.y.toFixed(6)} ${vector.z.toFixed(6)} `;
+                    ptsContent += `${color.rgb[0]} ${color.rgb[1]} ${color.rgb[2]} `;
+                    ptsContent += `${objectId} ${point.image_name}\n`;
+                    totalPoints++;
+                }
+                
+                ptsContent += '\n'; // Empty line between objects
+            }
+            
+            if (totalPoints === 0) {
+                document.getElementById('status').textContent = 'No points to export';
+                return;
+            }
+            
+            // Add footer with summary
+            ptsContent += `# End of file - ${totalPoints} total points exported\n`;
+            
+            // Create and download file
+            const blob = new Blob([ptsContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `enhanced_cameras_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.pts`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            document.getElementById('status').textContent = `Downloaded ${totalPoints} points with visual data`;
+        }
+        
+        function centerCameraOnData() {
+            if (allReconstructions.length === 0) return;
+            
+            let minX = Infinity, minY = Infinity, minZ = Infinity;
+            let maxX = -Infinity, maxY = -Infinity, maxZ = -Infinity;
+            
+            allReconstructions.forEach(recon => {
+                recon.forEach(point => {
+                    minX = Math.min(minX, point.x);
+                    minY = Math.min(minY, point.y);
+                    minZ = Math.min(minZ, point.z);
+                    maxX = Math.max(maxX, point.x);
+                    maxY = Math.max(maxY, point.y);
+                    maxZ = Math.max(maxZ, point.z);
+                });
+            });
+            
+            const centerX = (minX + maxX) / 2;
+            const centerY = (minY + maxY) / 2;
+            const centerZ = (minZ + maxZ) / 2;
+            
+            const rangeX = maxX - minX;
+            const rangeY = maxY - minY;
+            const rangeZ = maxZ - minZ;
+            const maxRange = Math.max(rangeX, rangeY, rangeZ);
+            
+            const aspect = window.innerWidth / window.innerHeight;
+            const frustumSize = maxRange * 1.5;
+            
+            camera.left = frustumSize * aspect / -2;
+            camera.right = frustumSize * aspect / 2;
+            camera.top = frustumSize / 2;
+            camera.bottom = frustumSize / -2;
+            camera.updateProjectionMatrix();
+            
+            const distance = maxRange * 2;
+            camera.position.set(
+                centerX + distance,
+                centerY + distance,
+                centerZ + distance
+            );
+            camera.lookAt(centerX, centerY, centerZ);
+            orbitControls.target.set(centerX, centerY, centerZ);
+            orbitControls.update();
+        }
+        
+        function onWindowResize() {
+            const aspect = window.innerWidth / window.innerHeight;
+            const frustumSize = 10;
+            
+            camera.left = frustumSize * aspect / -2;
+            camera.right = frustumSize * aspect / 2;
+            camera.top = frustumSize / 2;
+            camera.bottom = frustumSize / -2;
+            camera.updateProjectionMatrix();
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        function initViewCube() {
+            // Create ViewCube scene
+            viewCubeScene = new THREE.Scene();
+            
+            // Create ViewCube camera
+            viewCubeCamera = new THREE.OrthographicCamera(-1.5, 1.5, 1.5, -1.5, 1, 10);
+            viewCubeCamera.position.set(0, 0, 5);
+            viewCubeCamera.lookAt(0, 0, 0);
+            
+            // Create ViewCube renderer
+            const canvas = document.getElementById('view-cube-canvas');
+            viewCubeRenderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+            viewCubeRenderer.setSize(128, 128);
+            viewCubeRenderer.setClearColor(0x000000, 0);
+            
+            // Create cube geometry
+            const geometry = new THREE.BoxGeometry(1, 1, 1);
+            
+            // Create materials for each face
+            const materials = [
+                createFaceMaterial('RIGHT', 0xff0000),
+                createFaceMaterial('LEFT', 0x00ffff),
+                createFaceMaterial('TOP', 0x00ff00),
+                createFaceMaterial('BOTTOM', 0xff00ff),
+                createFaceMaterial('FRONT', 0x0000ff),
+                createFaceMaterial('BACK', 0xffff00)
+            ];
+            
+            viewCube = new THREE.Mesh(geometry, materials);
+            viewCubeScene.add(viewCube);
+            
+            // Add edge lines
+            const edges = new THREE.EdgesGeometry(geometry);
+            const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0xffffff }));
+            viewCube.add(line);
+            
+            // Add ViewCube click handler
+            canvas.addEventListener('click', onViewCubeClick);
+        }
+        
+        function createFaceMaterial(text, color) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 128;
+            canvas.height = 128;
+            const ctx = canvas.getContext('2d');
+            
+            // Background
+            ctx.fillStyle = `#${color.toString(16).padStart(6, '0')}`;
+            ctx.fillRect(0, 0, 128, 128);
+            
+            // Text
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 20px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(text, 64, 64);
+            
+            const texture = new THREE.CanvasTexture(canvas);
+            return new THREE.MeshBasicMaterial({ map: texture });
+        }
+        
+        function onViewCubeClick(event) {
+            const rect = event.target.getBoundingClientRect();
+            const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+            const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+            
+            const raycaster = new THREE.Raycaster();
+            raycaster.setFromCamera(new THREE.Vector2(x, y), viewCubeCamera);
+            
+            const intersects = raycaster.intersectObject(viewCube);
+            if (intersects.length > 0) {
+                const faceIndex = Math.floor(intersects[0].faceIndex / 2);
+                alignCameraToFace(faceIndex);
+            }
+        }
+        
+        function alignCameraToFace(faceIndex) {
+            const center = orbitControls.target;
+            const distance = camera.position.distanceTo(center);
+            
+            let newPosition;
+            switch (faceIndex) {
+                case 0: // RIGHT (X+)
+                    newPosition = new THREE.Vector3(center.x + distance, center.y, center.z);
+                    break;
+                case 1: // LEFT (X-)
+                    newPosition = new THREE.Vector3(center.x - distance, center.y, center.z);
+                    break;
+                case 2: // TOP (Y+)
+                    newPosition = new THREE.Vector3(center.x, center.y + distance, center.z);
+                    break;
+                case 3: // BOTTOM (Y-)
+                    newPosition = new THREE.Vector3(center.x, center.y - distance, center.z);
+                    break;
+                case 4: // FRONT (Z+)
+                    newPosition = new THREE.Vector3(center.x, center.y, center.z + distance);
+                    break;
+                case 5: // BACK (Z-)
+                    newPosition = new THREE.Vector3(center.x, center.y, center.z - distance);
+                    break;
+            }
+            
+            camera.position.copy(newPosition);
+            camera.lookAt(center);
+            camera.up.set(0, 1, 0);
+            orbitControls.update();
+        }
+        
+        function updateViewCube() {
+            // Sync ViewCube rotation with main camera
+            const direction = new THREE.Vector3();
+            camera.getWorldDirection(direction);
+            
+            const targetRotation = new THREE.Euler().setFromQuaternion(
+                new THREE.Quaternion().setFromRotationMatrix(
+                    new THREE.Matrix4().lookAt(
+                        direction,
+                        new THREE.Vector3(0, 0, 0),
+                        camera.up
+                    )
+                )
+            );
+            
+            viewCube.rotation.copy(camera.rotation);
+        }
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            orbitControls.update();
+            updateViewCube();
+            renderer.render(scene, camera);
+            viewCubeRenderer.render(viewCubeScene, viewCubeCamera);
+        }
+    </script>
+</body>
+</html>
+

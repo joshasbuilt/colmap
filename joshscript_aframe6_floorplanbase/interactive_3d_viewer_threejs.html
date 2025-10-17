@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive 3D Camera Trajectory Viewer (Three.js)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/TransformControls.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        #container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        
+        #canvas-container {
+            width: 100%;
+            height: 100%;
+        }
+        
+        #controls {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(30, 30, 30, 0.95);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            max-width: 400px;
+            z-index: 1000;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .control-item {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .control-item label {
+            font-size: 14px;
+            color: #aaa;
+            min-width: 120px;
+        }
+        
+        .control-item input[type="range"] {
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .control-item select {
+            flex: 1;
+            padding: 5px 10px;
+            background: #2a2a2a;
+            color: white;
+            border: 1px solid #555;
+            border-radius: 4px;
+        }
+        
+        .control-item button {
+            padding: 8px 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .control-item button:hover {
+            background: #45a049;
+        }
+        
+        .value-display {
+            color: #4CAF50;
+            font-weight: bold;
+            min-width: 50px;
+            display: inline-block;
+        }
+        
+        .mode-btn {
+            padding: 8px 12px;
+            background: #444;
+            color: white;
+            border: 1px solid #666;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin: 2px;
+        }
+        
+        .mode-btn:hover {
+            background: #555;
+        }
+        
+        .mode-btn.active {
+            background: #0066cc;
+            border-color: #0088ff;
+        }
+        
+        .recon-btn {
+            padding: 6px 10px;
+            background: #333;
+            color: white;
+            border: 2px solid #666;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        
+        .recon-btn:hover {
+            border-color: #888;
+        }
+        
+        .recon-btn.selected {
+            border-color: #fff;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+        
+        #info {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(30, 30, 30, 0.95);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            z-index: 1000;
+            font-size: 12px;
+        }
+        
+        #info h3 {
+            margin-bottom: 10px;
+            color: #4CAF50;
+        }
+        
+        #info div {
+            margin: 5px 0;
+            color: #aaa;
+        }
+        
+        #status {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(30, 30, 30, 0.95);
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 12px;
+            color: #aaa;
+            z-index: 1000;
+        }
+        
+        #view-cube-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 150px;
+            height: 150px;
+            z-index: 1000;
+            cursor: pointer;
+        }
+        
+        #view-cube-canvas {
+            width: 100%;
+            height: 100%;
+            border: 2px solid #444;
+            border-radius: 8px;
+            background: rgba(20, 20, 20, 0.8);
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="canvas-container"></div>
+        
+        <div id="controls">
+            <div class="control-group">
+                <div class="control-item">
+                    <label>Load All Reconstructions:</label>
+                    <button id="load-all-btn" style="padding: 8px 15px; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">Load All</button>
+                </div>
+                
+                <div class="control-item">
+                    <label>Show/Hide Reconstructions:</label>
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px;">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="show-recon-0" checked>
+                            <label style="min-width: auto; color: #ff4444;">R0</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="show-recon-1" checked>
+                            <label style="min-width: auto; color: #44ff44;">R1</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="show-recon-2" checked>
+                            <label style="min-width: auto; color: #4444ff;">R2</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="show-recon-3" checked>
+                            <label style="min-width: auto; color: #ffff44;">R3</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="show-recon-4" checked>
+                            <label style="min-width: auto; color: #ff44ff;">R4</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="show-recon-5" checked>
+                            <label style="min-width: auto; color: #44ffff;">R5</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="show-recon-6" checked>
+                            <label style="min-width: auto; color: #ff8844;">R6</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="control-item checkbox-item">
+                    <input type="checkbox" id="show-points" checked>
+                    <label style="min-width: auto;">Show Camera Points</label>
+                </div>
+                
+                <div class="control-item checkbox-item">
+                    <input type="checkbox" id="show-path" checked>
+                    <label style="min-width: auto;">Show Trajectory Path</label>
+                </div>
+                
+                <div class="control-item checkbox-item">
+                    <input type="checkbox" id="show-axes" checked>
+                    <label style="min-width: auto;">Show Axes</label>
+                </div>
+                
+                <div class="control-item checkbox-item">
+                    <input type="checkbox" id="show-grid" checked>
+                    <label style="min-width: auto;">Show Grid</label>
+                </div>
+                
+                <div class="control-item">
+                    <label>Point Size:</label>
+                    <input type="range" id="point-size" min="0.01" max="0.2" value="0.05" step="0.01">
+                    <span class="value-display" id="point-size-value">0.05</span>
+                </div>
+                
+                <div class="control-item">
+                    <label>Path Width:</label>
+                    <input type="range" id="path-width" min="1" max="10" value="3" step="0.5">
+                    <span class="value-display" id="path-width-value">3</span>
+                </div>
+                
+                <div class="control-item">
+                    <button id="reset-camera-btn">Reset Camera View</button>
+                </div>
+                
+                <div class="control-item">
+                    <label>Transform Mode:</label>
+                    <button id="translate-mode-btn" class="mode-btn active">Translate</button>
+                    <button id="rotate-mode-btn" class="mode-btn">Rotate</button>
+                    <button id="scale-mode-btn" class="mode-btn">Scale</button>
+                </div>
+                
+                <div class="control-item">
+                    <label>Select Reconstruction:</label>
+                    <div id="reconstruction-select-buttons" style="display: flex; flex-wrap: wrap; gap: 5px;">
+                        <!-- Buttons will be generated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="info">
+            <h3>Controls</h3>
+            <div>🖱️ Left Click + Drag: Rotate</div>
+            <div>🖱️ Right Click + Drag: Pan</div>
+            <div>🖱️ Scroll: Zoom</div>
+            <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #444;">
+                <strong>Camera Count:</strong> <span id="camera-count">0</span>
+            </div>
+        </div>
+    </div>
+    
+    <div id="status">Loading...</div>
+    
+    <div id="view-cube-container">
+        <canvas id="view-cube-canvas"></canvas>
+    </div>
+
+    <script>
+        // Three.js scene setup
+        let scene, camera, renderer, controls, transformControls;
+        let allReconstructions = []; // Store all 6 reconstructions
+        let pointsMeshes = []; // Array of point meshes for each reconstruction
+        let pathLines = []; // Array of path lines for each reconstruction
+        let reconstructionGroups = []; // Groups containing both points and paths for each reconstruction
+        let selectedReconstructionIndex = null; // Currently selected reconstruction
+        let axesHelper, gridHelper;
+        let currentReconstruction = 0;
+        let targetCenter = new THREE.Vector3(0, 0, 0);
+        
+        // ViewCube setup
+        let viewCubeScene, viewCubeCamera, viewCubeRenderer;
+        let viewCube;
+        
+        // Axis rotation state
+        let currentAxisView = null; // null, 'X', 'Y', or 'Z'
+        let axisRotationAngle = 0;
+        let originalCameraPoints = []; // Store original points for rotation
+        
+        // Colors for each reconstruction
+        const reconstructionColors = [
+            0xff4444, // Red - Reconstruction 0
+            0x44ff44, // Green - Reconstruction 1
+            0x4444ff, // Blue - Reconstruction 2
+            0xffff44, // Yellow - Reconstruction 3
+            0xff44ff, // Magenta - Reconstruction 4
+            0x44ffff, // Cyan - Reconstruction 5
+            0xff8844  // Orange - Reconstruction 6
+        ];
+        
+        // Initialize Three.js
+        init();
+        initViewCube();
+        loadAllReconstructions();
+        animate();
+        
+        function init() {
+            // Create scene
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x1a1a1a);
+            
+            // Create orthographic camera
+            const aspect = window.innerWidth / window.innerHeight;
+            const frustumSize = 10;
+            camera = new THREE.OrthographicCamera(
+                frustumSize * aspect / -2,
+                frustumSize * aspect / 2,
+                frustumSize / 2,
+                frustumSize / -2,
+                0.1,
+                1000
+            );
+            camera.position.set(5, 5, 5);
+            camera.lookAt(0, 0, 0);
+            
+            // Create renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+            
+            // Add orbit controls
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.screenSpacePanning = true;
+            controls.minDistance = 1;
+            controls.maxDistance = 100;
+            
+            // Add axes helper (X=red, Y=green, Z=blue)
+            axesHelper = new THREE.AxesHelper(5);
+            scene.add(axesHelper);
+            
+            // Add grid helper
+            gridHelper = new THREE.GridHelper(20, 20, 0x444444, 0x222222);
+            scene.add(gridHelper);
+            
+            // Add ambient light
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+            
+            // Add directional light
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.4);
+            directionalLight.position.set(10, 10, 10);
+            scene.add(directionalLight);
+            
+            // Initialize controls
+            initializeControls();
+            
+            // Handle window resize
+            window.addEventListener('resize', onWindowResize, false);
+            
+            // All reconstructions are loaded by loadAllReconstructions()
+        }
+        
+        function initializeControls() {
+            // Load all button
+            document.getElementById('load-all-btn').addEventListener('click', () => {
+                loadAllReconstructions();
+            });
+            
+            // Reconstruction visibility toggles
+            for (let i = 0; i < 7; i++) {
+                document.getElementById(`show-recon-${i}`).addEventListener('change', (e) => {
+                    const isVisible = e.target.checked;
+                    if (pointsMeshes[i]) pointsMeshes[i].visible = isVisible;
+                    if (pathLines[i]) pathLines[i].visible = isVisible;
+                });
+            }
+            
+            // Show/hide toggles
+            document.getElementById('show-points').addEventListener('change', (e) => {
+                pointsMeshes.forEach(mesh => {
+                    if (mesh) mesh.visible = e.target.checked;
+                });
+            });
+            
+            document.getElementById('show-path').addEventListener('change', (e) => {
+                pathLines.forEach(line => {
+                    if (line) line.visible = e.target.checked;
+                });
+            });
+            
+            document.getElementById('show-axes').addEventListener('change', (e) => {
+                axesHelper.visible = e.target.checked;
+            });
+            
+            document.getElementById('show-grid').addEventListener('change', (e) => {
+                gridHelper.visible = e.target.checked;
+            });
+            
+            // Point size
+            document.getElementById('point-size').addEventListener('input', (e) => {
+                const size = parseFloat(e.target.value);
+                document.getElementById('point-size-value').textContent = size.toFixed(2);
+                if (pointsMesh) {
+                    pointsMesh.material.size = size;
+                }
+            });
+            
+            // Path width
+            document.getElementById('path-width').addEventListener('input', (e) => {
+                const width = parseFloat(e.target.value);
+                document.getElementById('path-width-value').textContent = width.toFixed(1);
+                if (pathLine) {
+                    pathLine.material.linewidth = width;
+                }
+            });
+            
+            // Reset camera
+            document.getElementById('reset-camera-btn').addEventListener('click', () => {
+                camera.position.set(5, 5, 5);
+                camera.lookAt(0, 0, 0);
+                controls.reset();
+                hideAxisRotationControl();
+            });
+            
+            // Axis rotation slider
+            document.getElementById('axis-rotation').addEventListener('input', (e) => {
+                axisRotationAngle = parseFloat(e.target.value);
+                document.getElementById('axis-rotation-value').textContent = axisRotationAngle.toFixed(1) + '°';
+                updateAxisRotation();
+            });
+            
+            // Reset rotation button
+            document.getElementById('reset-camera-btn').addEventListener('click', () => {
+                resetAllRotations();
+            });
+            
+            
+            // Axis rotation up/down buttons
+            document.getElementById('axis-rotation-up').addEventListener('click', () => {
+                const slider = document.getElementById('axis-rotation');
+                const currentValue = parseFloat(slider.value);
+                const newValue = Math.min(currentValue + 0.1, 180);
+                slider.value = newValue;
+                axisRotationAngle = newValue;
+                document.getElementById('axis-rotation-value').textContent = newValue.toFixed(1) + '°';
+                updateAxisRotation();
+            });
+            
+            document.getElementById('axis-rotation-down').addEventListener('click', () => {
+                const slider = document.getElementById('axis-rotation');
+                const currentValue = parseFloat(slider.value);
+                const newValue = Math.max(currentValue - 0.1, -180);
+                slider.value = newValue;
+                axisRotationAngle = newValue;
+                document.getElementById('axis-rotation-value').textContent = newValue.toFixed(1) + '°';
+                updateAxisRotation();
+            });
+        }
+        
+        function showAxisRotationControl(axis) {
+            currentAxisView = axis;
+            const control = document.getElementById('axis-rotation-control');
+            const label = document.getElementById('axis-rotation-label');
+            const individualControl = document.getElementById('individual-rotation-controls');
+            
+            control.style.display = 'flex';
+            individualControl.style.display = 'flex';
+            label.textContent = `Rotate around ${axis}-axis:`;
+            
+            // Reset sliders
+            document.getElementById('axis-rotation').value = 0;
+            document.getElementById('axis-rotation-value').textContent = '0°';
+            axisRotationAngle = 0;
+            
+            // Generate individual sliders
+            generateIndividualSliders(axis);
+        }
+        
+        function hideAxisRotationControl() {
+            currentAxisView = null;
+            axisRotationAngle = 0;
+            document.getElementById('axis-rotation-control').style.display = 'none';
+            document.getElementById('individual-rotation-controls').style.display = 'none';
+        }
+        
+        function updateAxisRotation() {
+            if (!currentAxisView || allReconstructions.length === 0) {
+                console.log('Missing axis view or reconstructions:', currentAxisView, allReconstructions.length);
+                return;
+            }
+            
+            console.log('Rotating all objects around', currentAxisView, 'axis by', axisRotationAngle, 'degrees');
+            
+            const radians = axisRotationAngle * Math.PI / 180;
+            
+            // Apply rotation to all reconstructions
+            allReconstructions.forEach((reconstruction, index) => {
+                if (!reconstruction) return;
+                
+                const rotatedPoints = reconstruction.map(point => {
+                    const rotated = new THREE.Vector3(point.x, point.y, point.z);
+                    
+                    // Translate to origin for rotation
+                    rotated.sub(targetCenter);
+                    
+                    // Apply rotation around the specified axis
+                    if (currentAxisView === 'Y') {
+                        // Rotate around Y-axis
+                        const x = rotated.x * Math.cos(radians) - rotated.z * Math.sin(radians);
+                        const z = rotated.x * Math.sin(radians) + rotated.z * Math.cos(radians);
+                        rotated.x = x;
+                        rotated.z = z;
+                    } else if (currentAxisView === 'X') {
+                        // Rotate around X-axis
+                        const y = rotated.y * Math.cos(radians) - rotated.z * Math.sin(radians);
+                        const z = rotated.y * Math.sin(radians) + rotated.z * Math.cos(radians);
+                        rotated.y = y;
+                        rotated.z = z;
+                    } else if (currentAxisView === 'Z') {
+                        // Rotate around Z-axis
+                        const x = rotated.x * Math.cos(radians) - rotated.y * Math.sin(radians);
+                        const y = rotated.x * Math.sin(radians) + rotated.y * Math.cos(radians);
+                        rotated.x = x;
+                        rotated.y = y;
+                    }
+                    
+                    // Translate back
+                    rotated.add(targetCenter);
+                    
+                    return {
+                        x: rotated.x,
+                        y: rotated.y,
+                        z: rotated.z,
+                        image_name: point.image_name,
+                        image_id: point.image_id
+                    };
+                });
+                
+                // Update the 3D visualization for this reconstruction
+                updateReconstructionVisualization(index, rotatedPoints);
+            });
+        }
+        
+        function updateReconstructionVisualization(index, points) {
+            // Remove existing objects for this reconstruction
+            if (pointsMeshes[index]) scene.remove(pointsMeshes[index]);
+            if (pathLines[index]) scene.remove(pathLines[index]);
+            
+            if (points.length === 0) return;
+            
+            // Create points geometry
+            const pointsGeometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(points.length * 3);
+            const colors = new Float32Array(points.length * 3);
+            
+            const color = new THREE.Color(reconstructionColors[index]);
+            
+            for (let i = 0; i < points.length; i++) {
+                positions[i * 3] = points[i].x;
+                positions[i * 3 + 1] = points[i].y;
+                positions[i * 3 + 2] = points[i].z;
+                
+                // Use reconstruction color
+                colors[i * 3] = color.r;
+                colors[i * 3 + 1] = color.g;
+                colors[i * 3 + 2] = color.b;
+            }
+            
+            pointsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            pointsGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            
+            const pointsMaterial = new THREE.PointsMaterial({
+                size: 0.05,
+                vertexColors: true,
+                sizeAttenuation: true
+            });
+            
+            pointsMeshes[index] = new THREE.Points(pointsGeometry, pointsMaterial);
+            scene.add(pointsMeshes[index]);
+            
+            // Create trajectory path (continuous line)
+            const pathGeometry = new THREE.BufferGeometry();
+            pathGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            
+            const pathMaterial = new THREE.LineBasicMaterial({
+                color: reconstructionColors[index],
+                linewidth: 3,
+                opacity: 0.7,
+                transparent: true
+            });
+            
+            pathLines[index] = new THREE.Line(pathGeometry, pathMaterial);
+            scene.add(pathLines[index]);
+        }
+
+        function generateIndividualSliders(axis) {
+            const container = document.getElementById('reconstruction-sliders');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < 7; i++) {
+                const sliderDiv = document.createElement('div');
+                sliderDiv.className = 'control-item';
+                sliderDiv.style.cssText = 'margin-bottom: 12px;';
+                const colorHex = reconstructionColors[i].toString(16).padStart(6, '0');
+                sliderDiv.innerHTML = `
+                    <label style="color: #${colorHex};">R${i} - ${axis}:</label>
+                    <div style="display: flex; flex-direction: column; gap: 4px;">
+                        <div style="display: flex; align-items: center; gap: 5px;">
+                            <button id="individual-${i}-down" style="padding: 4px 8px; background: #444; color: white; border: 1px solid #666; border-radius: 3px; cursor: pointer; font-size: 12px;">▼</button>
+                            <input type="range" id="individual-${i}-slider" min="-180" max="180" value="0" step="0.1" style="flex: 1;">
+                            <button id="individual-${i}-up" style="padding: 4px 8px; background: #444; color: white; border: 1px solid #666; border-radius: 3px; cursor: pointer; font-size: 12px;">▲</button>
+                            <span class="value-display" id="individual-${i}-value">0°</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 5px;">
+                            <button id="individual-${i}-translate-down" style="padding: 4px 8px; background: #444; color: white; border: 1px solid #666; border-radius: 3px; cursor: pointer; font-size: 12px;">▼</button>
+                            <input type="range" id="individual-${i}-translate-slider" min="-10" max="10" value="0" step="0.1" style="flex: 1;">
+                            <button id="individual-${i}-translate-up" style="padding: 4px 8px; background: #444; color: white; border: 1px solid #666; border-radius: 3px; cursor: pointer; font-size: 12px;">▲</button>
+                            <span class="value-display" id="individual-${i}-translate-value">0</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(sliderDiv);
+                
+                // Add event listeners for rotation slider
+                const slider = document.getElementById(`individual-${i}-slider`);
+                const valueDisplay = document.getElementById(`individual-${i}-value`);
+                const upBtn = document.getElementById(`individual-${i}-up`);
+                const downBtn = document.getElementById(`individual-${i}-down`);
+                
+                slider.addEventListener('input', (e) => {
+                    individualRotations[i] = parseFloat(e.target.value);
+                    valueDisplay.textContent = individualRotations[i].toFixed(1) + '°';
+                    updateIndividualRotation(i);
+                });
+                
+                upBtn.addEventListener('click', () => {
+                    const newValue = Math.min(180, individualRotations[i] + 0.1);
+                    individualRotations[i] = newValue;
+                    slider.value = newValue;
+                    valueDisplay.textContent = newValue.toFixed(1) + '°';
+                    updateIndividualRotation(i);
+                });
+                
+                downBtn.addEventListener('click', () => {
+                    const newValue = Math.max(-180, individualRotations[i] - 0.1);
+                    individualRotations[i] = newValue;
+                    slider.value = newValue;
+                    valueDisplay.textContent = newValue.toFixed(1) + '°';
+                    updateIndividualRotation(i);
+                });
+                
+                // Add event listeners for translation slider
+                const translateSlider = document.getElementById(`individual-${i}-translate-slider`);
+                const translateValueDisplay = document.getElementById(`individual-${i}-translate-value`);
+                const translateUpBtn = document.getElementById(`individual-${i}-translate-up`);
+                const translateDownBtn = document.getElementById(`individual-${i}-translate-down`);
+                
+                translateSlider.addEventListener('input', (e) => {
+                    individualTranslations[i] = parseFloat(e.target.value);
+                    translateValueDisplay.textContent = individualTranslations[i].toFixed(1);
+                    updateIndividualTranslation(i);
+                });
+                
+                translateUpBtn.addEventListener('click', () => {
+                    const newValue = Math.min(10, individualTranslations[i] + 0.1);
+                    individualTranslations[i] = newValue;
+                    translateSlider.value = newValue;
+                    translateValueDisplay.textContent = newValue.toFixed(1);
+                    updateIndividualTranslation(i);
+                });
+                
+                translateDownBtn.addEventListener('click', () => {
+                    const newValue = Math.max(-10, individualTranslations[i] - 0.1);
+                    individualTranslations[i] = newValue;
+                    translateSlider.value = newValue;
+                    translateValueDisplay.textContent = newValue.toFixed(1);
+                    updateIndividualTranslation(i);
+                });
+            }
+        }
+        
+        function updateIndividualRotation(index) {
+            if (!currentAxisView || !allReconstructions[index]) {
+                return;
+            }
+            
+            const radians = individualRotations[index] * Math.PI / 180;
+            const reconstruction = allReconstructions[index];
+            
+            const transformedPoints = reconstruction.map(point => {
+                const transformed = new THREE.Vector3(point.x, point.y, point.z);
+                
+                // Translate to origin for rotation
+                transformed.sub(targetCenter);
+                
+                // Apply rotation around the specified axis
+                if (currentAxisView === 'Y') {
+                    const x = transformed.x * Math.cos(radians) - transformed.z * Math.sin(radians);
+                    const z = transformed.x * Math.sin(radians) + transformed.z * Math.cos(radians);
+                    transformed.x = x;
+                    transformed.z = z;
+                } else if (currentAxisView === 'X') {
+                    const y = transformed.y * Math.cos(radians) - transformed.z * Math.sin(radians);
+                    const z = transformed.y * Math.sin(radians) + transformed.z * Math.cos(radians);
+                    transformed.y = y;
+                    transformed.z = z;
+                } else if (currentAxisView === 'Z') {
+                    const x = transformed.x * Math.cos(radians) - transformed.y * Math.sin(radians);
+                    const y = transformed.x * Math.sin(radians) + transformed.y * Math.cos(radians);
+                    transformed.x = x;
+                    transformed.y = y;
+                }
+                
+                // Translate back
+                transformed.add(targetCenter);
+                
+                // Apply context-aware translation based on ViewCube orientation
+                if (currentAxisView === 'Y') {
+                    // When looking down Y-axis, translate in Z (up/down on screen)
+                    transformed.z += individualTranslations[index];
+                } else if (currentAxisView === 'X') {
+                    // When looking down X-axis, translate in Y (up/down on screen)
+                    transformed.y += individualTranslations[index];
+                } else if (currentAxisView === 'Z') {
+                    // When looking down Z-axis, translate in Y (up/down on screen)
+                    transformed.y += individualTranslations[index];
+                }
+                
+                return {
+                    x: transformed.x,
+                    y: transformed.y,
+                    z: transformed.z,
+                    image_name: point.image_name,
+                    image_id: point.image_id
+                };
+            });
+            
+            // Update the 3D visualization for this reconstruction
+            updateReconstructionVisualization(index, transformedPoints);
+        }
+        
+        function updateIndividualTranslation(index) {
+            if (!allReconstructions[index]) {
+                return;
+            }
+            
+            // Re-apply both rotation and translation
+            updateIndividualRotation(index);
+        }
+        
+        function resetAllRotations() {
+            // Reset rotation angle
+            axisRotationAngle = 0;
+            document.getElementById('axis-rotation').value = 0;
+            document.getElementById('axis-rotation-value').textContent = '0.0°';
+            
+            // Reset individual rotations and translations
+            individualRotations.fill(0);
+            individualTranslations.fill(0);
+            for (let i = 0; i < 7; i++) {
+                const slider = document.getElementById(`individual-${i}-slider`);
+                const valueDisplay = document.getElementById(`individual-${i}-value`);
+                const translateSlider = document.getElementById(`individual-${i}-translate-slider`);
+                const translateValueDisplay = document.getElementById(`individual-${i}-translate-value`);
+                if (slider && valueDisplay) {
+                    slider.value = 0;
+                    valueDisplay.textContent = '0°';
+                }
+                if (translateSlider && translateValueDisplay) {
+                    translateSlider.value = 0;
+                    translateValueDisplay.textContent = '0';
+                }
+            }
+            
+            // Reload all reconstructions to restore original positions
+            loadAllReconstructions();
+            
+            // Hide axis rotation control
+            hideAxisRotationControl();
+        }
+
+        function updateSceneWithPoints(points) {
+            // This function is deprecated - use updateReconstructionVisualization instead
+            console.log('updateSceneWithPoints called - this function is deprecated');
+        }
+        
+        async function loadAllReconstructions() {
+            document.getElementById('status').textContent = 'Loading all reconstructions...';
+            
+            // Clear existing reconstructions
+            clearAllReconstructions();
+            
+            // Load all 7 reconstructions (0-6)
+            for (let i = 0; i < 7; i++) {
+                try {
+                    await loadSingleReconstruction(i);
+                } catch (error) {
+                    console.error(`Error loading reconstruction ${i}:`, error);
+                }
+            }
+            
+            // Calculate combined bounding box and center camera
+            centerCameraOnAllData();
+            
+            document.getElementById('status').textContent = `Loaded ${allReconstructions.length} reconstructions`;
+        }
+        
+        async function loadSingleReconstruction(index) {
+            const jsonPath = `../joshscript_aframe4_svg/svg_output/camera_data_${index}.json`;
+            const response = await fetch(jsonPath);
+            const data = await response.json();
+            
+            // Sort cameras by image name to get chronological order
+            const sortedCameras = data.cameras.sort((a, b) => {
+                return a.image_name.localeCompare(b.image_name);
+            });
+            
+            // Remove duplicates (same X,Y,Z coordinates rounded to 3 decimals)
+            const cameraPoints = [];
+            const seenPositions = new Set();
+            
+            for (const cam of sortedCameras) {
+                const posKey = `${cam.x.toFixed(3)},${cam.y.toFixed(3)},${cam.z.toFixed(3)}`;
+                
+                if (!seenPositions.has(posKey)) {
+                    cameraPoints.push({
+                        x: cam.x,
+                        y: cam.y,
+                        z: cam.z,
+                        image_name: cam.image_name,
+                        image_id: cam.image_id
+                    });
+                    seenPositions.add(posKey);
+                }
+            }
+            
+            // Store reconstruction data
+            allReconstructions[index] = cameraPoints;
+            
+            // Create 3D visualization for this reconstruction
+            createReconstructionVisualization(index, cameraPoints);
+        }
+        
+        function clearAllReconstructions() {
+            // Remove all existing meshes and lines
+            pointsMeshes.forEach(mesh => {
+                if (mesh) scene.remove(mesh);
+            });
+            pathLines.forEach(line => {
+                if (line) scene.remove(line);
+            });
+            
+            // Clear arrays
+            pointsMeshes = [];
+            pathLines = [];
+            allReconstructions = [];
+        }
+        
+        function createReconstructionVisualization(index, points) {
+            if (points.length === 0) return;
+            
+            const color = reconstructionColors[index];
+            
+            // Create points geometry
+            const pointsGeometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(points.length * 3);
+            const colors = new Float32Array(points.length * 3);
+            
+            for (let i = 0; i < points.length; i++) {
+                positions[i * 3] = points[i].x;
+                positions[i * 3 + 1] = points[i].y;
+                positions[i * 3 + 2] = points[i].z;
+                
+                // Use reconstruction color
+                colors[i * 3] = ((color >> 16) & 255) / 255;     // R
+                colors[i * 3 + 1] = ((color >> 8) & 255) / 255;  // G
+                colors[i * 3 + 2] = (color & 255) / 255;         // B
+            }
+            
+            pointsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            pointsGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            
+            const pointsMaterial = new THREE.PointsMaterial({
+                size: 0.05,
+                vertexColors: true,
+                sizeAttenuation: true
+            });
+            
+            const pointsMesh = new THREE.Points(pointsGeometry, pointsMaterial);
+            scene.add(pointsMesh);
+            pointsMeshes[index] = pointsMesh;
+            
+            // Create trajectory path (continuous line)
+            const pathGeometry = new THREE.BufferGeometry();
+            pathGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            
+            const pathMaterial = new THREE.LineBasicMaterial({
+                color: color,
+                linewidth: 3,
+                opacity: 0.7,
+                transparent: true
+            });
+            
+            const pathLine = new THREE.Line(pathGeometry, pathMaterial);
+            scene.add(pathLine);
+            pathLines[index] = pathLine;
+        }
+        
+        function centerCameraOnAllData() {
+            if (allReconstructions.length === 0) return;
+            
+            // Calculate combined bounding box
+            let minX = Infinity, minY = Infinity, minZ = Infinity;
+            let maxX = -Infinity, maxY = -Infinity, maxZ = -Infinity;
+            
+            allReconstructions.forEach(points => {
+                if (!points) return;
+                points.forEach(point => {
+                    minX = Math.min(minX, point.x);
+                    minY = Math.min(minY, point.y);
+                    minZ = Math.min(minZ, point.z);
+                    maxX = Math.max(maxX, point.x);
+                    maxY = Math.max(maxY, point.y);
+                    maxZ = Math.max(maxZ, point.z);
+                });
+            });
+            
+            const centerX = (minX + maxX) / 2;
+            const centerY = (minY + maxY) / 2;
+            const centerZ = (minZ + maxZ) / 2;
+            
+            // Store target center for view cube alignment
+            targetCenter.set(centerX, centerY, centerZ);
+            
+            const rangeX = maxX - minX;
+            const rangeY = maxY - minY;
+            const rangeZ = maxZ - minZ;
+            const maxRange = Math.max(rangeX, rangeY, rangeZ);
+            
+            // Adjust orthographic camera frustum to fit all data
+            const aspect = window.innerWidth / window.innerHeight;
+            const frustumSize = maxRange * 1.3; // Add 30% padding
+            
+            camera.left = frustumSize * aspect / -2;
+            camera.right = frustumSize * aspect / 2;
+            camera.top = frustumSize / 2;
+            camera.bottom = frustumSize / -2;
+            camera.updateProjectionMatrix();
+            
+            // Position camera to view all data
+            const distance = maxRange * 2;
+            camera.position.set(
+                centerX + distance,
+                centerY + distance,
+                centerZ + distance
+            );
+            camera.lookAt(centerX, centerY, centerZ);
+            controls.target.set(centerX, centerY, centerZ);
+            controls.update();
+        }
+
+        async function loadReconstruction(index) {
+            document.getElementById('status').textContent = `Loading reconstruction ${index}...`;
+            
+            try {
+                const jsonPath = `../joshscript_aframe4_svg/svg_output/camera_data_${index}.json`;
+                const response = await fetch(jsonPath);
+                const data = await response.json();
+                
+                // Sort cameras by image name to get chronological order
+                const sortedCameras = data.cameras.sort((a, b) => {
+                    return a.image_name.localeCompare(b.image_name);
+                });
+                
+                // Remove duplicates (same X,Y,Z coordinates rounded to 3 decimals)
+                cameraPoints = [];
+                const seenPositions = new Set();
+                
+                for (const cam of sortedCameras) {
+                    const posKey = `${cam.x.toFixed(3)},${cam.y.toFixed(3)},${cam.z.toFixed(3)}`;
+                    
+                    if (!seenPositions.has(posKey)) {
+                        cameraPoints.push({
+                            x: cam.x,
+                            y: cam.y,
+                            z: cam.z,
+                            image_name: cam.image_name,
+                            image_id: cam.image_id
+                        });
+                        seenPositions.add(posKey);
+                    }
+                }
+                
+                const duplicatesRemoved = sortedCameras.length - cameraPoints.length;
+                document.getElementById('status').textContent = 
+                    `Loaded ${cameraPoints.length} unique camera positions (removed ${duplicatesRemoved} duplicates)`;
+                document.getElementById('camera-count').textContent = cameraPoints.length;
+                
+                // Store original points for rotation
+                originalCameraPoints = cameraPoints.map(p => ({...p}));
+                
+                // Update 3D visualization
+                updateScene();
+                
+            } catch (error) {
+                document.getElementById('status').textContent = `Error loading reconstruction ${index}: ${error.message}`;
+                console.error('Error loading JSON file:', error);
+            }
+        }
+        
+        function updateScene() {
+            // This function is no longer used since we load all reconstructions
+            // The individual reconstruction loading is handled by loadSingleReconstruction
+            console.log('updateScene called - this function is deprecated');
+        }
+        
+        function centerCameraOnData() {
+            // This function is deprecated - use centerCameraOnAllData() instead
+            console.log('centerCameraOnData called - this function is deprecated');
+        }
+        
+        function onWindowResize() {
+            const aspect = window.innerWidth / window.innerHeight;
+            const frustumSize = 10;
+            
+            camera.left = frustumSize * aspect / -2;
+            camera.right = frustumSize * aspect / 2;
+            camera.top = frustumSize / 2;
+            camera.bottom = frustumSize / -2;
+            camera.updateProjectionMatrix();
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        function initViewCube() {
+            // Create separate scene for view cube
+            viewCubeScene = new THREE.Scene();
+            
+            // Create orthographic camera for view cube
+            viewCubeCamera = new THREE.OrthographicCamera(-1.5, 1.5, 1.5, -1.5, 1, 10);
+            viewCubeCamera.position.set(0, 0, 5);
+            viewCubeCamera.lookAt(0, 0, 0);
+            
+            // Create view cube renderer
+            const canvas = document.getElementById('view-cube-canvas');
+            viewCubeRenderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            viewCubeRenderer.setSize(150, 150);
+            viewCubeRenderer.setClearColor(0x000000, 0);
+            
+            // Create cube geometry
+            const geometry = new THREE.BoxGeometry(2, 2, 2);
+            
+            // Create materials for each face with labels
+            const materials = [
+                createFaceMaterial('RIGHT', 0xff4444),  // +X (right)
+                createFaceMaterial('LEFT', 0xff8844),   // -X (left)
+                createFaceMaterial('TOP', 0x44ff44),    // +Y (top)
+                createFaceMaterial('BOTTOM', 0x88ff44), // -Y (bottom)
+                createFaceMaterial('FRONT', 0x4444ff),  // +Z (front)
+                createFaceMaterial('BACK', 0x8844ff)    // -Z (back)
+            ];
+            
+            viewCube = new THREE.Mesh(geometry, materials);
+            viewCubeScene.add(viewCube);
+            
+            // Add lights to view cube scene
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            viewCubeScene.add(ambientLight);
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.4);
+            directionalLight.position.set(5, 5, 5);
+            viewCubeScene.add(directionalLight);
+            
+            // Add click handler for view cube
+            canvas.addEventListener('click', onViewCubeClick);
+            canvas.addEventListener('mousemove', onViewCubeHover);
+        }
+        
+        function createFaceMaterial(label, color) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 256;
+            canvas.height = 256;
+            const ctx = canvas.getContext('2d');
+            
+            // Draw face background
+            ctx.fillStyle = `#${color.toString(16).padStart(6, '0')}`;
+            ctx.fillRect(0, 0, 256, 256);
+            
+            // Draw border
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 8;
+            ctx.strokeRect(4, 4, 248, 248);
+            
+            // Draw label
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 40px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(label, 128, 128);
+            
+            const texture = new THREE.CanvasTexture(canvas);
+            return new THREE.MeshBasicMaterial({ map: texture });
+        }
+        
+        function onViewCubeClick(event) {
+            const rect = event.target.getBoundingClientRect();
+            const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+            const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+            
+            const raycaster = new THREE.Raycaster();
+            raycaster.setFromCamera(new THREE.Vector2(x, y), viewCubeCamera);
+            
+            const intersects = raycaster.intersectObject(viewCube);
+            
+            if (intersects.length > 0) {
+                const faceIndex = Math.floor(intersects[0].faceIndex / 2);
+                alignCameraToFace(faceIndex);
+            }
+        }
+        
+        function onViewCubeHover(event) {
+            const rect = event.target.getBoundingClientRect();
+            const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+            const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+            
+            const raycaster = new THREE.Raycaster();
+            raycaster.setFromCamera(new THREE.Vector2(x, y), viewCubeCamera);
+            
+            const intersects = raycaster.intersectObject(viewCube);
+            
+            event.target.style.cursor = intersects.length > 0 ? 'pointer' : 'default';
+        }
+        
+        function alignCameraToFace(faceIndex) {
+            const distance = camera.position.distanceTo(targetCenter);
+            const adjustedDistance = distance || 10;
+            
+            let newPosition;
+            let axis;
+            
+            switch(faceIndex) {
+                case 0: // RIGHT (+X)
+                    newPosition = new THREE.Vector3(adjustedDistance, 0, 0);
+                    axis = 'X';
+                    break;
+                case 1: // LEFT (-X)
+                    newPosition = new THREE.Vector3(-adjustedDistance, 0, 0);
+                    axis = 'X';
+                    break;
+                case 2: // TOP (+Y)
+                    newPosition = new THREE.Vector3(0, adjustedDistance, 0);
+                    axis = 'Y';
+                    break;
+                case 3: // BOTTOM (-Y)
+                    newPosition = new THREE.Vector3(0, -adjustedDistance, 0);
+                    axis = 'Y';
+                    break;
+                case 4: // FRONT (+Z)
+                    newPosition = new THREE.Vector3(0, 0, adjustedDistance);
+                    axis = 'Z';
+                    break;
+                case 5: // BACK (-Z)
+                    newPosition = new THREE.Vector3(0, 0, -adjustedDistance);
+                    axis = 'Z';
+                    break;
+            }
+            
+            // Show axis rotation control
+            showAxisRotationControl(axis);
+            
+            // Animate camera to new position
+            animateCameraTo(newPosition.add(targetCenter));
+        }
+        
+        function animateCameraTo(targetPosition) {
+            const startPosition = camera.position.clone();
+            const duration = 500; // milliseconds
+            const startTime = Date.now();
+            
+            function animate() {
+                const now = Date.now();
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Ease out cubic
+                const eased = 1 - Math.pow(1 - progress, 3);
+                
+                camera.position.lerpVectors(startPosition, targetPosition, eased);
+                camera.lookAt(targetCenter);
+                controls.update();
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                }
+            }
+            
+            animate();
+        }
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Update main scene
+            controls.update();
+            renderer.render(scene, camera);
+            
+            // Update view cube to match main camera orientation
+            if (viewCube) {
+                viewCube.rotation.copy(camera.rotation);
+                viewCubeRenderer.render(viewCubeScene, viewCubeCamera);
+            }
+        }
+    </script>
+</body>
+</html>
+

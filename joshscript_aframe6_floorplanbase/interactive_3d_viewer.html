@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive 3D Camera Trajectory Viewer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        #main-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto 1fr;
+            gap: 10px;
+            padding: 10px;
+            height: 100vh;
+        }
+        
+        #controls {
+            grid-column: 1 / -1;
+            background: rgba(30, 30, 30, 0.95);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #444;
+        }
+        
+        .control-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .control-item {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .control-item label {
+            font-size: 14px;
+            color: #aaa;
+        }
+        
+        .control-item input[type="range"] {
+            width: 200px;
+        }
+        
+        .control-item select {
+            padding: 5px 10px;
+            background: #2a2a2a;
+            color: white;
+            border: 1px solid #555;
+            border-radius: 4px;
+        }
+        
+        #xy-view, #yz-view {
+            background: rgba(20, 20, 20, 0.95);
+            border-radius: 8px;
+            border: 2px solid #444;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .view-header {
+            text-align: center;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        
+        .canvas-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        canvas {
+            border: 1px solid #666;
+        }
+        
+        #status {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(30, 30, 30, 0.95);
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 12px;
+            color: #aaa;
+        }
+        
+        .value-display {
+            color: #4CAF50;
+            font-weight: bold;
+            min-width: 50px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div id="main-container">
+        <div id="controls">
+            <div class="control-group">
+                <div class="control-item">
+                    <label>Reconstruction:</label>
+                    <select id="reconstruction-select">
+                        <option value="0">Reconstruction 0</option>
+                        <option value="1">Reconstruction 1</option>
+                        <option value="2">Reconstruction 2</option>
+                        <option value="3">Reconstruction 3</option>
+                        <option value="4">Reconstruction 4</option>
+                        <option value="5">Reconstruction 5</option>
+                        <option value="6">Reconstruction 6</option>
+                    </select>
+                </div>
+                
+                <div class="control-item">
+                    <label>X-Axis Rotation:</label>
+                    <input type="range" id="rotation-x" min="-180" max="180" value="0" step="0.5">
+                    <span class="value-display" id="rotation-x-value">0°</span>
+                </div>
+                
+                <div class="control-item">
+                    <label>Y-Axis Rotation:</label>
+                    <input type="range" id="rotation-y" min="-180" max="180" value="0" step="0.5">
+                    <span class="value-display" id="rotation-y-value">0°</span>
+                </div>
+                
+                <div class="control-item">
+                    <label>Z-Axis Rotation:</label>
+                    <input type="range" id="rotation-z" min="-180" max="180" value="0" step="0.5">
+                    <span class="value-display" id="rotation-z-value">0°</span>
+                </div>
+                
+                <div class="control-item">
+                    <button id="reset-btn" style="padding: 8px 15px; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">Reset Rotation</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="xy-view">
+            <div class="view-header">XY View (Top-Down)</div>
+            <div class="canvas-wrapper">
+                <canvas id="canvas-xy"></canvas>
+            </div>
+        </div>
+        
+        <div id="yz-view">
+            <div class="view-header">YZ View (Side View)</div>
+            <div class="canvas-wrapper">
+                <canvas id="canvas-yz"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <div id="status">Loading...</div>
+
+    <script>
+        // Global state
+        let cameraPoints = [];
+        let currentReconstruction = 0;
+        let rotationX = 0;
+        let rotationY = 0;
+        let rotationZ = 0;
+        
+        // Fabric.js canvases
+        let canvasXY, canvasYZ;
+        
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            initializeCanvases();
+            initializeControls();
+            loadReconstruction(0);
+        });
+        
+        function initializeCanvases() {
+            const canvasSize = Math.min(window.innerWidth / 2 - 50, window.innerHeight - 200);
+            
+            canvasXY = new fabric.Canvas('canvas-xy', {
+                width: canvasSize,
+                height: canvasSize,
+                backgroundColor: '#1a1a1a'
+            });
+            
+            canvasYZ = new fabric.Canvas('canvas-yz', {
+                width: canvasSize,
+                height: canvasSize,
+                backgroundColor: '#1a1a1a'
+            });
+        }
+        
+        function initializeControls() {
+            // Reconstruction selector
+            document.getElementById('reconstruction-select').addEventListener('change', (e) => {
+                currentReconstruction = parseInt(e.target.value);
+                loadReconstruction(currentReconstruction);
+            });
+            
+            // Rotation sliders
+            document.getElementById('rotation-x').addEventListener('input', (e) => {
+                rotationX = parseFloat(e.target.value);
+                document.getElementById('rotation-x-value').textContent = rotationX.toFixed(1) + '°';
+                updateViews();
+            });
+            
+            document.getElementById('rotation-y').addEventListener('input', (e) => {
+                rotationY = parseFloat(e.target.value);
+                document.getElementById('rotation-y-value').textContent = rotationY.toFixed(1) + '°';
+                updateViews();
+            });
+            
+            document.getElementById('rotation-z').addEventListener('input', (e) => {
+                rotationZ = parseFloat(e.target.value);
+                document.getElementById('rotation-z-value').textContent = rotationZ.toFixed(1) + '°';
+                updateViews();
+            });
+            
+            // Reset button
+            document.getElementById('reset-btn').addEventListener('click', () => {
+                rotationX = rotationY = rotationZ = 0;
+                document.getElementById('rotation-x').value = 0;
+                document.getElementById('rotation-y').value = 0;
+                document.getElementById('rotation-z').value = 0;
+                document.getElementById('rotation-x-value').textContent = '0°';
+                document.getElementById('rotation-y-value').textContent = '0°';
+                document.getElementById('rotation-z-value').textContent = '0°';
+                updateViews();
+            });
+        }
+        
+        async function loadReconstruction(index) {
+            document.getElementById('status').textContent = `Loading reconstruction ${index}...`;
+            
+            try {
+                const jsonPath = `../joshscript_aframe4_svg/svg_output/camera_data_${index}.json`;
+                const response = await fetch(jsonPath);
+                const data = await response.json();
+                
+                // Sort cameras by image name to get chronological order
+                const sortedCameras = data.cameras.sort((a, b) => {
+                    return a.image_name.localeCompare(b.image_name);
+                });
+                
+                // Remove duplicates (same X,Y,Z coordinates rounded to 3 decimals)
+                cameraPoints = [];
+                const seenPositions = new Set();
+                
+                for (const cam of sortedCameras) {
+                    const posKey = `${cam.x.toFixed(3)},${cam.y.toFixed(3)},${cam.z.toFixed(3)}`;
+                    
+                    if (!seenPositions.has(posKey)) {
+                        cameraPoints.push({
+                            x: cam.x,
+                            y: cam.y,
+                            z: cam.z,
+                            image_name: cam.image_name,
+                            image_id: cam.image_id
+                        });
+                        seenPositions.add(posKey);
+                    }
+                }
+                
+                const duplicatesRemoved = sortedCameras.length - cameraPoints.length;
+                document.getElementById('status').textContent = 
+                    `Loaded ${cameraPoints.length} unique camera positions (removed ${duplicatesRemoved} duplicates)`;
+                updateViews();
+                
+            } catch (error) {
+                document.getElementById('status').textContent = `Error loading reconstruction ${index}: ${error.message}`;
+                console.error('Error loading JSON file:', error);
+            }
+        }
+        
+        function applyRotation(point, rx, ry, rz) {
+            // Convert degrees to radians
+            const radX = rx * Math.PI / 180;
+            const radY = ry * Math.PI / 180;
+            const radZ = rz * Math.PI / 180;
+            
+            let x = point.x;
+            let y = point.y;
+            let z = point.z;
+            
+            // Rotation around X-axis
+            if (rx !== 0) {
+                const cosX = Math.cos(radX);
+                const sinX = Math.sin(radX);
+                const y1 = y * cosX - z * sinX;
+                const z1 = y * sinX + z * cosX;
+                y = y1;
+                z = z1;
+            }
+            
+            // Rotation around Y-axis
+            if (ry !== 0) {
+                const cosY = Math.cos(radY);
+                const sinY = Math.sin(radY);
+                const x1 = x * cosY + z * sinY;
+                const z1 = -x * sinY + z * cosY;
+                x = x1;
+                z = z1;
+            }
+            
+            // Rotation around Z-axis
+            if (rz !== 0) {
+                const cosZ = Math.cos(radZ);
+                const sinZ = Math.sin(radZ);
+                const x1 = x * cosZ - y * sinZ;
+                const y1 = x * sinZ + y * cosZ;
+                x = x1;
+                y = y1;
+            }
+            
+            return { x, y, z };
+        }
+        
+        function updateViews() {
+            if (cameraPoints.length === 0) return;
+            
+            // Apply rotation to all points
+            const rotatedPoints = cameraPoints.map(p => applyRotation(p, rotationX, rotationY, rotationZ));
+            
+            // Render XY view
+            renderXYView(rotatedPoints);
+            
+            // Render YZ view
+            renderYZView(rotatedPoints);
+        }
+        
+        function renderXYView(points) {
+            canvasXY.clear();
+            canvasXY.backgroundColor = '#1a1a1a';
+            
+            // Get bounds
+            const xCoords = points.map(p => p.x);
+            const yCoords = points.map(p => p.y);
+            const minX = Math.min(...xCoords);
+            const maxX = Math.max(...xCoords);
+            const minY = Math.min(...yCoords);
+            const maxY = Math.max(...yCoords);
+            
+            const rangeX = maxX - minX || 1;
+            const rangeY = maxY - minY || 1;
+            const maxRange = Math.max(rangeX, rangeY);
+            
+            const padding = 50;
+            const scale = (canvasXY.width - 2 * padding) / maxRange;
+            const centerX = (minX + maxX) / 2;
+            const centerY = (minY + maxY) / 2;
+            
+            // Draw trajectory as a continuous polyline path
+            if (points.length > 1) {
+                const pathPoints = points.map(p => {
+                    return {
+                        x: (p.x - centerX) * scale + canvasXY.width / 2,
+                        y: (p.y - centerY) * scale + canvasXY.height / 2
+                    };
+                });
+                
+                const polyline = new fabric.Polyline(pathPoints, {
+                    stroke: '#ff4444',
+                    strokeWidth: 2,
+                    fill: '',
+                    opacity: 0.4,
+                    selectable: false,
+                    objectCaching: false
+                });
+                canvasXY.add(polyline);
+            }
+            
+            // Draw points
+            points.forEach((p, idx) => {
+                const x = (p.x - centerX) * scale + canvasXY.width / 2;
+                const y = (p.y - centerY) * scale + canvasXY.height / 2;
+                
+                const circle = new fabric.Circle({
+                    left: x,
+                    top: y,
+                    radius: 3,
+                    fill: '#ff4444',
+                    stroke: '#cc0000',
+                    strokeWidth: 1,
+                    originX: 'center',
+                    originY: 'center',
+                    selectable: false
+                });
+                
+                canvasXY.add(circle);
+            });
+            
+            canvasXY.renderAll();
+        }
+        
+        function renderYZView(points) {
+            canvasYZ.clear();
+            canvasYZ.backgroundColor = '#1a1a1a';
+            
+            // Get bounds
+            const yCoords = points.map(p => p.y);
+            const zCoords = points.map(p => p.z);
+            const minY = Math.min(...yCoords);
+            const maxY = Math.max(...yCoords);
+            const minZ = Math.min(...zCoords);
+            const maxZ = Math.max(...zCoords);
+            
+            const rangeY = maxY - minY || 1;
+            const rangeZ = maxZ - minZ || 1;
+            const maxRange = Math.max(rangeY, rangeZ);
+            
+            const padding = 50;
+            const scale = (canvasYZ.width - 2 * padding) / maxRange;
+            const centerY = (minY + maxY) / 2;
+            const centerZ = (minZ + maxZ) / 2;
+            
+            // Draw trajectory as a continuous polyline path
+            if (points.length > 1) {
+                const pathPoints = points.map(p => {
+                    return {
+                        x: (p.y - centerY) * scale + canvasYZ.width / 2,
+                        y: (p.z - centerZ) * scale + canvasYZ.height / 2
+                    };
+                });
+                
+                const polyline = new fabric.Polyline(pathPoints, {
+                    stroke: '#4444ff',
+                    strokeWidth: 2,
+                    fill: '',
+                    opacity: 0.4,
+                    selectable: false,
+                    objectCaching: false
+                });
+                canvasYZ.add(polyline);
+            }
+            
+            // Draw points
+            points.forEach((p, idx) => {
+                const x = (p.y - centerY) * scale + canvasYZ.width / 2;
+                const y = (p.z - centerZ) * scale + canvasYZ.height / 2;
+                
+                const circle = new fabric.Circle({
+                    left: x,
+                    top: y,
+                    radius: 3,
+                    fill: '#4444ff',
+                    stroke: '#0000cc',
+                    strokeWidth: 1,
+                    originX: 'center',
+                    originY: 'center',
+                    selectable: false
+                });
+                
+                canvasYZ.add(circle);
+            });
+            
+            canvasYZ.renderAll();
+        }
+    </script>
+</body>
+</html>
+

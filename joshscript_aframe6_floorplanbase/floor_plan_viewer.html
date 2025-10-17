@@ -996,6 +996,58 @@
             console.log(`Successfully removed ${indicesToRemove.length} objects. Group now has ${group._objects.length} objects`);
         }
 
+        // Extract image filenames from PTS trajectory object
+        function extractImageFilenamesFromPTS(trajectoryObject) {
+            console.log('=== EXTRACTING IMAGE FILENAMES FROM PTS TRAJECTORY ===');
+            console.log('Trajectory Object:', trajectoryObject);
+            console.log('Trajectory Object customName:', trajectoryObject.customName);
+            console.log('Trajectory Object type:', trajectoryObject.type);
+            
+            // Get the parent group that contains all the trajectory data
+            let parentGroup = trajectoryObject;
+            while (parentGroup && !parentGroup.customName.includes('R') && parentGroup.parent) {
+                parentGroup = parentGroup.parent;
+            }
+            
+            if (!parentGroup) {
+                console.log('No parent group found with trajectory data');
+                return [];
+            }
+            
+            console.log('Parent group:', parentGroup);
+            console.log('Parent group customName:', parentGroup.customName);
+            
+            // Extract object ID from customName (e.g., "R0 - Red (1832 points)")
+            const objectIdMatch = parentGroup.customName.match(/(R\d+)/);
+            if (!objectIdMatch) {
+                console.log('Could not extract object ID from customName');
+                return [];
+            }
+            
+            const objectId = objectIdMatch[1];
+            console.log('Object ID:', objectId);
+            
+            // Find the corresponding object data from the loaded PTS data
+            if (typeof window.loadedPTSObjects !== 'undefined' && window.loadedPTSObjects) {
+                console.log('Available PTS objects:', window.loadedPTSObjects.map(obj => obj.id));
+                const objectData = window.loadedPTSObjects.find(obj => obj.id === objectId);
+                if (objectData) {
+                    console.log('Found object data:', objectData);
+                    console.log('Object has', objectData.points.length, 'points');
+                    const imageFilenames = objectData.points.map(point => point.imageName);
+                    console.log('First few image filenames:', imageFilenames.slice(0, 5));
+                    console.log('Total image filenames:', imageFilenames.length);
+                    return imageFilenames;
+                } else {
+                    console.log('No object data found for', objectId);
+                }
+            } else {
+                console.log('No loadedPTSObjects found');
+            }
+            
+            return [];
+        }
+        
         // Function to extract image filenames from SVG circles
         function extractImageFilenamesFromSVG(svgObject) {
             const imageFilenames = [];
@@ -1059,9 +1111,23 @@
             
             // Show/hide "Show Images" option based on object type
             const showImagesItem = menu.querySelector('[data-action="show-images"]');
-            if (target.customName && target.customName.includes('Camera Positions')) {
+            console.log('Context menu target customName:', target.customName);
+            console.log('Context menu target type:', target.type);
+            
+            // Check if it's a trajectory path, group with trajectory, or camera positions
+            const isTrajectory = target.customName && target.customName.includes('Trajectory');
+            const isCameraPositions = target.customName && target.customName.includes('Camera Positions');
+            const isGroupWithTrajectory = target.customName && target.customName.includes('R') && target.customName.includes('points');
+            
+            console.log('isTrajectory:', isTrajectory);
+            console.log('isCameraPositions:', isCameraPositions);
+            console.log('isGroupWithTrajectory:', isGroupWithTrajectory);
+            
+            if (isTrajectory || isCameraPositions || isGroupWithTrajectory) {
+                console.log('Showing "Show Images" option');
                 showImagesItem.style.display = 'block';
             } else {
+                console.log('Hiding "Show Images" option');
                 showImagesItem.style.display = 'none';
             }
             
@@ -1468,6 +1534,344 @@
                 });
         }
 
+        // Load PTS file function
+        function loadPTSFile(filename) {
+            fetch(filename)
+                .then(response => response.text())
+                .then(ptsText => {
+                    const lines = ptsText.trim().split('\n');
+                    const points = [];
+                    const objects = [];
+                    let currentObject = null;
+                    
+                    // Parse enhanced PTS file
+                    lines.forEach((line, index) => {
+                        const trimmedLine = line.trim();
+                        
+                        // Skip empty lines and comments
+                        if (!trimmedLine || trimmedLine.startsWith('#')) {
+                            // Check if this is an object header
+                            if (trimmedLine.startsWith('# Object ')) {
+                                const match = trimmedLine.match(/# Object (R\d+): (\w+) \((\d+) points\)/);
+                                if (match) {
+                                    currentObject = {
+                                        id: match[1],
+                                        color: match[2],
+                                        pointCount: parseInt(match[3]),
+                                        points: []
+                                    };
+                                    objects.push(currentObject);
+                                }
+                            }
+                            return;
+                        }
+                        
+                        const parts = trimmedLine.split(/\s+/);
+                        if (parts.length >= 7) {
+                            // Enhanced format: X Y Z R G B OBJECT_ID IMAGE_NAME
+                            const x = parseFloat(parts[0]);
+                            const y = parseFloat(parts[1]);
+                            const z = parseFloat(parts[2]);
+                            const r = parseInt(parts[3]);
+                            const g = parseInt(parts[4]);
+                            const b = parseInt(parts[5]);
+                            const objectId = parts[6];
+                            const imageName = parts.slice(7).join(' '); // Join remaining parts as image name
+                            
+                            const point = {
+                                x: x,
+                                y: y,
+                                z: z,
+                                r: r,
+                                g: g,
+                                b: b,
+                                objectId: objectId,
+                                imageName: imageName,
+                                index: index
+                            };
+                            
+                            points.push(point);
+                            
+                            // Add to current object if we have one
+                            if (currentObject) {
+                                currentObject.points.push(point);
+                            }
+                        } else if (parts.length >= 4) {
+                            // Fallback for basic format: X Y Z IMAGE_NAME
+                            const x = parseFloat(parts[0]);
+                            const y = parseFloat(parts[1]);
+                            const z = parseFloat(parts[2]);
+                            const imageName = parts.slice(3).join(' ');
+                            
+                            points.push({
+                                x: x,
+                                y: y,
+                                z: z,
+                                r: 255,
+                                g: 68,
+                                b: 68,
+                                objectId: 'unknown',
+                                imageName: imageName,
+                                index: index
+                            });
+                        }
+                    });
+                    
+                    console.log(`Loaded ${points.length} points from enhanced PTS file`);
+                    console.log(`Found ${objects.length} objects:`, objects.map(obj => `${obj.id} (${obj.color}, ${obj.pointCount} points)`));
+                    
+                    // Store objects globally for context menu access
+                    window.loadedPTSObjects = objects;
+                    
+                    // Create visualization with objects
+                    createEnhancedPTSVisualization(objects, points);
+                })
+                .catch(error => {
+                    console.error('Failed to load PTS file:', error);
+                });
+        }
+
+        // Create enhanced visualization from PTS data with objects
+        function createEnhancedPTSVisualization(objects, points) {
+            if (objects.length === 0) return;
+            
+            // Calculate bounds for all objects
+            let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+            objects.forEach(obj => {
+                obj.points.forEach(point => {
+                    minX = Math.min(minX, point.x);
+                    minY = Math.min(minY, point.z); // Use Z as Y for top-down view
+                    maxX = Math.max(maxX, point.x);
+                    maxY = Math.max(maxY, point.z);
+                });
+            });
+            
+            const width = maxX - minX;
+            const height = maxY - minY;
+            const centerX = (minX + maxX) / 2;
+            const centerY = (minY + maxY) / 2;
+            
+            // Scale to fit canvas
+            const canvasWidth = canvas.getWidth();
+            const canvasHeight = canvas.getHeight();
+            const scale = Math.min(canvasWidth / width, canvasHeight / height) * 0.8;
+            
+            // Create separate groups for each object (full camera trajectory)
+            objects.forEach((obj, objIndex) => {
+                const group = new fabric.Group([], {
+                    left: canvasWidth / 2,
+                    top: canvasHeight / 2,
+                    originX: 'center',
+                    originY: 'center',
+                    selectable: true,
+                    customName: `${obj.id} - ${obj.color} (${obj.pointCount} points)`
+                });
+                
+                // Convert RGB to hex color
+                const color = `#${obj.points[0].r.toString(16).padStart(2, '0')}${obj.points[0].g.toString(16).padStart(2, '0')}${obj.points[0].b.toString(16).padStart(2, '0')}`;
+                
+                // Create path connecting all points in this camera trajectory (open path, no closing)
+                if (obj.points.length > 1) {
+                    const pathPoints = obj.points.map(point => {
+                        const canvasX = (point.x - centerX) * scale;
+                        const canvasY = (point.z - centerY) * scale;
+                        return { x: canvasX, y: canvasY };
+                    });
+                    
+                    // Create a single polyline for the trajectory (much better performance)
+                    const path = new fabric.Polyline(pathPoints, {
+                        fill: '',
+                        stroke: color,
+                        strokeWidth: 3,
+                        opacity: 0.8,
+                        selectable: true,
+                        customName: `${obj.id} Trajectory`
+                    });
+                    
+                    // Ensure the path is open (no closing line)
+                    path.set('closed', false);
+                    
+                    group.addWithUpdate(path);
+                }
+                
+                // Create circles for key points (start and end only for better performance)
+                const keyPoints = [
+                    { point: obj.points[0], label: 'Start' },
+                    { point: obj.points[obj.points.length - 1], label: 'End' }
+                ];
+                
+                keyPoints.forEach((keyPoint, index) => {
+                    const canvasX = (keyPoint.point.x - centerX) * scale;
+                    const canvasY = (keyPoint.point.z - centerY) * scale;
+                    
+                    const circle = new fabric.Circle({
+                        left: canvasX,
+                        top: canvasY,
+                        radius: index === 0 ? 6 : 4, // Start point is larger
+                        fill: color,
+                        stroke: 'white',
+                        strokeWidth: 1,
+                        selectable: false,
+                        customName: `${obj.id} ${keyPoint.label}`,
+                        title: `${obj.id} - ${obj.color} (${keyPoint.label})\nX: ${keyPoint.point.x.toFixed(3)}, Y: ${keyPoint.point.y.toFixed(3)}, Z: ${keyPoint.point.z.toFixed(3)}\nImage: ${keyPoint.point.imageName}`
+                    });
+                    
+                    group.addWithUpdate(circle);
+                });
+                
+                // Add group to canvas
+                canvas.add(group);
+            });
+            
+            canvas.requestRenderAll();
+            updateInfoPanel();
+            
+            console.log('=== ENHANCED PTS FILE LOADED (FULL TRAJECTORIES) ===');
+            console.log(`Loaded ${objects.length} camera trajectories`);
+            console.log('Objects:', objects.map(obj => `${obj.id} (${obj.color}, ${obj.pointCount} points)`));
+            console.log('Each colored line shows a complete camera trajectory with start/middle/end markers!');
+        }
+        
+        // Create visualization from PTS data (fallback for basic format)
+        function createPTSVisualization(points) {
+            if (points.length === 0) return;
+            
+            // Group points by reconstruction (based on image name patterns)
+            const reconstructions = groupPointsByReconstruction(points);
+            
+            // Calculate bounds for all reconstructions
+            let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+            reconstructions.forEach(recon => {
+                recon.points.forEach(point => {
+                    minX = Math.min(minX, point.x);
+                    minY = Math.min(minY, point.z); // Use Z as Y for top-down view
+                    maxX = Math.max(maxX, point.x);
+                    maxY = Math.max(maxY, point.z);
+                });
+            });
+            
+            const width = maxX - minX;
+            const height = maxY - minY;
+            const centerX = (minX + maxX) / 2;
+            const centerY = (minY + maxY) / 2;
+            
+            // Scale to fit canvas
+            const canvasWidth = canvas.getWidth();
+            const canvasHeight = canvas.getHeight();
+            const scale = Math.min(canvasWidth / width, canvasHeight / height) * 0.8;
+            
+            // Colors for different reconstructions
+            const colors = ['#ff4444', '#44ff44', '#4444ff', '#ffff44', '#ff44ff', '#44ffff', '#ff8844'];
+            
+            // Create separate groups for each reconstruction
+            reconstructions.forEach((recon, reconIndex) => {
+                const group = new fabric.Group([], {
+                    left: canvasWidth / 2,
+                    top: canvasHeight / 2,
+                    originX: 'center',
+                    originY: 'center',
+                    selectable: true,
+                    customName: `Reconstruction ${reconIndex + 1} (${recon.points.length} points)`
+                });
+                
+                const color = colors[reconIndex % colors.length];
+                
+                // Create circles for each point in this reconstruction
+                recon.points.forEach((point, index) => {
+                    const canvasX = (point.x - centerX) * scale;
+                    const canvasY = (point.z - centerY) * scale; // Use Z as Y for top-down view
+                    
+                    const circle = new fabric.Circle({
+                        left: canvasX,
+                        top: canvasY,
+                        radius: 2,
+                        fill: color,
+                        stroke: 'white',
+                        strokeWidth: 0.5,
+                        selectable: false, // Don't select individual points
+                        customName: `Point ${index + 1}`,
+                        title: `X: ${point.x.toFixed(3)}, Y: ${point.y.toFixed(3)}, Z: ${point.z.toFixed(3)}\nImage: ${point.imageName}`
+                    });
+                    
+                    group.addWithUpdate(circle);
+                });
+                
+                // Create path connecting points in this reconstruction
+                if (recon.points.length > 1) {
+                    const pathPoints = recon.points.map(point => {
+                        const canvasX = (point.x - centerX) * scale;
+                        const canvasY = (point.z - centerY) * scale;
+                        return { x: canvasX, y: canvasY };
+                    });
+                    
+                    const path = new fabric.Polyline(pathPoints, {
+                        fill: '',
+                        stroke: color,
+                        strokeWidth: 1.5,
+                        opacity: 0.7,
+                        selectable: false,
+                        customName: 'Camera Path'
+                    });
+                    
+                    group.addWithUpdate(path);
+                }
+                
+                // Add group to canvas
+                canvas.add(group);
+            });
+            
+            canvas.requestRenderAll();
+            updateInfoPanel();
+            
+            console.log('=== PTS FILE LOADED ===');
+            console.log(`Loaded ${reconstructions.length} reconstructions with ${points.length} total points`);
+            console.log('Hover over colored dots to see detailed camera information!');
+        }
+        
+        // Group points by reconstruction based on image name patterns
+        function groupPointsByReconstruction(points) {
+            const reconstructions = [];
+            const reconMap = new Map();
+            
+            points.forEach(point => {
+                // Extract reconstruction identifier from image name
+                let reconId = 'default';
+                
+                if (point.imageName.includes('pano_camera')) {
+                    // Pattern: pano_camera0/frame_0140_hp_preview.jpg
+                    const match = point.imageName.match(/pano_camera(\d+)/);
+                    if (match) {
+                        reconId = `camera${match[1]}`;
+                    }
+                } else {
+                    // Fallback for other patterns
+                    reconId = 'unknown';
+                }
+                
+                if (!reconMap.has(reconId)) {
+                    reconMap.set(reconId, []);
+                }
+                reconMap.get(reconId).push(point);
+            });
+            
+            // Convert to array and sort points within each reconstruction
+            reconMap.forEach((points, reconId) => {
+                // Sort by image name to maintain chronological order
+                points.sort((a, b) => a.imageName.localeCompare(b.imageName));
+                reconstructions.push({
+                    id: reconId,
+                    points: points
+                });
+            });
+            
+            // Sort reconstructions by ID for consistent ordering
+            reconstructions.sort((a, b) => a.id.localeCompare(b.id));
+            
+            console.log('Grouped points into reconstructions:', reconstructions.map(r => `${r.id}: ${r.points.length} points`));
+            
+            return reconstructions;
+        }
+
         // Lock/unlock functions
         function lockObject(obj) {
             obj.lockMovementX = true;
@@ -1619,9 +2023,24 @@
                             console.log('Context menu target:', contextMenuTarget);
                             console.log('Target custom name:', contextMenuTarget ? contextMenuTarget.customName : 'null');
                             
-                            if (contextMenuTarget && contextMenuTarget.customName && contextMenuTarget.customName.includes('Camera Positions')) {
+                            if (contextMenuTarget && contextMenuTarget.customName && 
+                                (contextMenuTarget.customName.includes('Camera Positions') || 
+                                 contextMenuTarget.customName.includes('Trajectory') ||
+                                 (contextMenuTarget.customName.includes('R') && contextMenuTarget.customName.includes('points')))) {
                                 console.log('=== SHOWING IMAGES FROM: ' + contextMenuTarget.customName + ' ===');
-                                const imageFilenames = extractImageFilenamesFromSVG(contextMenuTarget);
+                                
+                                let imageFilenames = [];
+                                
+                                // Check if it's a PTS trajectory object or group
+                                if (contextMenuTarget.customName.includes('Trajectory') || 
+                                    (contextMenuTarget.customName.includes('R') && contextMenuTarget.customName.includes('points'))) {
+                                    // Extract images from PTS trajectory object
+                                    imageFilenames = extractImageFilenamesFromPTS(contextMenuTarget);
+                                } else {
+                                    // Extract images from SVG object
+                                    imageFilenames = extractImageFilenamesFromSVG(contextMenuTarget);
+                                }
+                                
                                 console.log('Extracted filenames:', imageFilenames);
                                 showImageStrip(imageFilenames);
                             } else {
@@ -1867,13 +2286,8 @@
                     '../joshscript_aframe4_svg/svg_output/camera_positions_6.svg'
                 ];
                 
-                svgFiles.forEach((svgFile, index) => {
-                    loadSVG(svgFile, `Camera Positions ${index} (Enhanced)`);
-                });
-                
-                console.log('=== ALL ENHANCED SVGs LOADED ===');
-                console.log('Loaded', svgFiles.length, 'enhanced SVG files with rich metadata');
-                console.log('Hover over red dots to see detailed camera information!');
+                // Load enhanced PTS file instead of SVG files
+                loadPTSFile('enhanced_cameras_2025-10-17T02-21-47.pts');
             }, 1000);
         } else {
             console.log('=== CANVAS STATE RESTORED ===');
