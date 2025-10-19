@@ -19,12 +19,14 @@ namespace Bluff
             // Create debug log file
             string logPath = Path.Combine(Path.GetTempPath(), "Bluff_Addin_Debug.txt");
             var logWriter = new StreamWriter(logPath, false);
-            logWriter.WriteLine($"Bluff Add-in v1.2 Debug Log - {DateTime.Now}");
+            logWriter.WriteLine($"Bluff Add-in v1.3 Debug Log - {DateTime.Now}");
             logWriter.WriteLine(new string('=', 50));
-            logWriter.WriteLine("USING UPDATED JSON DATA WITH ORIENTED HEIGHTS");
-            logWriter.WriteLine("Source: camera_positions_2025-10-16.geojson (oriented)");
+            logWriter.WriteLine("USING LATEST JSON DATA WITH ORIENTED HEIGHTS");
+            logWriter.WriteLine("Source: camera_positions_2025-10-19.geojson (oriented)");
             logWriter.WriteLine("Heights: Gravity-corrected from COLMAP reconstruction");
             logWriter.WriteLine(new string('=', 50));
+            
+            // Plugin loaded successfully - no popup needed
             
             try
             {
@@ -32,7 +34,7 @@ namespace Bluff
                 var coneData = ReadConeData();
                 if (coneData == null || coneData.Cones == null || coneData.Cones.Count == 0)
                 {
-                    message = "Bluff Add-in v1.2: No cone data found or failed to read cone_data-2.json";
+                    message = "Bluff Add-in v1.3: No cone data found or failed to read cone_data-3.json";
                     return Result.Failed;
                 }
                 
@@ -44,7 +46,7 @@ namespace Bluff
                     FamilySymbol familySymbol = FindSphereFamily(doc);
                     if (familySymbol == null)
                     {
-                        message = "Bluff Add-in v1.2: No family symbols found in project. Please load any family (e.g., ASB_Anno_ClashMark3D.rfa) into the project.";
+                        message = "Bluff Add-in v1.3: No family symbols found in project. Please load any family (e.g., ASB_Anno_ClashMark3D.rfa) into the project.";
                         return Result.Failed;
                     }
                     
@@ -137,20 +139,11 @@ namespace Bluff
                     
                     trans.Commit();
                     
-                    // Close log file and open in Notepad
+                    // Close log file (no popup)
                     logWriter.WriteLine($"\nLog completed at {DateTime.Now}");
                     logWriter.Close();
                     
-                    // Open log file in Notepad
-                    System.Diagnostics.Process.Start("notepad.exe", logPath);
-                    
-                    TaskDialog.Show("Bluff Add-in v1.2 - Success", 
-                        $"Placed {placedCount} sphere instances from {coneData.Cones.Count} cone positions.\n\n" +
-                        $"✅ USING UPDATED JSON DATA WITH ORIENTED HEIGHTS\n" +
-                        $"Source: camera_positions_2025-10-16.geojson (gravity-corrected)\n\n" +
-                        $"Coordinates converted from DXF (meters) to Revit (feet).\n" +
-                        $"Scale factor: 1 meter = 3.28084 feet\n\n" +
-                        $"Debug log opened in Notepad: {logPath}");
+                    // Silent completion - no popups
                     
                     return Result.Succeeded;
                 }
@@ -161,10 +154,8 @@ namespace Bluff
                 logWriter.WriteLine($"Stack trace: {ex.StackTrace}");
                 logWriter.Close();
                 
-                // Open log file in Notepad even on error
-                System.Diagnostics.Process.Start("notepad.exe", logPath);
-                
-                message = $"Bluff Add-in v1.2 Error: {ex.Message}";
+                // Silent error handling - no popups
+                message = $"Bluff Add-in v1.3 Error: {ex.Message}";
                 return Result.Failed;
             }
         }
@@ -196,15 +187,12 @@ namespace Bluff
         {
             try
             {
-                string jsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "cone_data-2.json");
-                if (!File.Exists(jsonPath))
-                {
-                    // Try relative path
-                    jsonPath = Path.Combine(Directory.GetCurrentDirectory(), "cone_data-2.json");
-                }
+                // Hardcoded full path to the JSON file
+                string jsonPath = @"C:\Users\JoshuaLumley\Dropbox\0000 Github Repos\asBuilt_DataColmap\paul\joshscript_aframe8_revitest\cone_data-3.json";
                 
                 if (!File.Exists(jsonPath))
                 {
+                    System.Diagnostics.Debug.WriteLine($"JSON file not found at: {jsonPath}");
                     return null;
                 }
                 

@@ -312,6 +312,7 @@
                     <option value="asc">Frame ↑</option>
                     <option value="desc">Frame ↓</option>
                 </select>
+                <button id="download-pts-btn" style="background: #0066cc; border: 1px solid #0088ff; color: white; padding: 5px 10px; border-radius: 4px; cursor: pointer; margin-right: 10px;">Download PTS</button>
                 <button id="close-image-strip" class="close-btn">&times;</button>
             </div>
         </div>
@@ -494,6 +495,9 @@
                 displayImagesWithSort(e.target.value);
             }
         });
+        
+        // Download PTS button
+        document.getElementById('download-pts-btn').addEventListener('click', downloadPTS);
         
          // Global mouse up handler to hide preview when mouse is released anywhere
          document.addEventListener('mouseup', (e) => {
@@ -848,6 +852,76 @@
         }
          
          
+        // Function to download current PTS data
+        function downloadPTS() {
+            if (!window.loadedPTSObjects || window.loadedPTSObjects.length === 0) {
+                alert('No PTS data loaded to download');
+                return;
+            }
+            
+            let ptsContent = '';
+            let totalPoints = 0;
+            
+            // Add header with metadata
+            ptsContent += '# Enhanced PTS File with Visual Information\n';
+            ptsContent += '# Format: X Y Z R G B OBJECT_ID IMAGE_NAME\n';
+            ptsContent += '# Generated from Floor Plan Viewer\n';
+            ptsContent += `# Export Date: ${new Date().toISOString()}\n`;
+            ptsContent += `# Total Objects: ${window.loadedPTSObjects.length}\n\n`;
+            
+            // Process each object
+            window.loadedPTSObjects.forEach((obj, index) => {
+                const color = obj.color || 'Red';
+                const objectId = obj.id || `R${index}`;
+                const pointCount = obj.points ? obj.points.length : 0;
+                
+                // Add object header
+                ptsContent += `# Object ${objectId}: ${color} (${pointCount} points)\n`;
+                
+                // Add transformation metadata (if available)
+                ptsContent += `# Transform: Pos(0.000, 0.000, 0.000) Scale(1.000, 1.000, 1.000) Quat(0.000, 0.000, 0.000, 1.000)\n`;
+                
+                // Process each point
+                if (obj.points) {
+                    obj.points.forEach(point => {
+                        // Get RGB values from the point or use default
+                        const r = point.r || 255;
+                        const g = point.g || 68;
+                        const b = point.b || 68;
+                        
+                        // Add to PTS content
+                        ptsContent += `${point.x.toFixed(6)} ${point.y.toFixed(6)} ${point.z.toFixed(6)} `;
+                        ptsContent += `${r} ${g} ${b} `;
+                        ptsContent += `${objectId} ${point.imageName}\n`;
+                        totalPoints++;
+                    });
+                }
+                
+                ptsContent += '\n'; // Empty line between objects
+            });
+            
+            if (totalPoints === 0) {
+                alert('No points to export');
+                return;
+            }
+            
+            // Add footer with summary
+            ptsContent += `# End of file - ${totalPoints} total points exported\n`;
+            
+            // Create and download file
+            const blob = new Blob([ptsContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `enhanced_cameras_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.pts`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            console.log(`Downloaded ${totalPoints} points with visual data`);
+        }
+
         // Function to clear highlights - ONLY called from thumbnail interactions
         function clearThumbnailHighlights() {
             // Clear highlights from ALL trajectory groups, not just the active one
@@ -1971,7 +2045,9 @@
                         strokeWidth: 1,
                         selectable: false,
                         customName: `${obj.id} ${pointLabel}`,
-                        title: `${obj.id} - ${obj.color} (${pointLabel})\nX: ${point.x.toFixed(3)}, Y: ${point.y.toFixed(3)}, Z: ${point.z.toFixed(3)}\nImage: ${point.imageName}\nFrame: ${frameNumber}`
+                        title: `${obj.id} - ${obj.color} (${pointLabel})\nX: ${point.x.toFixed(3)}, Y: ${point.y.toFixed(3)}, Z: ${point.z.toFixed(3)}\nImage: ${point.imageName}\nFrame: ${frameNumber}`,
+                        // Store original COLMAP coordinates for export
+                        colmapCoords: { x: point.x, y: point.y, z: point.z }
                     });
                     
                     group.addWithUpdate(circle);
@@ -2577,7 +2653,7 @@
                 ];
                 
                 // Load enhanced PTS file instead of SVG files
-                loadPTSFile('enhanced_cameras_2025-10-17T02-21-47.pts');
+                loadPTSFile('enhanced_cameras_2025-10-17T04-10-47.pts');
             }, 1000);
         } else {
             console.log('=== CANVAS STATE RESTORED ===');
@@ -2607,16 +2683,35 @@
             
             const features = [];
             
-            // Get all camera position groups
+            // Debug: Log all groups on canvas
+            const allGroups = canvas.getObjects().filter(obj => obj.type === 'group');
+            console.log(`Found ${allGroups.length} groups on canvas:`);
+            allGroups.forEach((g, i) => {
+                console.log(`  Group ${i}: "${g.customName}" (${g._objects?.length || 0} objects)`);
+            });
+            
+            // Get all camera position groups - updated to match current naming convention
+            // Groups are now named like "R0 - Red (84 points)" instead of "Camera Positions"
             const cameraGroups = canvas.getObjects().filter(obj => 
-                obj.type === 'group' && obj.customName && obj.customName.includes('Camera Positions')
+                obj.type === 'group' && obj.customName && 
+                (obj.customName.includes('Camera Positions') || obj.customName.includes('points)'))
             );
+            
+            console.log(`Found ${cameraGroups.length} camera groups to export`);
             
             cameraGroups.forEach((group, groupIndex) => {
                 const objects = group._objects || group.objects;
                 const circles = objects.filter(obj => obj.type === 'circle' && obj.title);
                 
+                console.log(`Processing group ${groupIndex}: "${group.customName}" with ${circles.length} circles`);
+                
                 circles.forEach((circle, circleIndex) => {
+                    // Check if this is PTS/COLMAP data (cannot be exported without transformation)
+                    if (circle.colmapCoords) {
+                        console.warn(`Skipping circle ${circleIndex} - PTS/COLMAP data cannot be exported to GeoJSON without coordinate transformation`);
+                        return;
+                    }
+                    
                     // Skip if circle is not visible (has been deleted from image strip)
                     if (currentImageFilenames && currentImageFilenames.length > 0) {
                         const frameMatch = circle.title.match(/frame_(\d+)/);
@@ -2631,14 +2726,22 @@
                         }
                     }
                     
-                    // Extract metadata from title
-                    const titleParts = circle.title.split(' | ');
-                    const cameraInfo = titleParts[0] || 'Unknown Camera';
-                    const coords2D = titleParts[1] || '2D: (0, 0)';
-                    const coords3D = titleParts[2] || '3D: (0, 0, 0)';
-                    const imageName = titleParts[3] || 'Image: unknown';
-                    const frameInfo = titleParts[4] || 'Frame: 0';
-                    const heightInfo = titleParts[5] || 'Height: 0m';
+                    // Extract metadata from title (format: "R0 - Red (Start)\nX: 4.506, Y: 0.036, Z: 2.322\nImage: pano_camera0/frame_0140_hp_preview.jpg\nFrame: 0140")
+                    const titleLines = circle.title.split('\n');
+                    const cameraInfo = titleLines[0] || 'Unknown Camera';
+                    const coords3D = titleLines[1] || 'X: 0, Y: 0, Z: 0';
+                    const imageName = titleLines[2] || 'Image: unknown';
+                    const frameInfo = titleLines[3] || 'Frame: 0';
+                    
+                    // Parse 3D coordinates from "X: 4.506, Y: 0.036, Z: 2.322" format
+                    const coords3DMatch = coords3D.match(/X: ([^,]+), Y: ([^,]+), Z: ([^)]+)/);
+                    const x = coords3DMatch ? parseFloat(coords3DMatch[1]) : 0;
+                    const y = coords3DMatch ? parseFloat(coords3DMatch[2]) : 0;
+                    const z = coords3DMatch ? parseFloat(coords3DMatch[3]) : 0;
+                    
+                    // Create 2D coordinates (X, Y) and height (Z)
+                    const coords2D = `2D: (${x.toFixed(3)}, ${y.toFixed(3)})`;
+                    const height = z;
                     
                     // Get circle's actual position on canvas
                     const groupLeft = group.left || 0;
@@ -2655,13 +2758,9 @@
                     // Convert to WGS84
                     const wgs84Coords = mtEdenToWGS84(mtEdenCoords.x, mtEdenCoords.y);
                     
-                    // Extract frame number
-                    const frameMatch = circle.title.match(/frame_(\d+)/);
+                    // Extract frame number from image name
+                    const frameMatch = imageName.match(/frame_(\d+)/);
                     const frameNumber = frameMatch ? frameMatch[1] : 'unknown';
-                    
-                    // Extract oriented height from coords3D (Z-coordinate)
-                    const coords3DMatch = coords3D.match(/3D: \(([^,]+), ([^,]+), ([^)]+)\)/);
-                    const height = coords3DMatch ? parseFloat(coords3DMatch[3]) : 0;
                     
                     // Create GeoJSON feature
                     const feature = {
@@ -2678,7 +2777,7 @@
                             frameId: frameInfo.replace('Frame: ', ''),
                             height: height,
                             coords2D: coords2D,
-                            coords3D: coords3D,
+                            coords3D: `3D: (${x.toFixed(3)}, ${y.toFixed(3)}, ${z.toFixed(3)})`,
                             easting: mtEdenCoords.x,
                             northing: mtEdenCoords.y,
                             longitude: wgs84Coords.lng,
@@ -2721,6 +2820,15 @@
             URL.revokeObjectURL(url);
             
             console.log(`✅ Exported ${features.length} camera positions as GeoJSON`);
+            
+            // Warn if no features were exported
+            if (features.length === 0) {
+                console.warn('⚠️ No camera positions were exported!');
+                console.warn('If you loaded PTS data: PTS/COLMAP coordinates cannot be converted to GPS coordinates without a transformation matrix.');
+                console.warn('Only SVG-based camera data with Mt Eden coordinates can be exported to GeoJSON.');
+                alert('Warning: No camera positions were exported!\n\nPTS/COLMAP data cannot be converted to GPS coordinates without a coordinate transformation.\n\nTo export GPS coordinates, you need to load SVG data that already contains Mt Eden coordinates.');
+            }
+            
             return geoJSON;
         }
         

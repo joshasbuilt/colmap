@@ -373,16 +373,16 @@
             for (const cam of sortedCameras) {
                 const posKey = `${cam.x.toFixed(3)},${cam.y.toFixed(3)},${cam.z.toFixed(3)}`;
                 if (!seenPositions.has(posKey)) {
-                    // Invert Y and Z coordinates
-                    cameraPoints.push({ x: cam.x, y: cam.z, z: cam.y });
+                    // Invert Y and Z coordinates, and mirror X
+                    cameraPoints.push({ x: -cam.x, y: cam.z, z: cam.y });
                     seenPositions.add(posKey);
                 }
             }
             
             // Store original data with image names for PTS export
             originalCameraData[index] = sortedCameras.map(cam => ({
-                x: cam.x,
-                y: cam.z, // Invert Y and Z
+                x: -cam.x, // Invert Y and Z, and mirror X
+                y: cam.z,
                 z: cam.y,
                 image_name: cam.image_name,
                 image_id: cam.image_id
