@@ -22,8 +22,8 @@ namespace Bluff
             logWriter.WriteLine($"Bluff Add-in v1.5 Debug Log - {DateTime.Now}");
             logWriter.WriteLine(new string('=', 50));
             logWriter.WriteLine("USING LATEST JSON DATA WITH TRANSFORMED COORDINATES");
-            logWriter.WriteLine("Source: camera_positions_2025-10-20 (1).geojson (319 positions)");
-            logWriter.WriteLine("Heights: Gravity-corrected from COLMAP reconstruction + 3D viewer transformation");
+            logWriter.WriteLine("Source: cone_data.json (351 positions)");
+            logWriter.WriteLine("Heights: From PTS data with Z-axis scaling (3.28084)");
             logWriter.WriteLine(new string('=', 50));
             
             // Plugin loaded successfully - no popup needed
@@ -191,7 +191,7 @@ namespace Bluff
             try
             {
                 // Hardcoded full path to the JSON file
-                string jsonPath = @"C:\Users\JoshuaLumley\Dropbox\0000 Github Repos\asBuilt_DataColmap\paul\joshscript_aframe8_revitest\cone_data-5.json";
+                string jsonPath = @"C:\Users\JoshuaLumley\Dropbox\0000 Github Repos\asBuilt_DataColmap\paul\joshscript_aframe8_revitest\cone_data.json";
                 
                 if (!File.Exists(jsonPath))
                 {

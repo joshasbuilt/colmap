@@ -24,3 +24,4 @@ print(f"Z range: {min(z_vals):.3f} to {max(z_vals):.3f}")
 # Check if Y and Z might be swapped
 print(f"\nY values look like heights: {all(abs(y) < 1.0 for y in y_vals)}")
 print(f"Z values look like heights: {all(abs(z) < 10.0 and abs(z) > 0.1 for z in z_vals)}")
+

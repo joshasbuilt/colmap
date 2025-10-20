@@ -391,7 +391,7 @@
     <script>
         // ============================================
         // PTS FILE TO LOAD - CHANGE THIS LINE:
-        const PTS_FILE_TO_LOAD = 'enhanced_cameras_2025-10-20T02-11-20.pts';
+        const PTS_FILE_TO_LOAD = 'enhanced_cameras_2025-10-20T07-19-34.pts';
         // ============================================
         
         /*
@@ -2971,51 +2971,35 @@
                             if (matchingPoint) {
                                 correctedZ = matchingPoint.z; // Use the Z from PTS data (has 3D viewer corrections)
                                 
-                                // Apply floor plan 2D transformations to 3D model coordinates
-                                // This ensures temp viewer shows the same alignment as floor plan viewer
-                                const originalX = matchingPoint.x;
-                                const originalY = matchingPoint.y;
-                                const originalZ = matchingPoint.z;
+                                // Use northing/easting coordinates directly (like debug_transformation.py)
+                                // Don't apply floor plan transformations - these coordinates are already correct
+                                const northing = circle.northing || 0;
+                                const easting = circle.easting || 0;
                                 
-                                // Get group transformations
-                                const groupScaleX = group.scaleX || 1;
-                                const groupScaleY = group.scaleY || 1;
-                                const groupAngle = (group.angle || 0) * Math.PI / 180; // Convert to radians
-                    const groupLeft = group.left || 0;
-                    const groupTop = group.top || 0;
+                                // Base point for centering (from debug_transformation.py)
+                                const baseEasting = 397922.9125;
+                                const baseNorthing = 808226.1590;
                                 
-                                // Apply 2D transformations (scale, rotation ONLY) to X and Y
-                                // Z stays unchanged to maintain upright orientation
-                                // NOTE: Translation is handled by Mt Eden coordinates, not 3D model coords
+                                // Calculate delta from base point
+                                const deltaEasting = easting - baseEasting;
+                                const deltaNorthing = northing - baseNorthing;
                                 
-                                // 1. Apply scale (swap X/Y to match coordinate systems)
-                                // Floor plan: X=horizontal, Y=vertical
-                                // 3D model: X=?, Y=?, Z=vertical
-                                let scaledX = originalX * groupScaleY; // Floor plan Y -> 3D X
-                                let scaledY = originalY * groupScaleX; // Floor plan X -> 3D Y
+                                // Apply rotation by negative angle (like debug_transformation.py)
+                                const rotationAngle = 92.04; // degrees from debug_transformation.py
+                                const rotationRad = -rotationAngle * Math.PI / 180; // Negative angle
+                                const cos = Math.cos(rotationRad);
+                                const sin = Math.sin(rotationRad);
                                 
-                                // 2. Apply rotation to XZ plane (treating Z as horizontal)
-                                // This is the correct rotation that matches floor plan viewer behavior
-                                const cos = Math.cos(groupAngle);
-                                const sin = Math.sin(groupAngle);
-                                let rotatedX = scaledX * cos - originalZ * sin;
-                                let rotatedZ = scaledX * sin + originalZ * cos;
-                                
-                                // 3. Apply 2D position translation (group movement on canvas)
-                                // Convert canvas pixel movement to model units
-                                // The group's left/top position represents how far it's been moved from origin
-                                const canvasToModelScale = 0.001; // 1 pixel ≈ 0.001 model units
-                                model3DX = rotatedX + (groupLeft * canvasToModelScale);
-                                model3DY = scaledY + (groupTop * canvasToModelScale);
-                                model3DZ = rotatedZ; // Z (height) doesn't change with 2D canvas movement
+                                // Rotate the deltas
+                                model3DX = deltaEasting * cos - deltaNorthing * sin;
+                                model3DY = deltaEasting * sin + deltaNorthing * cos;
+                                model3DZ = circle.elevation || 0; // Use elevation directly
                                 
                                 if (circleIndex < 3) {
                                     console.log(`DEBUG coords for ${imageName}:`);
-                                    console.log(`  Original PTS: (${originalX.toFixed(3)}, ${originalY.toFixed(3)}, ${originalZ.toFixed(3)})`);
-                                    console.log(`  Group scale: X=${groupScaleX.toFixed(3)}, Y=${groupScaleY.toFixed(3)}`);
-                                    console.log(`  Group position: left=${groupLeft.toFixed(1)}px, top=${groupTop.toFixed(1)}px`);
-                                    console.log(`  Scaled: (${scaledX.toFixed(3)}, ${scaledY.toFixed(3)})`);
-                                    console.log(`  After rotation: (${rotatedX.toFixed(3)}, ${rotatedZ.toFixed(3)})`);
+                                    console.log(`  Northing/Easting: (${northing.toFixed(3)}, ${easting.toFixed(3)})`);
+                                    console.log(`  Delta from base: (${deltaNorthing.toFixed(3)}, ${deltaEasting.toFixed(3)})`);
+                                    console.log(`  Rotation angle: ${rotationAngle}° (${rotationRad.toFixed(3)} rad)`);
                                     console.log(`  Final 3D: (${model3DX.toFixed(3)}, ${model3DY.toFixed(3)}, ${model3DZ.toFixed(3)})`);
                                 }
                                 break;
@@ -3027,47 +3011,39 @@
                         console.log('window.loadedPTSObjects type:', typeof window.loadedPTSObjects);
                         console.log('window.loadedPTSObjects value:', window.loadedPTSObjects);
                         
-                        // Fallback: parse from circle title and apply group transformations
-                        const coordsMatch = circle.title.match(/coords3D: \(([^,]+), ([^,]+), ([^)]+)\)/);
-                        if (coordsMatch) {
-                            const originalX = parseFloat(coordsMatch[1]);
-                            const originalY = parseFloat(coordsMatch[2]);
-                            const originalZ = parseFloat(coordsMatch[3]);
+                        // Fallback: use northing/easting coordinates directly (like debug_transformation.py)
+                        const northing = circle.northing || 0;
+                        const easting = circle.easting || 0;
+                        
+                        if (northing && easting) {
+                            // Base point for centering (from debug_transformation.py)
+                            const baseEasting = 397922.9125;
+                            const baseNorthing = 808226.1590;
                             
-                            // Apply group transformations
-                    const groupScaleX = group.scaleX || 1;
-                    const groupScaleY = group.scaleY || 1;
-                            const groupAngle = group.angle || 0;
+                            // Calculate delta from base point
+                            const deltaEasting = easting - baseEasting;
+                            const deltaNorthing = northing - baseNorthing;
                             
-                            // Apply scale (swap X/Y to match coordinate systems)
-                            let scaledX = originalX * groupScaleY; // Floor plan Y -> 3D X
-                            let scaledY = originalY * groupScaleX; // Floor plan X -> 3D Y
+                            // Apply rotation by negative angle (like debug_transformation.py)
+                            const rotationAngle = 92.04; // degrees from debug_transformation.py
+                            const rotationRad = -rotationAngle * Math.PI / 180; // Negative angle
+                            const cos = Math.cos(rotationRad);
+                            const sin = Math.sin(rotationRad);
                             
-                            // Apply rotation to XZ plane (treating Z as horizontal)
-                            const cos = Math.cos(groupAngle * Math.PI / 180);
-                            const sin = Math.sin(groupAngle * Math.PI / 180);
-                            let rotatedX = scaledX * cos - originalZ * sin;
-                            let rotatedZ = scaledX * sin + originalZ * cos;
-                            
-                            // Apply 2D position translation (group movement on canvas)
-                            const groupLeft = group.left || 0;
-                            const groupTop = group.top || 0;
-                            const canvasToModelScale = 0.001; // 1 pixel ≈ 0.001 model units
-                            model3DX = rotatedX + (groupLeft * canvasToModelScale);
-                            model3DY = scaledY + (groupTop * canvasToModelScale);
-                            model3DZ = rotatedZ; // Z (height) doesn't change with 2D canvas movement
+                            // Rotate the deltas
+                            model3DX = deltaEasting * cos - deltaNorthing * sin;
+                            model3DY = deltaEasting * sin + deltaNorthing * cos;
+                            model3DZ = circle.elevation || 0; // Use elevation directly
                             
                             if (circleIndex < 3) {
                                 console.log(`DEBUG fallback coords for ${imageName}:`);
-                                console.log(`  Original PTS: (${originalX.toFixed(3)}, ${originalY.toFixed(3)}, ${originalZ.toFixed(3)})`);
-                                console.log(`  Group scale: X=${groupScaleX.toFixed(3)}, Y=${groupScaleY.toFixed(3)}`);
-                                console.log(`  Group position: left=${groupLeft.toFixed(1)}px, top=${groupTop.toFixed(1)}px`);
-                                console.log(`  Scaled: (${scaledX.toFixed(3)}, ${scaledY.toFixed(3)})`);
-                                console.log(`  After rotation: (${rotatedX.toFixed(3)}, ${rotatedZ.toFixed(3)})`);
+                                console.log(`  Northing/Easting: (${northing.toFixed(3)}, ${easting.toFixed(3)})`);
+                                console.log(`  Delta from base: (${deltaNorthing.toFixed(3)}, ${deltaEasting.toFixed(3)})`);
+                                console.log(`  Rotation angle: ${rotationAngle}° (${rotationRad.toFixed(3)} rad)`);
                                 console.log(`  Final 3D: (${model3DX.toFixed(3)}, ${model3DY.toFixed(3)}, ${model3DZ.toFixed(3)})`);
                             }
                         } else {
-                            console.warn(`Could not parse coords3D from title: ${circle.title}`);
+                            console.warn(`No northing/easting data for circle: ${circle.title}`);
                             model3DX = 0;
                             model3DY = 0;
                             model3DZ = 0;
@@ -3432,9 +3408,139 @@
             return variants;
         }
         
+        // Simple variants function
+        function exportSimpleVariants() {
+            console.log('🔄 Exporting simple variants...');
+            
+            // Get the working GeoJSON first (this has the correct northing/easting data)
+            const workingGeoJSON = exportCameraPositionsAsGeoJSON(false);
+            if (!workingGeoJSON || !workingGeoJSON.features || workingGeoJSON.features.length === 0) {
+                console.error('No working GeoJSON data available! Cannot export variants.');
+                return;
+            }
+            
+            console.log(`Found ${workingGeoJSON.features.length} features from working export`);
+            
+            const variants = [
+                { name: 'northing_easting_direct', description: 'Use northing/easting directly with base point subtraction' }
+            ];
+            
+            variants.forEach(variant => {
+                const variantGeoJSON = {
+                    type: 'FeatureCollection',
+                    features: [],
+                    properties: {
+                        name: `Camera Positions - ${variant.name}`,
+                        description: variant.description,
+                        timestamp: new Date().toISOString(),
+                        variant: variant.name
+                    }
+                };
+                
+                let featureCount = 0;
+                
+                // Process each feature from the working GeoJSON
+                workingGeoJSON.features.forEach((feature, featureIndex) => {
+                        const imageName = feature.properties.frame;
+                        const northing = feature.properties.northing || 0;
+                        const easting = feature.properties.easting || 0;
+                        const elevation = feature.properties.height || 0; // Use height instead of elevation
+                    
+                    // Get the Z coordinate from PTS data (has 3D viewer corrections)
+                    let correctedZ = elevation; // fallback
+                    let foundPTSData = false;
+                    if (window.loadedPTSObjects) {
+                        for (const obj of window.loadedPTSObjects) {
+                            const matchingPoint = obj.points.find(p => p.imageName === `pano_camera0/frame_${imageName}_hp_preview.jpg`);
+                            if (matchingPoint) {
+                                correctedZ = matchingPoint.y; // Z values are in the Y axis of PTS data
+                                foundPTSData = true;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    // Debug first few points
+                    if (featureIndex < 5) {
+                        console.log(`DEBUG Z for ${imageName}:`);
+                        console.log(`  Elevation: ${elevation}`);
+                        console.log(`  CorrectedZ: ${correctedZ}`);
+                        console.log(`  Found PTS data: ${foundPTSData}`);
+                        console.log(`  Northing: ${northing}, Easting: ${easting}`);
+                        console.log(`  Delta from base: (${(northing - 808226.1590).toFixed(3)}, ${(easting - 397922.9125).toFixed(3)})`);
+                        console.log(`  PTS objects available: ${!!window.loadedPTSObjects}`);
+                        if (window.loadedPTSObjects) {
+                            console.log(`  PTS objects count: ${window.loadedPTSObjects.length}`);
+                        }
+                    }
+                        
+                        // Base point for centering
+                        const baseEasting = 397922.9125;
+                        const baseNorthing = 808226.1590;
+                        
+                        let model3DX = 0, model3DY = 0, model3DZ = 0;
+                        
+                        // Apply variant-specific logic
+                        switch (variant.name) {
+                            case 'northing_easting_direct':
+                                // Direct northing/easting with base point subtraction
+                                model3DX = easting - baseEasting;
+                                model3DY = northing - baseNorthing;
+                                model3DZ = correctedZ * 3.28084; // Scale Z by 3.28084
+                                break;
+                                
+                        }
+                        
+                        // Debug final coordinates for first few points
+                        if (featureIndex < 5) {
+                            console.log(`  Final coords for ${variant.name}: (${model3DX.toFixed(3)}, ${model3DY.toFixed(3)}, ${model3DZ.toFixed(3)})`);
+                        }
+                        
+                        // Create new feature with transformed coordinates
+                        const newFeature = {
+                            ...feature,
+                            geometry: {
+                                type: 'Point',
+                                coordinates: [model3DX, model3DY, model3DZ]
+                            },
+                            properties: {
+                                ...feature.properties,
+                                coords3D: `3D: (${model3DX.toFixed(3)}, ${model3DY.toFixed(3)}, ${model3DZ.toFixed(3)})`,
+                                variant: variant.name
+                            }
+                        };
+                        
+                        variantGeoJSON.features.push(newFeature);
+                        featureCount++;
+                    });
+                
+                console.log(`Variant ${variant.name}: created ${featureCount} features`);
+                
+                // Download the variant
+                const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+                const filename = `camera_positions_${variant.name}_${timestamp}.geojson`;
+                
+                // Download function
+                const blob = new Blob([JSON.stringify(variantGeoJSON, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                console.log(`✅ Exported ${variant.name}: ${variant.description}`);
+            });
+            
+            console.log('🎉 All variants exported!');
+        }
+
         // Make export functions available globally
         window.exportCameraPositionsAsGeoJSON = exportCameraPositionsAsGeoJSON;
         window.exportCameraPositionsAsGeoJSONVariants = exportCameraPositionsAsGeoJSONVariants;
+        window.exportSimpleVariants = exportSimpleVariants;
         
         // Debug click capture functionality
         let isClickCaptureEnabled = false;
