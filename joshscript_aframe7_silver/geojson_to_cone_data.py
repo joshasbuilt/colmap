@@ -179,9 +179,13 @@ def extract_camera_data(geojson: Dict) -> List[Dict]:
             northing = props.get('northing')
             
             if easting is not None and northing is not None:
-                # Extract oriented height from coords3D string
+                # Extract oriented height and original 3D coordinates from coords3D string
                 coords3d_str = props.get('coords3D', '')
                 oriented_height = 0.0
+                original_3d_x = 0.0
+                original_3d_y = 0.0
+                original_3d_z = 0.0
+                
                 if coords3d_str and '3D:' in coords3d_str:
                     try:
                         # Extract coordinates from "3D: (-4.99, 1.69, 1.46)" format
@@ -189,6 +193,9 @@ def extract_camera_data(geojson: Dict) -> List[Dict]:
                         coords_part = coords_part.strip('()')
                         coords_list = [float(x.strip()) for x in coords_part.split(',')]
                         if len(coords_list) >= 3:
+                            original_3d_x = coords_list[0]  # X coordinate
+                            original_3d_y = coords_list[1]  # Y coordinate
+                            original_3d_z = coords_list[2]  # Z coordinate
                             oriented_height = coords_list[2]  # Z coordinate
                     except:
                         oriented_height = props.get('height', 0.0)  # Fallback to height property
@@ -199,6 +206,9 @@ def extract_camera_data(geojson: Dict) -> List[Dict]:
                     'easting': easting,
                     'northing': northing,
                     'height': oriented_height,  # Use oriented height from coords3D
+                    'original_3d_x': original_3d_x,  # Original X from Three.js viewer
+                    'original_3d_y': original_3d_y,  # Original Y from Three.js viewer
+                    'original_3d_z': original_3d_z,  # Original Z from Three.js viewer
                     'longitude': coords[0],
                     'latitude': coords[1],
                     'frame': props.get('frame', '0000'),
@@ -252,16 +262,50 @@ def convert_geojson_to_cone_data(geojson_path: Path, output_path: Path,
     
     # Transform coordinates
     print("Transforming coordinates from Mt Eden to DXF space...")
+    print("DEBUGGING COORDINATE SOURCES:")
+    print("=" * 60)
     dxf_positions = []
-    for cam in cameras:
+    for i, cam in enumerate(cameras):
+        # DEBUG: Show what we're using vs what we should use
+        if i < 3:  # Show first 3 for debugging
+            print(f"\nFrame {cam['frame']} - TRANSFORMATION ANALYSIS:")
+            print(f"  Pipeline: 3D({cam['original_3d_x']:.3f}, {cam['original_3d_y']:.3f}, {cam['original_3d_z']:.3f}) → Mt Eden({cam['easting']:.2f}, {cam['northing']:.2f}, {cam['height']:.2f})")
+            print(f"  Project Base Point: E={transformer.base_e:.2f}, N={transformer.base_n:.2f}, Angle={math.degrees(transformer.rotation_rad):.2f}°")
+            
+            # Show transformation steps
+            delta_e = cam['easting'] - transformer.base_e
+            delta_n = cam['northing'] - transformer.base_n
+            print(f"  Delta from base: E={delta_e:.2f}, N={delta_n:.2f}")
+            
+            # Show rotation calculation
+            cos_theta = math.cos(-transformer.rotation_rad)
+            sin_theta = math.sin(-transformer.rotation_rad)
+            print(f"  Rotation: cos={cos_theta:.3f}, sin={sin_theta:.3f}")
+            
+            # Show final transformation
+            x, y, z = transformer.mt_eden_to_dxf(cam['easting'], cam['northing'], cam['height'])
+            print(f"  Final DXF: ({x:.2f}, {y:.2f}, {z:.2f})")
+            print(f"  Question: Are these DXF coordinates reasonable for Revit?")
+        
+        # CORRECT: Use COMBINED coordinates - X,Y from Mt Eden + Z from corrected 3D
+        # X, Y from Mt Eden coordinates (GPS-converted, properly oriented)
+        # Z from corrected 3D coordinates (from interactive_3d_viewer_threejs_transform)
         x, y, z = transformer.mt_eden_to_dxf(
-            cam['easting'], 
-            cam['northing'], 
-            cam['height']
+            cam['easting'],   # Mt Eden Easting (GPS-converted X)
+            cam['northing'],  # Mt Eden Northing (GPS-converted Y) 
+            cam['height']     # Corrected Z from 3D viewer
         )
         dxf_positions.append((x, y, z))
-        print(f"  Frame {cam['frame']}: Mt Eden ({cam['easting']:.2f}, {cam['northing']:.2f}, {cam['height']:.2f}) "
-              f"→ DXF ({x:.2f}, {y:.2f}, {z:.2f})")
+        
+        if i < 10:  # Show first 10 transformations
+            print(f"  Frame {cam['frame']}: 3D ({cam['original_3d_x']:.2f}, {cam['original_3d_y']:.2f}, {cam['original_3d_z']:.2f}) "
+                  f"→ DXF ({x:.2f}, {y:.2f}, {z:.2f})")
+    
+    if len(cameras) > 5:
+        print(f"\n... and {len(cameras) - 5} more frames")
+    print("\n" + "=" * 60)
+    print("FIXED: Now using original 3D coordinates from Three.js viewer!")
+    print("=" * 60)
     
     # Calculate direction vectors
     print("Calculating camera direction vectors...")

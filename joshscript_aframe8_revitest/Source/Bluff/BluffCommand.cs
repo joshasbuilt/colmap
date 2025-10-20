@@ -19,11 +19,11 @@ namespace Bluff
             // Create debug log file
             string logPath = Path.Combine(Path.GetTempPath(), "Bluff_Addin_Debug.txt");
             var logWriter = new StreamWriter(logPath, false);
-            logWriter.WriteLine($"Bluff Add-in v1.3 Debug Log - {DateTime.Now}");
+            logWriter.WriteLine($"Bluff Add-in v1.5 Debug Log - {DateTime.Now}");
             logWriter.WriteLine(new string('=', 50));
-            logWriter.WriteLine("USING LATEST JSON DATA WITH ORIENTED HEIGHTS");
-            logWriter.WriteLine("Source: camera_positions_2025-10-19.geojson (oriented)");
-            logWriter.WriteLine("Heights: Gravity-corrected from COLMAP reconstruction");
+            logWriter.WriteLine("USING LATEST JSON DATA WITH TRANSFORMED COORDINATES");
+            logWriter.WriteLine("Source: camera_positions_2025-10-20 (1).geojson (319 positions)");
+            logWriter.WriteLine("Heights: Gravity-corrected from COLMAP reconstruction + 3D viewer transformation");
             logWriter.WriteLine(new string('=', 50));
             
             // Plugin loaded successfully - no popup needed
@@ -82,10 +82,11 @@ namespace Bluff
                     logWriter.WriteLine($"Z-coordinate analysis: min={minZ:F2}m, max={maxZ:F2}m, range={zRange:F2}m");
                     logWriter.WriteLine($"NOTE: These are ORIENTED heights from gravity-corrected COLMAP data");
                     
-                    // Determine if Z values need offset (if all negative, offset to ground level)
-                    double zOffset = minZ < 0 ? Math.Abs(minZ) + 1.0 : 0.0; // 1m above ground if all negative
-                    logWriter.WriteLine($"Applying Z offset: {zOffset:F2}m (brings lowest point to {minZ + zOffset:F2}m)");
-                    logWriter.WriteLine($"Final Z range after offset: {minZ + zOffset:F2}m to {maxZ + zOffset:F2}m");
+                    // Z values are already correctly oriented from COLMAP reconstruction
+                    // No offset needed - use Z values directly
+                    double zOffset = 0.0; // No offset - Z values are already correct
+                    logWriter.WriteLine($"Using Z values directly (no offset needed)");
+                    logWriter.WriteLine($"Z range: {minZ:F2}m to {maxZ:F2}m");
                     
                     // 5. Place instances at coordinates
                     int placedCount = 0;
@@ -139,11 +140,12 @@ namespace Bluff
                     
                     trans.Commit();
                     
-                    // Close log file (no popup)
+                    // Close log file and show debug popup
                     logWriter.WriteLine($"\nLog completed at {DateTime.Now}");
                     logWriter.Close();
                     
-                    // Silent completion - no popups
+                    // Show debug log in notepad
+                    System.Diagnostics.Process.Start("notepad.exe", logPath);
                     
                     return Result.Succeeded;
                 }
@@ -154,7 +156,8 @@ namespace Bluff
                 logWriter.WriteLine($"Stack trace: {ex.StackTrace}");
                 logWriter.Close();
                 
-                // Silent error handling - no popups
+                // Show debug log in notepad for errors too
+                System.Diagnostics.Process.Start("notepad.exe", logPath);
                 message = $"Bluff Add-in v1.3 Error: {ex.Message}";
                 return Result.Failed;
             }
@@ -188,7 +191,7 @@ namespace Bluff
             try
             {
                 // Hardcoded full path to the JSON file
-                string jsonPath = @"C:\Users\JoshuaLumley\Dropbox\0000 Github Repos\asBuilt_DataColmap\paul\joshscript_aframe8_revitest\cone_data-3.json";
+                string jsonPath = @"C:\Users\JoshuaLumley\Dropbox\0000 Github Repos\asBuilt_DataColmap\paul\joshscript_aframe8_revitest\cone_data-5.json";
                 
                 if (!File.Exists(jsonPath))
                 {

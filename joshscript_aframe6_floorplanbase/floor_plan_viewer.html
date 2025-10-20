@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Floorplan Coordinates - Rectangle View</title>
+    <!-- 
+    ============================================
+    PTS FILE TO LOAD: enhanced_cameras_2025-10-20T02-02-34.pts
+    (Change this filename at line 2825 to load a different PTS file)
+    ============================================
+    -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.0/proj4.js"></script>
     <style>
@@ -313,6 +319,8 @@
                     <option value="desc">Frame ↓</option>
                 </select>
                 <button id="download-pts-btn" style="background: #0066cc; border: 1px solid #0088ff; color: white; padding: 5px 10px; border-radius: 4px; cursor: pointer; margin-right: 10px;">Download PTS</button>
+                <button id="debug-click-btn" style="background: #ff6b35; border: 1px solid #ff6b35; color: white; padding: 5px 10px; border-radius: 4px; cursor: pointer; margin-right: 10px;">🎯 Debug Click</button>
+                <button id="export-variants-btn" style="background: #28a745; border: 1px solid #28a745; color: white; padding: 5px 10px; border-radius: 4px; cursor: pointer; margin-right: 10px;">📊 Export Variants</button>
                 <button id="close-image-strip" class="close-btn">&times;</button>
             </div>
         </div>
@@ -367,6 +375,10 @@
             <span class="info-label">Resources:</span>
             <span class="info-value" id="resource-value">-</span>
         </div>
+        <div class="info-separator"></div>
+        <div class="info-row">
+            <button id="debug-click-btn-visible" style="background: #ff6b35; border: 1px solid #ff6b35; color: white; padding: 8px 12px; border-radius: 4px; cursor: pointer; width: 100%; font-size: 12px;">🎯 Debug Click</button>
+        </div>
     </div>
 
         <!-- Cursor Coordinates Display -->
@@ -377,6 +389,11 @@
     
 
     <script>
+        // ============================================
+        // PTS FILE TO LOAD - CHANGE THIS LINE:
+        const PTS_FILE_TO_LOAD = 'enhanced_cameras_2025-10-20T02-11-20.pts';
+        // ============================================
+        
         /*
          * AsBuiltVault Configuration System
          * 
@@ -498,6 +515,17 @@
         
         // Download PTS button
         document.getElementById('download-pts-btn').addEventListener('click', downloadPTS);
+        
+        // Debug click button
+        document.getElementById('debug-click-btn').addEventListener('click', enableClickCapture);
+        
+        // Debug click button (visible in info panel)
+        document.getElementById('debug-click-btn-visible').addEventListener('click', enableClickCapture);
+        
+        // Export variants button
+        document.getElementById('export-variants-btn').addEventListener('click', () => {
+            exportCameraPositionsAsGeoJSONVariants();
+        });
         
          // Global mouse up handler to hide preview when mouse is released anywhere
          document.addEventListener('mouseup', (e) => {
@@ -1687,6 +1715,9 @@
             obj.set('borderColor', '#666');
             canvas.requestRenderAll();
             updateInfoPanel();
+            
+            // Save state after locking
+            saveCanvasState();
         }
         
         // Unlock object function
@@ -1701,6 +1732,9 @@
             obj.set('borderColor', '#0096ff');
             canvas.requestRenderAll();
             updateInfoPanel();
+            
+            // Save state after unlocking
+            saveCanvasState();
         }
 
         // Load SVG function
@@ -1813,6 +1847,83 @@
         }
 
         // Load PTS file function
+        function applyZAxisTransformation(point, transform) {
+            // Apply only Z-axis transformations: scale and rotation around Z
+            // Skip translation and X/Y rotations to preserve 2D positioning
+            
+            // Convert quaternion to rotation matrix (Z-axis only)
+            const qx = transform.quaternion.x;
+            const qy = transform.quaternion.y;
+            const qz = transform.quaternion.z;
+            const qw = transform.quaternion.w;
+            
+            // Calculate Z-axis rotation angle from quaternion
+            const zAngle = Math.atan2(2 * (qw * qz + qx * qy), 1 - 2 * (qy * qy + qz * qz));
+            
+            // Apply scale
+            const scaledX = point.x * transform.scale.x;
+            const scaledY = point.y * transform.scale.y;
+            const scaledZ = point.z * transform.scale.z;
+            
+            // Apply Z-axis rotation only
+            const cosZ = Math.cos(zAngle);
+            const sinZ = Math.sin(zAngle);
+            
+            const rotatedX = scaledX * cosZ - scaledY * sinZ;
+            const rotatedY = scaledX * sinZ + scaledY * cosZ;
+            const rotatedZ = scaledZ; // Z doesn't change with Z-axis rotation
+            
+            // Skip translation to preserve 2D positioning
+            return { x: rotatedX, y: rotatedY, z: rotatedZ };
+        }
+        
+        function applyTransformation(point, transform) {
+            // Convert quaternion to rotation matrix
+            const qx = transform.quaternion.x;
+            const qy = transform.quaternion.y;
+            const qz = transform.quaternion.z;
+            const qw = transform.quaternion.w;
+            
+            // Quaternion to rotation matrix
+            const xx = qx * qx;
+            const yy = qy * qy;
+            const zz = qz * qz;
+            const xy = qx * qy;
+            const xz = qx * qz;
+            const yz = qy * qz;
+            const wx = qw * qx;
+            const wy = qw * qy;
+            const wz = qw * qz;
+            
+            const m00 = 1 - 2 * (yy + zz);
+            const m01 = 2 * (xy - wz);
+            const m02 = 2 * (xz + wy);
+            const m10 = 2 * (xy + wz);
+            const m11 = 1 - 2 * (xx + zz);
+            const m12 = 2 * (yz - wx);
+            const m20 = 2 * (xz - wy);
+            const m21 = 2 * (yz + wx);
+            const m22 = 1 - 2 * (xx + yy);
+            
+            // Apply transformation: T = S * R * P + T
+            // 1. Scale
+            const scaledX = point.x * transform.scale.x;
+            const scaledY = point.y * transform.scale.y;
+            const scaledZ = point.z * transform.scale.z;
+            
+            // 2. Rotate
+            const rotatedX = m00 * scaledX + m01 * scaledY + m02 * scaledZ;
+            const rotatedY = m10 * scaledX + m11 * scaledY + m12 * scaledZ;
+            const rotatedZ = m20 * scaledX + m21 * scaledY + m22 * scaledZ;
+            
+            // 3. Translate
+            const finalX = rotatedX + transform.position.x;
+            const finalY = rotatedY + transform.position.y;
+            const finalZ = rotatedZ + transform.position.z;
+            
+            return { x: finalX, y: finalY, z: finalZ };
+        }
+        
         function loadPTSFile(filename) {
             console.log('=== LOADING PTS FILE ===');
             console.log('Filename:', filename);
@@ -1846,9 +1957,33 @@
                                         id: match[1],
                                         color: match[2],
                                         pointCount: parseInt(match[3]),
-                                        points: []
+                                        points: [],
+                                        transform: null // Will store transformation matrix
                                     };
                                     objects.push(currentObject);
+                                }
+                            }
+                            // Check if this is a transformation line
+                            else if (trimmedLine.startsWith('# Transform: ')) {
+                                const transformMatch = trimmedLine.match(/# Transform: Pos\(([^,]+), ([^,]+), ([^)]+)\) Scale\(([^,]+), ([^,]+), ([^)]+)\) Quat\(([^,]+), ([^,]+), ([^,]+), ([^)]+)\)/);
+                                if (transformMatch && currentObject) {
+                                    const posX = parseFloat(transformMatch[1]);
+                                    const posY = parseFloat(transformMatch[2]);
+                                    const posZ = parseFloat(transformMatch[3]);
+                                    const scaleX = parseFloat(transformMatch[4]);
+                                    const scaleY = parseFloat(transformMatch[5]);
+                                    const scaleZ = parseFloat(transformMatch[6]);
+                                    const quatX = parseFloat(transformMatch[7]);
+                                    const quatY = parseFloat(transformMatch[8]);
+                                    const quatZ = parseFloat(transformMatch[9]);
+                                    const quatW = parseFloat(transformMatch[10]);
+                                    
+                                    currentObject.transform = {
+                                        position: { x: posX, y: posY, z: posZ },
+                                        scale: { x: scaleX, y: scaleY, z: scaleZ },
+                                        quaternion: { x: quatX, y: quatY, z: quatZ, w: quatW }
+                                    };
+                                    console.log(`Parsed transform for ${currentObject.id}:`, currentObject.transform);
                                 }
                             }
                             return;
@@ -1907,6 +2042,31 @@
                     
                     console.log(`Loaded ${points.length} points from enhanced PTS file`);
                     console.log(`Found ${objects.length} objects:`, objects.map(obj => `${obj.id} (${obj.color}, ${obj.pointCount} points)`));
+                    
+                    // Apply ADDITIONAL transformations in floor_plan_viewer (on top of 3D viewer corrections)
+                    // PTS contains coordinates corrected by 3D viewer, now apply floor plan transformations
+                    console.log('🔄 Applying ADDITIONAL floor plan transformations...');
+                    objects.forEach(obj => {
+                        if (obj.transform) {
+                            console.log(`Applying floor plan transformation to ${obj.id}:`, obj.transform);
+                            obj.points.forEach((point, index) => {
+                                const originalCoords = { x: point.x, y: point.y, z: point.z };
+                                
+                                // Apply the transformation from PTS metadata (this is the floor plan transformation)
+                                const transformed = applyTransformation(point, obj.transform);
+                                point.x = transformed.x;
+                                point.y = transformed.y;
+                                point.z = transformed.z;
+                                
+                                // Debug: Show first few transformations
+                                if (index < 3) {
+                                    console.log(`Point ${index}: ${originalCoords.x.toFixed(3)}, ${originalCoords.y.toFixed(3)}, ${originalCoords.z.toFixed(3)} → ${transformed.x.toFixed(3)}, ${transformed.y.toFixed(3)}, ${transformed.z.toFixed(3)}`);
+                                }
+                            });
+                        } else {
+                            console.log(`No floor plan transformation found for ${obj.id}`);
+                        }
+                    });
                     
                     // Store objects globally for context menu access
                     window.loadedPTSObjects = objects;
@@ -2232,6 +2392,9 @@
             obj.set('borderColor', '#ff6600');
             canvas.requestRenderAll();
             updateInfoPanel();
+            
+            // Save state after unlocking
+            saveCanvasState();
         }
         
 
@@ -2437,6 +2600,13 @@
         // Right-click handler for context menu
         function onContextMenu(e) {
             console.log('onContextMenu called, button:', e.e.button);
+            
+            // Check if click capture is enabled first
+            if (isClickCaptureEnabled) {
+                captureClickCoordinates(e);
+                return; // Don't process context menu logic
+            }
+            
             if (e.e.button === 2) { // Right click
                 console.log('Right-click detected!');
                 const clickedObject = canvas.findTarget(e.e, false);
@@ -2498,7 +2668,7 @@
         // Save canvas state to localStorage
         function saveCanvasState() {
             const canvasState = {
-                objects: canvas.toJSON(['customName', 'title']),
+                objects: canvas.toJSON(['customName', 'title', 'lockMovementX', 'lockMovementY', 'lockRotation', 'lockScalingX', 'lockScalingY', 'hasControls', 'hasBorders']),
                 viewportTransform: canvas.viewportTransform,
                 zoom: canvas.getZoom(),
                 imageStripState: {
@@ -2519,6 +2689,22 @@
                     canvas.loadFromJSON(canvasState.objects, () => {
                         canvas.setViewportTransform(canvasState.viewportTransform);
                         canvas.setZoom(canvasState.zoom);
+                        
+                        // Restore lock state for all objects
+                        canvas.getObjects().forEach(obj => {
+                            if (obj.lockMovementX) {
+                                // Object was locked - restore locked appearance
+                                obj.hasControls = false;
+                                obj.hasBorders = false;
+                                obj.set('borderColor', '#666');
+                            } else {
+                                // Object was unlocked - restore unlocked appearance
+                                obj.hasControls = true;
+                                obj.hasBorders = true;
+                                obj.set('borderColor', '#ff6600');
+                            }
+                        });
+                        
                         canvas.requestRenderAll();
                         
                         // Restore image strip state if it exists
@@ -2653,7 +2839,7 @@
                 ];
                 
                 // Load enhanced PTS file instead of SVG files
-                loadPTSFile('enhanced_cameras_2025-10-17T04-10-47.pts');
+                loadPTSFile(PTS_FILE_TO_LOAD);
             }, 1000);
         } else {
             console.log('=== CANVAS STATE RESTORED ===');
@@ -2678,7 +2864,7 @@
         };
         
         // Export visible camera positions as GeoJSON
-        function exportCameraPositionsAsGeoJSON() {
+        function exportCameraPositionsAsGeoJSON(exportAll = true) {
             console.log('🗺️ Exporting camera positions as GeoJSON...');
             
             const features = [];
@@ -2690,30 +2876,58 @@
                 console.log(`  Group ${i}: "${g.customName}" (${g._objects?.length || 0} objects)`);
             });
             
-            // Get all camera position groups - updated to match current naming convention
-            // Groups are now named like "R0 - Red (84 points)" instead of "Camera Positions"
-            const cameraGroups = canvas.getObjects().filter(obj => 
-                obj.type === 'group' && obj.customName && 
-                (obj.customName.includes('Camera Positions') || obj.customName.includes('points)'))
-            );
+            // Get all camera position groups - more robust filtering
+            const cameraGroups = canvas.getObjects().filter(obj => {
+                if (obj.type !== 'group' || !obj.customName) return false;
+                
+                // Check for various naming patterns
+                const name = obj.customName.toLowerCase();
+                return name.includes('camera positions') || 
+                       name.includes('points)') || 
+                       name.includes('red (') || 
+                       name.includes('blue (') || 
+                       name.includes('green (') ||
+                       name.includes('yellow (') ||
+                       name.includes('purple (') ||
+                       name.includes('orange (');
+            });
             
             console.log(`Found ${cameraGroups.length} camera groups to export`);
             
             cameraGroups.forEach((group, groupIndex) => {
-                const objects = group._objects || group.objects;
-                const circles = objects.filter(obj => obj.type === 'circle' && obj.title);
-                
-                console.log(`Processing group ${groupIndex}: "${group.customName}" with ${circles.length} circles`);
-                
-                circles.forEach((circle, circleIndex) => {
-                    // Check if this is PTS/COLMAP data (cannot be exported without transformation)
-                    if (circle.colmapCoords) {
-                        console.warn(`Skipping circle ${circleIndex} - PTS/COLMAP data cannot be exported to GeoJSON without coordinate transformation`);
+                try {
+                    // More robust object access
+                    const objects = group._objects || group.objects || [];
+                    if (!Array.isArray(objects)) {
+                        console.warn(`Group ${groupIndex} has no valid objects array`);
                         return;
                     }
                     
+                    const circles = objects.filter(obj => {
+                        return obj && 
+                               obj.type === 'circle' && 
+                               obj.title && 
+                               typeof obj.title === 'string' &&
+                               obj.title.trim().length > 0;
+                    });
+                    
+                    console.log(`Processing group ${groupIndex}: "${group.customName}" with ${circles.length} circles`);
+                
+                circles.forEach((circle, circleIndex) => {
+                    // Debug: Log every few circles to track processing
+                    if (circleIndex % 50 === 0) {
+                        console.log(`Processing circle ${circleIndex}/${circles.length} in group ${groupIndex}`);
+                    }
+                    
+                    // PTS/COLMAP data can now be exported (we have the transformed coordinates)
+                    // if (circle.colmapCoords) {
+                    //     console.warn(`Skipping circle ${circleIndex} - PTS/COLMAP data cannot be exported to GeoJSON without coordinate transformation`);
+                    //     return;
+                    // }
+                    
                     // Skip if circle is not visible (has been deleted from image strip)
-                    if (currentImageFilenames && currentImageFilenames.length > 0) {
+                    // Only apply this filter if exportAll is false and we're in a specific image viewing mode
+                    if (!exportAll && currentImageFilenames && currentImageFilenames.length > 0) {
                         const frameMatch = circle.title.match(/frame_(\d+)/);
                         if (frameMatch) {
                             const frameNumber = frameMatch[1];
@@ -2721,6 +2935,7 @@
                                 filename.includes(`frame_${frameNumber}`)
                             );
                             if (!isVisible) {
+                                console.log(`Skipping circle ${circleIndex} - not in current image selection (frame ${frameNumber})`);
                                 return; // Skip this circle
                             }
                         }
@@ -2733,30 +2948,167 @@
                     const imageName = titleLines[2] || 'Image: unknown';
                     const frameInfo = titleLines[3] || 'Frame: 0';
                     
-                    // Parse 3D coordinates from "X: 4.506, Y: 0.036, Z: 2.322" format
-                    const coords3DMatch = coords3D.match(/X: ([^,]+), Y: ([^,]+), Z: ([^)]+)/);
-                    const x = coords3DMatch ? parseFloat(coords3DMatch[1]) : 0;
-                    const y = coords3DMatch ? parseFloat(coords3DMatch[2]) : 0;
-                    const z = coords3DMatch ? parseFloat(coords3DMatch[3]) : 0;
+                    // Get the CURRENT transformed coordinates from the canvas position
+                    // This reflects any manual transformations (scale, rotation, move) applied in the floor plan viewer
+                    let transformedX = 0, transformedY = 0, transformedZ = 0;
                     
-                    // Create 2D coordinates (X, Y) and height (Z)
-                    const coords2D = `2D: (${x.toFixed(3)}, ${y.toFixed(3)})`;
-                    const height = z;
+                    // Get the ABSOLUTE canvas position of the circle (after any manual transformations)
+                    // This accounts for the group's transformation (scale, rotation, position)
+                    const absolutePos = circle.getCenterPoint();
+                    const groupTransform = group.calcTransformMatrix();
+                    const transformedPos = fabric.util.transformPoint(absolutePos, groupTransform);
                     
-                    // Get circle's actual position on canvas
+                    // Convert absolute canvas position back to Mt Eden coordinates
+                    const currentMtEdenCoords = canvasToMtEden(transformedPos.x, transformedPos.y, mtEdenBounds, canvas.width, canvas.height);
+                    
+                    // Get the 3D model coordinates from the loaded PTS data (already has 3D viewer's corrections)
+                    // Apply the floor plan viewer's transformations (scale, rotation, position)
+                    let correctedZ = 0;
+                    let model3DX = 0, model3DY = 0, model3DZ = 0;
+                    if (window.loadedPTSObjects) {
+                        for (const obj of window.loadedPTSObjects) {
+                            const matchingPoint = obj.points.find(p => p.imageName === imageName.replace('Image: ', ''));
+                            if (matchingPoint) {
+                                correctedZ = matchingPoint.z; // Use the Z from PTS data (has 3D viewer corrections)
+                                
+                                // Apply floor plan 2D transformations to 3D model coordinates
+                                // This ensures temp viewer shows the same alignment as floor plan viewer
+                                const originalX = matchingPoint.x;
+                                const originalY = matchingPoint.y;
+                                const originalZ = matchingPoint.z;
+                                
+                                // Get group transformations
+                                const groupScaleX = group.scaleX || 1;
+                                const groupScaleY = group.scaleY || 1;
+                                const groupAngle = (group.angle || 0) * Math.PI / 180; // Convert to radians
+                    const groupLeft = group.left || 0;
+                    const groupTop = group.top || 0;
+                                
+                                // Apply 2D transformations (scale, rotation ONLY) to X and Y
+                                // Z stays unchanged to maintain upright orientation
+                                // NOTE: Translation is handled by Mt Eden coordinates, not 3D model coords
+                                
+                                // 1. Apply scale (swap X/Y to match coordinate systems)
+                                // Floor plan: X=horizontal, Y=vertical
+                                // 3D model: X=?, Y=?, Z=vertical
+                                let scaledX = originalX * groupScaleY; // Floor plan Y -> 3D X
+                                let scaledY = originalY * groupScaleX; // Floor plan X -> 3D Y
+                                
+                                // 2. Apply rotation to XZ plane (treating Z as horizontal)
+                                // This is the correct rotation that matches floor plan viewer behavior
+                                const cos = Math.cos(groupAngle);
+                                const sin = Math.sin(groupAngle);
+                                let rotatedX = scaledX * cos - originalZ * sin;
+                                let rotatedZ = scaledX * sin + originalZ * cos;
+                                
+                                // 3. Apply 2D position translation (group movement on canvas)
+                                // Convert canvas pixel movement to model units
+                                // The group's left/top position represents how far it's been moved from origin
+                                const canvasToModelScale = 0.001; // 1 pixel ≈ 0.001 model units
+                                model3DX = rotatedX + (groupLeft * canvasToModelScale);
+                                model3DY = scaledY + (groupTop * canvasToModelScale);
+                                model3DZ = rotatedZ; // Z (height) doesn't change with 2D canvas movement
+                                
+                                if (circleIndex < 3) {
+                                    console.log(`DEBUG coords for ${imageName}:`);
+                                    console.log(`  Original PTS: (${originalX.toFixed(3)}, ${originalY.toFixed(3)}, ${originalZ.toFixed(3)})`);
+                                    console.log(`  Group scale: X=${groupScaleX.toFixed(3)}, Y=${groupScaleY.toFixed(3)}`);
+                                    console.log(`  Group position: left=${groupLeft.toFixed(1)}px, top=${groupTop.toFixed(1)}px`);
+                                    console.log(`  Scaled: (${scaledX.toFixed(3)}, ${scaledY.toFixed(3)})`);
+                                    console.log(`  After rotation: (${rotatedX.toFixed(3)}, ${rotatedZ.toFixed(3)})`);
+                                    console.log(`  Final 3D: (${model3DX.toFixed(3)}, ${model3DY.toFixed(3)}, ${model3DZ.toFixed(3)})`);
+                                }
+                                break;
+                            }
+                        }
+                    } else {
+                        console.warn('window.loadedPTSObjects is not available!');
+                        console.log('Available window properties:', Object.keys(window).filter(k => k.includes('PTS')));
+                        console.log('window.loadedPTSObjects type:', typeof window.loadedPTSObjects);
+                        console.log('window.loadedPTSObjects value:', window.loadedPTSObjects);
+                        
+                        // Fallback: parse from circle title and apply group transformations
+                        const coordsMatch = circle.title.match(/coords3D: \(([^,]+), ([^,]+), ([^)]+)\)/);
+                        if (coordsMatch) {
+                            const originalX = parseFloat(coordsMatch[1]);
+                            const originalY = parseFloat(coordsMatch[2]);
+                            const originalZ = parseFloat(coordsMatch[3]);
+                            
+                            // Apply group transformations
+                    const groupScaleX = group.scaleX || 1;
+                    const groupScaleY = group.scaleY || 1;
+                            const groupAngle = group.angle || 0;
+                            
+                            // Apply scale (swap X/Y to match coordinate systems)
+                            let scaledX = originalX * groupScaleY; // Floor plan Y -> 3D X
+                            let scaledY = originalY * groupScaleX; // Floor plan X -> 3D Y
+                            
+                            // Apply rotation to XZ plane (treating Z as horizontal)
+                            const cos = Math.cos(groupAngle * Math.PI / 180);
+                            const sin = Math.sin(groupAngle * Math.PI / 180);
+                            let rotatedX = scaledX * cos - originalZ * sin;
+                            let rotatedZ = scaledX * sin + originalZ * cos;
+                            
+                            // Apply 2D position translation (group movement on canvas)
+                            const groupLeft = group.left || 0;
+                            const groupTop = group.top || 0;
+                            const canvasToModelScale = 0.001; // 1 pixel ≈ 0.001 model units
+                            model3DX = rotatedX + (groupLeft * canvasToModelScale);
+                            model3DY = scaledY + (groupTop * canvasToModelScale);
+                            model3DZ = rotatedZ; // Z (height) doesn't change with 2D canvas movement
+                            
+                            if (circleIndex < 3) {
+                                console.log(`DEBUG fallback coords for ${imageName}:`);
+                                console.log(`  Original PTS: (${originalX.toFixed(3)}, ${originalY.toFixed(3)}, ${originalZ.toFixed(3)})`);
+                                console.log(`  Group scale: X=${groupScaleX.toFixed(3)}, Y=${groupScaleY.toFixed(3)}`);
+                                console.log(`  Group position: left=${groupLeft.toFixed(1)}px, top=${groupTop.toFixed(1)}px`);
+                                console.log(`  Scaled: (${scaledX.toFixed(3)}, ${scaledY.toFixed(3)})`);
+                                console.log(`  After rotation: (${rotatedX.toFixed(3)}, ${rotatedZ.toFixed(3)})`);
+                                console.log(`  Final 3D: (${model3DX.toFixed(3)}, ${model3DY.toFixed(3)}, ${model3DZ.toFixed(3)})`);
+                            }
+                        } else {
+                            console.warn(`Could not parse coords3D from title: ${circle.title}`);
+                            model3DX = 0;
+                            model3DY = 0;
+                            model3DZ = 0;
+                        }
+                    }
+                    
+                    // Get circle's actual position on canvas (accounting for group transformation)
                     const groupLeft = group.left || 0;
                     const groupTop = group.top || 0;
                     const groupScaleX = group.scaleX || 1;
                     const groupScaleY = group.scaleY || 1;
+                    const groupAngle = group.angle || 0;
                     
-                    const circleCanvasX = groupLeft + (circle.left * groupScaleX);
-                    const circleCanvasY = groupTop + (circle.top * groupScaleY);
+                    // Apply group transformation to circle position
+                    const cos = Math.cos(groupAngle * Math.PI / 180);
+                    const sin = Math.sin(groupAngle * Math.PI / 180);
                     
-                    // Convert to Mt Eden coordinates
+                    const scaledX = circle.left * groupScaleX;
+                    const scaledY = circle.top * groupScaleY;
+                    
+                    const circleCanvasX = groupLeft + (scaledX * cos - scaledY * sin);
+                    const circleCanvasY = groupTop + (scaledX * sin + scaledY * cos);
+                    
+                    // Convert to Mt Eden coordinates (this reflects floor plan transformations!)
                     const mtEdenCoords = canvasToMtEden(circleCanvasX, circleCanvasY, mtEdenBounds, canvas.width, canvas.height);
+                    
+                    // Use the NEW Mt Eden coordinates (X,Y) and corrected Z coordinate from PTS
+                    transformedX = mtEdenCoords.x;
+                    transformedY = mtEdenCoords.y;
+                    transformedZ = correctedZ;
+                    
+                    const height = transformedZ;
+                    
+                    console.log(`Current transformed coords for ${imageName}: (${transformedX.toFixed(3)}, ${transformedY.toFixed(3)}, ${transformedZ.toFixed(3)})`);
+
                     
                     // Convert to WGS84
                     const wgs84Coords = mtEdenToWGS84(mtEdenCoords.x, mtEdenCoords.y);
+                    
+                    // Use the transformed coordinates from the loaded PTS objects
+                    // These reflect the floor plan viewer transformations
                     
                     // Extract frame number from image name
                     const frameMatch = imageName.match(/frame_(\d+)/);
@@ -2776,10 +3128,12 @@
                             image: imageName.replace('Image: ', ''),
                             frameId: frameInfo.replace('Frame: ', ''),
                             height: height,
-                            coords2D: coords2D,
-                            coords3D: `3D: (${x.toFixed(3)}, ${y.toFixed(3)}, ${z.toFixed(3)})`,
-                            easting: mtEdenCoords.x,
-                            northing: mtEdenCoords.y,
+                            coords2D: `2D: (${transformedX.toFixed(3)}, ${transformedY.toFixed(3)})`,
+                            coords3D_original: `3D_Original: (${model3DX.toFixed(3)}, ${model3DY.toFixed(3)}, ${model3DZ.toFixed(3)})`,
+                            coords3D: `3D: (${model3DX.toFixed(3)}, ${model3DY.toFixed(3)}, ${model3DZ.toFixed(3)})`,
+                            coordsMtEden: `MtEden: (${transformedX.toFixed(3)}, ${transformedY.toFixed(3)}, ${transformedZ.toFixed(3)})`,
+                            easting: transformedX,
+                            northing: transformedY,
                             longitude: wgs84Coords.lng,
                             latitude: wgs84Coords.lat,
                             group: group.customName,
@@ -2790,6 +3144,9 @@
                     
                     features.push(feature);
                 });
+                } catch (error) {
+                    console.error(`Error processing group ${groupIndex} "${group.customName}":`, error);
+                }
             });
             
             // Create GeoJSON object
@@ -2820,6 +3177,10 @@
             URL.revokeObjectURL(url);
             
             console.log(`✅ Exported ${features.length} camera positions as GeoJSON`);
+            console.log(`📊 Export Summary:`);
+            console.log(`   - Total groups found: ${allGroups.length}`);
+            console.log(`   - Camera groups processed: ${cameraGroups.length}`);
+            console.log(`   - Features exported: ${features.length}`);
             
             // Warn if no features were exported
             if (features.length === 0) {
@@ -2832,8 +3193,327 @@
             return geoJSON;
         }
         
-        // Make export function available globally
+        // Export camera positions as GeoJSON with multiple variants for testing
+        function exportCameraPositionsAsGeoJSONVariants(exportAll = true) {
+            console.log('🗺️ Exporting camera positions as GeoJSON with rotation variants...');
+            
+            // Get the group angle from canvas FIRST to see what we're working with
+            const canvas = window.canvas;
+            const groups = canvas.getObjects().filter(obj => obj.type === 'group');
+            const cameraGroups = groups.filter(group => 
+                group.customName && (
+                    group.customName.includes('Camera Positions') || 
+                    group.customName.includes('points)')
+                )
+            );
+            
+            console.log(`Found ${cameraGroups.length} camera groups`);
+            cameraGroups.forEach((g, i) => {
+                console.log(`  Group ${i}: "${g.customName}" - angle: ${(g.angle || 0).toFixed(2)}°, scale: (${(g.scaleX || 1).toFixed(3)}, ${(g.scaleY || 1).toFixed(3)})`);
+            });
+            
+            // Call the working export function ONCE
+            const workingGeoJSON = exportCameraPositionsAsGeoJSON(exportAll);
+            
+            if (!workingGeoJSON || !workingGeoJSON.features || workingGeoJSON.features.length === 0) {
+                console.error('Working export failed or returned no features!');
+                return;
+            }
+            
+            console.log(`Got ${workingGeoJSON.features.length} features from working export`);
+            
+            // Debug: Check what coords3D actually looks like
+            if (workingGeoJSON.features.length > 0) {
+                console.log('Sample coords3D from first feature:', workingGeoJSON.features[0].properties.coords3D);
+                console.log('All properties:', Object.keys(workingGeoJSON.features[0].properties));
+            }
+            
+            // Create a map of group names to their angles
+            const groupAngles = {};
+            cameraGroups.forEach(g => {
+                groupAngles[g.customName] = (g.angle || 0) * Math.PI / 180;
+            });
+            
+            console.log('Group angles:', Object.entries(groupAngles).map(([name, angle]) => `${name}: ${(angle * 180 / Math.PI).toFixed(2)}°`).join(', '));
+            
+            // Create rotation variants - the current export rotates the WRONG axis
+            // We need to find which axis it SHOULD rotate
+            const variants = {
+                original: workingGeoJSON.features.map(f => ({...f})),
+                
+                // Remove current (wrong) rotation and apply to X-axis instead
+                rotateX_YZ: workingGeoJSON.features.map(f => {
+                    const match = f.properties.coords3D.match(/3D: \(([^,]+), ([^,]+), ([^)]+)\)/);
+                    if (match) {
+                        const x = parseFloat(match[1]);
+                        const y = parseFloat(match[2]);
+                        const z = parseFloat(match[3]);
+                        
+                        // Get the angle for this feature's group
+                        const groupAngle = groupAngles[f.properties.group] || 0;
+                        const cos = Math.cos(groupAngle);
+                        const sin = Math.sin(groupAngle);
+                        
+                        // Remove current XY rotation
+                        const origX = x * cos + y * sin;
+                        const origY = -x * sin + y * cos;
+                        
+                        // Apply to YZ plane (rotate around X-axis)
+                        const newX = origX;
+                        const newY = origY * cos - z * sin;
+                        const newZ = origY * sin + z * cos;
+                        
+                        return {
+                            ...f,
+                            properties: {
+                                ...f.properties,
+                                coords3D: `3D: (${newX.toFixed(3)}, ${newY.toFixed(3)}, ${newZ.toFixed(3)})`,
+                                variant: 'rotateX_YZ'
+                            }
+                        };
+                    }
+                    return f;
+                }),
+                
+                // Remove current (wrong) rotation and apply to Y-axis instead
+                rotateY_XZ: workingGeoJSON.features.map(f => {
+                    const match = f.properties.coords3D.match(/3D: \(([^,]+), ([^,]+), ([^)]+)\)/);
+                    if (match) {
+                        const x = parseFloat(match[1]);
+                        const y = parseFloat(match[2]);
+                        const z = parseFloat(match[3]);
+                        
+                        // Get the angle for this feature's group
+                        const groupAngle = groupAngles[f.properties.group] || 0;
+                        const cos = Math.cos(groupAngle);
+                        const sin = Math.sin(groupAngle);
+                        
+                        // Remove current XY rotation
+                        const origX = x * cos + y * sin;
+                        const origY = -x * sin + y * cos;
+                        
+                        // Apply to XZ plane (rotate around Y-axis)
+                        const newX = origX * cos + z * sin;
+                        const newY = origY;
+                        const newZ = -origX * sin + z * cos;
+                        
+                        return {
+                            ...f,
+                            properties: {
+                                ...f.properties,
+                                coords3D: `3D: (${newX.toFixed(3)}, ${newY.toFixed(3)}, ${newZ.toFixed(3)})`,
+                                variant: 'rotateY_XZ'
+                            }
+                        };
+                    }
+                    return f;
+                }),
+                
+                // Remove current (wrong) rotation and apply to Z-axis (keep XY)
+                rotateZ_XY: workingGeoJSON.features.map(f => {
+                    const match = f.properties.coords3D.match(/3D: \(([^,]+), ([^,]+), ([^)]+)\)/);
+                    if (match) {
+                        const x = parseFloat(match[1]);
+                        const y = parseFloat(match[2]);
+                        const z = parseFloat(match[3]);
+                        
+                        // Current rotation is already on XY, so this is same as original
+                        // But let's keep it for completeness
+                        return {
+                            ...f,
+                            properties: {
+                                ...f.properties,
+                                coords3D: `3D: (${x.toFixed(3)}, ${y.toFixed(3)}, ${z.toFixed(3)})`,
+                                variant: 'rotateZ_XY'
+                            }
+                        };
+                    }
+                    return f;
+                }),
+                
+                // Remove current rotation and apply to XZ plane (swap Y and Z roles)
+                swapYZ_rotateXZ: workingGeoJSON.features.map(f => {
+                    const match = f.properties.coords3D.match(/3D: \(([^,]+), ([^,]+), ([^)]+)\)/);
+                    if (match) {
+                        const x = parseFloat(match[1]);
+                        const y = parseFloat(match[2]);
+                        const z = parseFloat(match[3]);
+                        
+                        // Get the angle for this feature's group
+                        const groupAngle = groupAngles[f.properties.group] || 0;
+                        const cos = Math.cos(groupAngle);
+                        const sin = Math.sin(groupAngle);
+                        
+                        // Remove current XY rotation
+                        const origX = x * cos + y * sin;
+                        const origY = -x * sin + y * cos;
+                        
+                        // Apply rotation to XZ instead (treating Z as the horizontal plane)
+                        const newX = origX * cos - z * sin;
+                        const newY = origY;
+                        const newZ = origX * sin + z * cos;
+                        
+                        return {
+                            ...f,
+                            properties: {
+                                ...f.properties,
+                                coords3D: `3D: (${newX.toFixed(3)}, ${newY.toFixed(3)}, ${newZ.toFixed(3)})`,
+                                variant: 'swapYZ_rotateXZ'
+                            }
+                        };
+                    }
+                    return f;
+                }),
+                
+                // Remove current rotation and apply to YZ plane (swap X and Z roles)
+                swapXZ_rotateYZ: workingGeoJSON.features.map(f => {
+                    const match = f.properties.coords3D.match(/3D: \(([^,]+), ([^,]+), ([^)]+)\)/);
+                    if (match) {
+                        const x = parseFloat(match[1]);
+                        const y = parseFloat(match[2]);
+                        const z = parseFloat(match[3]);
+                        
+                        // Get the angle for this feature's group
+                        const groupAngle = groupAngles[f.properties.group] || 0;
+                        const cos = Math.cos(groupAngle);
+                        const sin = Math.sin(groupAngle);
+                        
+                        // Remove current XY rotation
+                        const origX = x * cos + y * sin;
+                        const origY = -x * sin + y * cos;
+                        
+                        // Apply rotation to YZ instead (treating Z as the horizontal plane)
+                        const newX = origX;
+                        const newY = origY * cos - z * sin;
+                        const newZ = origY * sin + z * cos;
+                        
+                        return {
+                            ...f,
+                            properties: {
+                                ...f.properties,
+                                coords3D: `3D: (${newX.toFixed(3)}, ${newY.toFixed(3)}, ${newZ.toFixed(3)})`,
+                                variant: 'swapXZ_rotateYZ'
+                            }
+                        };
+                    }
+                    return f;
+                })
+            };
+            
+            // Download each variant
+            Object.entries(variants).forEach(([variantName, variantFeatures]) => {
+                const geoJSON = {
+                    type: "FeatureCollection",
+                    features: variantFeatures,
+                    properties: {
+                        exportDate: new Date().toISOString(),
+                        totalFeatures: variantFeatures.length,
+                        variant: variantName,
+                        description: `Camera positions - ${variantName} rotation variant`,
+                        groupAngles: groupAngles
+                    }
+                };
+                
+                const blob = new Blob([JSON.stringify(geoJSON, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `camera_positions_${variantName}_${new Date().toISOString().slice(0, 19).replace(/:/g, '-')}.geojson`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                console.log(`   - Downloaded: camera_positions_${variantName}_*.geojson (${variantFeatures.length} features)`);
+            });
+            
+            console.log(`✅ Exported ${workingGeoJSON.features.length} camera positions with 6 rotation variants`);
+            console.log(`📊 Variants: original (wrong axis), rotateX_YZ, rotateY_XZ, rotateZ_XY, swapYZ_rotateXZ, swapXZ_rotateYZ`);
+            return variants;
+        }
+        
+        // Make export functions available globally
         window.exportCameraPositionsAsGeoJSON = exportCameraPositionsAsGeoJSON;
+        window.exportCameraPositionsAsGeoJSONVariants = exportCameraPositionsAsGeoJSONVariants;
+        
+        // Debug click capture functionality
+        let isClickCaptureEnabled = false;
+        
+        function enableClickCapture() {
+            isClickCaptureEnabled = true;
+            console.log('🎯 Click capture enabled! Click anywhere on the canvas to capture coordinates.');
+            alert('Click capture enabled! Click anywhere on the canvas to capture coordinates and export as GeoJSON.');
+        }
+        
+        function captureClickCoordinates(e) {
+            if (!isClickCaptureEnabled) return;
+            
+            // Get canvas coordinates
+            const pointer = canvas.getPointer(e.e);
+            const canvasX = pointer.x;
+            const canvasY = pointer.y;
+            
+            console.log('🎯 Click captured at canvas coordinates:', canvasX, canvasY);
+            
+            // Convert to Mt Eden coordinates
+            const mtEdenCoords = canvasToMtEden(canvasX, canvasY, mtEdenBounds, canvas.width, canvas.height);
+            console.log('🎯 Mt Eden coordinates:', mtEdenCoords);
+            
+            // Convert to WGS84 coordinates
+            const wgs84Coords = mtEdenToWGS84(mtEdenCoords.x, mtEdenCoords.y);
+            console.log('🎯 WGS84 coordinates:', wgs84Coords);
+            
+            // Create GeoJSON feature for this single point
+            const feature = {
+                type: "Feature",
+                properties: {
+                    name: "Debug Click Point",
+                    description: `Canvas: (${canvasX.toFixed(2)}, ${canvasY.toFixed(2)})`,
+                    mtEden: {
+                        x: mtEdenCoords.x,
+                        y: mtEdenCoords.y
+                    },
+                    wgs84: {
+                        longitude: wgs84Coords.lng,
+                        latitude: wgs84Coords.lat
+                    },
+                    timestamp: new Date().toISOString()
+                },
+                geometry: {
+                    type: "Point",
+                    coordinates: [wgs84Coords.lng, wgs84Coords.lat]
+                }
+            };
+            
+            // Create GeoJSON collection
+            const geoJSON = {
+                type: "FeatureCollection",
+                features: [feature],
+                properties: {
+                    description: "Debug click capture - single point",
+                    generated: new Date().toISOString(),
+                    source: "floor_plan_viewer_debug"
+                }
+            };
+            
+            // Export as GeoJSON file
+            const dataStr = JSON.stringify(geoJSON, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `debug_click_${new Date().toISOString().replace(/[:.]/g, '-')}.geojson`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            
+            console.log('✅ Debug click exported as GeoJSON');
+            alert(`Debug click exported!\n\nCanvas: (${canvasX.toFixed(2)}, ${canvasY.toFixed(2)})\nMt Eden: (${mtEdenCoords.x.toFixed(2)}, ${mtEdenCoords.y.toFixed(2)})\nWGS84: (${wgs84Coords.lng.toFixed(6)}, ${wgs84Coords.lat.toFixed(6)})`);
+            
+            // Disable click capture after one click
+            isClickCaptureEnabled = false;
+        }
         
         // Nuclear cache clearing command (use in browser console when needed)
         window.clearCacheNuclear = function() {
