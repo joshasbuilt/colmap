@@ -95,8 +95,8 @@ def convert_geojson_to_cone_data(geojson_path: Path, output_path: Path,
     geojson_data = load_geojson(geojson_path)
     
     # Apply rotational transform around origin (negative rotation)
-    angle_to_true_north = 92.04  # degrees
-    rotation_rad = math.radians(-angle_to_true_north)  # Negative rotation
+    angle_to_true_north = 92.04 + 180  # degrees
+    rotation_rad = math.radians(angle_to_true_north)  # Negative rotation
     cos_theta = math.cos(rotation_rad)
     sin_theta = math.sin(rotation_rad)
     
@@ -115,7 +115,8 @@ def convert_geojson_to_cone_data(geojson_path: Path, output_path: Path,
             # Apply rotation around origin
             rotated_x = x * cos_theta - y * sin_theta
             rotated_y = x * sin_theta + y * cos_theta
-            rotated_z = z  # Keep Z unchanged
+            # Add 0.5 m (500 mm) to elevation as requested
+            rotated_z = z + 0.5
             
             positions.append((rotated_x, rotated_y, rotated_z))
             

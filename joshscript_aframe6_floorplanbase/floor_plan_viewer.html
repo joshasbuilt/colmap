@@ -391,7 +391,7 @@
     <script>
         // ============================================
         // PTS FILE TO LOAD - CHANGE THIS LINE:
-        const PTS_FILE_TO_LOAD = 'enhanced_cameras_2025-10-20T07-19-34.pts';
+        const PTS_FILE_TO_LOAD = 'enhanced_cameras_2025-10-20T19-31-40.pts';
         // ============================================
         
         /*
@@ -3413,7 +3413,9 @@
             console.log('🔄 Exporting simple variants...');
             
             // Get the working GeoJSON first (this has the correct northing/easting data)
-            const workingGeoJSON = exportCameraPositionsAsGeoJSON(false);
+            // Request exportAll=true so this variant exporter ignores any image-strip selection
+            // and includes all camera positions.
+            const workingGeoJSON = exportCameraPositionsAsGeoJSON(true);
             if (!workingGeoJSON || !workingGeoJSON.features || workingGeoJSON.features.length === 0) {
                 console.error('No working GeoJSON data available! Cannot export variants.');
                 return;

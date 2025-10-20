@@ -190,8 +190,8 @@ namespace Bluff
         {
             try
             {
-                // Hardcoded full path to the JSON file
-                string jsonPath = @"C:\Users\JoshuaLumley\Dropbox\0000 Github Repos\asBuilt_DataColmap\paul\joshscript_aframe8_revitest\cone_data.json";
+                // Hardcoded full path to the JSON file (use joshscript_aframe7_silver version)
+                string jsonPath = @"C:\Users\JoshuaLumley\Dropbox\0000 Github Repos\asBuilt_DataColmap\paul\joshscript_aframe7_silver\cone_data.json";
                 
                 if (!File.Exists(jsonPath))
                 {

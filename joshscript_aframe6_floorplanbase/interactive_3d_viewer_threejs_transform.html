@@ -16,8 +16,8 @@
         
         body {
             font-family: Arial, sans-serif;
-            background: #000;
-            color: #fff;
+            background: #ffffff; /* white background */
+            color: #000000; /* dark text for readability on white */
             overflow: hidden;
         }
         
@@ -117,8 +117,8 @@
             position: fixed;
             bottom: 10px;
             right: 10px;
-            width: 128px;
-            height: 128px;
+            width: 256px;
+            height: 256px;
             cursor: pointer;
         }
         
@@ -187,15 +187,16 @@
         let viewCubeScene, viewCubeCamera, viewCubeRenderer;
         let viewCube;
         
-        // Colors for each reconstruction
+        // Colors for each reconstruction - mid-saturated palette chosen for good contrast
+        // on both light and dark backgrounds
         const reconstructionColors = [
-            0xff4444, // Red - R0
-            0x44ff44, // Green - R1
-            0x4444ff, // Blue - R2
-            0xffff44, // Yellow - R3
-            0xff44ff, // Magenta - R4
-            0x44ffff, // Cyan - R5
-            0xff8844  // Orange - R6
+            0xE63946, // Reddish - R0 (230,57,70)
+            0x2A9D8F, // Teal - R1 (42,157,143)
+            0x264653, // Deep Blue - R2 (38,70,83)
+            0xF4A261, // Orange - R3 (244,162,97)
+            0x6A4C93, // Purple - R4 (106,76,147)
+            0x8AB17D, // Sage - R5 (138,177,125)
+            0x2B2D42  // Dark Navy - R6 (43,45,66)
         ];
         
         init();
@@ -206,7 +207,7 @@
         function init() {
             // Create scene
             scene = new THREE.Scene();
-            scene.background = new THREE.Color(0x1a1a1a);
+            scene.background = new THREE.Color(0xffffff); // white scene background
             
             // Create orthographic camera
             const aspect = window.innerWidth / window.innerHeight;
@@ -239,6 +240,66 @@
                 orbitControls.enabled = !event.value;
             });
             scene.add(transformControls);
+            
+            // Recolor TransformControls gizmo for better visibility on white background
+            (function recolorTransformGizmo(tc) {
+                // Desired palette for gizmo: darker, high-contrast
+                const G = { X: 0x8B0000, Y: 0x006400, Z: 0x00008B, OTH: 0x444444, HIGHLIGHT: 0x8B4513 };
+
+                function setMaterialColor(mat, hex) {
+                    try {
+                        if (mat.color) mat.color.setHex(hex);
+                        if (mat.emissive) mat.emissive.setHex(0x000000);
+                        if (mat.linewidth !== undefined && mat.color) mat.color.setHex(hex);
+                    } catch (e) {
+                        // ignore read-only or unsupported
+                    }
+                }
+
+                // Traverse meshes and lines inside the control and apply colors based on names
+                tc.traverse(child => {
+                    // Name hints may be on the child or the material
+                    const name = (child.name || '').toUpperCase();
+                    if (child.material) {
+                        if (Array.isArray(child.material)) {
+                            child.material.forEach(m => setMaterialColor(m, G.OTH));
+                        } else {
+                            setMaterialColor(child.material, G.OTH);
+                        }
+                    }
+
+                    // Apply axis-specific colors where name contains X/Y/Z
+                    if (name.includes('X')) {
+                        if (child.material) {
+                            if (Array.isArray(child.material)) child.material.forEach(m => setMaterialColor(m, G.X));
+                            else setMaterialColor(child.material, G.X);
+                        }
+                    } else if (name.includes('Y')) {
+                        if (child.material) {
+                            if (Array.isArray(child.material)) child.material.forEach(m => setMaterialColor(m, G.Y));
+                            else setMaterialColor(child.material, G.Y);
+                        }
+                    } else if (name.includes('Z')) {
+                        if (child.material) {
+                            if (Array.isArray(child.material)) child.material.forEach(m => setMaterialColor(m, G.Z));
+                            else setMaterialColor(child.material, G.Z);
+                        }
+                    } else if (name.includes('E') || name.includes('ARROW') || name.includes('HANDLE')) {
+                        if (child.material) {
+                            if (Array.isArray(child.material)) child.material.forEach(m => setMaterialColor(m, G.HIGHLIGHT));
+                            else setMaterialColor(child.material, G.HIGHLIGHT);
+                        }
+                    }
+
+                    // Specific handling: rotate outer circle is often a Line or LineSegments object
+                    if (child.type === 'Line' || child.type === 'LineSegments') {
+                        if (child.material) {
+                            if (Array.isArray(child.material)) child.material.forEach(m => setMaterialColor(m, G.HIGHLIGHT));
+                            else setMaterialColor(child.material, G.HIGHLIGHT);
+                        }
+                    }
+                });
+            })(transformControls);
             
             // Add lights
             const ambientLight = new THREE.AmbientLight(0x404040);
@@ -478,13 +539,13 @@
             
             // Color mapping for reconstructions
             const colors = [
-                { hex: 0xff4444, name: 'Red', rgb: [255, 68, 68] },
-                { hex: 0x44ff44, name: 'Green', rgb: [68, 255, 68] },
-                { hex: 0x4444ff, name: 'Blue', rgb: [68, 68, 255] },
-                { hex: 0xffff44, name: 'Yellow', rgb: [255, 255, 68] },
-                { hex: 0xff44ff, name: 'Magenta', rgb: [255, 68, 255] },
-                { hex: 0x44ffff, name: 'Cyan', rgb: [68, 255, 255] },
-                { hex: 0xff8844, name: 'Orange', rgb: [255, 136, 68] }
+                { hex: 0xE63946, name: 'Reddish', rgb: [230, 57, 70] },
+                { hex: 0x2A9D8F, name: 'Teal', rgb: [42, 157, 143] },
+                { hex: 0x264653, name: 'DeepBlue', rgb: [38, 70, 83] },
+                { hex: 0xF4A261, name: 'Orange', rgb: [244, 162, 97] },
+                { hex: 0x6A4C93, name: 'Purple', rgb: [106, 76, 147] },
+                { hex: 0x8AB17D, name: 'Sage', rgb: [138, 177, 125] },
+                { hex: 0x2B2D42, name: 'DarkNavy', rgb: [43, 45, 66] }
             ];
             
             // Add header with metadata
@@ -509,34 +570,23 @@
                 // Add object header
                 ptsContent += `# Object ${objectId}: ${color.name} (${pointCount} points)\n`;
                 
-                // Get the current transformation matrix
+                // Get the current transformation matrix for this group
                 const matrix = new THREE.Matrix4();
                 group.updateMatrixWorld();
                 matrix.copy(group.matrixWorld);
-                
-                // Extract transformation components for metadata
-                const position = new THREE.Vector3();
-                const quaternion = new THREE.Quaternion();
-                const scale = new THREE.Vector3();
-                matrix.decompose(position, quaternion, scale);
-                
-                // Add transformation metadata
-                ptsContent += `# Transform: Pos(${position.x.toFixed(3)}, ${position.y.toFixed(3)}, ${position.z.toFixed(3)}) `;
-                ptsContent += `Scale(${scale.x.toFixed(3)}, ${scale.y.toFixed(3)}, ${scale.z.toFixed(3)}) `;
-                ptsContent += `Quat(${quaternion.x.toFixed(3)}, ${quaternion.y.toFixed(3)}, ${quaternion.z.toFixed(3)}, ${quaternion.w.toFixed(3)})\n`;
-                
-                // Apply transformation to each point using RELATIVE X,Y but ABSOLUTE Z
+
+                // For exporter we will bake the group's transform into each point's coordinates
+                // and then write identity transform metadata so the exported file has no residual transform.
+                ptsContent += `# Transform: Pos(0.000, 0.000, 0.000) Scale(1.000, 1.000, 1.000) Quat(0.000, 0.000, 0.000, 1.000)\n`;
+
                 const originalData = originalCameraData[i];
                 for (const point of originalData) {
-                    // Create vector with RELATIVE X,Y (not COLMAP coordinates) but ABSOLUTE Z (preserve height corrections)
-                    const relativeX = (point.x - originalData[0].x); // Relative to first point
-                    const relativeY = (point.y - originalData[0].y); // Relative to first point
-                    const absoluteZ = point.z; // Keep absolute Z to preserve height corrections from 3D viewer
-                    const vector = new THREE.Vector3(relativeX, relativeY, absoluteZ);
-                    
-                    // Apply transformation
+                    // Use the original absolute coordinates for the point
+                    const vector = new THREE.Vector3(point.x, point.y, point.z);
+
+                    // Apply the group's world matrix to bake translation/rotation/scale into the point
                     vector.applyMatrix4(matrix);
-                    
+
                     // Add to PTS content with enhanced information
                     // Format: X Y Z R G B OBJECT_ID IMAGE_NAME
                     ptsContent += `${vector.x.toFixed(6)} ${vector.y.toFixed(6)} ${vector.z.toFixed(6)} `;
@@ -641,11 +691,13 @@
             // Create ViewCube renderer
             const canvas = document.getElementById('view-cube-canvas');
             viewCubeRenderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
-            viewCubeRenderer.setSize(128, 128);
+            // Use device pixel ratio for crisp rendering on high-DPI displays
+            viewCubeRenderer.setPixelRatio(window.devicePixelRatio || 1);
+            viewCubeRenderer.setSize(256, 256, false);
             viewCubeRenderer.setClearColor(0x000000, 0);
             
-            // Create cube geometry
-            const geometry = new THREE.BoxGeometry(1, 1, 1);
+            // Create cube geometry (slightly larger so faces fill the view cube area)
+            const geometry = new THREE.BoxGeometry(1.6, 1.6, 1.6);
             
             // Create materials for each face
             const materials = [
@@ -671,23 +723,23 @@
         
         function createFaceMaterial(text, color) {
             const canvas = document.createElement('canvas');
-            canvas.width = 128;
-            canvas.height = 128;
+            canvas.width = 256;
+            canvas.height = 256;
             const ctx = canvas.getContext('2d');
-            
-            // Background
+            // Background (fill full canvas)
             ctx.fillStyle = `#${color.toString(16).padStart(6, '0')}`;
-            ctx.fillRect(0, 0, 128, 128);
-            
-            // Text
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Text - larger font for the bigger faces
             ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 20px Arial';
+            ctx.font = 'bold 48px Arial';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.fillText(text, 64, 64);
-            
+            ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+
             const texture = new THREE.CanvasTexture(canvas);
-            return new THREE.MeshBasicMaterial({ map: texture });
+            // Render both sides so faces are visible from any viewing angle
+            return new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
         }
         
         function onViewCubeClick(event) {
