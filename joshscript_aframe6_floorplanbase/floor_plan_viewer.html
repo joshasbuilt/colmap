@@ -6,8 +6,8 @@
     <title>Floorplan Coordinates - Rectangle View</title>
     <!-- 
     ============================================
-    PTS FILE TO LOAD: enhanced_cameras_2025-10-20T02-02-34.pts
-    (Change this filename at line 2825 to load a different PTS file)
+    PTS FILE TO LOAD: enhanced_cameras_2025-10-21T03-05-52.pts
+    (Change the PTS filename assigned to PTS_FILE_TO_LOAD below to load a different file)
     ============================================
     -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
@@ -391,7 +391,7 @@
     <script>
         // ============================================
         // PTS FILE TO LOAD - CHANGE THIS LINE:
-        const PTS_FILE_TO_LOAD = 'enhanced_cameras_2025-10-20T19-31-40.pts';
+    const PTS_FILE_TO_LOAD = 'enhanced_cameras_2025-10-21T19-31-33.pts';
         // ============================================
         
         /*
@@ -1515,7 +1515,7 @@
         // Geolocation data from React Fiber extraction
         const geolocationData = {
             groundFloor: {
-                image: 'floorplan_images/GroundFloor.png',
+                image: '/paul/joshscript_aframe6_floorplanbase/floorplan_images/GroundFloor.png',
                 bounds: [
                     [174.74069378281493, -36.80542933064474],   // Top-Left
                     [174.7412528239626, -36.805448062383675],   // Top-Right
@@ -1524,7 +1524,7 @@
                 ]
             },
             firstFloor: {
-                image: 'floorplan_images/FirstFloor.png',
+                image: '/paul/joshscript_aframe6_floorplanbase/floorplan_images/FirstFloor.png',
                 bounds: [
                     [174.74067575711504, -36.805431462369086],   // Top-Left
                     [174.74123484878098, -36.805451153593665],   // Top-Right
@@ -1642,23 +1642,20 @@
             console.log('Floor Mt Eden BR:', floorMtEdenBounds[2]);
             console.log('Floor Mt Eden BL:', floorMtEdenBounds[3]);
             
-            fabric.Image.fromURL(imageUrl, function(img) {
+            // Robust image loader using fetch + Image to ensure natural dimensions available
+            (function() {
                 // Convert Mt Eden bounds to canvas coordinates using GLOBAL reference
                 const canvasBounds = floorMtEdenBounds.map(bound => 
                     mtEdenToCanvas(bound.x, bound.y, mtEdenBounds, canvas.width, canvas.height)
                 );
-                
+
                 console.log(floorName, 'canvas bounds:', canvasBounds);
 
-
                 // Calculate width and height from actual polygon edges
-                // Top edge: distance from TL to TR
                 const topWidth = Math.sqrt(
                     Math.pow(canvasBounds[1].x - canvasBounds[0].x, 2) + 
                     Math.pow(canvasBounds[1].y - canvasBounds[0].y, 2)
                 );
-                
-                // Left edge: distance from TL to BL
                 const leftHeight = Math.sqrt(
                     Math.pow(canvasBounds[3].x - canvasBounds[0].x, 2) + 
                     Math.pow(canvasBounds[3].y - canvasBounds[0].y, 2)
@@ -1669,37 +1666,86 @@
                 const dy = canvasBounds[1].y - canvasBounds[0].y;
                 const rotationAngle = Math.atan2(dy, dx) * 180 / Math.PI;
 
-                // Position the image at the top-left corner
-                img.set({
-                    left: canvasBounds[0].x,
-                    top: canvasBounds[0].y,
-                    scaleX: topWidth / img.width,
-                    scaleY: leftHeight / img.height,
-                    angle: rotationAngle,
-                    originX: 'left',
-                    originY: 'top',
-                    selectable: true,
-                    customName: 'Floorplan Image'
-                });
+                // Fetch the image first so we can report helpful errors
+                fetch(imageUrl, { mode: 'cors' })
+                    .then(response => {
+                        if (!response.ok) throw new Error(`HTTP ${response.status} ${response.statusText}`);
+                        return response.blob();
+                    })
+                    .then(blob => {
+                        const objectUrl = URL.createObjectURL(blob);
+                        const imgEl = new Image();
+                        imgEl.crossOrigin = 'anonymous';
+                        imgEl.onload = function() {
+                            try {
+                                // Use natural dimensions from the loaded image element
+                                const naturalW = imgEl.naturalWidth || imgEl.width;
+                                const naturalH = imgEl.naturalHeight || imgEl.height;
 
-                // Add image to canvas
-                canvas.add(img);
-                
-                // Lock the image by default
-                lockObject(img);
+                                if (!naturalW || !naturalH) {
+                                    console.warn('Loaded image has zero dimensions:', imageUrl);
+                                }
 
-                console.log('Image transformation:', {
-                    topWidth: topWidth,
-                    leftHeight: leftHeight,
-                    rotationAngle: rotationAngle,
-                    topLeft: canvasBounds[0],
-                    topRight: canvasBounds[1],
-                    bottomRight: canvasBounds[2],
-                    bottomLeft: canvasBounds[3]
-                });
+                                const fabricImg = new fabric.Image(imgEl, {
+                                    left: canvasBounds[0].x,
+                                    top: canvasBounds[0].y,
+                                    scaleX: topWidth / naturalW || 1,
+                                    scaleY: leftHeight / naturalH || 1,
+                                    angle: rotationAngle,
+                                    originX: 'left',
+                                    originY: 'top',
+                                    selectable: true,
+                                    customName: 'Floorplan Image',
+                                    opacity: 1
+                                });
 
-                updateInfoPanel();
-            });
+                                // Add image to canvas and lock by default
+                                canvas.add(fabricImg);
+                                lockObject(fabricImg);
+                                canvas.requestRenderAll();
+
+                                console.log('Image loaded and added:', imageUrl, {
+                                    naturalW, naturalH, topWidth, leftHeight, rotationAngle
+                                });
+                                updateInfoPanel();
+
+                                // cleanup
+                                URL.revokeObjectURL(objectUrl);
+                            } catch (err) {
+                                console.error('Error creating fabric image for', imageUrl, err);
+                            }
+                        };
+                        imgEl.onerror = function(e) {
+                            console.error('Image element failed to load:', imageUrl, e);
+                            URL.revokeObjectURL(objectUrl);
+                        };
+                        imgEl.src = objectUrl;
+                    })
+                    .catch(err => {
+                        console.error('Failed to load floorplan image:', imageUrl, err);
+                        // As a visible fallback, draw a semi-transparent rectangle showing intended bounds
+                        try {
+                            const fallbackRect = new fabric.Rect({
+                                left: canvasBounds[0].x,
+                                top: canvasBounds[0].y,
+                                width: Math.abs(canvasBounds[1].x - canvasBounds[0].x) || 100,
+                                height: Math.abs(canvasBounds[3].y - canvasBounds[0].y) || 100,
+                                fill: 'rgba(200,100,50,0.25)',
+                                stroke: 'rgba(200,100,50,0.8)',
+                                strokeWidth: 2,
+                                angle: rotationAngle,
+                                originX: 'left',
+                                originY: 'top',
+                                selectable: false
+                            });
+                            canvas.add(fallbackRect);
+                            canvas.requestRenderAll();
+                            console.log('Fallback rectangle added for', floorName);
+                        } catch (e) {
+                            console.error('Failed to add fallback rectangle', e);
+                        }
+                    });
+            })();
         }
 
         // Lock object function
@@ -2726,6 +2772,33 @@
                         // Reattach event handlers after restoration with delay
                         setTimeout(() => {
                             reattachEventHandlers();
+                            // DIAGNOSTICS: list all objects to help debug missing images
+                            console.log('=== POST-RESTORE CANVAS OBJECTS ===');
+                            canvas.getObjects().forEach((o, i) => {
+                                console.log(i, {
+                                    type: o.type,
+                                    customName: o.customName || o.title || null,
+                                    selectable: o.selectable,
+                                    visible: o.visible,
+                                    left: o.left,
+                                    top: o.top,
+                                    width: o.width || o.getScaledWidth && o.getScaledWidth(),
+                                    height: o.height || o.getScaledHeight && o.getScaledHeight(),
+                                    src: o.getSrc ? o.getSrc() : (o._element && o._element.src) || null
+                                });
+                            });
+
+                            // If there are no floorplan images present, attempt to re-load them
+                            const hasFloorplanImage = canvas.getObjects().some(o => (o.customName === 'Floorplan Image'));
+                            if (!hasFloorplanImage) {
+                                console.warn('No floorplan image objects found after restore — attempting to reload floorplans');
+                                try {
+                                    loadFloorplanImage(geolocationData.groundFloor.image, geolocationData.groundFloor.bounds, 'Ground Floor');
+                                    loadFloorplanImage(geolocationData.firstFloor.image, geolocationData.firstFloor.bounds, 'First Floor');
+                                } catch (e) {
+                                    console.error('Error attempting to reload floorplan images:', e);
+                                }
+                            }
                         }, 100);
                     });
                     return true;

@@ -35,8 +35,8 @@ def export_reconstruction_to_json(folder_path, folder_num, output_dir):
     
     print(f"  Found {len(camera_data)} registered camera positions")
     
-    # Process camera data with gravity correction
-    R_combined, camera_data = process_camera_data(camera_data, debug_output=False)
+    # Process camera data with gravity correction (disable second-pass X-rotation for JSON export)
+    R_combined, camera_data = process_camera_data(camera_data, debug_output=False, second_pass=False)
     
     if R_combined is None:
         print(f"  WARNING: Not enough camera positions for gravity estimation")

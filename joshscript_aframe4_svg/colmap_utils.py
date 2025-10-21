@@ -292,7 +292,7 @@ def find_optimal_x_rotation(temp_positions, labels):
     
     return best_angle_x, best_variance
 
-def process_camera_data(camera_data, debug_output=True):
+def process_camera_data(camera_data, debug_output=True, second_pass=True):
     """
     Process camera data with gravity correction and optimal X-axis rotation.
     Returns the combined rotation matrix and updated camera data.
@@ -313,8 +313,10 @@ def process_camera_data(camera_data, debug_output=True):
     # Apply rotation to get oriented positions
     print(f"  Applying rotation to {len(camera_data)} camera positions...")
     
-    # Find optimal X-axis rotation to align building floors horizontally
-    print(f"  Finding optimal X-axis rotation to align building floors horizontally...")
+    # First apply gravity alignment
+    if second_pass:
+        # Find optimal X-axis rotation to align building floors horizontally
+        print(f"  Finding optimal X-axis rotation to align building floors horizontally...")
     
     # First apply gravity alignment
     temp_positions = []
@@ -323,21 +325,26 @@ def process_camera_data(camera_data, debug_output=True):
         temp_positions.append(temp_pos)
     temp_positions = np.array(temp_positions)
     
-    # Find optimal X-axis rotation
-    best_angle_x, best_variance = find_optimal_x_rotation(temp_positions, labels)
-    
-    print(f"  Best X-axis rotation: {best_angle_x}° (Z-variance: {best_variance:.6f})")
-    
-    # Apply the optimal X-axis rotation
-    angle_x = np.radians(best_angle_x)
-    R_x_optimal = np.array([
-        [1, 0, 0],
-        [0, np.cos(angle_x), -np.sin(angle_x)],
-        [0, np.sin(angle_x), np.cos(angle_x)]
-    ])
-    
-    # Combined rotation: gravity alignment + optimal X-axis rotation
-    R_combined = R_x_optimal @ R
+    # Optionally run the second-pass X-axis rotation search to better align floors
+    if second_pass:
+        # Find optimal X-axis rotation
+        best_angle_x, best_variance = find_optimal_x_rotation(temp_positions, labels)
+        print(f"  Best X-axis rotation: {best_angle_x}° (Z-variance: {best_variance:.6f})")
+        
+        # Apply the optimal X-axis rotation
+        angle_x = np.radians(best_angle_x)
+        R_x_optimal = np.array([
+            [1, 0, 0],
+            [0, np.cos(angle_x), -np.sin(angle_x)],
+            [0, np.sin(angle_x), np.cos(angle_x)]
+        ])
+        
+        # Combined rotation: gravity alignment + optimal X-axis rotation
+        R_combined = R_x_optimal @ R
+    else:
+        if debug_output:
+            print("  Second-pass X-axis rotation disabled; using gravity-only alignment")
+        R_combined = R
     
     if debug_output:
         print(f"  DEBUG: Second pass rotation matrix:")

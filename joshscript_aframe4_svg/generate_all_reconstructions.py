@@ -149,7 +149,8 @@ def process_single_reconstruction(folder_path, folder_num):
     print(f"  Found {len(camera_data)} registered camera positions")
     
     # Process camera data with gravity correction
-    R_combined, camera_data = process_camera_data(camera_data, debug_output=False)
+    # NOTE: disable the second-pass X-axis rotation for this batch run
+    R_combined, camera_data = process_camera_data(camera_data, debug_output=False, second_pass=False)
     
     if R_combined is None:
         print(f"  WARNING: Not enough camera positions for gravity estimation")

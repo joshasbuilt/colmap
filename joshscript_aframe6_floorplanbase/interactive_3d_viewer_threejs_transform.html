@@ -421,7 +421,8 @@
         
         async function loadReconstruction(index) {
             const jsonPath = `../joshscript_aframe4_svg/svg_output/camera_data_${index}.json`;
-            const response = await fetch(jsonPath);
+            // Cache-busting query ensures browser loads the freshest JSON after exports
+            const response = await fetch(jsonPath + '?t=' + Date.now(), { cache: 'no-store' });
             const data = await response.json();
             
             // Sort by image name
