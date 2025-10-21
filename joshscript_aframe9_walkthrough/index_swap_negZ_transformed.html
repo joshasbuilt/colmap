@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>swap_negZ - transformed data</title>
+<script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+</head>
+<body>
+<div style="position:fixed;left:8px;top:8px;background:#fff;padding:6px;z-index:10">Variant: swap Y/Z & negate Z — transformed data</div>
+<a-scene loading-screen="enabled:false"><a-sky id="panorama-sky"></a-sky><a-entity id="spheres-container"></a-entity><a-entity id="camera-rig"><a-camera id="main-camera"></a-camera></a-entity></a-scene>
+<script>
+    window.PAGE_CONFIG = {
+        FLIP_YZ_ON_LOAD: true,
+        NEGATE_Y_ON_LOAD: false,
+        NEGATE_Z_ON_LOAD: true,
+        DATA_FILE: '../paul/joshscript_aframe7_silver/cone_data_transformed_frame.json',
+        REMOVE_SKY: true,
+        MODE: 'full'
+    };
+</script>
+<script src="navigation-system.js"></script>
+</body>
+</html>

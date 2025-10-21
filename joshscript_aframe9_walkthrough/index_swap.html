@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Walkthrough - swap Y/Z</title>
+<script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+<style>body{margin:0}#ui-panel{position:fixed;left:8px;top:8px;background:#fff;padding:8px;border-radius:4px;z-index:10}</style>
+</head>
+<body>
+<div id="ui-panel"><strong>Variant:</strong> swap Y/Z</div>
+<a-scene loading-screen="enabled:false"><a-sky id="panorama-sky"></a-sky><a-entity id="spheres-container"></a-entity><a-entity id="camera-rig"><a-camera id="main-camera"></a-camera></a-entity></a-scene>
+<script>
+	// Hard-coded mapping defaults for this variant (controls hidden)
+	window.PAGE_CONFIG = {
+		DATA_FILE: 'cone_data.json',
+	// Per user's selected working mapping (implemented here)
+	FLIP_YZ_ON_LOAD: true,
+	NEGATE_Y_ON_LOAD: false,
+	NEGATE_Z_ON_LOAD: false,
+	INVERT_X_SIGN: false,
+	INVERT_Y_SIGN: true,
+	INVERT_Z_SIGN: true,
+		REMOVE_SKY: false,
+		CAMERA_FLIP_UPDOWN: true,
+	// Hide mapping controls for this page since mapping is now applied by default
+	SHOW_MAPPING_CONTROLS: false,
+	// Lower spheres 1.0 m relative to the observer
+	SPHERE_Y_OFFSET: -1
+	};
+</script>
+<script src="navigation-system.js"></script>
+</body>
+</html>

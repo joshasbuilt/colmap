@@ -1,0 +1,124 @@
+{
+  "export_info": {
+    "source": "colmap",
+    "model_dir": "D:\\Camera01\\reconstruction_mask3_012_previews_run\\sparse\\0",
+    "timestamp": "2025-10-21T11:38:38.030788"
+  },
+  "cones": [
+    {
+      "cone_id": 1,
+      "image_id": 167,
+      "image_path": "c:/Users/JoshuaLumley/Dropbox/0000 Github Repos/asBuilt_DataColmap/paul/joshscript_aframe9_prepimages/original/frame_0176.jpg",
+      "dxf_position": {
+        "x": -3.139260971114061,
+        "y": 1.3870009979965832,
+        "z": 1.1239212548141357
+      },
+      "direction": {
+        "forward": {
+          "x": 0.014441061307228352,
+          "y": -0.00058881288792543,
+          "z": 0.9998955490688538
+        },
+        "up": {
+          "x": -0.003714881067268415,
+          "y": 0.9999928933864041,
+          "z": 0.0006425226407893534
+        }
+      },
+      "image_path_mapping": "stripped_suffix"
+    },
+    {
+      "cone_id": 2,
+      "image_id": 591,
+      "image_path": "c:/Users/JoshuaLumley/Dropbox/0000 Github Repos/asBuilt_DataColmap/paul/joshscript_aframe9_prepimages/original/frame_0176.jpg",
+      "dxf_position": {
+        "x": -3.13926097111406,
+        "y": 1.3870009979965832,
+        "z": 1.1239212548141349
+      },
+      "direction": {
+        "forward": {
+          "x": 0.9998888215231618,
+          "y": 0.003723771753328761,
+          "z": -0.014438771310335774
+        },
+        "up": {
+          "x": -0.0037148810672684145,
+          "y": 0.9999928933864041,
+          "z": 0.0006425226407893536
+        }
+      },
+      "image_path_mapping": "stripped_suffix"
+    },
+    {
+      "cone_id": 3,
+      "image_id": 1013,
+      "image_path": "c:/Users/JoshuaLumley/Dropbox/0000 Github Repos/asBuilt_DataColmap/paul/joshscript_aframe9_prepimages/original/frame_0176.jpg",
+      "dxf_position": {
+        "x": -3.1392609711140596,
+        "y": 1.3870009979965832,
+        "z": 1.1239212548141355
+      },
+      "direction": {
+        "forward": {
+          "x": -0.014441061307228229,
+          "y": 0.0005888128879254304,
+          "z": -0.9998955490688534
+        },
+        "up": {
+          "x": -0.003714881067268415,
+          "y": 0.9999928933864041,
+          "z": 0.0006425226407893534
+        }
+      },
+      "image_path_mapping": "stripped_suffix"
+    },
+    {
+      "cone_id": 4,
+      "image_id": 1433,
+      "image_path": "c:/Users/JoshuaLumley/Dropbox/0000 Github Repos/asBuilt_DataColmap/paul/joshscript_aframe9_prepimages/original/frame_0176.jpg",
+      "dxf_position": {
+        "x": -3.13926097111406,
+        "y": 1.3870009979965832,
+        "z": 1.1239212548141375
+      },
+      "direction": {
+        "forward": {
+          "x": -0.9998888215231618,
+          "y": -0.003723771753328761,
+          "z": 0.01443877131033644
+        },
+        "up": {
+          "x": -0.0037148810672684145,
+          "y": 0.9999928933864041,
+          "z": 0.0006425226407893536
+        }
+      },
+      "image_path_mapping": "stripped_suffix"
+    },
+    {
+      "cone_id": 5,
+      "image_id": 1844,
+      "image_path": "c:/Users/JoshuaLumley/Dropbox/0000 Github Repos/asBuilt_DataColmap/paul/joshscript_aframe9_prepimages/original/frame_0176.jpg",
+      "dxf_position": {
+        "x": -3.139260971114058,
+        "y": 1.3870009979965834,
+        "z": 1.1239212548141353
+      },
+      "direction": {
+        "forward": {
+          "x": 0.5853974659709387,
+          "y": 0.575388216009976,
+          "z": 0.5711726601577324
+        },
+        "up": {
+          "x": -0.4144347509289056,
+          "y": 0.817874746940944,
+          "z": -0.3991550269491577
+        }
+      },
+      "image_path_mapping": "stripped_suffix"
+    }
+  ]
+}

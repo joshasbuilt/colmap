@@ -1,0 +1,138 @@
+{
+  "export_info": {
+    "source": "bake_full_3d_rotation (prepimages copy)",
+    "timestamp": "2025-10-21T13:28:55.405691"
+  },
+  "cones": [
+    {
+      "cone_id": 1,
+      "image_id": 1386,
+      "image_path": "processed/frame_0140.jpg",
+      "colmap_name": "pano_camera3/frame_0140_hp_preview.jpg",
+      "dxf_position": {
+        "x": -4.994154919536541,
+        "y": 1.6933266148584312,
+        "z": 1.4564009899705532
+      },
+      "direction": {
+        "forward": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        },
+        "up": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 1.0
+        }
+      },
+      "image_path_mapping": "stripped_suffix",
+      "original_image_path": "c:/Users/JoshuaLumley/Dropbox/0000 Github Repos/asBuilt_DataColmap/paul/joshscript_aframe9_prepimages/original/frame_0140.jpg",
+      "rotation_baked": true
+    },
+    {
+      "cone_id": 2,
+      "image_id": 1385,
+      "image_path": "processed/frame_0141.jpg",
+      "colmap_name": "pano_camera3/frame_0141_hp_preview.jpg",
+      "dxf_position": {
+        "x": -5.143905623767355,
+        "y": 1.7033963204356943,
+        "z": 1.5568225813955607
+      },
+      "direction": {
+        "forward": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        },
+        "up": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 1.0
+        }
+      },
+      "image_path_mapping": "stripped_suffix",
+      "original_image_path": "c:/Users/JoshuaLumley/Dropbox/0000 Github Repos/asBuilt_DataColmap/paul/joshscript_aframe9_prepimages/original/frame_0141.jpg",
+      "rotation_baked": true
+    },
+    {
+      "cone_id": 3,
+      "image_id": 1389,
+      "image_path": "processed/frame_0142.jpg",
+      "colmap_name": "pano_camera3/frame_0142_hp_preview.jpg",
+      "dxf_position": {
+        "x": -5.402230810592357,
+        "y": 1.7328363906176292,
+        "z": 1.7516853063038205
+      },
+      "direction": {
+        "forward": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        },
+        "up": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 1.0
+        }
+      },
+      "image_path_mapping": "stripped_suffix",
+      "original_image_path": "c:/Users/JoshuaLumley/Dropbox/0000 Github Repos/asBuilt_DataColmap/paul/joshscript_aframe9_prepimages/original/frame_0142.jpg",
+      "rotation_baked": true
+    },
+    {
+      "cone_id": 4,
+      "image_id": 1397,
+      "image_path": "processed/frame_0143.jpg",
+      "colmap_name": "pano_camera3/frame_0143_hp_preview.jpg",
+      "dxf_position": {
+        "x": -5.57334358041541,
+        "y": 1.7562717111387711,
+        "z": 1.8188035049453373
+      },
+      "direction": {
+        "forward": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        },
+        "up": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 1.0
+        }
+      },
+      "image_path_mapping": "stripped_suffix",
+      "original_image_path": "c:/Users/JoshuaLumley/Dropbox/0000 Github Repos/asBuilt_DataColmap/paul/joshscript_aframe9_prepimages/original/frame_0143.jpg",
+      "rotation_baked": true
+    },
+    {
+      "cone_id": 5,
+      "image_id": 1401,
+      "image_path": "processed/frame_0144.jpg",
+      "colmap_name": "pano_camera3/frame_0144_hp_preview.jpg",
+      "dxf_position": {
+        "x": -5.735539490725318,
+        "y": 1.7728849190894427,
+        "z": 1.7338731069936117
+      },
+      "direction": {
+        "forward": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        },
+        "up": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 1.0
+        }
+      },
+      "image_path_mapping": "stripped_suffix",
+      "original_image_path": "c:/Users/JoshuaLumley/Dropbox/0000 Github Repos/asBuilt_DataColmap/paul/joshscript_aframe9_prepimages/original/frame_0144.jpg",
+      "rotation_baked": true
+    }
+  ]
+}
